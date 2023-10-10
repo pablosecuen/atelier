@@ -1,14 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Grid from "../components/grid/Grid";
-import ProductGridItems from "../components/layout/product-grid-items";
-import { defaultSort, sorting } from "./constants";
-import { listProducts } from "@/redux/actions/productActions";
-import { ThunkDispatch, Dispatch } from "@reduxjs/toolkit";
-import { RootState } from "@/redux/store/store";
+import { Dispatch } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import "rc-slider/assets/index.css";
 import Loading from "./loading";
+import { RootState } from "../redux/store";
+import { listProducts } from "../redux/actions/productActions";
+import ProductGridItems from "../layout/product-grid-items";
 
 export const runtime = "edge";
 
@@ -21,12 +20,12 @@ export default function SearchPage({
   const { products, status } = useSelector((state: RootState) => state.products);
   const [status1, setStatus1] = useState("");
   const dispatch = useDispatch<Dispatch<any>>();
-  console.log(status);
 
   const resultsText = products.length > 1 ? "results" : "result";
   useEffect(() => {
     dispatch(listProducts());
     setStatus1(status);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
   return (
     <>
@@ -37,7 +36,7 @@ export default function SearchPage({
       ) : (
         <div className="flex flex-col w-full">
           {searchValue ? (
-            <p className="mb-4 mx-auto">
+            <p className="mb-4 mx-auto text-black">
               {products.length === 0
                 ? "There are no products that match "
                 : `Showing ${products.length} ${resultsText} for `}

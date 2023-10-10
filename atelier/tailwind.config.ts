@@ -12,6 +12,9 @@ module.exports = {
       fontFamily: {
         'inter-bold': ['Inter-Bold', 'sans'],
       },
+      boxShadowCustom: {
+        'inner-bottom': 'inset -5px -10px 10px rgba(0, 0, 0, 1)', // Ajusta los valores según desees
+      },
       colors: {
         primario: '#f0e6dc',     
         secundario: '#c8aa96',  

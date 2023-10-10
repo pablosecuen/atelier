@@ -1,11 +1,10 @@
 "use client";
+import { createUrl } from "@/app/components/lib/utils";
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
-import type { ListItem, PathFilterItem } from ".";
-import { createUrl } from "@/app/lib/utils";
 
-function PathFilterItem({ item }: { item: PathFilterItem }) {
+function PathFilterItem({ item }: { item: any }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const active = pathname === item.path;
@@ -46,7 +45,7 @@ function SortFilterItem({ item }: { item: any }) {
   const DynamicTag = active ? "p" : Link;
 
   return (
-    <li className="mt-2 flex text-sm text-black dark:text-white" key={item.title}>
+    <li className="mt-2 flex text-sm text-black dark:text-black" key={item.title}>
       <DynamicTag
         prefetch={!active ? false : undefined}
         href={href}
@@ -60,6 +59,6 @@ function SortFilterItem({ item }: { item: any }) {
   );
 }
 
-export function FilterItem({ item }: { item: ListItem }) {
+export function FilterItem({ item }: { item: any }) {
   return "path" in item ? <PathFilterItem item={item} /> : <SortFilterItem item={item} />;
 }

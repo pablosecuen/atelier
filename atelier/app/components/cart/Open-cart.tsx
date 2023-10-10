@@ -5,10 +5,9 @@ export default function OpenCart({ className, cart }: { className?: string; cart
   const totalQuantity = cart?.reduce((total: number, item: any) => total + item.quantity, 0);
 
   return (
-    <div className="relative flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors dark:border-neutral-700 dark:text-white">
+    <div className="relative flex h-11 w-11 items-center justify-center rounded-md   text-black transition-colors dark:border-neutral-700 dark:text-white">
       <ShoppingCartIcon
-        className={clsx("h-4 transition-all ease-in-out hover:scale-110 text-black", className)}
-        fill="black"
+        className={clsx("h-8 transition-all ease-in-out hover:scale-110 text-black", className)}
       />
 
       {totalQuantity ? (

@@ -20,9 +20,9 @@ const FooterMenuItem = ({ item }: { item: Menu }) => {
       <Link
         href={item.path}
         className={clsx(
-          "block p-2 text-lg underline-offset-4 hover:text-black hover:underline dark:hover:text-neutral-300 md:inline-block md:text-sm",
+          "block p-2 text-sm underline-offset-4 hover:text-black hover:underline dark:hover:text-neutral-300 md:inline-block md:text-md md:font-bold md:tracking-wider text-black",
           {
-            "text-black dark:text-neutral-300": active,
+            "text-text-black/80 dark:text-black/80": active,
           }
         )}
       >
@@ -32,13 +32,24 @@ const FooterMenuItem = ({ item }: { item: Menu }) => {
   );
 };
 
-export default function FooterMenu({ menu }: { menu: Menu[] }) {
+export default function FooterMenu({
+  menu,
+  menuInformation,
+}: {
+  menu: Menu[];
+  menuInformation: Menu[];
+}) {
   if (!menu.length) return null;
 
   return (
-    <nav>
-      <ul>
+    <nav className="flex  w-full  justify-evenly md:w-1/3 mx-auto md:justify-between ">
+      <ul className="w-1/2 ">
         {menu.map((item: Menu) => {
+          return <FooterMenuItem key={item.title} item={item} />;
+        })}
+      </ul>
+      <ul className="w-1/2 ">
+        {menuInformation.map((item: Menu) => {
           return <FooterMenuItem key={item.title} item={item} />;
         })}
       </ul>

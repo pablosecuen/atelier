@@ -2,9 +2,11 @@
 import clsx from "clsx";
 import { Suspense, useEffect, useState } from "react";
 import { ThunkDispatch } from "@reduxjs/toolkit";
-import { RootState } from "@/redux/store/store";
+
 import { useDispatch, useSelector } from "react-redux";
-import { listProducts } from "@/redux/actions/productActions";
+
+import { RootState } from "@/app/redux/store";
+import { listProducts } from "@/app/redux/actions/productActions";
 
 const skeleton = "mb-3 h-4 w-5/6 animate-pulse rounded";
 const activeAndTitles = "bg-neutral-800 dark:bg-neutral-300";
@@ -51,7 +53,7 @@ export default function Collections() {
         </div>
       }
     >
-      <div className="order-first w-full flex flex-col items-start mr-12 md:max-w-[185px]">
+      <div className="order-first w-full flex flex-col items-center md:item-start  md:mr-12 md:max-w-[185px]">
         <h3 className="mt-12 mb-4 opacity-70 text-sm">Categorias</h3>
         <ul>
           <li>

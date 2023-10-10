@@ -1,7 +1,9 @@
 import Link from "next/link";
-import { GridTileImage } from "../grid/tile";
+
 import { Product } from "@/app/types/general";
-import Grid from "../grid/Grid";
+import Grid from "../components/grid/Grid";
+import { GridTileImage } from "../components/grid/tile";
+
 
 export default function ProductGridItems({ products }: { products: Product[] }) {
   return (

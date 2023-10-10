@@ -3,26 +3,25 @@ import { Suspense } from "react";
 import LogoSquare from "../logo-square";
 
 import FooterMenu from "./footer-menu";
-import whatsapp from "@/public/assets/icons/whatsapp.svg";
+import whatsapp from "@/public/assets/whatsapp.svg";
 import Image from "next/image";
-import { menu } from "../lib/utils";
-
-const { COMPANY_NAME, SITE_NAME } = process.env;
+import { menu, menuInformation } from "../lib/utils";
 
 export default async function Footer() {
   const currentYear = new Date().getFullYear();
   const copyrightDate = 2023 + (currentYear > 2023 ? `-${currentYear}` : "");
+  const copyrightName = "ATELIER";
   const skeleton = "w-full h-6 animate-pulse rounded bg-neutral-200 dark:bg-neutral-700";
 
-  const copyrightName = "ATELIER";
-
   return (
-    <footer className="text-sm text-neutral-500 dark:text-neutral-400">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 border-t border-neutral-200 px-6 py-12 text-sm dark:border-neutral-700 md:flex-row md:gap-12 md:px-4 min-[1320px]:px-0">
+    <footer className="text-sm text-neutral-500 dark:text-neutral-400 bg-primario">
+      <div className="mx-auto flex  w-full max-w-7xl flex-col gap-6 border-t border-neutral-200 px-6 py-12 text-sm dark:border-[#fff7e9] md:flex-row md:gap-12 md:px-4 min-[1320px]:px-0">
         <div>
-          <Link className="flex items-center gap-2 text-black dark:text-white md:pt-1" href="/">
-            <LogoSquare size="sm" />
-            <span className="uppercase">{SITE_NAME}</span>
+          <Link
+            className="flex  items-center gap-2  text-black dark:text-black md:pt-1 "
+            href="/"
+          >
+            <LogoSquare size="4xl" />
           </Link>
         </div>
         <Suspense
@@ -37,10 +36,10 @@ export default async function Footer() {
             </div>
           }
         >
-          <FooterMenu menu={menu} />
+          <FooterMenu menu={menu} menuInformation={menuInformation} />
         </Suspense>
-        <div className="md:ml-auto">
-          <div className="flex h-8 w-max flex-none items-center justify-center rounded-md border border-neutral-200 bg-white text-xs text-black dark:border-neutral-700 dark:bg-black dark:text-white">
+        <div className="md:ml-0 ml-auto">
+          <div className="flex h-8 w-auto flex-none items-center justify-center rounded-md border border-neutral-200 bg-white text-xs text-black dark:border-[#fff7e9] dark:bg-white dark:text-black">
             <span className="px-3">
               <Image
                 src={whatsapp}
@@ -59,18 +58,17 @@ export default async function Footer() {
           </div>
         </div>
       </div>
-      <div className="border-t border-neutral-200 py-6 text-sm dark:border-neutral-700">
+      <div className="border-t border-neutral-200 py-6 text-sm dark:border-[#fff7e9] ">
         <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-1 px-4 md:flex-row md:gap-0 md:px-4 min-[1320px]:px-0">
           <p>
             &copy; {copyrightDate} {copyrightName}
             {copyrightName.length && !copyrightName.endsWith(".") ? "." : ""} All rights reserved.
           </p>
           <hr className="mx-4 hidden h-4 w-[1px] border-l border-neutral-400 md:inline-block" />
-          <p>Designed in Abstraction</p>
           <p className="md:ml-auto">
-            Crafted by{" "}
-            <Link href="https://pablo-amico.vercel.app/" className="text-black dark:text-white">
-              Pablo Amico ▲
+            Designed and Crafted by
+            <Link href="https://wamcreativo.com/" className="ml-1 text-md ">
+              WAM ▲
             </Link>
           </p>
         </div>

@@ -20,25 +20,19 @@ export default function Navbar() {
     return null;
   }
   return (
-    <nav className="relative flex items-center justify-between p-4 lg:px-6 bg-primario text-black">
-      <div className="block flex-none md:hidden">
+    <nav className="relative flex md:fixed w-full h-12 md:h-16 items-center justify-between p-4 lg:px-6 bg-primario text-black">
+      <div className="block flex-none w-1/3 md:w-auto  md:mr-4">
         <MobileMenu menu={mobileMenu} />
       </div>
-      <div className="flex w-full items-center">
-        <div className="flex w-full md:w-1/3">
-          <Link href="/" className="mr-2 flex w-full items-center justify-center md:w-auto lg:mr-6">
-            <LogoSquare />
-            <div className="ml-2 flex-none text-sm font-medium uppercase md:hidden lg:block">
-              ATELIER
-            </div>
-          </Link>
+      <div className="flex md:w-full w-2/3 items-center justify-between">
+        <div className="md:flex hidden md:w-1/3 w-1/3">
           {menu.length ? (
             <ul className="hidden gap-6 text-sm md:flex md:items-center">
               {menu.map((item: Menu) => (
                 <li key={item.title}>
                   <Link
                     href={item.path}
-                    className="text-neutral-800 underline-offset-4 font-bold tracking-wide hover:text-black hover:underline dark:text-neutral-white dark:hover:text-slate-500"
+                    className="text-neutral-600 underline-offset-4 font-bold tracking-wide hover:text-black hover:underline dark:text-black dark:hover:text-slate-500"
                   >
                     {item.title}
                   </Link>
@@ -47,10 +41,15 @@ export default function Navbar() {
             </ul>
           ) : null}
         </div>
-        <div className="hidden justify-center md:flex md:w-1/3">
-          <Search />
-        </div>
-        <div className="flex justify-end md:w-1/3 ">
+
+        <Link href="/" className="mr-2 flex  items-center justify-center w-1/2 lg:ml-28   ">
+          <LogoSquare size={"3xl"} />
+        </Link>
+        <div className="flex justify-end md:items-center w-1/2  gap-4">
+          <div className="hidden md:justify-center md:flex md:w-1/3">
+            <Search />
+          </div>
+
           <Suspense fallback={<OpenCart />}>
             <Cart />
           </Suspense>
