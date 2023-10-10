@@ -34,7 +34,10 @@ export function GridTileImage({
           className={clsx("relative h-full w-full object-contain", {
             "transition duration-300 ease-in-out group-hover:scale-105": isInteractive,
           })}
-          {...props}
+          src={props.src as string} // Aquí pasa la URL de la imagen directamente
+          alt={props.alt || "alternative text"} // También puedes proporcionar un valor de alternativa
+          width={props.width || 0}
+          height={props.height || 0}
         />
       ) : null}
       {label ? <Label title={label.title} price={label.price} position={label.position} /> : null}

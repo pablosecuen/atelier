@@ -1,0 +1,25 @@
+::-webkit-scrollbar {
+  width: 10px !important;
+  background-color: transparent !important;
+}
+
+/* Estilos para el thumb (el control deslizante) */
+::-webkit-scrollbar-thumb {
+  background-color: #6b7280;
+  border-radius: 4px;
+}
+
+/* Estilos cuando se pasa el mouse sobre la scrollbar */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #4b5563;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #6b7280 transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px !important;
+  background-color: transparent;
+}
