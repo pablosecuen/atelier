@@ -16,13 +16,15 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <ReduxProvider>
-        <Navbar />
-        <Suspense>
-          <main className="md:mt-16">{children}</main>
-          <Footer />
-        </Suspense>
-      </ReduxProvider>
+      <body className={inter.className}>
+        <ReduxProvider>
+          <Navbar />
+          <Suspense>
+            <main>{children}</main>
+            <Footer />
+          </Suspense>
+        </ReduxProvider>
+      </body>
     </html>
   );
 }
