@@ -23,7 +23,7 @@ function BestSellers() {
                 className="w-full h-auto mb-1"
                 priority={true}
               />
-              <span className="text-md mt-8 font-semibold">{product.title}</span>
+              <span className="text-md mt-8 font-semibold text-black">{product.title}</span>
             </div>
           </Link>
         ))}

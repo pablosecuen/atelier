@@ -8,9 +8,9 @@ export function ProductDescription({ product }: { product: Product }) {
   return (
     <>
       <div className="mb-6 flex flex-col border-b pb-6 dark:border-neutral-700">
-        <h1 className="mb-2 text-5xl font-medium">{product.title}</h1>
+        <h1 className="mb-2 text-5xl font-medium text-black">{product.title}</h1>
         <div className="mr-auto w-auto rounded-full bg-blue-600 p-2 text-sm text-white">
-          <Price price={product.price} currencyCode="$" />
+          <Price price={product.variants[0].price} currencyCode="$" />
         </div>
       </div>
       <VariantSelector options={product.options} variants={product.variants} />
@@ -22,7 +22,11 @@ export function ProductDescription({ product }: { product: Product }) {
         />
       ) : null}
 
-      <AddToCart variants={product.variants} availableForSale={product.availableForSale} />
+      <AddToCart
+        product={product}
+        variants={product.variants}
+        availableForSale={product.availableForSale}
+      />
     </>
   );
 }

@@ -5,13 +5,13 @@ import FilterList from "../layout/search/filter";
 export default function SearchLayout({ children }: { children: React.ReactNode }) {
   return (
     <Suspense>
-      <div className="mx-auto flex max-w-screen-2xl flex-col gap-8 px-4 pb-4 text-black dark:text-white md:flex-row">
-        <div className="order-first w-full flex-none md:max-w-[125px] border-2 text-black">
+      <div className=" flex w-screen-2xl flex-col gap-8  px-4 pb-4 justify-between text-black dark:text-white md:flex-row">
+        <div className="order-first w-full max-h-screen flex items-center justify-center  md:max-w-[250px]  text-black">
           <Collections />
         </div>
-        <div className="order-last min-h-screen w-full md:order-none">{children}</div>
-        <div className="order-none w-full flex-none md:order-last md:w-[125px] border-2">
-          <FilterList />
+        <div className="order-last min-h-screen w-8/12 md:order-none md:mt-10">{children}</div>
+        <div className="order-none w-full flex md:order-last md:w-[125px] ">
+          {/*  <FilterList /> */}
         </div>
       </div>
     </Suspense>

@@ -1,8 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-
 import { Product } from "@/app/types/general";
-
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import Slider from "rc-slider";
@@ -13,59 +11,62 @@ import { RootState } from "@/app/redux/store";
 export default function FilterList() {
   const dispatch: ThunkDispatch<RootState, undefined, any> = useDispatch();
   const { products } = useSelector((state: RootState) => state.products);
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 3000000]);
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000]);
   const [sortBy, setSortBy] = useState<string>("price");
   const [sortOrder, setSortOrder] = useState<string>("asc");
+
   useEffect(() => {
-    dispatch(listProducts());
+    // Actualizar la lista de productos cuando cambien los filtros o el orden
     const filters: any = {};
     filters.minPrice = priceRange[0];
     filters.maxPrice = priceRange[1];
     filters.sortBy = sortBy;
     filters.sortOrder = sortOrder;
 
-    const filteredProductsList = products.filter((product: Product) => {
-      if (product.price < priceRange[0] || product.price > priceRange[1]) {
-        return false;
-      }
-      return true;
-    });
+    console.log("Filters:", filters); // Verifica que los filtros sean correctos
 
     dispatch(listProducts(filters));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, priceRange, sortBy, sortOrder]);
-
   const handleSortOrderChange = (newOrder: string) => {
     setSortOrder(newOrder);
-    dispatch(listProducts());
   };
+
+  // Aplicar el ordenamiento a los productos antes de mostrarlos
+  let sortedProducts = [...products];
+  if (sortBy === "price") {
+    if (sortOrder === "asc") {
+      sortedProducts.sort((a, b) => a.price - b.price);
+    } else {
+      sortedProducts.sort((a, b) => b.price - a.price);
+    }
+  }
 
   return (
     <>
-      <nav>
+      <div>
         <div className="order-none flex flex-col items-center md:item-last md:order-last mx-12 md:w-[185px]">
           <h3 className="mt-12 mb-4 opacity-70 text-sm text-black">Ordenar</h3>
           <div className="my-4 flex flex-col md:items-start item-center">
             <span className="mr-2 block text-black">Ordenar por precio:</span>
             <button
               className={`clsx(
-                "flex my-2 min-w-[48px] items-center justify-center rounded-full border px-2 py-1 text-sm dark:border-neutral-800 dark:bg-neutral-900",
-                "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-blue-600 focus:bg-blue-600", ${
-                  sortOrder === "asc"
-                    ? "dark:border-neutral-800 dark:bg-neutral-900 hover:ring-blue-600 focus:bg-blue-600"
-                    : ""
-                }`}
+                  "flex my-2 min-w-[48px] items-center justify-center rounded-full border px-2 py-1 text-sm text-black focus:text-black ",
+                  "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-blue-600 focus:bg-blue-600 text-black", ${
+                    sortOrder === "desc"
+                      ? "dark:border-neutral-800  text-black hover:ring-blue-600 focus:bg-blue-600"
+                      : "text-black"
+                  }`}
               onClick={() => handleSortOrderChange("asc")}
             >
               Menor a Mayor
             </button>
             <button
               className={`clsx(
-                "flex my-2 min-w-[48px] items-center justify-center rounded-full border px-2 py-1 text-sm dark:border-neutral-800 dark:bg-neutral-900",
-                "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-blue-600 focus:bg-blue-600", ${
+                "flex my-2 min-w-[48px] items-center justify-center rounded-full border px-2 py-1 text-sm text-black focus:text-black ",
+                "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-blue-600 focus:bg-blue-600 text-black", ${
                   sortOrder === "desc"
-                    ? "dark:border-neutral-800 dark:bg-neutral-900 hover:ring-blue-600 focus:bg-blue-600"
-                    : ""
+                    ? "dark:border-neutral-800  text-black hover:ring-blue-600 focus:bg-blue-600"
+                    : "text-black"
                 }`}
               onClick={() => handleSortOrderChange("desc")}
             >
@@ -89,7 +90,7 @@ export default function FilterList() {
             allowCross={false}
           />
         </div>
-      </nav>
+      </div>
     </>
   );
 }

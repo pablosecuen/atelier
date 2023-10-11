@@ -90,6 +90,7 @@ export type ProductVariant = {
   title: string;
   availableForSale: boolean;
   selectedOptions: {
+    title: any;
     name: string;
     value: string;
   }[];

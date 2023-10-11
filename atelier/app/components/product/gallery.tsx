@@ -8,7 +8,7 @@ import { GridTileImage } from "../grid/tile";
 import { createUrl } from "../lib/utils";
 import productiamge from "@/public/assets/product.webp";
 export function Gallery({ images }: { images: { src: string; altText: string }[] }) {
-  console.log(images);
+  
 
   const pathname = usePathname();
   const searchParams = useSearchParams();

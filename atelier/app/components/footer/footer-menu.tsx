@@ -42,7 +42,7 @@ export default function FooterMenu({
   if (!menu.length) return null;
 
   return (
-    <nav className="flex  w-full  justify-evenly md:w-1/3 mx-auto md:justify-between ">
+    <div className="flex  w-full  justify-evenly md:w-1/3 mx-auto md:justify-between ">
       <ul className="w-1/2 ">
         {menu.map((item: Menu) => {
           return <FooterMenuItem key={item.title} item={item} />;
@@ -53,6 +53,6 @@ export default function FooterMenu({
           return <FooterMenuItem key={item.title} item={item} />;
         })}
       </ul>
-    </nav>
+    </div>
   );
 }

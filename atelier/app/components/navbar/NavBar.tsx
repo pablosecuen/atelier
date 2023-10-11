@@ -20,7 +20,7 @@ export default function Navbar() {
     return null;
   }
   return (
-    <nav className="relative flex md:fixed w-full h-12 md:h-16 items-center justify-between p-4 lg:px-6 bg-primario text-black">
+    <nav className="relative flex md:fixed top-0 w-full z-40 h-12 md:h-16 items-center justify-between p-4 lg:px-6 bg-primario text-black">
       <div className="block flex-none w-1/3 md:w-auto  md:mr-4">
         <MobileMenu menu={mobileMenu} />
       </div>
