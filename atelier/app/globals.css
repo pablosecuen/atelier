@@ -19,8 +19,22 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: white;
+  margin: 0;
+  padding: 0;
 }
 
 .inner-shadow-bottom {
   box-shadow: 0 5px 50px rgba(0, 0, 0, 0.4); /* Ajusta los valores según desees */
+}
+
+@supports (font: -apple-system-body) and (-webkit-appearance: none) {
+  img[loading="lazy"] {
+    clip-path: inset(0.6px);
+  }
+}
+
+a,
+input,
+button {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-50 dark:focus-visible:ring-neutral-600 dark:focus-visible:ring-offset-neutral-900;
 }
