@@ -20,16 +20,11 @@ type MerchandiseSearchParams = {
 };
 
 export default function CartModal() {
-  const { cart } = useSelector((state: RootState) => state.cart);
+  const { cart, cost } = useSelector((state: RootState) => state.cart);
   const [isOpen, setIsOpen] = useState(false);
   const quantityRef = useRef(cart?.length);
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
-
-  const totalAmountToPay = cart?.reduce(
-    (total: any, item: any) => total + item.product.price * item.quantity,
-    0
-  );
 
   useEffect(() => {
     if (cart.length !== quantityRef.current) {
@@ -68,7 +63,7 @@ export default function CartModal() {
             leaveFrom="translate-x-0"
             leaveTo="translate-x-full"
           >
-            <Dialog.Panel className="fixed bottom-0 right-0 top-12 md:top-16 flex h-full w-full flex-col border-l border-neutral-200 bg-primario/40 p-6 text-black backdrop-blur-xl dark:border-neutral-200/20 dark:bg-primario/40 dark:text-white md:w-[390px]">
+            <Dialog.Panel className="fixed bottom-0 right-0 top-0 z-50 flex h-full w-full flex-col border-l border-neutral-200 bg-primario/80 p-6 text-black backdrop-blur-xl dark:border-neutral-200/20 dark:bg-primario/40 dark:text-white md:w-[390px]">
               <div className="flex items-center justify-between">
                 <p className="text-lg font-semibold">Mi Carrito</p>
 
@@ -88,20 +83,18 @@ export default function CartModal() {
                     {cart?.map((item: any, i: any) => {
                       const merchandiseSearchParams = {} as MerchandiseSearchParams;
 
-                      item.product.options.color.forEach(
-                        ({ title, available }: { title: any; available: boolean }) => {
-                          if (available) {
-                            merchandiseSearchParams[title.toLowerCase()] = "1";
-                          }
+                      item.variants[0].selectedOptions.forEach(({ title }: { title: any }) => {
+                        if (title) {
+                          merchandiseSearchParams[title.toLowerCase()] = "1";
                         }
-                      );
+                      });
 
                       const merchandiseUrl = createUrl(
-                        `/product/${item.product?.handle}`,
+                        `/product/${item.handle}`,
                         new URLSearchParams(merchandiseSearchParams)
                       );
 
-                      const image = item.product?.images[0];
+                      const image = item.images[0].src;
 
                       return (
                         <li
@@ -122,35 +115,25 @@ export default function CartModal() {
                                   className="h-full w-full object-cover"
                                   width={64}
                                   height={64}
-                                  alt={item.product?.title}
+                                  alt={item.title}
                                   src={image}
                                 />
                               </div>
 
                               <div className="flex flex-1 flex-col text-base">
-                                <span className="leading-tight">{item.product?.title}</span>
-                                <span className="leading-tight opacity-60">
-                                  Medida: {item.product?.variants.medidas.medidas[0].title}
+                                <span className="leading-tight">{item.title}</span>
+                                <span className="leading-tight opacity-60 text-sm">
+                                  Medida: {item.variants[0].selectedOptions[1].value}
                                 </span>
-                                <span className="leading-tight opacity-60">
-                                  Color: {item.product?.options.color[0].title}
+                                <span className="leading-tight opacity-60 text-sm">
+                                  Color: {item.variants[0].selectedOptions[0].value}
                                 </span>
-                                {item.title !== "empty" ? (
-                                  <p className="text-sm text-neutral-500 dark:text-neutral-400">
-                                    {item.title}
-                                  </p>
-                                ) : null}
-                                {item.title !== "empty" ? (
-                                  <p className="text-sm text-neutral-500 dark:text-neutral-400">
-                                    {item.title}
-                                  </p>
-                                ) : null}
                               </div>
                             </Link>
                             <div className="flex h-16 flex-col justify-between">
                               <Price
                                 className="flex justify-end space-y-2 text-right text-sm"
-                                price={item.product.price}
+                                price={item.variants[0]?.price}
                               />
                               <div className="ml-auto flex h-9 flex-row items-center rounded-full border border-neutral-200 dark:border-neutral-700">
                                 <EditItemQuantityButton item={item} type="minus" />
@@ -174,8 +157,8 @@ export default function CartModal() {
                       <p>Total</p>
                       <Price
                         className="text-right text-base text-black dark:text-white"
-                        price={totalAmountToPay}
-                        currencyCode={cart.cost?.totalAmount.currencyCode}
+                        price={cost.totalAmount.amount}
+                        currencyCode="$"
                       />
                     </div>
                   </div>

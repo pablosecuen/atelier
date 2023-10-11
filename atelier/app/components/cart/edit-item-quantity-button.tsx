@@ -12,17 +12,16 @@ export default function EditItemQuantityButton({
   item: Product;
   type: "plus" | "minus";
 }) {
-  const router = useRouter();
   const dispatch = useDispatch();
   console.log(item);
 
   const handleQuantityChange = () => {
     if (type === "plus") {
       // Si el tipo es "plus", llamamos a la acción addQuantity con el id del producto
-      dispatch(addQuantity(item.product.id || ""));
+      dispatch(addQuantity(item.id || ""));
     } else {
       // Si el tipo es "minus", llamamos a la acción subtractQuantity con el id del producto
-      dispatch(subtractQuantity(item.product.id || ""));
+      dispatch(subtractQuantity(item.id || ""));
     }
   };
 

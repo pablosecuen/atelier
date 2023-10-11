@@ -23,9 +23,11 @@ const initialState: CartState = {
 
 const calculateTotalCost = (cart: Product[]) => {
   return cart.reduce((total: number, item: Product) => {
-    if (typeof item.product?.price === 'number' && !isNaN(item.product.price)) {
-      return total + item.product.price;
+    // Verificar si el precio es un número válido antes de sumarlo
+    if (item.variants[0]?.price && typeof item.variants[0].price === 'number' && !isNaN(item.variants[0].price)) {
+      return total + item.variants[0].price;
     }
+    // Si el precio no es válido, puedes omitir este artículo en el cálculo
     return total;
   }, 0);
 };
@@ -48,18 +50,7 @@ const cartSlice = createSlice({
   initialState: initialCartState || initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<Product>) => {
-      const { product, quantity } = action.payload;
-      const existingItemIndex = state.cart.findIndex((item: Product) =>
-        item.product?.id === product?.id &&
-        item.product?.variants.medidas.medidas.id === product?.variants.medidas.medidas.id &&
-        item.product?.price === product?.price
-      );
-
-      if (existingItemIndex !== -1) {
-        state.cart[existingItemIndex].quantity += quantity;
-      } else {
-        state.cart.push(action.payload);
-      }
+      state.cart.push(action.payload);
       state.cost.totalAmount.amount = calculateTotalCost(state.cart);
       localStorage.setItem('cart', JSON.stringify(state));
     },
@@ -69,7 +60,7 @@ const cartSlice = createSlice({
       localStorage.setItem('cart', JSON.stringify(state));
     },
     subtractQuantity: (state, action: PayloadAction<string>) => {
-      const productIndex = state.cart.findIndex((item: Product) => item.product?.id === action.payload);
+      const productIndex = state.cart.findIndex((item: Product) => item?.id === action.payload);
   
       if (productIndex !== -1) {
         // Restar 1 a la cantidad del producto
@@ -81,7 +72,7 @@ const cartSlice = createSlice({
       }
     },
     addQuantity: (state, action: PayloadAction<string>) => {
-      const productIndex = state.cart.findIndex((item: Product) => item.product?.id === action.payload);
+      const productIndex = state.cart.findIndex((item: Product) => item?.id === action.payload);
 
       if (productIndex !== -1) {
         // Sumar 1 a la cantidad del producto

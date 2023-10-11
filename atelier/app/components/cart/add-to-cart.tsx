@@ -1,36 +1,48 @@
 "use client";
 
-import { ProductVariant } from "@/app/types/general";
+import { addToCart } from "@/app/redux/slices/cartSlice";
+import { Product, ProductVariant } from "@/app/types/general";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
+
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTransition } from "react";
 import LoadingDots from "../loading-dots";
-import { addToCart } from "@/app/redux/slices/cartSlice";
+import { useDispatch } from "react-redux";
 
 export function AddToCart({
   variants,
   availableForSale,
+  product,
 }: {
   variants: ProductVariant[];
   availableForSale: boolean;
+  product: Product;
 }) {
+  const dispatch = useDispatch();
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
-  const defaultVariantId = variants?.length === 1 ? variants[0]?.id : undefined;
-  const variant = variants?.find(
-    (variant: ProductVariant) =>
-      variant?.selectedOptions.every(
-        (option) => option.value === searchParams.get(option.name.toLowerCase())
-      )
+  const defaultVariantId = variants.length === 1 ? variants[0]?.id : undefined;
+  const variant = variants.find((variant: ProductVariant) =>
+    variant.selectedOptions.every(
+      (option) => option.value === searchParams.get(option.title?.toLowerCase())
+    )
   );
+
+  console.log(variant);
+  console.log(variants, availableForSale, product);
+
   const selectedVariantId = variant?.id || defaultVariantId;
   const title = !availableForSale
     ? "Out of stock"
     : !selectedVariantId
     ? "Please select options"
     : undefined;
+
+  //encontramos la variante completa comparando el id recibido, luego en el dispatch, reemplazamos las props para dejar solamente la encontrada por la comparacion y despachamos el producto al carrito
+  const selectedVariant = variants.find((variant) => variant.id === selectedVariantId);
+  console.log(selectedVariant);
 
   return (
     <button
@@ -42,13 +54,7 @@ export function AddToCart({
         if (!availableForSale || !selectedVariantId) return;
 
         startTransition(() => {
-          const error = addToCart(selectedVariantId);
-
-          if (error) {
-            // Trigger the error boundary in the root error.js
-            throw new Error(error.toString());
-          }
-
+          dispatch(addToCart({ ...product, variants: [selectedVariant] }));
           router.refresh();
         });
       }}

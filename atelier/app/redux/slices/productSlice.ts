@@ -8,6 +8,7 @@ import { Product } from '@/app/types/general';
 interface ProductState {
   product: Product;
   products: Product[];
+  selectedProduct: Product;
   productsByCategory: Product[], 
   productByHandle: Product,
   error: any | null;
@@ -17,39 +18,10 @@ interface ProductState {
 
 // Define el estado inicial
 const initialState: ProductState = {
-  product: {
-    title: "",
-    handle: "",
-    options: {
-      color: [
-        {
-          id: 0,
-          title: "",
-          available: true
-        },
-      ],
-    },
-    variants: {
-      edges: [
-        {
-          medidas: [
-            {
-              id: 0,
-              title: "",
-              availableForSale: true,
-              price: { amount: "0.00", currencyCode: "$" },
-            },
-          ]
-        },
-      ]
-    },
-    description: "Descripción del producto",
-    availableForSale: true,
-    category:'',
-    price:0
-  },
+  product: {},
   products: [],
   searchResults:[],
+  selectedProduct: {},
   productsByCategory: [],
   productByHandle:{},
   error: null,
@@ -61,28 +33,18 @@ const productSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    createProductRequest: (state) => {
-    state.status = "loading";
-    state.error = null;
+
   },
-  createProductSuccess: (state, action: PayloadAction<Product>) => {
-    state.status = 'succeeded';
-    state.error = null;
-    state.products.push(action.payload);
-  },
-  createProductFailure: (state, action: PayloadAction<string>) => {
-    state.status = 'failed';
-    state.error = action.payload;
-  },
-},
   
   extraReducers: (builder) => {
     builder
       .addCase(productActions.listProducts.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(productActions.listProducts.fulfilled, (state, action) => {
+      .addCase(productActions.listProducts.fulfilled, (state, action) => {      
         state.products = action.payload;
+        console.log(action.payload);
+        
         state.status = "succeeded";
         state.error = null;
       })
@@ -94,6 +56,14 @@ const productSlice = createSlice({
           state.error = 'Error al buscar productos por nombre';
           state.status = "failed";
         }
+      })
+      .addCase(productActions.findProductByVariantId, (state, action: PayloadAction<string>) => {
+        const variantId = action.payload;
+        const selectedProduct = state.products.find((product:Product) => {
+          const matchingVariant = product.variants.find((variant:any) => variant.id === variantId);
+          return matchingVariant;
+        });
+        state.selectedProduct = selectedProduct;
       })
       .addCase(productActions.fetchProductsBySort.pending, (state) => {
         state.status = 'loading';
@@ -167,18 +137,6 @@ const productSlice = createSlice({
         state.status = "succeeded";
       })
       .addCase(productActions.searchProductsByName.rejected, (state, action) => {
-        state.error = action.error.message || null;
-        state.status = "failed";
-      })
-      .addCase(productActions.searchProductsByMeasure.pending, (state) => {
-        state.status = "loading";
-      })
-      .addCase(productActions.searchProductsByMeasure.fulfilled, (state, action) => {
-        state.products = action.payload; 
-        state.error = null;
-        state.status = "succeeded";
-      })
-      .addCase(productActions.searchProductsByMeasure.rejected, (state, action) => {
         state.error = action.error.message || null;
         state.status = "failed";
       })
@@ -286,16 +244,6 @@ const productSlice = createSlice({
       .addCase(productActions.updateProductById.rejected, (state, action) => {
         state.error = action.error.message || null;
         state.status = "failed";
-      })
-      .addCase(productActions.sortProductsAsc, (state, action) => {
-        // Actualiza el estado con los productos ordenados ascendentemente
-        state.products = action.payload;
-      })
-
-      // Caso para ordenar productos descendentemente
-      .addCase(productActions.sortProductsDesc, (state, action) => {
-        // Actualiza el estado con los productos ordenados descendentemente
-        state.products = action.payload;
       })
   },
 });

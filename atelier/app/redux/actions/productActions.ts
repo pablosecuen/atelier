@@ -1,8 +1,7 @@
 // productActions.ts
 
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
-
-
+import { products } from '@/app/api/fakedb';
 import { Product } from '@/app/types/general';
 import axiosInstance from '../axiosInstance';
 type FetchProductsArgs = {
@@ -18,24 +17,12 @@ type CustomSearchArgs = {
 };
 
 
-export const createProduct = (formData: FormData) => async (dispatch: any) => {
-  try {
-    const response = await axiosInstance.post("/api/product/create", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-    return response.data.product;
-  } catch (error: any) {
-    console.error(error);
-  }
-};
 
 interface ListProductsArgs {
   filters?: any;
 }
 // Acción para listar productos
-export const listProducts = createAsyncThunk<Product[], ListProductsArgs | void>(
+/* export const listProducts = createAsyncThunk<Product[], ListProductsArgs | void>(
   'productActions/listProducts',
   async (args, { rejectWithValue }) => {
     console.log(args,'12313123131231313');
@@ -59,8 +46,31 @@ export const listProducts = createAsyncThunk<Product[], ListProductsArgs | void>
       return rejectWithValue(error.response.data.message);
     }
   }
-);
+); */
 
+
+//accion de productos para fakedb
+export const listProducts = createAsyncThunk<Product[], ListProductsArgs | void>(
+  'productActions/listProducts',
+  async (args, { rejectWithValue }) => {
+    try {
+      if (args) {
+        const filteredProducts = products.filter((product : Product) => {
+          if (args.filters?.category) {
+            return product.category === args.filters.category;
+          }
+          return true;
+        });
+
+        return filteredProducts;
+      } else {
+        return products;
+      }
+    } catch (error: any) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 
 export const fetchProductsBySort = createAsyncThunk(
@@ -68,7 +78,7 @@ export const fetchProductsBySort = createAsyncThunk(
   async ({ sortKey, reverse, query }: FetchProductsArgs, thunkAPI) => {
 
     try {
-      
+  
       const url = `/api/products-for-sort?sortKey=${sortKey}&reverse=${reverse}&query=${query || ''}`;
       const response = await axiosInstance.get(url);
       if (response.status !== 200) {
@@ -125,18 +135,6 @@ export const searchProductByHandle = createAsyncThunk<Product, string>(
     }
   );
 
-// Acción para buscar productos por medida
-export const searchProductsByMeasure = createAsyncThunk<Product[], string>(
-    'productActions/searchProductsByMeasure',
-    async (measure: string) => {
-      try {
-        const response = await axiosInstance.get(`/api/product/search/${measure}`);
-        return response.data.products;
-      } catch (error: any) {
-        throw new Error(error.response.data.message);
-      }
-    }
-  );
 
 // Acción para buscar productos por color
 export const searchProductsByColor = createAsyncThunk<Product[], string>(
@@ -257,9 +255,6 @@ export const deleteProduct = createAsyncThunk<void, string>(
     }
   );
 
-// Acción para ordenar productos ascendentemente
-export const sortProductsAsc = createAction<Product[]>('products/sortAsc');
 
-// Acción para ordenar productos descendentemente
-export const sortProductsDesc = createAction<Product[]>('products/sortDesc');
 
+  export const findProductByVariantId = createAction<string>('products/findProductByVariantId');
