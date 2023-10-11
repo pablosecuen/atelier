@@ -4,490 +4,1081 @@ import { v4 as uuidv4 } from 'uuid';
 
 export const products = [
   {
-    title: "Remera Azul",
-    handle: "remera-azul",
-    slug: "remera-azul",
-    price: 25.99,
+    title: "Remera Alghodon",
+    handle: "remera-alghodon",
+    slug: "remera-alghodon",
     category: "Remeras",
+    availableForSale: true,
     options: [
       {
-        id: 'size', // Identificador de la opción de tamaño
-        title: 'Size', // Título de la opción de tamaño
-        values: ['Large', 'Extra Large', 'XXL'] // Valores disponibles para el tamaño
+        id: 'size', 
+        title: 'Size', 
+        position: 1,
+            values: [ 'Small', 'Medium', 'Large']
       },
       {
-        id: 'color', // Identificador de la opción de color
-        title: 'Color', // Título de la opción de color
-        values: ['Green', 'Blue', 'Red'] // Valores disponibles para el color
+        id: 'color', 
+        title: 'Color', 
+        position: 2,
+       values: ['Blue', 'Red',  'Black']
       }
     ],
-    images: [
-      { id: 1, url: "/atelier/public/assets/product.webp" },
-      { id: 2, url: "/atelier/public/assets/product.webp" },
+    variants: [
+      {
+        id: uuidv4(),
+        title: "S - RED",
+        price: 19.99,
+        compare_at_price: "29.99",
+        inventory_policy: "continue",
+        inventory_quantity: 100,
+        sku: "CAMISETA-001-S-BLANCO",
+        availableForSale: true,
+        selectedOptions: [
+          { title: 'Color', value: 'Red' },
+          { title: 'Size', value: 'Small' },
+           
+        ],
+      },
+      {
+        id: uuidv4(),
+        title: "M - Black",
+        price: 19.99,
+        compare_at_price: "29.99",
+        inventory_policy: "continue",
+        inventory_quantity: 50,
+        sku: "CAMISETA-001-M-NEGRO",
+        availableForSale: true,
+        selectedOptions: [
+          { title: 'Color', value: 'Black' },
+          { title: 'Size', value: 'Medium' },
+           
+        ],
+      },
+      {
+        id: uuidv4(),
+        title: "S - Blue",
+        price: 19.99,
+        compare_at_price: "29.99",
+        inventory_policy: "continue",
+        inventory_quantity: 100,
+        sku: "CAMISETA-001-S-BLANCO",
+        availableForSale: true,
+        selectedOptions: [
+          { title: 'Color', value: 'Blue' },
+          { title: 'Size', value: 'Large' },
+           
+        ],
+      },
     ],
-    featuredImage: 1,
+    images: [
+      { id: 1, src: "/atelier/public/assets/product.webp",  position: 1 },
+      { id: 2, src: "/atelier/public/assets/product.webp",position:2 },
+    ],
+      featuredImage: {
+      url: "/atelier/public/assets/product.webp",
+      width: 800,
+      height: 1200,
+      alt: "Camiseta de algodón en color blanco",
+      availableForSale: true,
+    },
     id: uuidv4(),
     description: "Una hermosa remera azul para hombres.",
-    selectedProducts: [],
+    descriptionHtml: "<p>Una hermosa remera azul para hombres.</p>",
+      selectedVariant: [],
+        seo: {
+      title: "Producto de  - Atelier",
+      description: "Descubre nuestra camiseta de algodón de alta calidad en varios tamaños y colores. ¡Compra la tuya hoy!",
+      keywords: "camiseta, algodón, ropa, cómoda, TuMarca"
+    }
+   
   },
   {
     title: "Camisa a Cuadros",
     handle: "camisa-a-cuadros",
     slug: "camisa-a-cuadros",
-    price: 34.99,
     category: "Camisas",
+    availableForSale: true,
     options: [
       {
-        id: 'size', // Identificador de la opción de tamaño
-        title: 'Size', // Título de la opción de tamaño
-        values: ['Large', 'Extra Large', 'XXL'] // Valores disponibles para el tamaño
+        id: 'size', 
+        title: 'Size', 
+        values: [ 'Small', 'Medium', 'Large']
       },
       {
-        id: 'color', // Identificador de la opción de color
-        title: 'Color', // Título de la opción de color
-        values: ['Green', 'Blue', 'Red'] // Valores disponibles para el color
+        id: 'color', 
+        title: 'Color', 
+        values: ['Blue', 'Red', 'White', 'Black']
+      }
+    ],
+    variants: [
+      {
+        id: uuidv4(),
+        title: "L - White",
+        price: 19.99,
+        compare_at_price: "29.99",
+        inventory_policy: "continue",
+        inventory_quantity: 100,
+        sku: "CAMISETA-001-S-BLANCO",
+        selectedOptions: [
+          { title: 'Color', value: 'White' },
+          { title: 'Size', value: 'Large' },
+        ],
+      },
+      {
+        id: uuidv4(),
+        title: "M - Black",
+        price: 19.99,
+        compare_at_price: "29.99",
+        inventory_policy: "continue",
+        inventory_quantity: 50,
+        sku: "CAMISETA-001-M-NEGRO",
+        barcode: "987654321",
+        selectedOptions: [
+          { title: 'Color', value: 'Black' },
+          { title: 'Size', value: 'Medium' },
+          
+        ],
       }
     ],
     images: [
-      { id: 1, url: "/atelier/public/assets/product.webp" },
-      { id: 2, url: "/atelier/public/assets/product.webp" },
+      { id: 1, src: "/atelier/public/assets/product.webp",position:1 },
+      { id: 2, src: "/atelier/public/assets/product.webp",position:2 },
     ],
-    featuredImage: 1,
+      featuredImage: {
+      url: "/atelier/public/assets/product.webp",
+      width: 800,
+      height: 1200,
+      alt: "Camiseta de algodón en color blanco"
+    },
     id: uuidv4(),
     description: "Una elegante camisa a cuadros para hombres.",
-    selectedProducts: [],
+    descriptionHtml: "<p>Una elegante camisa a cuadros para hombres.</p>",
+     selectedVariant: [],
+        seo: {
+      title: "Producto de  - Atelier",
+      description: "Descubre nuestra camiseta de algodón de alta calidad en varios tamaños y colores. ¡Compra la tuya hoy!",
+      keywords: "camiseta, algodón, ropa, cómoda, TuMarca"
+    }
+   
   },
+
   {
-    title: "Polo Rojo",
-    handle: "polo-rojo",
-    slug: "polo-rojo",
-    price: 29.99,
+    title: "Polo Stretch",
+    handle: "polo-stretch",
+    slug: "polo-stretch",
     category: "Polos",
+    availableForSale: true,
     options: [
       {
-        id: 'size', // Identificador de la opción de tamaño
-        title: 'Size', // Título de la opción de tamaño
-        values: ['Large', 'Extra Large', 'XXL'] // Valores disponibles para el tamaño
+        id: 'size', 
+        title: 'Size', 
+            values: [ 'Small', 'Medium', 'Large']
       },
       {
-        id: 'color', // Identificador de la opción de color
-        title: 'Color', // Título de la opción de color
-        values: ['Green', 'Blue', 'Red'] // Valores disponibles para el color
+        id: 'color', 
+        title: 'Color', 
+       values: ['Blue', 'Red', 'White', 'Black']
+      }
+    ],
+    variants: [
+      {
+        id: uuidv4(),
+        title: "S - Red",
+        price: 19.99,
+        compare_at_price: "29.99",
+        inventory_policy: "continue",
+        inventory_quantity: 100,
+        sku: "CAMISETA-001-S-RED",
+        availableForSale: true,
+        selectedOptions: [
+          { title: 'Color', value: 'Red' },
+          { title: 'Size', value: 'Small' },
+           
+        ],
+      },
+      {
+        id: uuidv4(),
+        title: "M - Negro",
+        price: 19.99,
+        compare_at_price: "29.99",
+        inventory_policy: "continue",
+        inventory_quantity: 50,
+        sku: "CAMISETA-001-M-NEGRO",
+        barcode: "987654321",
+        availableForSale: true,
+        selectedOptions: [
+          { title: 'Color', value: 'Black' },
+          { title: 'Size', value: 'Medium' },
+           
+        ],
       }
     ],
     images: [
-      { id: 1, url: "/atelier/public/assets/product.webp" },
-      { id: 2, url: "/atelier/public/assets/product.webp" },
+      { id: 1, src: "/public/assets/product.webp", position:1 },
+      { id: 2, src: "/atelier/public/assets/product.webp",position:2 },
     ],
-    featuredImage: 1,
+      featuredImage: {
+      url: "/atelier/public/assets/product.webp",
+      width: 800,
+      height: 1200,
+      alt: "Camiseta de algodón en color blanco"
+    },
     id: uuidv4(),
     description: "Un elegante polo rojo para hombres.",
-    selectedProducts: [],
+    descriptionHtml: "<p>Un elegante polo rojo para hombres.</p>",
+       selectedVariant: [],
+        seo: {
+      title: "Producto de  - Atelier",
+      description: "Descubre nuestra camiseta de algodón de alta calidad en varios tamaños y colores. ¡Compra la tuya hoy!",
+      keywords: "camiseta, algodón, ropa, cómoda, TuMarca"
+    }
+   
   },
   {
     title: "Sweater de Lana",
     handle: "sweater-lana",
     slug: "sweater-lana",
-    price: 39.99,
     category: "Sweaters",
+    availableForSale: true,
     options: [
       {
-        id: 'size', // Identificador de la opción de tamaño
-        title: 'Size', // Título de la opción de tamaño
-        values: ['Large', 'Extra Large', 'XXL'] // Valores disponibles para el tamaño
+        id: 'size', 
+        title: 'Size', 
+            values: [ 'Small', 'Medium', 'Large']
       },
       {
-        id: 'color', // Identificador de la opción de color
-        title: 'Color', // Título de la opción de color
-        values: ['Green', 'Blue', 'Red'] // Valores disponibles para el color
+        id: 'color', 
+        title: 'Color', 
+       values: ['Blue', 'Red', 'White', 'Black']
+      }
+    ],
+    variants: [
+      {
+        id: uuidv4(),
+        title: "S - White",
+        price: 19.99,
+        compare_at_price: "29.99",
+        inventory_policy: "continue",
+        inventory_quantity: 100,
+        sku: "CAMISETA-001-S-BLANCO",
+        availableForSale: true,
+        selectedOptions: [
+          { title: 'Color', value: 'White' },
+          { title: 'Size', value: 'Small' },
+           
+        ],
+      },
+      {
+        id: uuidv4(),
+        title: "M - Black",
+        price: 19.99,
+        compare_at_price: "29.99",
+        inventory_policy: "continue",
+        inventory_quantity: 50,
+        sku: "CAMISETA-001-M-NEGRO",
+        availableForSale: true,      selectedOptions: [
+          { title: 'Color', value: 'Black' },
+          { title: 'Size', value: 'Medium' },
+           
+        ],
       }
     ],
     images: [
-      { id: 1, url: "/atelier/public/assets/product.webp" },
-      { id: 2, url: "/atelier/public/assets/product.webp" },
+      { id: 1, src: "/atelier/public/assets/product.webp", position:1 },
+      { id: 2, src: "/atelier/public/assets/product.webp" ,position:2},
     ],
-    featuredImage: 1,
-    id: uuidv4(),
-    description: "Un cálido sweater de lana para el invierno.",
-    selectedProducts: [],
-  },
-  {
-    title: "Vestido Floral",
-    handle: "vestido-floral",
-    slug: "vestido-floral",
-    price: 49.99,
-    category: "Vestidos",
-    options: [
-      {
-        id: 'size', // Identificador de la opción de tamaño
-        title: 'Size', // Título de la opción de tamaño
-        values: ['Large', 'Extra Large', 'XXL'] // Valores disponibles para el tamaño
-      },
-      {
-        id: 'color', // Identificador de la opción de color
-        title: 'Color', // Título de la opción de color
-        values: ['Green', 'Blue', 'Red'] // Valores disponibles para el color
-      }
-    ],
-    images: [
-      { id: 1, url: "/atelier/public/assets/product.webp" },
-      { id: 2, url: "/atelier/public/assets/product.webp" },
-    ],
-    featuredImage: 1,
-    id: uuidv4(),
-    description: "Un hermoso vestido floral para ocasiones especiales.",
-    selectedProducts: [],
-  },
-  {
-    title: "Polo Rojo",
-    handle: "polo-rojo",
-    slug: "polo-rojo",
-    price: 29.99,
-    category: "Polos",
-    options: [
-      {
-        id: 'size', // Identificador de la opción de tamaño
-        title: 'Size', // Título de la opción de tamaño
-        values: ['Large', 'Extra Large', 'XXL'] // Valores disponibles para el tamaño
-      },
-      {
-        id: 'color', // Identificador de la opción de color
-        title: 'Color', // Título de la opción de color
-        values: ['Green', 'Blue', 'Red'] // Valores disponibles para el color
-      }
-    ],
-    images: [
-      { id: 1, url: "/atelier/public/assets/product.webp" },
-      { id: 2, url: "/atelier/public/assets/product.webp" },
-    ],
-    featuredImage: 1,
-    id: uuidv4(),
-    description: "Un elegante polo rojo para hombres.",
-    selectedProducts: [],
-  },
-  {
-    title: "Sweater de Lana",
-    handle: "sweater-lana",
-    slug: "sweater-lana",
-    price: 39.99,
-    category: "Sweaters",
-    options: [
-      {
-        id: 'size', // Identificador de la opción de tamaño
-        title: 'Size', // Título de la opción de tamaño
-        values: ['Large', 'Extra Large', 'XXL'] // Valores disponibles para el tamaño
-      },
-      {
-        id: 'color', // Identificador de la opción de color
-        title: 'Color', // Título de la opción de color
-        values: ['Green', 'Blue', 'Red'] // Valores disponibles para el color
-      }
-    ],
-    images: [
-      { id: 1, url: "/atelier/public/assets/product.webp" },
-      { id: 2, url: "/atelier/public/assets/product.webp" },
-    ],
-    featuredImage: 1,
+      featuredImage: {
+      url: "/atelier/public/assets/product.webp",
+      width: 800,
+      height: 1200,
+      alt: "Camiseta de algodón en color blanco"
+    },
     id: uuidv4(),
     description: "/atelier/public/assets/product.webp",
-    selectedProducts: [],
+    descriptionHtml: "<p>Un hermoso sweater de lana para ocasiones especiales.</p>",
+       selectedVariant: [],
+        seo: {
+      title: "Producto de  - Atelier",
+      description: "Descubre nuestra camiseta de algodón de alta calidad en varios tamaños y colores. ¡Compra la tuya hoy!",
+      keywords: "camiseta, algodón, ropa, cómoda, TuMarca"
+    }
+   
   },
   {
     title: "Vestido Floral",
     handle: "vestido-floral",
     slug: "vestido-floral",
-    price: 49.99,
     category: "Vestidos",
+    availableForSale: true,
     options: [
       {
-        id: 'size', // Identificador de la opción de tamaño
-        title: 'Size', // Título de la opción de tamaño
-        values: ['Large', 'Extra Large', 'XXL'] // Valores disponibles para el tamaño
+        id: 'size', 
+        title: 'Size', 
+            values: [ 'Small', 'Medium', 'Large']
       },
       {
-        id: 'color', // Identificador de la opción de color
-        title: 'Color', // Título de la opción de color
-        values: ['Green', 'Blue', 'Red'] // Valores disponibles para el color
+        id: 'color', 
+        title: 'Color', 
+       values: ['Blue', 'Red', 'White', 'Black']
+      }
+    ],
+    variants: [
+      {
+        id: uuidv4(),
+        title: "S - White",
+        price: 19.99,
+        compare_at_price: "29.99",
+        inventory_policy: "continue",
+        inventory_quantity: 100,
+        sku: "CAMISETA-001-S-BLANCO",
+        availableForSale: true,      
+        selectedOptions: [
+          { title: 'Color', value: 'White' },
+          { title: 'Size', value: 'Small' },
+           
+        ],
+      },
+      {
+        title: "M - Black",
+        price: 19.99,
+        compare_at_price: "29.99",
+        inventory_policy: "continue",
+        inventory_quantity: 50,
+        sku: "CAMISETA-001-M-NEGRO",
+        availableForSale: true,
+        selectedOptions: [
+          { title: 'Color', value: 'Black' },
+          { title: 'Size', value: 'Medium' },
+           
+        ],
       }
     ],
     images: [
-      { id: 1, url: "/atelier/public/assets/product.webp" },
-      { id: 2, url: "/atelier/public/assets/product.webp" },
+      { id: 1, src: "/atelier/public/assets/product.webp", position:1 },
+      { id: 2, src: "/atelier/public/assets/product.webp" ,position:2},
     ],
-    featuredImage: 1,
+      featuredImage: {
+      url: "/atelier/public/assets/product.webp",
+      width: 800,
+      height: 1200,
+      alt: "Camiseta de algodón en color blanco"
+    },
     id: uuidv4(),
     description: "Un hermoso vestido floral para ocasiones especiales.",
-    selectedProducts: [],
+    descriptionHtml: "<p>Un hermoso vestido floral para ocasiones especiales.</p>",
+    
+       selectedVariant: [],
+        seo: {
+      title: "Producto de  - Atelier",
+      description: "Descubre nuestra camiseta de algodón de alta calidad en varios tamaños y colores. ¡Compra la tuya hoy!",
+      keywords: "camiseta, algodón, ropa, cómoda, TuMarca"
+    }
+   
   },
   {
     title: "Jeans Clásicos",
     handle: "jeans-clasicos",
     slug: "jeans-clasicos",
-    price: 49.99,
     category: "Jeans",
+    availableForSale: true,
     options: [
       {
-        id: 'size', // Identificador de la opción de tamaño
-        title: 'Size', // Título de la opción de tamaño
-        values: ['Large', 'Extra Large', 'XXL'] // Valores disponibles para el tamaño
+        id: 'size', 
+        title: 'Size', 
+            values: [ 'Small', 'Medium', 'Large']
       },
       {
-        id: 'color', // Identificador de la opción de color
-        title: 'Color', // Título de la opción de color
-        values: ['Green', 'Blue', 'Red'] // Valores disponibles para el color
+        id: 'color', 
+        title: 'Color', 
+       values: ['Blue', 'Red', 'White', 'Black']
+      }
+    ],
+    variants: [
+      {
+        id: uuidv4(),
+        title: "S - White",
+        price: 19.99,
+        compare_at_price: "29.99",
+        inventory_policy: "continue",
+        inventory_quantity: 100,
+        sku: "CAMISETA-001-S-BLANCO",
+        availableForSale: true,
+        selectedOptions: [
+          { title: 'Color', value: 'White' },
+          { title: 'Size', value: 'Small' },
+           
+        ],
+      },
+      {
+        id: uuidv4(),
+        title: "M - Black",
+        price: 19.99,
+        compare_at_price: "29.99",
+        inventory_policy: "continue",
+        inventory_quantity: 50,
+        sku: "CAMISETA-001-M-NEGRO",
+        availableForSale: true
       }
     ],
     images: [
-      { id: 1, url: "/atelier/public/assets/product.webp" },
-      { id: 2, url: "/atelier/public/assets/product.webp" },
+      { id: 1, src: "/atelier/public/assets/product.webp", position:1 },
+      { id: 2, src: "/atelier/public/assets/product.webp",position: 2 },
     ],
-    featuredImage: 1,
+      featuredImage: {
+      url: "/atelier/public/assets/product.webp",
+      width: 800,
+      height: 1200,
+      alt: "Camiseta de algodón en color blanco"
+    },
     id: uuidv4(),
     description: "Jeans clásicos para un look casual.",
-    selectedProducts: [],
+    descriptionHtml: "<p>Jeans clásicos para un look casual.</p>",
+       selectedVariant: [],
+        seo: {
+      title: "Producto de  - Atelier",
+      description: "Descubre nuestra camiseta de algodón de alta calidad en varios tamaños y colores. ¡Compra la tuya hoy!",
+      keywords: "camiseta, algodón, ropa, cómoda, TuMarca"
+    }
+   
   },
   {
     title: "Chaqueta de Cuero",
     handle: "chaqueta-cuero",
     slug: "chaqueta-cuero",
-    price: 99.99,
     category: "Chaquetas",
+    availableForSale: true,
     options: [
       {
-        id: 'size', // Identificador de la opción de tamaño
-        title: 'Size', // Título de la opción de tamaño
-        values: ['Large', 'Extra Large', 'XXL'] // Valores disponibles para el tamaño
+        id: 'size', 
+        title: 'Size', 
+            values: [ 'Small', 'Medium', 'Large']
       },
       {
-        id: 'color', // Identificador de la opción de color
-        title: 'Color', // Título de la opción de color
-        values: ['Green', 'Blue', 'Red'] // Valores disponibles para el color
+        id: 'color', 
+        title: 'Color', 
+       values: ['Blue', 'Red', 'White', 'Black']
+      }
+    ],
+    variants: [
+      {
+        id: uuidv4(),
+        title: "S - White",
+        price: 19.99,
+        compare_at_price: "29.99",
+        inventory_policy: "continue",
+        inventory_quantity: 100,
+        sku: "CAMISETA-001-S-BLANCO",
+        availableForSale: true,
+        selectedOptions: [
+          { title: 'Color', value: 'White' },
+          { title: 'Size', value: 'Small' },
+           
+        ],
+      },
+      {
+        id: uuidv4(),
+        title: "M - Black",
+        price: 19.99,
+        compare_at_price: "29.99",
+        inventory_policy: "continue",
+        inventory_quantity: 50,
+        sku: "CAMISETA-001-M-NEGRO",
+        availableForSale: true,
+        selectedOptions: [
+          { title: 'Color', value: 'Black' },
+          { title: 'Size', value: 'Medium' },
+           
+        ],
       }
     ],
     images: [
-      { id: 1, url: "/atelier/public/assets/product.webp" },
-      { id: 2, url: "/atelier/public/assets/product.webp" },
+      { id: 1, src: "/atelier/public/assets/product.webp", position:1 },
+      { id: 2, src: "/atelier/public/assets/product.webp" , position:2},
     ],
-    featuredImage: 1,
+      featuredImage: {
+      url: "/atelier/public/assets/product.webp",
+      width: 800,
+      height: 1200,
+      alt: "Camiseta de algodón en color blanco"
+    },
     id: uuidv4(),
     description: "Una chaqueta de cuero elegante y moderna.",
-    selectedProducts: [],
+    descriptionHtml: "<p>Una chaqueta de cuero elegante y moderna.</p>",
+       selectedVariant: [],
+        seo: {
+      title: "Producto de  - Atelier",
+      description: "Descubre nuestra camiseta de algodón de alta calidad en varios tamaños y colores. ¡Compra la tuya hoy!",
+      keywords: "camiseta, algodón, ropa, cómoda, TuMarca"
+    }
+   
   },
   {
     title: "Pantalones Cortos",
     handle: "pantalones-cortos",
     slug: "pantalones-cortos",
-    price: 19.99,
     category: "Pantalones",
+    availableForSale: true,
     options: [
       {
-        id: 'size', // Identificador de la opción de tamaño
-        title: 'Size', // Título de la opción de tamaño
-        values: ['Large', 'Extra Large', 'XXL'] // Valores disponibles para el tamaño
+        id: 'size', 
+        title: 'Size', 
+            values: [ 'Small', 'Medium', 'Large']
       },
       {
-        id: 'color', // Identificador de la opción de color
-        title: 'Color', // Título de la opción de color
-        values: ['Green', 'Blue', 'Red'] // Valores disponibles para el color
+        id: 'color', 
+        title: 'Color', 
+       values: ['Blue', 'Red', 'White', 'Black']
+      }
+    ],
+    variants: [
+      {
+        id: uuidv4(),
+        title: "S - White",
+        price: 19.99,
+        compare_at_price: "29.99",
+        inventory_policy: "continue",
+        inventory_quantity: 100,
+        sku: "CAMISETA-001-S-BLANCO",
+        availableForSale: true,
+        selectedOptions: [
+          { title: 'Color', value: 'White' },
+          { title: 'Size', value: 'Small' },
+           
+        ],
+      },
+      {
+        id: uuidv4(),
+        title: "M - Black",
+        price: 19.99,
+        compare_at_price: "29.99",
+        inventory_policy: "continue",
+        inventory_quantity: 50,
+        sku: "CAMISETA-001-M-NEGRO",
+        availableForSale: true,
+        selectedOptions: [
+          { title: 'Color', value: 'Black' },
+          { title: 'Size', value: 'Medium' },
+           
+        ],
       }
     ],
     images: [
-      { id: 1, url: "/atelier/public/assets/product.webp" },
-      { id: 2, url: "/atelier/public/assets/product.webp" },
+      { id: 1, src: "/atelier/public/assets/product.webp", position:1 },
+      { id: 2, src: "/atelier/public/assets/product.webp",position:2 },
     ],
-    featuredImage: 1,
+      featuredImage: {
+      url: "/atelier/public/assets/product.webp",
+      width: 800,
+      height: 1200,
+      alt: "Camiseta de algodón en color blanco"
+    },
     id: uuidv4(),
     description: "Pantalones cortos cómodos para el verano.",
-    selectedProducts: [],
+    descriptionHtml: "<p>Pantalones cortos cómodos para el verano.</p>",
+       selectedVariant: [],
+        seo: {
+      title: "Producto de  - Atelier",
+      description: "Descubre nuestra camiseta de algodón de alta calidad en varios tamaños y colores. ¡Compra la tuya hoy!",
+      keywords: "camiseta, algodón, ropa, cómoda, TuMarca"
+    }
+   
   },
   {
     title: "Bufanda de Lana",
     handle: "bufanda-lana",
     slug: "bufanda-lana",
-    price: 14.99,
     category: "Accesorios",
+    availableForSale: true,
     options: [
       {
-        id: 'size', // Identificador de la opción de tamaño
-        title: 'Size', // Título de la opción de tamaño
-        values: ['Large', 'Extra Large', 'XXL'] // Valores disponibles para el tamaño
+        id: 'size', 
+        title: 'Size', 
+            values: [ 'Small', 'Medium', 'Large']
       },
       {
-        id: 'color', // Identificador de la opción de color
-        title: 'Color', // Título de la opción de color
-        values: ['Green', 'Blue', 'Red'] // Valores disponibles para el color
+        id: 'color', 
+        title: 'Color', 
+       values: ['Blue', 'Red', 'White', 'Black']
+      }
+    ],
+    variants: [
+      {
+        id: uuidv4(),
+        title: "S - White",
+        price: 19.99,
+        compare_at_price: "29.99",
+        inventory_policy: "continue",
+        inventory_quantity: 100,
+        sku: "CAMISETA-001-S-BLANCO",
+        availableForSale: true,
+        selectedOptions: [
+          { title: 'Color', value: 'White' },
+          { title: 'Size', value: 'Small' },
+           
+        ],
+      },
+      {
+        id: uuidv4(),
+        title: "M - Black",
+        price: 19.99,
+        compare_at_price: "29.99",
+        inventory_policy: "continue",
+        inventory_quantity: 50,
+        sku: "CAMISETA-001-M-NEGRO",
+        availableForSale: true,
+        selectedOptions: [
+          { title: 'Color', value: 'Black' },
+          { title: 'Size', value: 'Medium' },
+           
+        ],
       }
     ],
     images: [
-      { id: 1, url: "/atelier/public/assets/product.webp" },
-      { id: 2, url: "/atelier/public/assets/product.webp" },
+      { id: 1, src: "/atelier/public/assets/product.webp", position:1 },
+      { id: 2, src: "/atelier/public/assets/product.webp",position:2 },
     ],
-    featuredImage: 1,
+      featuredImage: {
+      url: "/atelier/public/assets/product.webp",
+      width: 800,
+      height: 1200,
+      alt: "Camiseta de algodón en color blanco"
+    },
     id: uuidv4(),
     description: "Una bufanda suave y abrigada de lana.",
-    selectedProducts: [],
+    descriptionHtml: "<p>Una bufanda suave y abrigada de lana.</p>",
+       selectedVariant: [],
+        seo: {
+      title: "Producto de  - Atelier",
+      description: "Descubre nuestra camiseta de algodón de alta calidad en varios tamaños y colores. ¡Compra la tuya hoy!",
+      keywords: "camiseta, algodón, ropa, cómoda, TuMarca"
+    }
+   
   },
   {
     title: "Vestido de Noche",
     handle: "vestido-noche",
     slug: "vestido-noche",
-    price: 79.99,
     category: "Vestidos",
+    availableForSale: true,
     options: [
       {
-        id: 'size', // Identificador de la opción de tamaño
-        title: 'Size', // Título de la opción de tamaño
-        values: ['Large', 'Extra Large', 'XXL'] // Valores disponibles para el tamaño
+        id: 'size', 
+        title: 'Size', 
+            values: [ 'Small', 'Medium', 'Large']
       },
       {
-        id: 'color', // Identificador de la opción de color
-        title: 'Color', // Título de la opción de color
-        values: ['Green', 'Blue', 'Red'] // Valores disponibles para el color
+        id: 'color', 
+        title: 'Color', 
+       values: ['Blue', 'Red', 'White', 'Black']
+      }
+    ],
+    variants: [
+      {
+        id: uuidv4(),
+        title: "S - White",
+        price: 19.99,
+        compare_at_price: "29.99",
+        inventory_policy: "continue",
+        inventory_quantity: 100,
+        sku: "CAMISETA-001-S-BLANCO",
+        availableForSale: true,
+        selectedOptions: [
+          { title: 'Color', value: 'White' },
+          { title: 'Size', value: 'Small' },
+           
+        ],
+      },
+      {
+        id: uuidv4(),
+        title: "M - Black",
+        price: 19.99,
+        compare_at_price: "29.99",
+        inventory_policy: "continue",
+        inventory_quantity: 50,
+        sku: "CAMISETA-001-M-NEGRO",
+        availableForSale: true,
+        selectedOptions: [
+          { title: 'Color', value: 'Black' },
+          { title: 'Size', value: 'Medium' },
+           
+        ],
       }
     ],
     images: [
-      { id: 1, url: "/atelier/public/assets/product.webp" },
-      { id: 2, url: "/atelier/public/assets/product.webp" },
+      { id: 1, src: "/atelier/public/assets/product.webp", position:1 },
+      { id: 2, src: "/atelier/public/assets/product.webp" ,position:2},
     ],
-    featuredImage: 1,
+      featuredImage: {
+      url: "/atelier/public/assets/product.webp",
+      width: 800,
+      height: 1200,
+      alt: "Camiseta de algodón en color blanco"
+    },
     id: uuidv4(),
     description: "Un elegante vestido de noche para ocasiones especiales.",
-    selectedProducts: [],
+    descriptionHtml: "<p>Un elegante vestido de noche para ocasiones especiales.</p>",
+       selectedVariant: [],
+        seo: {
+      title: "Producto de  - Atelier",
+      description: "Descubre nuestra camiseta de algodón de alta calidad en varios tamaños y colores. ¡Compra la tuya hoy!",
+      keywords: "camiseta, algodón, ropa, cómoda, TuMarca"
+    }
+   
   },
   {
     title: "Gorra Deportiva",
     handle: "gorra-deportiva",
     slug: "gorra-deportiva",
-    price: 12.99,
     category: "Accesorios",
+    availableForSale: true,
     options: [
       {
-        id: 'size', // Identificador de la opción de tamaño
-        title: 'Size', // Título de la opción de tamaño
-        values: ['Large', 'Extra Large', 'XXL'] // Valores disponibles para el tamaño
+        id: 'size', 
+        title: 'Size', 
+            values: [ 'Small', 'Medium', 'Large']
       },
       {
-        id: 'color', // Identificador de la opción de color
-        title: 'Color', // Título de la opción de color
-        values: ['Green', 'Blue', 'Red'] // Valores disponibles para el color
+        id: 'color', 
+        title: 'Color', 
+       values: ['Blue', 'Red', 'White', 'Black']
+      }
+    ],
+    variants: [
+      {
+        id: uuidv4(),
+        title: "S - White",
+        price: 19.99,
+        compare_at_price: "29.99",
+        inventory_policy: "continue",
+        inventory_quantity: 100,
+        sku: "CAMISETA-001-S-BLANCO",
+        availableForSale: true,
+        selectedOptions: [
+          { title: 'Color', value: 'White' },
+          { title: 'Size', value: 'Small' },
+           
+        ],
+      },
+      {
+        id: uuidv4(),
+        title: "M - Black",
+        price: 19.99,
+        compare_at_price: "29.99",
+        inventory_policy: "continue",
+        inventory_quantity: 50,
+        sku: "CAMISETA-001-M-NEGRO",
+        availableForSale: true,
+        selectedOptions: [
+          { title: 'Color', value: 'Black' },
+          { title: 'Size', value: 'Medium' },
+           
+        ],
       }
     ],
     images: [
-      { id: 1, url: "/atelier/public/assets/product.webp" },
-      { id: 2, url: "/atelier/public/assets/product.webp" },
+      { id: 1, src: "/atelier/public/assets/product.webp", position:1 },
+      { id: 2, src: "/atelier/public/assets/product.webp",position:2 },
     ],
-    featuredImage: 1,
+      featuredImage: {
+      url: "/atelier/public/assets/product.webp",
+      width: 800,
+      height: 1200,
+      alt: "Camiseta de algodón en color blanco"
+    },
     id: uuidv4(),
     description: "Una gorra deportiva cómoda y elegante.",
-    selectedProducts: [],
+    descriptionHtml: "<p>Una gorra deportiva cómoda y elegante.</p>",
+       selectedVariant: [],
+        seo: {
+      title: "Producto de  - Atelier",
+      description: "Descubre nuestra camiseta de algodón de alta calidad en varios tamaños y colores. ¡Compra la tuya hoy!",
+      keywords: "camiseta, algodón, ropa, cómoda, TuMarca"
+    }
+   
   },
   {
     title: "Pijama de Algodón",
     handle: "pijama-algodon",
     slug: "pijama-algodon",
-    price: 29.99,
     category: "Pijamas",
+    availableForSale: true,
     options: [
       {
-        id: 'size', // Identificador de la opción de tamaño
-        title: 'Size', // Título de la opción de tamaño
-        values: ['Large', 'Extra Large', 'XXL'] // Valores disponibles para el tamaño
+        id: 'size', 
+        title: 'Size', 
+            values: [ 'Small', 'Medium', 'Large']
       },
       {
-        id: 'color', // Identificador de la opción de color
-        title: 'Color', // Título de la opción de color
-        values: ['Green', 'Blue', 'Red'] // Valores disponibles para el color
+        id: 'color', 
+        title: 'Color', 
+       values: ['Blue', 'Red', 'White', 'Black']
+      }
+    ],
+    variants: [
+      {
+        id: uuidv4(),
+        title: "S - White",
+        price: 19.99,
+        compare_at_price: "29.99",
+        inventory_policy: "continue",
+        inventory_quantity: 100,
+        sku: "CAMISETA-001-S-BLANCO",
+        availableForSale: true,
+        selectedOptions: [
+          { title: 'Color', value: 'White' },
+          { title: 'Size', value: 'Small' },
+           
+        ],
+      },
+      {
+        id: uuidv4(),
+        title: "M - Black",
+        price: 19.99,
+        compare_at_price: "29.99",
+        inventory_policy: "continue",
+        inventory_quantity: 50,
+        sku: "CAMISETA-001-M-NEGRO",
+        availableForSale: true,
+        selectedOptions: [
+          { title: 'Color', value: 'Black' },
+          { title: 'Size', value: 'Medium' },
+           
+        ],
       }
     ],
     images: [
-      { id: 1, url: "/atelier/public/assets/product.webp" },
-      { id: 2, url: "/atelier/public/assets/product.webp" },
+      { id: 1, src: "/atelier/public/assets/product.webp", position:1 },
+      { id: 2, src: "/atelier/public/assets/product.webp",position:2 },
     ],
-    featuredImage: 1,
+      featuredImage: {
+      url: "/atelier/public/assets/product.webp",
+      width: 800,
+      height: 1200,
+      alt: "Camiseta de algodón en color blanco"
+    },
     id: uuidv4(),
     description: "Un pijama de algodón suave y cómodo para dormir.",
-    selectedProducts: [],
+    descriptionHtml: "<p>Un pijama de algodón suave y cómodo para dormir.</p>",
+       selectedVariant: [],
+        seo: {
+      title: "Producto de  - Atelier",
+      description: "Descubre nuestra camiseta de algodón de alta calidad en varios tamaños y colores. ¡Compra la tuya hoy!",
+      keywords: "camiseta, algodón, ropa, cómoda, TuMarca"
+    }
+   
   },
   {
     title: "Abrigo de Invierno",
     handle: "abrigo-invierno",
     slug: "abrigo-invierno",
-    price: 69.99,
     category: "Abrigos",
+    availableForSale: true,
     options: [
       {
-        id: 'size', // Identificador de la opción de tamaño
-        title: 'Size', // Título de la opción de tamaño
-        values: ['Large', 'Extra Large', 'XXL'] // Valores disponibles para el tamaño
+        id: 'size', 
+        title: 'Size', 
+            values: [ 'Small', 'Medium', 'Large']
       },
       {
-        id: 'color', // Identificador de la opción de color
-        title: 'Color', // Título de la opción de color
-        values: ['Green', 'Blue', 'Red'] // Valores disponibles para el color
+        id: 'color', 
+        title: 'Color', 
+       values: ['Blue', 'Red', 'White', 'Black']
+      }
+    ],
+    variants: [
+      {
+        id: uuidv4(),
+        title: "S - White",
+        price: 19.99,
+        compare_at_price: "29.99",
+        inventory_policy: "continue",
+        inventory_quantity: 100,
+        sku: "CAMISETA-001-S-BLANCO",
+        availableForSale: true,
+        selectedOptions: [
+          { title: 'Color', value: 'White' },
+          { title: 'Size', value: 'Small' },
+           
+        ],
+      },
+      {
+        id: uuidv4(),
+        title: "M - Black",
+        price: 19.99,
+        compare_at_price: "29.99",
+        inventory_policy: "continue",
+        inventory_quantity: 50,
+        sku: "CAMISETA-001-M-NEGRO",
+        availableForSale: true,
+        selectedOptions: [
+          { title: 'Color', value: 'Black' },
+          { title: 'Size', value: 'Medium' },
+           
+        ],
       }
     ],
     images: [
-      { id: 1, url: "/atelier/public/assets/product.webp" },
-      { id: 2, url: "/atelier/public/assets/product.webp" },
+      { id: 1, src: "/atelier/public/assets/product.webp", position:1 },
+      { id: 2, src: "/atelier/public/assets/product.webp" ,position:2},
     ],
-    featuredImage: 1,
+      featuredImage: {
+      url: "/atelier/public/assets/product.webp",
+      width: 800,
+      height: 1200,
+      alt: "Camiseta de algodón en color blanco"
+    },
     id: uuidv4(),
     description: "Un abrigo de invierno cálido y elegante.",
-    selectedProducts: [],
+    descriptionHtml: "<p>Un abrigo de invierno cálido y elegante.</p>",
+       selectedVariant: [],
+        seo: {
+      title: "Producto de  - Atelier",
+      description: "Descubre nuestra camiseta de algodón de alta calidad en varios tamaños y colores. ¡Compra la tuya hoy!",
+      keywords: "camiseta, algodón, ropa, cómoda, TuMarca"
+    }
+   
   },
   {
     title: "Sudadera con Capucha",
     handle: "sudadera-capucha",
     slug: "sudadera-capucha",
-    price: 29.99,
     category: "Sudaderas",
+    availableForSale: true,
     options: [
       {
-        id: 'size', // Identificador de la opción de tamaño
-        title: 'Size', // Título de la opción de tamaño
-        values: ['Large', 'Extra Large', 'XXL'] // Valores disponibles para el tamaño
+        id: 'size', 
+        title: 'Size', 
+        values: [ 'Small', 'Medium', 'Large']
       },
       {
-        id: 'color', // Identificador de la opción de color
-        title: 'Color', // Título de la opción de color
-        values: ['Green', 'Blue', 'Red'] // Valores disponibles para el color
+        id: 'color', 
+        title: 'Color', 
+       values: ['Blue', 'Red', 'White', 'Black']
+      }
+    ],
+    variants: [
+      {
+        id: uuidv4(),
+        title: "S - White",
+        price: 19.99,
+        compare_at_price: "29.99",
+        inventory_policy: "continue",
+        inventory_quantity: 100,
+        sku: "CAMISETA-001-S-BLANCO",
+        availableForSale: true,
+        selectedOptions: [
+          { title: 'Color', value: 'White' },
+          { title: 'Size', value: 'Small' },
+           
+        ],
+      },
+      {
+        id: uuidv4(),
+        title: "M - Black",
+        price: 19.99,
+        compare_at_price: "29.99",
+        inventory_policy: "continue",
+        inventory_quantity: 50,
+        sku: "CAMISETA-001-M-NEGRO",
+        availableForSale: true,
+        selectedOptions: [
+          { title: 'Color', value: 'Black' },
+          { title: 'Size', value: 'Medium' },
+           
+        ],
       }
     ],
     images: [
-      { id: 1, url: "/atelier/public/assets/product.webp" },
-      { id: 2, url: "/atelier/public/assets/product.webp" },
+      { id: 1, src: "/atelier/public/assets/product.webp", position:1 },
+      { id: 2, src: "/atelier/public/assets/product.webp" ,position:2},
     ],
-    featuredImage: 1,
+      featuredImage: {
+      url: "/atelier/public/assets/product.webp",
+      width: 800,
+      height: 1200,
+      alt: "Camiseta de algodón en color blanco"
+    },
     id: uuidv4(),
     description: "Una sudadera con capucha cómoda y moderna.",
-    selectedProducts: [],
+    descriptionHtml: "<p>Una sudadera con capucha cómoda y moderna.</p>",
+       selectedVariant: [],
+        seo: {
+      title: "Producto de  - Atelier",
+      description: "Descubre nuestra camiseta de algodón de alta calidad en varios tamaños y colores. ¡Compra la tuya hoy!",
+      keywords: "camiseta, algodón, ropa, cómoda, TuMarca"
+    }
+   
   },
   {
     title: "Vestido de Verano",
     handle: "vestido-verano",
     slug: "vestido-verano",
-    price: 39.99,
     category: "Vestidos",
+    availableForSale: true,
     options: [
       {
-        id: 'size', // Identificador de la opción de tamaño
-        title: 'Size', // Título de la opción de tamaño
-        values: ['Large', 'Extra Large', 'XXL'] // Valores disponibles para el tamaño
+        id: 'size', 
+        title: 'Size', 
+         values: [ 'Small', 'Medium', 'Large']
       },
       {
-        id: 'color', // Identificador de la opción de color
-        title: 'Color', // Título de la opción de color
-        values: ['Green', 'Blue', 'Red'] // Valores disponibles para el color
+        id: 'color', 
+        title: 'Color', 
+        values: ['Blue', 'Red', 'White', 'Black'] 
+      }
+    ],
+    variants: [
+      {
+        id: uuidv4(),
+        title: "S - White",
+        price: 19.99,
+        compare_at_price: "29.99",
+        inventory_policy: "continue",
+        inventory_quantity: 100,
+        sku: "CAMISETA-001-S-BLANCO",
+        availableForSale: true,
+        selectedOptions: [
+          { title: 'Color', value: 'White' },
+          { title: 'Size', value: 'Small' },
+           
+        ],
+      },
+      {
+        id: uuidv4(),
+        title: "M - Black",
+        price: 19.99,
+        compare_at_price: "29.99",
+        inventory_policy: "continue",
+        inventory_quantity: 50,
+        sku: "CAMISETA-001-M-NEGRO",
+        availableForSale: true,
+        selectedOptions: [
+          { title: 'Color', value: 'Black' },
+          { title: 'Size', value: 'Medium' },
+           
+        ],
       }
     ],
     images: [
-      { id: 1, url: "/atelier/public/assets/product.webp" },
-      { id: 2, url: "/atelier/public/assets/product.webp" },
+      { id: 1, src: "/atelier/public/assets/product.webp", position:1 },
+      { id: 2, src: "/atelier/public/assets/product.webp", position:2 },
     ],
-    featuredImage: 1,
+      featuredImage: {
+      url: "/atelier/public/assets/product.webp",
+      width: 800,
+      height: 1200,
+      alt: "Camiseta de algodón en color blanco"
+    },
     id: uuidv4(),
     description: "Un ligero vestido de verano para días soleados.",
-    selectedProducts: [],
+    descriptionHtml: "<p>Un ligero vestido de verano para días soleados.</p>",
+       selectedVariant: [],
+        seo: {
+      title: "Producto de  - Atelier",
+      description: "Descubre nuestra camiseta de algodón de alta calidad en varios tamaños y colores. ¡Compra la tuya hoy!",
+      keywords: "camiseta, algodón, ropa, cómoda, TuMarca"
+    }
+
   },
 
 ];
@@ -496,4 +1087,4 @@ export const products = [
 
 
 
-console.log(products);
+
