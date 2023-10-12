@@ -20,14 +20,6 @@ export default function SearchPage({
   const { products, status } = useSelector((state: RootState) => state.products);
   const [status1, setStatus1] = useState("");
 
-  /*   const dispatch = useDispatch<Dispatch<any>>();
-  console.log(products, "products para renderizar");
-
-  useEffect(() => {
-    dispatch(listProducts());
-    setStatus1(status);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch]); */
   const resultsText = products.length > 1 ? "results" : "result";
   return (
     <>
