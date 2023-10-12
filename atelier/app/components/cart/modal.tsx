@@ -165,7 +165,7 @@ export default function CartModal() {
                     </div>
                   </div>
                   <a
-                    href="checkout"
+                    href="/checkout"
                     className="block w-full rounded-full bg-blue-600 p-3 text-center text-sm font-medium text-white opacity-90 hover:opacity-100"
                   >
                     Ir a pagar productos
