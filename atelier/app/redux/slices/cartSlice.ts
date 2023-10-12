@@ -64,8 +64,8 @@ const cartSlice = createSlice({
   
       if (productIndex !== -1) {
         // Restar 1 a la cantidad del producto
-        if (state.cart[productIndex].quantity > 1) {
-          state.cart[productIndex].quantity -= 1;
+        if (state.cart[productIndex].variants[0].quantity > 1) {
+          state.cart[productIndex].variants[0].quantity -= 1;
           state.cost.totalAmount.amount = calculateTotalCost(state.cart);
           localStorage.setItem('cart', JSON.stringify(state));
         }
@@ -76,7 +76,7 @@ const cartSlice = createSlice({
 
       if (productIndex !== -1) {
         // Sumar 1 a la cantidad del producto
-        state.cart[productIndex].quantity += 1;
+        state.cart[productIndex].variants[0].quantity += 1;
         state.cost.totalAmount.amount = calculateTotalCost(state.cart);
         localStorage.setItem('cart', JSON.stringify(state));
       }
