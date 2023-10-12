@@ -1,3 +1,24 @@
+/* Tamaño de pantalla: Desktop */
+@media (min-width: 1024px) {
+  :root {
+    --scroll-amount: 515px;
+  }
+}
+
+/* Tamaño de pantalla: Notebook */
+@media (max-width: 1023px) and (min-width: 768px) {
+  :root {
+    --scroll-amount: 410px;
+  }
+}
+
+/* Tamaño de pantalla: Mobile */
+@media (max-width: 767px) {
+  :root {
+    --scroll-amount: 290px;
+  }
+}
+
 ::-webkit-scrollbar {
   width: 10px !important;
   background-color: transparent !important;
@@ -22,4 +43,8 @@
 .custom-scrollbar::-webkit-scrollbar {
   width: 10px !important;
   background-color: transparent;
+}
+
+.scroll-smooth {
+  scroll-behavior: smooth;
 }
