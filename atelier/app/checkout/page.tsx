@@ -56,18 +56,17 @@ function Checkout() {
           >
             <summary className="flex items-center  " onClick={toggleDetails}>
               <span className="h-5 w-5 mr-2">
-                {/* <AiOutlineShoppingCart className="h-5 w-5 fill-blue-600" /> */}
                 <ShoppingCartIcon />
               </span>
               <span className="text-blue-600 text-sm ">Mostrar</span>
             </summary>
             <div
-              className={`mt-8 custom-transition ${
+              className={`mt-8 custom-transition gap-2 ${
                 isOpen ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
               }`}
             >
               {cart.map((item: any) => (
-                <div key={item.handle} className="flex justify-between items-center ">
+                <div key={item.handle} className="flex justify-between py-2 border-b items-center ">
                   <div>
                     <div className="relative">
                       <Image
@@ -104,9 +103,9 @@ function Checkout() {
               }
             </div>
           </details>
-          <div className="hidden md:flex p-8 md:flex-col md:w-96">
+          <div className="hidden md:flex p-8 md:flex-col gap-2 md:w-96 overflow-y-auto">
             {cart.map((item: any) => (
-              <div key={item.handle} className="flex justify-between items-center ">
+              <div key={item.handle} className="flex justify-between  border-b pb-4 items-center ">
                 <div>
                   <div className="relative w-20 h-20">
                     <Image
@@ -143,8 +142,8 @@ function Checkout() {
             </div>
           </div>
         </aside>
-        <div className="md:w-1/2 md:flex md:pt-10 md:justify-end">
-          <div className="mb-4 border-t md:border-none w-[550px]  border-gray-400/80">
+        <div className="md:w-1/2 md:flex md:pt-10 md:justify-end max-w-screen">
+          <div className="mb-4  md:border-none md:w-[550px]   border-gray-400/80">
             {/* Pestañas */}
             <div className="mb-4 flex items-center ">
               <button
@@ -169,132 +168,130 @@ function Checkout() {
 
             {/* Contenido del formulario */}
             {activeTab === "information" && (
-              <form onSubmit={handleSubmit}>
-                <form onSubmit={handleSubmit}>
-                  <div className="pb-8">
-                    <h3 className="md:mb-4 font-bold tracking-wide">Contacto</h3>
-                    <div className="mb-4 border border-gray-500/80 rounded-lg px-2 py-1 ">
-                      <label htmlFor="telefono" className="block opacity-60 text-xs -mb-1">
-                        Teléfono:
+              <form onSubmit={handleSubmit} className="w-auto ">
+                <div className="pb-8">
+                  <h3 className="md:mb-4 font-bold tracking-wide">Contacto</h3>
+                  <div className="mb-4 border border-gray-500/80 rounded-lg px-2 py-1 ">
+                    <label htmlFor="telefono" className="block opacity-60 text-xs -mb-1">
+                      Teléfono:
+                    </label>
+                    <input
+                      type="text"
+                      id="telefono"
+                      name="telefono"
+                      value={formData.telefono}
+                      onChange={handleChange}
+                      className=" text-sm h-6 w-full "
+                      required
+                    />
+                  </div>
+                  <div className="mb-4 border border-gray-500/80 rounded-lg px-2 py-1 ">
+                    <label htmlFor="telefono" className="block opacity-60 text-xs -mb-2">
+                      Mail:
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.mail}
+                      onChange={handleChange}
+                      className="  h-6 text-sm md:h-8   w-full"
+                      required
+                    />
+                  </div>
+                </div>
+                <div>
+                  <h3 className="md:mb-4 font-bold tracking-wide">Datos de envio</h3>
+                  <div className="md:flex md:gap-2">
+                    <div className="mb-4 border md:w-1/2 border-gray-500/80 rounded-lg px-2 py-1 ">
+                      <label htmlFor="firstname" className="block opacity-60 text-xs -mb-2">
+                        Nombre:
                       </label>
                       <input
                         type="text"
-                        id="telefono"
-                        name="telefono"
-                        value={formData.telefono}
+                        id="firstname"
+                        name="firstname"
+                        value={formData.firstname}
                         onChange={handleChange}
-                        className=" text-sm h-6 w-full "
+                        className="  h-6 text-sm md:h-8   w-full"
                         required
                       />
                     </div>
-                    <div className="mb-4 border border-gray-500/80 rounded-lg px-2 py-1 ">
-                      <label htmlFor="telefono" className="block opacity-60 text-xs -mb-2">
-                        Mail:
+                    <div className="mb-4 border md:w-1/2 border-gray-500/80 rounded-lg px-2 py-1 ">
+                      <label htmlFor="lastname" className="block opacity-60 text-xs -mb-2">
+                        Apellido:
                       </label>
                       <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.mail}
+                        type="text"
+                        id="lastname"
+                        name="lastname"
+                        value={formData.lastname}
                         onChange={handleChange}
                         className="  h-6 text-sm md:h-8   w-full"
                         required
                       />
                     </div>
                   </div>
-                  <div>
-                    <h3 className="md:mb-4 font-bold tracking-wide">Datos de envio</h3>
-                    <div className="md:flex md:gap-2">
-                      <div className="mb-4 border md:w-1/2 border-gray-500/80 rounded-lg px-2 py-1 ">
-                        <label htmlFor="firstname" className="block opacity-60 text-xs -mb-2">
-                          Nombre:
-                        </label>
-                        <input
-                          type="text"
-                          id="firstname"
-                          name="firstname"
-                          value={formData.firstname}
-                          onChange={handleChange}
-                          className="  h-6 text-sm md:h-8   w-full"
-                          required
-                        />
-                      </div>
-                      <div className="mb-4 border md:w-1/2 border-gray-500/80 rounded-lg px-2 py-1 ">
-                        <label htmlFor="lastname" className="block opacity-60 text-xs -mb-2">
-                          Apellido:
-                        </label>
-                        <input
-                          type="text"
-                          id="lastname"
-                          name="lastname"
-                          value={formData.lastname}
-                          onChange={handleChange}
-                          className="  h-6 text-sm md:h-8   w-full"
-                          required
-                        />
-                      </div>
-                    </div>
 
+                  <div className="mb-4 border border-gray-500/80 rounded-lg px-2 py-1 ">
+                    <label htmlFor="direccion" className="block opacity-60 text-xs -mb-2">
+                      Dirección:
+                    </label>
+                    <input
+                      type="text"
+                      id="direccion"
+                      name="direccion"
+                      value={formData.direccion}
+                      onChange={handleChange}
+                      className="  h-6 text-sm md:h-8   w-full"
+                      required
+                    />
+                  </div>
+                  <div className="md:flex md:gap-2">
                     <div className="mb-4 border border-gray-500/80 rounded-lg px-2 py-1 ">
-                      <label htmlFor="direccion" className="block opacity-60 text-xs -mb-2">
-                        Dirección:
+                      <label htmlFor="ciudad" className="block opacity-60 text-xs -mb-2">
+                        Ciudad:
                       </label>
                       <input
                         type="text"
-                        id="direccion"
-                        name="direccion"
-                        value={formData.direccion}
+                        id="ciudad"
+                        name="ciudad"
+                        value={formData.ciudad}
                         onChange={handleChange}
                         className="  h-6 text-sm md:h-8   w-full"
                         required
                       />
                     </div>
-                    <div className="md:flex md:gap-2">
-                      <div className="mb-4 border border-gray-500/80 rounded-lg px-2 py-1 ">
-                        <label htmlFor="ciudad" className="block opacity-60 text-xs -mb-2">
-                          Ciudad:
-                        </label>
-                        <input
-                          type="text"
-                          id="ciudad"
-                          name="ciudad"
-                          value={formData.ciudad}
-                          onChange={handleChange}
-                          className="  h-6 text-sm md:h-8   w-full"
-                          required
-                        />
-                      </div>
-                      <div className="mb-4 border border-gray-500/80 rounded-lg px-2 py-1 ">
-                        <label htmlFor="provincia" className="block opacity-60 text-xs -mb-2">
-                          Provincia:
-                        </label>
-                        <input
-                          type="text"
-                          id="provincia"
-                          name="provincia"
-                          value={formData.provincia}
-                          onChange={handleChange}
-                          className="  h-6 text-sm md:h-8   w-full"
-                          required
-                        />
-                      </div>
-                      <div className="mb-4 border border-gray-500/80 rounded-lg px-2 py-1 ">
-                        <label htmlFor="codigoPostal" className="block opacity-60 text-xs -mb-2">
-                          Código Postal:
-                        </label>
-                        <input
-                          type="text"
-                          id="codigoPostal"
-                          name="codigoPostal"
-                          value={formData.codigoPostal}
-                          onChange={handleChange}
-                          className="  h-6 text-sm md:h-8   w-full"
-                          required
-                        />
-                      </div>
+                    <div className="mb-4 border border-gray-500/80 rounded-lg px-2 py-1 ">
+                      <label htmlFor="provincia" className="block opacity-60 text-xs -mb-2">
+                        Provincia:
+                      </label>
+                      <input
+                        type="text"
+                        id="provincia"
+                        name="provincia"
+                        value={formData.provincia}
+                        onChange={handleChange}
+                        className="  h-6 text-sm md:h-8   w-full"
+                        required
+                      />
+                    </div>
+                    <div className="mb-4 border border-gray-500/80 rounded-lg px-2 py-1 ">
+                      <label htmlFor="codigoPostal" className="block opacity-60 text-xs -mb-2">
+                        Código Postal:
+                      </label>
+                      <input
+                        type="text"
+                        id="codigoPostal"
+                        name="codigoPostal"
+                        value={formData.codigoPostal}
+                        onChange={handleChange}
+                        className="  h-6 text-sm md:h-8   w-full"
+                        required
+                      />
                     </div>
                   </div>
-                </form>
+                </div>
                 <div className="md:flex md:justify-end text-white">
                   <button
                     type="button"
@@ -308,7 +305,7 @@ function Checkout() {
             )}
 
             {activeTab === "shipping" && (
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} className="w-full">
                 <div className="border rounded-lg px-4 mb-10  ">
                   <div className="flex justify-between gap-2 border-b py-4">
                     <div className="flex flex-col gap-2">
