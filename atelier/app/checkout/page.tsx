@@ -47,8 +47,8 @@ function Checkout() {
 
   return (
     <>
-      <div className="flex flex-col  md:min-h-[80vh] mt-12 md:mt-16 h-full  rounded-lg border font-sans border-neutral-200 bg-white p-4 text-black dark:border-neutral-800 md:p-0 lg:flex-row lg:gap-8 ">
-        <aside className="border md:w-1/2 md:pt-10 md:order-last  rounded-lg md:rounded-none  border-neutral-200    py-4 px-2 w-full">
+      <div className="flex flex-col  md:min-h-[80vh] mt-12 md:mt-16 h-full  rounded-lg border font-sans border-terciario bg-white p-4 text-black dark:terciario md:p-0 lg:flex-row lg:gap-8 ">
+        <aside className="border-l md:w-1/2 md:pt-10 md:order-last  rounded-lg md:rounded-none  border-terciario   py-4 px-2 w-full">
           <details
             className={`custom-transition md:hidden ${
               isOpen ? "max-h-[1000px] opacity-100" : "max-h-10 opacity-100"
@@ -143,7 +143,7 @@ function Checkout() {
           </div>
         </aside>
         <div className="md:w-1/2 md:flex md:pt-10 md:justify-end max-w-screen">
-          <div className="mb-4  md:border-none md:w-[550px]   border-gray-400/80">
+          <div className="mb-4  md:border-none md:w-[550px] border   border-gray-400/80">
             {/* Pestañas */}
             <div className="mb-4 flex items-center ">
               <button

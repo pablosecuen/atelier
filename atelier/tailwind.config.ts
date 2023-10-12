@@ -13,13 +13,12 @@ module.exports = {
         'inter-bold': ['Inter-Bold', 'sans'],
       },
       boxShadowCustom: {
-        'inner-bottom': 'inset -5px -10px 10px rgba(0, 0, 0, 1)', // Ajusta los valores según desees
+        'inner-bottom': 'inset -5px -10px 10px rgba(0, 0, 0, 1)', 
       },
       colors: {
         primario: '#f0e6dc',     
         secundario: '#c8aa96',  
-        terciario: '#0000FF',    // Reemplaza '#0000FF' con tu valor hex para el color terciario
-        // Puedes agregar más colores personalizados si es necesario
+        terciario: '#f0e6dc',    
       },
       keyframes: {
         fadeIn: {

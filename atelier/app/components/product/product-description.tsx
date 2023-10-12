@@ -32,7 +32,7 @@ export function ProductDescription({ product }: { product: Product }) {
 
       {product.descriptionHtml ? (
         <Prose
-          className="mb-6 text-sm leading-tight dark:text-black/[60%]"
+          className="mb-6 text-sm leading-tight text-black/[60%]"
           html={product.descriptionHtml}
         />
       ) : null}

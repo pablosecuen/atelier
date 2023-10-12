@@ -74,8 +74,8 @@ export default async function ProductPage({ params }: { params: { handle: string
           __html: JSON.stringify(productJsonLd),
         }}
       />
-      <div className="mx-auto max-w-screen-2xl px-4 md:mt-24">
-        <div className="flex flex-col rounded-lg border  border-neutral-200 bg-white p-8 dark:border-neutral-800 dark:bg-transparent md:p-12 lg:flex-row lg:gap-8">
+      <div className="mx-auto max-w-screen-2xl px-4 md:mt-24 mt-10">
+        <div className="flex flex-col rounded-lg border-2  border-terciario bg-white p-8 dark:border-terciario dark:bg-transparent md:p-12 lg:flex-row lg:gap-8">
           <div className="h-full w-full basis-full lg:basis-4/6 ">
             <Gallery
               images={product.images.map((image: any) => ({
@@ -98,14 +98,14 @@ export default async function ProductPage({ params }: { params: { handle: string
 }
 
 async function RelatedProducts({ id }: { id: string }) {
-  const relatedProducts = products;
+  const relatedProducts = products.slice(0, 4);
 
   if (!relatedProducts.length) return null;
 
   return (
-    <div className="py-8">
-      <h2 className="mb-4 text-2xl font-bold">Related Products</h2>
-      <ul className="flex w-full gap-4 overflow-x-auto pt-1">
+    <div className="py-8 w-full">
+      <h2 className="mb-4 text-2xl font-bold text-black">Productos que pueden interesarte !</h2>
+      <ul className="flex flex-col md:flex-row w-full gap-4 overflow-x-auto justify-evenly pt-1">
         {relatedProducts.map((product) => (
           <li
             key={product.handle}
