@@ -14,10 +14,12 @@ export function AddToCart({
   variants,
   availableForSale,
   product,
+  quantity,
 }: {
   variants: ProductVariant[];
   availableForSale: boolean;
   product: Product;
+  quantity: number;
 }) {
   const dispatch = useDispatch();
   const router = useRouter();
@@ -54,7 +56,17 @@ export function AddToCart({
         if (!availableForSale || !selectedVariantId) return;
 
         startTransition(() => {
-          dispatch(addToCart({ ...product, variants: [selectedVariant] }));
+          dispatch(
+            addToCart({
+              ...product,
+              variants: [
+                {
+                  ...selectedVariant,
+                  quantity: quantity,
+                },
+              ],
+            })
+          );
           router.refresh();
         });
       }}
