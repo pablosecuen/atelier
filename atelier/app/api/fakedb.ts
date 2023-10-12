@@ -9,6 +9,7 @@ export const products = [
     slug: "remera-alghodon",
     category: "Remeras",
     availableForSale: true,
+    
     options: [
       {
         id: 'size', 
@@ -33,6 +34,7 @@ export const products = [
         inventory_quantity: 100,
         sku: "CAMISETA-001-S-BLANCO",
         availableForSale: true,
+        quantity: 0,
         selectedOptions: [
           { title: 'Color', value: 'Red' },
           { title: 'Size', value: 'Small' },
@@ -48,6 +50,7 @@ export const products = [
         inventory_quantity: 50,
         sku: "CAMISETA-001-M-NEGRO",
         availableForSale: true,
+        quantity: 0,
         selectedOptions: [
           { title: 'Color', value: 'Black' },
           { title: 'Size', value: 'Medium' },
@@ -63,6 +66,7 @@ export const products = [
         inventory_quantity: 100,
         sku: "CAMISETA-001-S-BLANCO",
         availableForSale: true,
+        quantity: 0,
         selectedOptions: [
           { title: 'Color', value: 'Blue' },
           { title: 'Size', value: 'Large' },
@@ -80,6 +84,7 @@ export const products = [
       height: 1200,
       alt: "Camiseta de algodón en color blanco",
       availableForSale: true,
+      
     },
     id: uuidv4(),
     description: "Una hermosa remera azul para hombres.",
@@ -98,6 +103,7 @@ export const products = [
     slug: "camisa-a-cuadros",
     category: "Camisas",
     availableForSale: true,
+    
     options: [
       {
         id: 'size', 
@@ -119,6 +125,7 @@ export const products = [
         inventory_policy: "continue",
         inventory_quantity: 100,
         sku: "CAMISETA-001-S-BLANCO",
+        quantity: 0,
         selectedOptions: [
           { title: 'Color', value: 'White' },
           { title: 'Size', value: 'Large' },
@@ -132,7 +139,9 @@ export const products = [
         inventory_policy: "continue",
         inventory_quantity: 50,
         sku: "CAMISETA-001-M-NEGRO",
+        quantity: 0,
         barcode: "987654321",
+        availableForSale: true,
         selectedOptions: [
           { title: 'Color', value: 'Black' },
           { title: 'Size', value: 'Medium' },
@@ -168,6 +177,7 @@ export const products = [
     slug: "polo-stretch",
     category: "Polos",
     availableForSale: true,
+    
     options: [
       {
         id: 'size', 
@@ -188,8 +198,9 @@ export const products = [
         compare_at_price: "29.99",
         inventory_policy: "continue",
         inventory_quantity: 100,
-        sku: "CAMISETA-001-S-RED",
+        sku: "CAMISETA-001-S-RED",quantity: 0,
         availableForSale: true,
+        
         selectedOptions: [
           { title: 'Color', value: 'Red' },
           { title: 'Size', value: 'Small' },
@@ -206,6 +217,7 @@ export const products = [
         sku: "CAMISETA-001-M-NEGRO",
         barcode: "987654321",
         availableForSale: true,
+        quantity: 0,
         selectedOptions: [
           { title: 'Color', value: 'Black' },
           { title: 'Size', value: 'Medium' },
@@ -240,6 +252,7 @@ export const products = [
     slug: "sweater-lana",
     category: "Sweaters",
     availableForSale: true,
+    
     options: [
       {
         id: 'size', 
@@ -262,6 +275,7 @@ export const products = [
         inventory_quantity: 100,
         sku: "CAMISETA-001-S-BLANCO",
         availableForSale: true,
+        quantity: 0,
         selectedOptions: [
           { title: 'Color', value: 'White' },
           { title: 'Size', value: 'Small' },
@@ -276,7 +290,8 @@ export const products = [
         inventory_policy: "continue",
         inventory_quantity: 50,
         sku: "CAMISETA-001-M-NEGRO",
-        availableForSale: true,      selectedOptions: [
+        availableForSale: true,    quantity: 0,
+              selectedOptions: [
           { title: 'Color', value: 'Black' },
           { title: 'Size', value: 'Medium' },
            
@@ -310,6 +325,7 @@ export const products = [
     slug: "vestido-floral",
     category: "Vestidos",
     availableForSale: true,
+    
     options: [
       {
         id: 'size', 
@@ -331,7 +347,8 @@ export const products = [
         inventory_policy: "continue",
         inventory_quantity: 100,
         sku: "CAMISETA-001-S-BLANCO",
-        availableForSale: true,      
+        availableForSale: true,
+        quantity: 0,
         selectedOptions: [
           { title: 'Color', value: 'White' },
           { title: 'Size', value: 'Small' },
@@ -346,6 +363,7 @@ export const products = [
         inventory_quantity: 50,
         sku: "CAMISETA-001-M-NEGRO",
         availableForSale: true,
+        quantity: 0,
         selectedOptions: [
           { title: 'Color', value: 'Black' },
           { title: 'Size', value: 'Medium' },
@@ -381,6 +399,7 @@ export const products = [
     slug: "jeans-clasicos",
     category: "Jeans",
     availableForSale: true,
+    
     options: [
       {
         id: 'size', 
@@ -403,6 +422,7 @@ export const products = [
         inventory_quantity: 100,
         sku: "CAMISETA-001-S-BLANCO",
         availableForSale: true,
+        quantity: 0,
         selectedOptions: [
           { title: 'Color', value: 'White' },
           { title: 'Size', value: 'Small' },
@@ -417,7 +437,13 @@ export const products = [
         inventory_policy: "continue",
         inventory_quantity: 50,
         sku: "CAMISETA-001-M-NEGRO",
-        availableForSale: true
+        availableForSale: true,
+        quantity: 0,
+        selectedOptions: [
+          { title: 'Color', value: 'Black' },
+          { title: 'Size', value: 'Medium' },
+           
+        ],
       }
     ],
     images: [
@@ -447,6 +473,7 @@ export const products = [
     slug: "chaqueta-cuero",
     category: "Chaquetas",
     availableForSale: true,
+    
     options: [
       {
         id: 'size', 
@@ -469,6 +496,7 @@ export const products = [
         inventory_quantity: 100,
         sku: "CAMISETA-001-S-BLANCO",
         availableForSale: true,
+        quantity: 0,
         selectedOptions: [
           { title: 'Color', value: 'White' },
           { title: 'Size', value: 'Small' },
@@ -484,6 +512,7 @@ export const products = [
         inventory_quantity: 50,
         sku: "CAMISETA-001-M-NEGRO",
         availableForSale: true,
+        quantity: 0,
         selectedOptions: [
           { title: 'Color', value: 'Black' },
           { title: 'Size', value: 'Medium' },
@@ -518,6 +547,7 @@ export const products = [
     slug: "pantalones-cortos",
     category: "Pantalones",
     availableForSale: true,
+    
     options: [
       {
         id: 'size', 
@@ -540,6 +570,7 @@ export const products = [
         inventory_quantity: 100,
         sku: "CAMISETA-001-S-BLANCO",
         availableForSale: true,
+        quantity: 0,
         selectedOptions: [
           { title: 'Color', value: 'White' },
           { title: 'Size', value: 'Small' },
@@ -555,6 +586,7 @@ export const products = [
         inventory_quantity: 50,
         sku: "CAMISETA-001-M-NEGRO",
         availableForSale: true,
+        quantity: 0,
         selectedOptions: [
           { title: 'Color', value: 'Black' },
           { title: 'Size', value: 'Medium' },
@@ -611,6 +643,7 @@ export const products = [
         inventory_quantity: 100,
         sku: "CAMISETA-001-S-BLANCO",
         availableForSale: true,
+        quantity: 0,
         selectedOptions: [
           { title: 'Color', value: 'White' },
           { title: 'Size', value: 'Small' },
@@ -626,6 +659,7 @@ export const products = [
         inventory_quantity: 50,
         sku: "CAMISETA-001-M-NEGRO",
         availableForSale: true,
+        quantity: 0,
         selectedOptions: [
           { title: 'Color', value: 'Black' },
           { title: 'Size', value: 'Medium' },
@@ -660,6 +694,7 @@ export const products = [
     slug: "vestido-noche",
     category: "Vestidos",
     availableForSale: true,
+    
     options: [
       {
         id: 'size', 
@@ -682,6 +717,7 @@ export const products = [
         inventory_quantity: 100,
         sku: "CAMISETA-001-S-BLANCO",
         availableForSale: true,
+        quantity: 0,
         selectedOptions: [
           { title: 'Color', value: 'White' },
           { title: 'Size', value: 'Small' },
@@ -697,6 +733,7 @@ export const products = [
         inventory_quantity: 50,
         sku: "CAMISETA-001-M-NEGRO",
         availableForSale: true,
+        quantity: 0,
         selectedOptions: [
           { title: 'Color', value: 'Black' },
           { title: 'Size', value: 'Medium' },
@@ -731,6 +768,7 @@ export const products = [
     slug: "gorra-deportiva",
     category: "Accesorios",
     availableForSale: true,
+    
     options: [
       {
         id: 'size', 
@@ -753,6 +791,7 @@ export const products = [
         inventory_quantity: 100,
         sku: "CAMISETA-001-S-BLANCO",
         availableForSale: true,
+        quantity: 0,
         selectedOptions: [
           { title: 'Color', value: 'White' },
           { title: 'Size', value: 'Small' },
@@ -768,6 +807,7 @@ export const products = [
         inventory_quantity: 50,
         sku: "CAMISETA-001-M-NEGRO",
         availableForSale: true,
+        quantity: 0,
         selectedOptions: [
           { title: 'Color', value: 'Black' },
           { title: 'Size', value: 'Medium' },
@@ -802,6 +842,7 @@ export const products = [
     slug: "pijama-algodon",
     category: "Pijamas",
     availableForSale: true,
+    
     options: [
       {
         id: 'size', 
@@ -824,6 +865,7 @@ export const products = [
         inventory_quantity: 100,
         sku: "CAMISETA-001-S-BLANCO",
         availableForSale: true,
+        quantity: 0,
         selectedOptions: [
           { title: 'Color', value: 'White' },
           { title: 'Size', value: 'Small' },
@@ -839,6 +881,7 @@ export const products = [
         inventory_quantity: 50,
         sku: "CAMISETA-001-M-NEGRO",
         availableForSale: true,
+        quantity: 0,
         selectedOptions: [
           { title: 'Color', value: 'Black' },
           { title: 'Size', value: 'Medium' },
@@ -873,6 +916,7 @@ export const products = [
     slug: "abrigo-invierno",
     category: "Abrigos",
     availableForSale: true,
+    
     options: [
       {
         id: 'size', 
@@ -895,6 +939,7 @@ export const products = [
         inventory_quantity: 100,
         sku: "CAMISETA-001-S-BLANCO",
         availableForSale: true,
+        quantity: 0,
         selectedOptions: [
           { title: 'Color', value: 'White' },
           { title: 'Size', value: 'Small' },
@@ -910,6 +955,7 @@ export const products = [
         inventory_quantity: 50,
         sku: "CAMISETA-001-M-NEGRO",
         availableForSale: true,
+        quantity: 0,
         selectedOptions: [
           { title: 'Color', value: 'Black' },
           { title: 'Size', value: 'Medium' },
@@ -944,6 +990,7 @@ export const products = [
     slug: "sudadera-capucha",
     category: "Sudaderas",
     availableForSale: true,
+    
     options: [
       {
         id: 'size', 
@@ -966,6 +1013,7 @@ export const products = [
         inventory_quantity: 100,
         sku: "CAMISETA-001-S-BLANCO",
         availableForSale: true,
+        quantity: 0,
         selectedOptions: [
           { title: 'Color', value: 'White' },
           { title: 'Size', value: 'Small' },
@@ -981,6 +1029,7 @@ export const products = [
         inventory_quantity: 50,
         sku: "CAMISETA-001-M-NEGRO",
         availableForSale: true,
+        quantity: 0,
         selectedOptions: [
           { title: 'Color', value: 'Black' },
           { title: 'Size', value: 'Medium' },
@@ -1015,6 +1064,7 @@ export const products = [
     slug: "vestido-verano",
     category: "Vestidos",
     availableForSale: true,
+    
     options: [
       {
         id: 'size', 
@@ -1037,6 +1087,7 @@ export const products = [
         inventory_quantity: 100,
         sku: "CAMISETA-001-S-BLANCO",
         availableForSale: true,
+        quantity: 0,
         selectedOptions: [
           { title: 'Color', value: 'White' },
           { title: 'Size', value: 'Small' },
@@ -1052,6 +1103,7 @@ export const products = [
         inventory_quantity: 50,
         sku: "CAMISETA-001-M-NEGRO",
         availableForSale: true,
+        quantity: 0,
         selectedOptions: [
           { title: 'Color', value: 'Black' },
           { title: 'Size', value: 'Medium' },
