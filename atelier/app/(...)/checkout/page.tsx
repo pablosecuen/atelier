@@ -5,7 +5,7 @@ import React, { useState } from "react";
 
 import { useSelector } from "react-redux";
 import "@/app/globals.css";
-import { RootState } from "../redux/store";
+import { RootState } from "../../redux/store";
 import ShoppingCartIcon from "@/public/assets/icons/shop-cart";
 import ChevronRight from "@/public/assets/icons/chevron-right";
 import ChevronLeft from "@/public/assets/icons/chevron-left";
@@ -65,8 +65,8 @@ function Checkout() {
                 isOpen ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
               }`}
             >
-              {cart.map((item: any) => (
-                <div key={item.handle} className="flex justify-between py-2 border-b items-center ">
+              {cart.map((item: any, index: number) => (
+                <div key={index} className="flex justify-between py-2 border-b items-center ">
                   <div>
                     <div className="relative">
                       <Image
@@ -76,8 +76,8 @@ function Checkout() {
                         height={80}
                         className="border border-gray-500/80 rounded-xl"
                       />
-                      <span className="absolute top-0 right-0 z-10 text-sm px-[6px] -translate-y-[50%] bg-gray shadow-inner bg-gray-400 shadow-white rounded-full">
-                        {item.quantity}
+                      <span className="absolute top-0  right-0 z-10 text-sm px-[6px] -translate-y-[50%] bg-gray shadow-inner bg-gray-400 shadow-white rounded-full">
+                        {item.variants[0].quantity}
                       </span>
                     </div>
                   </div>
@@ -104,8 +104,8 @@ function Checkout() {
             </div>
           </details>
           <div className="hidden md:flex p-8 md:flex-col gap-2 md:w-96 overflow-y-auto">
-            {cart.map((item: any) => (
-              <div key={item.handle} className="flex justify-between  border-b pb-4 items-center ">
+            {cart.map((item: any, index: number) => (
+              <div key={index} className="flex justify-between  border-b pb-4 items-center ">
                 <div>
                   <div className="relative w-20 h-20">
                     <Image
@@ -116,7 +116,7 @@ function Checkout() {
                       className="border border-gray-500/80 rounded-xl bg-[#181818] w-full h-full "
                     />
                     <span className="absolute top-0 right-0 z-10 text-sm px-[6px] -translate-y-[50%] bg-gray shadow-inner bg-gray-400 shadow-white rounded-full">
-                      {item.quantity}
+                      {item.variants[0].quantity}
                     </span>
                   </div>
                 </div>
@@ -193,7 +193,6 @@ function Checkout() {
                       type="email"
                       id="email"
                       name="email"
-                      value={formData.mail}
                       onChange={handleChange}
                       className="  h-6 text-sm md:h-8   w-full"
                       required

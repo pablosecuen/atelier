@@ -1,17 +1,16 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Grid from "../components/grid/Grid";
-import { Dispatch } from "@reduxjs/toolkit";
-import { useDispatch, useSelector } from "react-redux";
+import Grid from "../../components/grid/Grid";
+import { useSelector } from "react-redux";
 import "rc-slider/assets/index.css";
 import Loading from "./loading";
-import { RootState } from "../redux/store";
-import { listProducts } from "../redux/actions/productActions";
-import ProductGridItems from "../layout/product-grid-items";
+import { RootState } from "../../redux/store";
+
+import ProductGridItems from "../../layout/product-grid-items";
 
 export const runtime = "edge";
 
-export default function SearchPage({
+export default function Shop({
   searchParams,
 }: {
   searchParams?: { [key: string]: string | string[] | undefined };

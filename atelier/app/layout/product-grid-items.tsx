@@ -3,21 +3,26 @@ import Link from "next/link";
 import { Product } from "@/app/types/general";
 import Grid from "../components/grid/Grid";
 import { GridTileImage } from "../components/grid/tile";
+import productimg from "@/public/assets/product.webp";
 
 export default function ProductGridItems({ products }: { products: Product[] }) {
+  console.log(products);
+
   return (
     <>
       {products.map((product: Product) => (
-        <Grid.Item key={product.handle} className="animate-fadeIn h-full w-full">
+        <Grid.Item key={product.id} className="animate-fadeIn h-full w-full">
           <Link className="relative inline-block h-full w-full" href={`/product/${product.handle}`}>
             <GridTileImage
               alt={product.title}
               label={{
                 title: product.title,
-                price: product.price,
+                price: product.variants[0].price,
                 currencyCode: "$",
               }}
-              src={product.images[0]}
+              src={productimg}
+              width={product.featuredImage.width}
+              height={product.featuredImage.height}
               fill
               sizes="(min-width: 868px) 33vw, (min-width: 640px) 50vw, 100vw"
             />

@@ -1,6 +1,6 @@
 import { Suspense } from "react";
-import Collections from "../layout/search/collections";
-import FilterList from "../layout/search/filter";
+import Collections from "../../layout/search/collections";
+import FilterList from "../../layout/search/filter";
 
 export default function SearchLayout({ children }: { children: React.ReactNode }) {
   return (

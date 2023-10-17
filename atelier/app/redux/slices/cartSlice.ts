@@ -1,5 +1,5 @@
 import {  createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Product } from '@/app/types/general';
+import { Cart, Product } from '@/app/types/general';
 
 type CartState = {
   cart: Product[];
@@ -21,15 +21,20 @@ const initialState: CartState = {
   },
 };
 
-const calculateTotalCost = (cart: Product[]) => {
-  return cart.reduce((total: number, item: Product) => {
+const calculateTotalCost = (cart: Cart) => {
+  const total = cart.reduce((accumulatedTotal:number, item:Product) => {
     // Verificar si el precio es un número válido antes de sumarlo
     if (item.variants[0]?.price && typeof item.variants[0].price === 'number' && !isNaN(item.variants[0].price)) {
-      return total + item.variants[0].price;
+      return accumulatedTotal + item.variants[0].price * item.variants[0].quantity;
     }
     // Si el precio no es válido, puedes omitir este artículo en el cálculo
-    return total;
+    return accumulatedTotal;
   }, 0);
+
+  // Redondear el total a dos decimales
+  const roundedTotal = Number(total.toFixed(2));
+
+  return roundedTotal;
 };
 
 
