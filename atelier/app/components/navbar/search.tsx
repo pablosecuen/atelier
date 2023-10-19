@@ -89,7 +89,7 @@ export default function Search() {
         type="text"
         name="search"
         placeholder="Buscar productos..."
-        autoComplete="on"
+        autoComplete="off"
         className="w-full rounded-lg border bg-white px-4 py-2 text-sm text-black placeholder:text-neutral-500 dark:border-neutral-400 dark:bg-transparent dark:text-black dark:placeholder:text-black"
         onChange={handleSearch}
         value={searchText}

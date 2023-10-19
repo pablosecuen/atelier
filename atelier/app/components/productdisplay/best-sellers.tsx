@@ -5,6 +5,7 @@ import productimage from "@/public/assets/product.webp";
 import { products } from "@/app/api/fakedb";
 import "./scrollbar.css";
 import Link from "next/link";
+
 function BestSellers() {
   const containerRef = useRef<HTMLDivElement | null>(null);
 

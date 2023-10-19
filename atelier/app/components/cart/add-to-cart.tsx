@@ -4,11 +4,11 @@ import { addToCart } from "@/app/redux/slices/cartSlice";
 import { Product, ProductVariant } from "@/app/types/general";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
-
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTransition } from "react";
 import LoadingDots from "../loading-dots";
 import { useDispatch } from "react-redux";
+import { Toaster, toast } from "sonner";
 
 export function AddToCart({
   variants,
@@ -32,9 +32,6 @@ export function AddToCart({
     )
   );
 
-  console.log(variant);
-  console.log(variants, availableForSale, product);
-
   const selectedVariantId = variant?.id || defaultVariantId;
   const title = !availableForSale
     ? "Out of stock"
@@ -44,44 +41,48 @@ export function AddToCart({
 
   //encontramos la variante completa comparando el id recibido, luego en el dispatch, reemplazamos las props para dejar solamente la encontrada por la comparacion y despachamos el producto al carrito
   const selectedVariant = variants.find((variant) => variant.id === selectedVariantId);
-  console.log(selectedVariant);
 
   return (
-    <button
-      aria-label="Add item to cart"
-      disabled={isPending || !availableForSale || !selectedVariantId}
-      title={title}
-      onClick={() => {
-        // Safeguard in case someone messes with `disabled` in devtools.
-        if (!availableForSale || !selectedVariantId) return;
+    <>
+      <Toaster richColors position="top-center" />
+      <button
+        aria-label="Add item to cart"
+        disabled={isPending || !availableForSale || !selectedVariantId}
+        title={title}
+        onClick={() => {
+          // Safeguard in case someone messes with `disabled` in devtools.
+          if (!availableForSale || !selectedVariantId) return;
 
-        startTransition(() => {
-          dispatch(
-            addToCart({
-              ...product,
-              variants: [
-                {
-                  ...selectedVariant,
-                  quantity: quantity,
-                },
-              ],
-            })
-          );
-          router.refresh();
-        });
-      }}
-      className={clsx(
-        "relative flex w-full items-center justify-center rounded-full bg-blue-600 p-4 tracking-wide text-white hover:opacity-90",
-        {
-          "cursor-not-allowed opacity-60 hover:opacity-60": !availableForSale || !selectedVariantId,
-          "cursor-not-allowed": isPending,
-        }
-      )}
-    >
-      <div className="absolute left-0 ml-4">
-        {!isPending ? <PlusIcon className="h-5" /> : <LoadingDots className="mb-3 bg-white" />}
-      </div>
-      <span>{availableForSale ? "Add To Cart" : "Out Of Stock"}</span>
-    </button>
+          startTransition(() => {
+            dispatch(
+              addToCart({
+                ...product,
+                variants: [
+                  {
+                    ...selectedVariant,
+                    quantity: quantity,
+                  },
+                ],
+              })
+            );
+            toast.success("Producto agregado al carrito");
+            router.refresh();
+          });
+        }}
+        className={clsx(
+          "relative flex w-full items-center justify-center rounded-full bg-blue-600 p-4 tracking-wide text-white hover:opacity-90",
+          {
+            "cursor-not-allowed opacity-60 hover:opacity-60":
+              !availableForSale || !selectedVariantId,
+            "cursor-not-allowed": isPending,
+          }
+        )}
+      >
+        <div className="absolute left-0 ml-4">
+          {!isPending ? <PlusIcon className="h-5" /> : <LoadingDots className="mb-3 bg-white" />}
+        </div>
+        <span>{availableForSale ? "Add To Cart" : "Out Of Stock"}</span>
+      </button>
+    </>
   );
 }

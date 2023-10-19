@@ -39,20 +39,10 @@ const calculateTotalCost = (cart: Cart) => {
 
 
 
-const savedCartState = localStorage.getItem('cart');
-const initialCartState = savedCartState ? JSON.parse(savedCartState) : initialState;
-
-if (typeof window !== 'undefined') {
-  // Actualiza initialCartState solo si estamos en el lado del cliente
-  const savedCartStateClient = localStorage.getItem('cart');
-  if (savedCartStateClient) {
-    initialCartState.cart = JSON.parse(savedCartStateClient).cart;
-  }
-}
 
 const cartSlice = createSlice({
   name: 'cart',
-  initialState: initialCartState || initialState,
+  initialState: initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<Product>) => {
       state.cart.push(action.payload);
