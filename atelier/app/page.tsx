@@ -28,7 +28,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col overflow-x-hidden ">
       <section
         className={clsx(
-          "bg-landingbg h-[50vh] md:h-[100vh] bg-cover bg-no-repeat bg-center flex justify-center items-center",
+          "bg-landingbg h-[100vh] md:h-[100vh] bg-cover bg-no-repeat bg-center flex justify-center items-center",
           "inner-shadow-bottom"
         )}
       >

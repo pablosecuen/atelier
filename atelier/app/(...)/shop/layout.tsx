@@ -9,7 +9,7 @@ export default function SearchLayout({ children }: { children: React.ReactNode }
         <div className="order-first w-full max-h-screen flex items-start md:mt-16 justify-center  md:max-w-[250px]  text-black">
           <Collections />
         </div>
-        <div className="order-last min-h-screen w-8/12  md:order-none md:mt-20">{children}</div>
+        <div className="order-last min-h-screen md:w-8/12  md:order-none md:mt-20">{children}</div>
         <div className="order-none w-full flex md:order-last md:w-[125px] ">
           {/*          <FilterList /> */}
         </div>

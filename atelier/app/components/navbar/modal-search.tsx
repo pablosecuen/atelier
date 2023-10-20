@@ -8,7 +8,7 @@ import Image from "next/image";
 function ModalSearch({ products, closeModal }: { products: Product[]; closeModal: () => void }) {
   return (
     <>
-      <div className="absolute h-auto right-0 w-full min-w-[350px] overflow-hidden  text-black">
+      <div className="absolute h-auto right-0 w-full min-w-[350px] max-w-[550px] overflow-hidden  text-secundario">
         {products?.slice(0, 5)?.map((product: Product) => (
           <Link
             key={product?.id}
@@ -17,12 +17,19 @@ function ModalSearch({ products, closeModal }: { products: Product[]; closeModal
           >
             <div
               onClick={closeModal}
-              className="h-24  cursor-pointer border overflow-hidden my-2 border-secundario  bg-primario backdrop-filter backdrop-blur-3xl pr-2 items-center rounded-md  flex justify-between"
+              className="h-24  cursor-pointer border-2 overflow-hidden my-2 border-terciario text-black  bg-primario/50 filter backdrop-filter backdrop-blur-3xl pr-2 items-center rounded-md  flex justify-between"
             >
-              <Image src={productimge} alt={product?.handle} className="w-1/3 h-auto " />
-              <h3 className=" text-black/80 tracking-wide !font-cabinet-grotesk-regular text-lg mr-2 capitalize">
-                {product?.handle}
+              <Image
+                src={productimge}
+                alt={product?.handle}
+                className=" h-full w-auto border border-primario rounded-r-xl"
+              />
+              <h3 className="  tracking-wide !font-cabinet-grotesk-regular text-md  font-atlas-grotesk-medium underline underline-offset-4 mr-2 capitalize">
+                {product?.title}
               </h3>
+              <span className=" border border-black rounded-full text-md px-2">
+                ${product?.variants[0].price}
+              </span>
             </div>
           </Link>
         ))}

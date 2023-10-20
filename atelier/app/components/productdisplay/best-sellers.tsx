@@ -34,8 +34,8 @@ function BestSellers() {
   };
 
   return (
-    <div className="relative md:px-16">
-      <h2 className="font-bold text-2xl mt-4 md:text-4xl px-8 md:mt-20">POPULARES</h2>
+    <div className="relative md:px-16 text-black mt-16">
+      <h2 className="font-bold text-2xl mt-4 md:text-4xl px-8 md:mt-20 ">POPULARES</h2>
       <span className="text-sm px-8 md:text-lg">Nuestros productos mas vendidos</span>
       <button
         onClick={scrollLeft}

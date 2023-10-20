@@ -6,12 +6,13 @@ import { GridTileImage } from "../components/grid/tile";
 import productimg from "@/public/assets/product.webp";
 
 export default function ProductGridItems({ products }: { products: Product[] }) {
-  console.log(products);
-
   return (
     <>
       {products.map((product: Product) => (
-        <Grid.Item key={product.id} className="animate-fadeIn h-full w-full">
+        <Grid.Item
+          key={product.id}
+          className="animate-fadeIn h-full w-full flex items-center justify-center "
+        >
           <Link className="relative inline-block h-full w-full" href={`/product/${product.handle}`}>
             <GridTileImage
               alt={product.title}
