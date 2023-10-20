@@ -51,9 +51,9 @@ export default function FilterList() {
             <button
               className={`clsx(
                   "flex my-2 min-w-[48px] items-center justify-center rounded-full border px-2 py-1 text-sm text-black focus:text-black ",
-                  "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-blue-600 focus:bg-blue-600 text-black", ${
+                  "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-primario focus:bg-primario text-black", ${
                     sortOrder === "desc"
-                      ? "dark:border-neutral-800  text-black hover:ring-blue-600 focus:bg-blue-600"
+                      ? "dark:border-neutral-800  text-black hover:ring-primario focus:bg-primario"
                       : "text-black"
                   }`}
               onClick={() => handleSortOrderChange("asc")}
@@ -63,9 +63,9 @@ export default function FilterList() {
             <button
               className={`clsx(
                 "flex my-2 min-w-[48px] items-center justify-center rounded-full border px-2 py-1 text-sm text-black focus:text-black ",
-                "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-blue-600 focus:bg-blue-600 text-black", ${
+                "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-primario focus:bg-primario text-black", ${
                   sortOrder === "desc"
-                    ? "dark:border-neutral-800  text-black hover:ring-blue-600 focus:bg-blue-600"
+                    ? "dark:border-neutral-800  text-black hover:ring-primario focus:bg-primario"
                     : "text-black"
                 }`}
               onClick={() => handleSortOrderChange("desc")}

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useSelector } from "react-redux";
 import "@/app/globals.css";
@@ -10,7 +10,23 @@ import ShoppingCartIcon from "@/public/assets/icons/shop-cart";
 import ChevronRight from "@/public/assets/icons/chevron-right";
 import ChevronLeft from "@/public/assets/icons/chevron-left";
 function Checkout() {
-  const { cart, cost } = useSelector((state: RootState) => state.cart);
+  const [cart, setCart] = useState([]);
+  const [cost, setCost] = useState({
+    totalAmount: {
+      amount: 0,
+      currencyCode: "$",
+    },
+  });
+
+  useEffect(() => {
+    const existingCart = localStorage.getItem("cart");
+    if (existingCart) {
+      const cartData = JSON.parse(existingCart);
+      setCart(cartData.cart);
+      setCost(cartData.cost);
+    }
+  }, []);
+
   const [activeTab, setActiveTab] = useState("information");
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({

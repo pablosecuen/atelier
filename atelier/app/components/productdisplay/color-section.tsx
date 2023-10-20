@@ -1,67 +1,71 @@
 "use client";
 import Image from "next/image";
-import React, { useRef } from "react";
-import "./scrollbar.css";
+import React, { useEffect, useRef, useState } from "react";
 import colors1 from "@/public/assets/colors1.webp";
 import { products } from "@/app/api/fakedb";
+import "./scrollbar.css";
 import Link from "next/link";
 
-function ColorSection() {
+function BestSellers() {
   const containerRef = useRef<HTMLDivElement | null>(null);
+
+  const [scrollAmount, setScrollAmount] = useState(0);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      // Calcular el ancho de un elemento en el contenedor
+      const firstItem = containerRef.current.querySelector(".product-item");
+      if (firstItem) {
+        setScrollAmount(firstItem.clientWidth);
+      }
+    }
+  }, []);
 
   const scrollLeft = () => {
     if (containerRef.current) {
-      const scrollAmount = getComputedStyle(document.documentElement).getPropertyValue(
-        "--scroll-amount"
-      );
-      containerRef.current.scrollLeft -= parseFloat(scrollAmount);
+      containerRef.current.scrollLeft -= scrollAmount;
     }
   };
 
   const scrollRight = () => {
     if (containerRef.current) {
-      const scrollAmount = getComputedStyle(document.documentElement).getPropertyValue(
-        "--scroll-amount"
-      );
-      containerRef.current.scrollLeft += parseFloat(scrollAmount);
+      containerRef.current.scrollLeft += scrollAmount;
     }
   };
+
   return (
-    <div className="relative">
+    <div className="relative md:px-16">
       <button
         onClick={scrollLeft}
-        className="scroll-button left left-4 z-10 hidden md:block absolute top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-blue-500"
+        className="scroll-button left hidden md:block left-4 z-10 absolute top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-primario"
       >
         {"<"}
       </button>
       <button
         onClick={scrollRight}
-        className="scroll-button right right-4 hidden md:block  z-10 top-1/2 absolute -translate-y-1/2 w-8 h-8 rounded-full  bg-blue-500"
+        className="scroll-button right hidden md:block right-4  z-10 top-1/2 absolute -translate-y-1/2 w-8 h-8 rounded-full  bg-primario"
       >
         {">"}
       </button>
       <div
+        className="custom-scrollbar relative  flex gap-8 md:px-20 overflow-x-auto md:overflow-x-hidden whitespace-no-wrap md:max-w-screen w-full mt-4 scroll-smooth"
         ref={containerRef}
-        className="custom-scrollbar scroll-smooth flex gap-4 md:px-8 overflow-x-auto md:overflow-x-hidden whitespace-no-wrap w-full mt-4"
       >
-        {products.map((color: any) => (
+        {products.map((product) => (
           <Link
-            className="relative block aspect-square h-full w-full"
-            href={`/product/${color.handle}`}
-            key={color.id}
+            className=" block aspect-square h-full w-full product-item"
+            href={`/product/${product.handle}`}
+            key={product.id}
           >
-            <div
-              key={color.id}
-              className="rounded-md px-2 md:px-0 min-w-[280px] md:min-w-[500px] pb-6"
-            >
+            <div className="rounded-md min-w-[280px] px-2 md:px-0 md:min-w-[400px] pb-6 ">
               <Image
                 src={colors1}
-                alt={color.name}
+                alt={product.title}
                 className="w-full h-auto mb-1"
                 priority={true}
               />
-              <span className="text-md mt-8 font-semibold">{color.title}</span>
-            </div>{" "}
+              <span className="text-md mt-8 font-semibold text-black">{product.title}</span>
+            </div>
           </Link>
         ))}
       </div>
@@ -69,4 +73,4 @@ function ColorSection() {
   );
 }
 
-export default ColorSection;
+export default BestSellers;

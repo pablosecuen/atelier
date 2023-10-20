@@ -84,13 +84,16 @@ export default function Search() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="w-max-[550px] relative w-full lg:w-80 xl:w-full">
+    <form
+      onSubmit={onSubmit}
+      className="text-secundario w-max-[550px] relative w-full lg:w-80 xl:w-full"
+    >
       <input
         type="text"
         name="search"
         placeholder="Buscar productos..."
         autoComplete="off"
-        className="w-full rounded-lg border bg-white px-4 py-2 text-sm text-black placeholder:text-neutral-500 dark:border-neutral-400 dark:bg-transparent dark:text-black dark:placeholder:text-black"
+        className="w-full rounded-lg border bg-white px-4 py-2 text-sm  placeholder:text-neutral-500 dark:border-neutral-400 dark:bg-transparent  dark:placeholder:text-secundario"
         onChange={handleSearch}
         value={searchText}
       />

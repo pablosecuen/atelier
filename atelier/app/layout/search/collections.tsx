@@ -56,7 +56,7 @@ export default function Collections() {
               onClick={() => setSelectedCategory("Camisas")}
               className={clsx(
                 "flex min-w-[190px] my-2 mb-4 items-center justify-center rounded-full border px-2 py-1 text-sm md:text-xl md:px-8 dark:border-neutral-800 dark:bg-neutral-100",
-                "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-blue-600 focus:bg-blue-600"
+                "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-primario focus:bg-primario"
               )}
             >
               Camisas
@@ -64,123 +64,13 @@ export default function Collections() {
           </li>
           <li>
             <button
-              onClick={() => setSelectedCategory("Remeras")}
-              className={clsx(
-                "flex min-w-[190px] my-2 items-center justify-center rounded-full border px-2 py-1 text-sm md:text-xl md:px-8 l-800 dark:bg-neutral-100",
-                "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-blue-600 focus:bg-blue-600"
-              )}
-            >
-              Remeras
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => setSelectedCategory("Polos")}
-              className={clsx(
-                "flex min-w-[190px] my-2 items-center justify-center rounded-full border px-2 py-1 text-sm md:text-xl md:px-8 l-800 dark:bg-neutral-100",
-                "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-blue-600 focus:bg-blue-600"
-              )}
-            >
-              Polos
-            </button>
-          </li>{" "}
-          <li>
-            <button
-              onClick={() => setSelectedCategory("Sweaters")}
-              className={clsx(
-                "flex min-w-[190px] my-2 items-center justify-center rounded-full border px-2 py-1 text-sm md:text-xl md:px-8 l-800 dark:bg-neutral-100",
-                "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-blue-600 focus:bg-blue-600"
-              )}
-            >
-              Sweaters
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => setSelectedCategory("Vestidos")}
-              className={clsx(
-                "flex min-w-[190px] my-2 items-center justify-center rounded-full border px-2 py-1 text-sm md:text-xl md:px-8 l-800 dark:bg-neutral-100",
-                "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-blue-600 focus:bg-blue-600"
-              )}
-            >
-              Vestidos
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => setSelectedCategory("Jeans")}
-              className={clsx(
-                "flex min-w-[190px] my-2 items-center justify-center rounded-full border px-2 py-1 text-sm md:text-xl md:px-8 l-800 dark:bg-neutral-100",
-                "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-blue-600 focus:bg-blue-600"
-              )}
-            >
-              Jeans
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => setSelectedCategory("Chaquetas")}
-              className={clsx(
-                "flex min-w-[190px] my-2 items-center justify-center rounded-full border px-2 py-1 text-sm md:text-xl md:px-8 l-800 dark:bg-neutral-100",
-                "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-blue-600 focus:bg-blue-600"
-              )}
-            >
-              Chaquetas
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => setSelectedCategory("Pantalones")}
-              className={clsx(
-                "flex min-w-[190px] my-2 items-center justify-center rounded-full border px-2 py-1 text-sm md:text-xl md:px-8 l-800 dark:bg-neutral-100",
-                "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-blue-600 focus:bg-blue-600"
-              )}
-            >
-              Pantalones
-            </button>
-          </li>
-          <li>
-            <button
               onClick={() => setSelectedCategory("Accesorios")}
               className={clsx(
                 "flex min-w-[190px] my-2 items-center justify-center rounded-full border px-2 py-1 text-sm md:text-xl md:px-8 l-800 dark:bg-neutral-100",
-                "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-blue-600 focus:bg-blue-600"
+                "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-primario focus:bg-primario"
               )}
             >
               Accesorios
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => setSelectedCategory("Pijamas")}
-              className={clsx(
-                "flex min-w-[190px] my-2 items-center justify-center rounded-full border px-2 py-1 text-sm md:text-xl md:px-8 l-800 dark:bg-neutral-100",
-                "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-blue-600 focus:bg-blue-600"
-              )}
-            >
-              Pijamas
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => setSelectedCategory("Abrigos")}
-              className={clsx(
-                "flex min-w-[190px] my-2 items-center justify-center rounded-full border px-2 py-1 text-sm md:text-xl md:px-8 l-800 dark:bg-neutral-100",
-                "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-blue-600 focus:bg-blue-600"
-              )}
-            >
-              Abrigos
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => setSelectedCategory("Sudaderas")}
-              className={clsx(
-                "flex min-w-[190px] my-2 items-center justify-center rounded-full border px-2 py-1 text-sm md:text-xl md:px-8 l-800 dark:bg-neutral-100",
-                "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-blue-600 focus:bg-blue-600"
-              )}
-            >
-              Sudaderas
             </button>
           </li>
         </ul>

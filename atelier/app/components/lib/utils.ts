@@ -35,3 +35,15 @@ export const menuInformation: { title: string; path: string }[] = [
   {title: 'TERMS & CONDITIONS', path: '/nosotros/#terms'},
   {title: 'PRIVACY POLICY', path: '/nosotros/#privacy'},
 ]
+
+
+export const misionmenu: { title: string; path: string }[] = [
+
+  {title: 'FAQS', path: '/faqs'},
+  {title: 'OUR PRODUCTION', path: '/nosotros/#production'},
+  {title: 'OUR IMPACT', path: '/nosotros/#impact'},
+  {title: 'TERMS & CONDITIONS', path: '/nosotros/#terms'},
+  {title: 'PRIVACY POLICY', path: '/nosotros/#privacy'},
+]
+
+

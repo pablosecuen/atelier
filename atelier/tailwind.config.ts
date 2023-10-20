@@ -11,13 +11,17 @@ module.exports = {
     extend: {
       fontFamily: {
         'inter-bold': ['Inter-Bold', 'sans'],
+        'atlas-grotesk-regular': ['atlas Grotesk-Regular', 'sans'],
+        'atlas-grotesk-medium': ['atlas Grotesk-Medium', 'sans'],
+        'atlas-grotesk-bold': ['atlas Grotesk-Bold', 'sans'],
+        'canela-regular': ['Canela Regular', 'sans'],
       },
       boxShadowCustom: {
         'inner-bottom': 'inset -5px -10px 10px rgba(0, 0, 0, 1)', 
       },
       colors: {
-        primario: '#f0e6dc',     
-        secundario: '#c8aa96',  
+        primario: '#44937A',     
+        secundario: '#d5d5dd',  
         terciario: '#f0e6dc',    
       },
       keyframes: {
@@ -70,6 +74,7 @@ module.exports = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
           'landingbg': "url('../public/assets/atel.jpg')",
       },
+      
     },
     },
   plugins: [

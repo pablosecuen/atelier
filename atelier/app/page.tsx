@@ -3,6 +3,7 @@ import Landing from "./components/landing/landing";
 import BestSellers from "./components/productdisplay/best-sellers";
 import Incoming from "./components/productdisplay/incoming";
 import ColorSection from "./components/productdisplay/color-section";
+import MisionFooter from "./components/footer/mision-footer";
 
 export default function Home() {
   if (typeof window !== "undefined") {
