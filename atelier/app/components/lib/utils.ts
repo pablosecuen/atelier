@@ -27,6 +27,7 @@ export const menu: { title: string; path: string }[] = [
     {title: 'NOSOTROS', path: '/nosotros'},
 
 
+
 ]
 
 export const menuInformation: { title: string; path: string }[] = [
