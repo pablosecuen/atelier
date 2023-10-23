@@ -17,6 +17,7 @@ export const mobileMenu: { title: string; path: string }[] = [
     {title: 'SHIRTS', path: '/shop?q=shirts'},
     {title: 'ACCESORIES', path: '/shop?q=accesories'},
     {title: 'ABOUT US', path: '/about'},
+    {title: 'TERMINOS', path: '/terms'},
 ]
 
 export const menu: { title: string; path: string }[] = [
@@ -25,6 +26,7 @@ export const menu: { title: string; path: string }[] = [
     {title: 'ACCESORIES', path: '/shop?q=accesories'},
     {title: 'NOSOTROS', path: '/nosotros'},
 
+
 ]
 
 export const menuInformation: { title: string; path: string }[] = [
@@ -32,8 +34,8 @@ export const menuInformation: { title: string; path: string }[] = [
   {title: 'FAQS', path: '/faqs'},
   {title: 'OUR PRODUCTION', path: '/nosotros/#production'},
   {title: 'OUR IMPACT', path: '/nosotros/#impact'},
-  {title: 'TERMS & CONDITIONS', path: '/nosotros/#terms'},
-  {title: 'PRIVACY POLICY', path: '/nosotros/#privacy'},
+  {title: 'TERMS & CONDITIONS', path: '/terms'},
+  {title: 'PRIVACY POLICY', path: '/terms'},
 ]
 
 
