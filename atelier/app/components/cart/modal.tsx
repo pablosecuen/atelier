@@ -20,11 +20,26 @@ type MerchandiseSearchParams = {
 };
 
 export default function CartModal() {
-  const { cart, cost } = useSelector((state: RootState) => state.cart);
+  const [cart, setCart] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [cost, setCost] = useState({
+    totalAmount: {
+      amount: 0,
+      currencyCode: "$",
+    },
+  });
   const quantityRef = useRef(cart?.length);
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
+
+  useEffect(() => {
+    const existingCart = localStorage.getItem("cart");
+    if (existingCart) {
+      const cartData = JSON.parse(existingCart);
+      setCart(cartData.cart);
+      setCost(cartData.cost);
+    }
+  }, []);
 
   useEffect(() => {
     if (cart.length !== quantityRef.current) {
