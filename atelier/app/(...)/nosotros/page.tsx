@@ -99,10 +99,10 @@ function Nosotros() {
                 quality={100}
               />
               <div className=" self-end text-center flex items-center justify-evenly p-8 mt-10">
-                <strong className=" font-atlas-grotesk-bold z-10 text-4xl w-1/2 text-start">
+                <strong className=" font-atlas-grotesk-bold z-10 text-4xl w-1/3 text-start">
                   INOVACION
                 </strong>
-                <p className="!font-canela-regular text-center  w-1/2 text-xl z-10 leading-8">
+                <p className="!font-canela-regular text-center  w-2/3 text-xl z-10 leading-8">
                   Profesional elegante que busca salir de lo clásico. Variedad de prendas estampadas
                   con amplitud de talles pero con un stock relativamente reducido.
                 </p>
@@ -227,11 +227,11 @@ function Nosotros() {
                 className="absolute z-0 w-2/5 scale-150 left-0  bottom-[50%] translate-y-[50%]"
                 quality={100}
               />
-              <div className="w-1/2 self-end text-end z-10">
+              <div className="w-1/2 self-end text-start z-10">
                 <strong className=" font-atlas-grotesk-bold  py-8 z-10 text-2xl ">
                   EL FUTURO ES PERSONALIZADO
                 </strong>
-                <p className="font-atlas-grotesk-medium text-end   text-lg z-10 leading-6 pt-2">
+                <p className="font-atlas-grotesk-medium text-lg z-10 leading-6 pt-2">
                   ¿Qué sigue para nosotros? Emocionar a más clientes con un ajuste personalizado,
                   así como nuevos productos, y, por último pero no menos importante, inspirar a más
                   marcas a cambiar de rumbo y unirse a nuestra misión de reingeniería de la
@@ -248,6 +248,7 @@ function Nosotros() {
           <h5 className="text-4xl animate-pulse">VOLVER AL INICIO</h5>
         </Link>
       </div>
+
     </div>
   );
 }

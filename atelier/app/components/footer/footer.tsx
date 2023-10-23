@@ -14,7 +14,13 @@ export default async function Footer() {
   const skeleton = "w-full h-6 animate-pulse rounded bg-neutral-200 dark:bg-neutral-700";
 
   return (
-    <footer className="text-sm text-neutral-500 dark:text-neutral-400 bg-primario z-50">
+    <footer className="text-sm text-terciario black bg-primario z-50">
+      <div className="h-36  border-b-2 text-xl font-semibold flex justify-between px-8 items-center w-full">
+        <span>NECESITAS AYUDA?</span>
+        <button className="py-4 px-16 border-2 border-terciario text-terciario font-bold rounded-md text-lg">
+          CONTACTANOS
+        </button>
+      </div>
       <div className="mx-auto flex  w-full max-w-7xl flex-col gap-6 border-t border-neutral-200 px-6 py-12 text-sm dark:border-[#fff7e9] md:flex-row md:gap-12 md:px-4 min-[1320px]:px-0">
         <div className="max-w-xl">
           <LogoSquare size="4xl" />
