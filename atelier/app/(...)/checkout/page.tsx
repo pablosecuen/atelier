@@ -2,12 +2,10 @@
 
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-
-import { useSelector } from "react-redux";
-import "@/app/globals.css";
 import ShoppingCartIcon from "@/public/assets/icons/shop-cart";
 import ChevronRight from "@/public/assets/icons/chevron-right";
 import ChevronLeft from "@/public/assets/icons/chevron-left";
+import "@/app/globals.css";
 function Checkout() {
   const [cart, setCart] = useState([]);
   const [cost, setCost] = useState({
@@ -26,7 +24,7 @@ function Checkout() {
         setCart(cart);
         setCost(cost);
       } else {
-        throw new Error("Cart is empty");
+        throw new Error("Carrito Vacio");
       }
     }
   }, []);
