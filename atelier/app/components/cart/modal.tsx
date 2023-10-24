@@ -49,7 +49,6 @@ export default function CartModal() {
   useEffect(() => {
     if (cart.length !== quantityRef.current) {
       if (!isOpen) {
-        setIsOpen(true);
       }
 
       quantityRef.current = cart.length;
