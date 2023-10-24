@@ -20,28 +20,31 @@ type MerchandiseSearchParams = {
 };
 
 export default function CartModal() {
-  const [cart, setCart] = useState([]);
+  const { cart, cost } = useSelector((state: RootState) => state.cart);
   const [isOpen, setIsOpen] = useState(false);
-  const [cost, setCost] = useState({
-    totalAmount: {
-      amount: 0,
-      currencyCode: "$",
-    },
-  });
   const quantityRef = useRef(cart?.length);
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
 
-  useEffect(() => {
-    const existingCart = localStorage.getItem("cart");
-    if (existingCart) {
-      const cartData = JSON.parse(existingCart);
-      setCart(cartData.cart);
-      setCost(cartData.cost);
-    }
-  }, []);
+  console.log(cart);
 
   useEffect(() => {
+    // Check if cart is empty and try to load from localStorage
+    if (cart.length === 0) {
+      const existingCart = localStorage.getItem("cart");
+      console.log(localStorage.getItem("cart"));
+
+      if (existingCart) {
+        const cartData = JSON.parse(existingCart);
+        // Update the cart in your Redux store or state
+        // For example, if you're using Redux, you can dispatch an action to update the cart.
+        // setCartInRedux(cartData.cart);
+
+        // Update quantityRef
+        quantityRef.current = cartData.cart.length;
+      }
+    }
+
     if (cart.length !== quantityRef.current) {
       if (!isOpen) {
         setIsOpen(true);

@@ -5,7 +5,6 @@ import React, { useEffect, useState } from "react";
 
 import { useSelector } from "react-redux";
 import "@/app/globals.css";
-import { RootState } from "../../redux/store";
 import ShoppingCartIcon from "@/public/assets/icons/shop-cart";
 import ChevronRight from "@/public/assets/icons/chevron-right";
 import ChevronLeft from "@/public/assets/icons/chevron-left";
@@ -19,11 +18,16 @@ function Checkout() {
   });
 
   useEffect(() => {
-    const existingCart = localStorage.getItem("cart");
-    if (existingCart) {
-      const cartData = JSON.parse(existingCart);
-      setCart(cartData.cart);
-      setCost(cartData.cost);
+    if (typeof window !== "undefined") {
+      const existingCart = localStorage.getItem("cart");
+      if (existingCart) {
+        const cartObject = JSON.parse(existingCart);
+        const { cart, cost } = cartObject;
+        setCart(cart);
+        setCost(cost);
+      } else {
+        throw new Error("Cart is empty");
+      }
     }
   }, []);
 
