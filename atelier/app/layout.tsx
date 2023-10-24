@@ -18,6 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className={inter.className}>
         <ReduxProvider>
+          {" "}
           <Navbar />
           <Suspense>
             <main className="font-atlas-grotesk-regular">{children}</main>

@@ -6,28 +6,10 @@ import ShoppingCartIcon from "@/public/assets/icons/shop-cart";
 import ChevronRight from "@/public/assets/icons/chevron-right";
 import ChevronLeft from "@/public/assets/icons/chevron-left";
 import "@/app/globals.css";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/redux/store";
 function Checkout() {
-  const [cart, setCart] = useState([]);
-  const [cost, setCost] = useState({
-    totalAmount: {
-      amount: 0,
-      currencyCode: "$",
-    },
-  });
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const existingCart = localStorage.getItem("cart");
-      if (existingCart) {
-        const cartObject = JSON.parse(existingCart);
-        const { cart, cost } = cartObject;
-        setCart(cart);
-        setCost(cost);
-      } else {
-        throw new Error("Carrito Vacio");
-      }
-    }
-  }, []);
+  const { cart, cost } = useSelector((state: RootState) => state.cart);
 
   const [activeTab, setActiveTab] = useState("information");
   const [isOpen, setIsOpen] = useState(false);

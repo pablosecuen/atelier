@@ -20,31 +20,11 @@ type MerchandiseSearchParams = {
 };
 
 export default function CartModal() {
-  const [cart, setCart] = useState([]);
-  const [cost, setCost] = useState({
-    totalAmount: {
-      amount: 0,
-      currencyCode: "$",
-    },
-  });
+  const { cart, cost } = useSelector((state: RootState) => state.cart);
   const [isOpen, setIsOpen] = useState(false);
   const quantityRef = useRef(cart?.length);
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const existingCart = localStorage.getItem("cart");
-      if (existingCart) {
-        const cartObject = JSON.parse(existingCart);
-        const { cart, cost } = cartObject;
-        setCart(cart);
-        setCost(cost);
-      } else {
-        throw new Error("Carrito vacio");
-      }
-    }
-  }, [cart]);
 
   useEffect(() => {
     if (cart.length !== quantityRef.current) {
@@ -169,7 +149,7 @@ export default function CartModal() {
                       );
                     })}
                   </ul>
-                  <div className="py-4 text-sm text-neutral-500 dark:text-neutral-400">
+                  <div className="py-4 text-sm text-white">
                     <div className="mb-3 flex items-center justify-between border-b border-neutral-200 pb-1 pt-1 dark:border-neutral-700">
                       <p>Envio</p>
                       <p className="text-right">Calculado en la seccion de pagos</p>
@@ -177,7 +157,7 @@ export default function CartModal() {
                     <div className="mb-3 flex items-center justify-between border-b border-neutral-200 pb-1 pt-1 dark:border-neutral-700">
                       <p>Total</p>
                       <Price
-                        className="text-right text-base text-black dark:text-white"
+                        className="text-right text-base text-white"
                         price={cost.totalAmount.amount}
                         currencyCode="$"
                       />
