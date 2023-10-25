@@ -93,12 +93,12 @@ export default function Search() {
         name="search"
         placeholder="Buscar productos..."
         autoComplete="off"
-        className="w-full rounded-lg border bg-white px-4 py-2 text-sm  placeholder:text-neutral-500 dark:border-neutral-400 dark:bg-transparent  dark:placeholder:text-secundario"
+        className="w-full rounded-lg border bg-white px-4 py-2 text-sm text-black placeholder:text-neutral-500 dark:border-neutral-400 dark:bg-transparent  dark:placeholder:text-secundario"
         onChange={handleSearch}
         value={searchText}
       />
       <div className="absolute right-0 top-0 mr-3 flex h-full items-center">
-        <MagnifyingGlassIcon className="h-4" />
+        <MagnifyingGlassIcon className="h-4 text-black" />
       </div>
       <div
         ref={modalRef}

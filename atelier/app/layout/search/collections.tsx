@@ -55,8 +55,8 @@ export default function Collections() {
             <button
               onClick={() => setSelectedCategory("Camisas")}
               className={clsx(
-                "flex min-w-[190px] my-2 mb-4 items-center justify-center rounded-full border px-2 py-1 text-sm md:text-xl md:px-8 dark:border-neutral-800 dark:bg-neutral-100",
-                "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-primario focus:bg-primario"
+                "flex min-w-[190px] my-2 mb-4 items-center justify-center border px-2 py-1 text-sm md:text-xl md:px-8 dark:border-neutral-800 dark:bg-neutral-100",
+                "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-primario focus:bg-primario/20"
               )}
             >
               Camisas
@@ -66,8 +66,8 @@ export default function Collections() {
             <button
               onClick={() => setSelectedCategory("Accesorios")}
               className={clsx(
-                "flex min-w-[190px] my-2 items-center justify-center rounded-full border px-2 py-1 text-sm md:text-xl md:px-8 l-800 dark:bg-neutral-100",
-                "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-primario focus:bg-primario"
+                "flex min-w-[190px] my-2 items-center justify-center  border px-2 py-1 text-sm md:text-xl md:px-8 l-800 dark:bg-neutral-100",
+                "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-primario focus:bg-primario/20"
               )}
             >
               Accesorios

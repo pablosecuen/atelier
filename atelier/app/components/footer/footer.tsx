@@ -15,13 +15,13 @@ export default async function Footer() {
 
   return (
     <footer className="text-sm text-black  bg-white z-50">
-      <div className="h-28  border-b-2 text-xl font-semibold flex justify-between px-8 items-center w-full">
+      <div className="h-28   text-md font-semibold flex justify-between px-8 items-center max-w-7xl mx-auto">
         <span>NECESITAS AYUDA?</span>
-        <button className="py-4 px-16 border-2 border-terciario  font-bold rounded-md text-lg">
+        <button className="py-4 px-16 border-2 border-terciario  font-bold rounded-md ">
           CONTACTANOS
         </button>
       </div>
-      <div className="mx-auto flex  w-full max-w-7xl flex-col gap-6 border-t border-neutral-200 px-6 py-12 text-sm dark:border-[#fff7e9] md:flex-row md:gap-12 md:px-4 min-[1320px]:px-0">
+      <div className="mx-auto flex border-t-2 w-full max-w-7xl flex-col gap-6   px-6 py-12 text-sm  md:flex-row md:gap-12 md:px-4 min-[1320px]:px-0">
         <div className="max-w-xl md:-mt-12">
           <LogoSquare size="4xl" />
           <Link className="flex flex-col items-start   gap-2   md:pt-1 " href="/">

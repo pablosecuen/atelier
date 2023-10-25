@@ -17,7 +17,7 @@ function ModalSearch({ products, closeModal }: { products: Product[]; closeModal
           >
             <div
               onClick={closeModal}
-              className="h-24  cursor-pointer border-2 overflow-hidden my-2 border-terciario text-black  bg-primario/50 filter backdrop-filter backdrop-blur-3xl pr-2 items-center rounded-md  flex justify-between"
+              className="h-24  cursor-pointer border-2 overflow-hidden my-2 border-terciario text-black  bg-white/80 filter backdrop-filter backdrop-blur-3xl pr-2 items-center rounded-md  flex justify-between"
             >
               <Image
                 src={productimge}
@@ -27,7 +27,7 @@ function ModalSearch({ products, closeModal }: { products: Product[]; closeModal
               <h3 className="  tracking-wide !font-cabinet-grotesk-regular text-md  font-atlas-grotesk-medium underline underline-offset-4 mr-2 capitalize">
                 {product?.title}
               </h3>
-              <span className=" border border-black rounded-full text-md px-2">
+              <span className=" border border-black rounded-sm text-md px-2">
                 ${product?.variants[0].price}
               </span>
             </div>
