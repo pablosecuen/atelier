@@ -2,7 +2,7 @@ import React from "react";
 
 function BrandStore() {
   return (
-    <div className="w-full h-[60vh] flex bg-brandstorebg bg-top bg-cover bg-no-repeat tracking-widest">
+    <div className="w-full h-[60vh] mt-12 flex bg-brandstorebg bg-top bg-cover bg-no-repeat tracking-widest">
       <div className="w-1/2 relative flex flex-col gap-8 justify-center items-start p-48">
         {" "}
         <div className="absolute w-full h-full top-0 left-0 bg-primario opacity-80 "></div>
