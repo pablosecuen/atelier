@@ -73,7 +73,7 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
                   </ul>
                 ) : null}
               </div>
-              <div className="border-t border-neutral-200 py-6 pb-12 md:pb-16 text-sm dark:border-white text-white">
+              <div className="border-t border-neutral-200 pt-8 text-sm dark:border-white text-white">
                 <div className="mx-auto flex w-full flex-col items-center gap-1 px-4 md:flex-row md:gap-0 md:px-4 ">
                   <p>
                     &copy; {copyrightDate} {copyrightName}
