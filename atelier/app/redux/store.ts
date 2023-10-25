@@ -11,7 +11,7 @@ import productSlice from './slices/productSlice';
 import paymentSlice from './slices/paymentSlice';
 import cartReducer from './slices/cartSlice';
 
-// Define el rootReducer combinando los reducers
+
 const rootReducer = combineReducers({
   cart: cartReducer,
   users: userSlice,
@@ -33,10 +33,10 @@ const store = configureStore({  middleware: (getDefaultMiddleware) =>
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
   }),
-  reducer: persistedReducer, // Usa el persistedReducer en lugar de rootReducer
+  reducer: persistedReducer, 
 });
 
-const persistor = persistStore(store); // Agrega esto si planeas utilizarlo en otro lugar
+const persistor = persistStore(store);
 
 export { store, persistor };
 

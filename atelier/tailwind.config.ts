@@ -73,6 +73,14 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
           'landingbg': "url('../public/assets/atel.jpg')",
+          'dessshirtbg': "url('../public/assets/nimble-made-N0ke5zChVBU-unsplash.jpg')",
+          'casualshirtbg': "url('../public/assets/atel.jpg')",
+          'athelierbg': "url('../public/assets/atel.jpg')",
+          'accesoriesbg': "url('../public/assets/DSC_0181.jpg')",
+          'brandstorebg': "url('../public/assets/img_brand_store.png')",
+          'brandstoreblack': "url('../public/assets/img_BRAND STORE.png')",
+          'aboutblack': "url('../public/assets/img_ABOUT-OUR-SHIRT.png')",
+          'sustentabilityblack': "url('../public/assets/img_SUSTENTABILITY.png')",
       },
       
     },

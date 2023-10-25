@@ -5,7 +5,7 @@ import productimage from "@/public/assets/product.webp";
 import { products } from "@/app/api/fakedb";
 import "./scrollbar.css";
 import Link from "next/link";
-import { addToCart } from "@/app/redux/slices/cartSlice";
+
 
 function BestSellers() {
   const containerRef = useRef<HTMLDivElement | null>(null);
