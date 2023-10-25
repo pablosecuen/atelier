@@ -8,7 +8,7 @@ import marcas from "@/public/assets/1x/Recurso 5.png";
 
 function CategoriesBanner() {
   const commonClass =
-    " bg-cover bg-center bg-no-repeat h-[450px] w-[350px] flex justify-start items-end p-2";
+    " bg-cover bg-center bg-no-repeat h-[350px] w-[300px] flex justify-start items-end p-2";
   const imageClass = "flex flex-col justify-center items-center gap-3";
   const containerClass = " px-40 flex text-black md:h-64 w-full ";
   const itemClass = "flex flex-col items-center justify-center p-8";
@@ -16,7 +16,7 @@ function CategoriesBanner() {
 
   return (
     <>
-      <div className="w-full flex flex-wrap scroll-auto h-96 text-3xl  p-10 gap-10 justify-center my-32 !font-canela-regular">
+      <div className="w-full flex  flex-wrap scroll-auto h-80 text-xl  p-10 gap-12 justify-center my-32 !font-canela-regular">
         <div className={`${commonClass} bg-dessshirtbg relative`}>
           <span className="z-40">Dress Shirt</span>
           <div className="bg-gradient-to-t from-black to-transparent h-full w-full absolute top-0 left-0 opacity-25 z-30"></div>
