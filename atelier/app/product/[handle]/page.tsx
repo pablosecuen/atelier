@@ -74,24 +74,26 @@ export default async function ProductPage({ params }: { params: { handle: string
           __html: JSON.stringify(productJsonLd),
         }}
       />
-      <div className="mx-auto max-w-screen-2xl px-4 md:mt-24 mt-10">
-        <div className="flex flex-col rounded-lg border-2  border-terciario bg-white p-8 dark:border-terciario dark:bg-transparent md:p-12 lg:flex-row lg:gap-8">
-          <div className="h-full w-full basis-full lg:basis-4/6 ">
-            <Gallery
-              images={product.images.map((image: any) => ({
-                src: image.url,
-                altText: image.altText,
-              }))}
-            />
-          </div>
+      <div className="mx-auto max-w-screen-2xl px-4 ">
+        <div className="pt-12">
+          <div className="flex flex-col rounded-lg border-2 mt-24  border-terciario bg-white p-8 dark:border-terciario dark:bg-transparent md:p-12 lg:flex-row lg:gap-8">
+            <div className="h-full w-full basis-full lg:basis-4/6 ">
+              <Gallery
+                images={product.images.map((image: any) => ({
+                  src: image.url,
+                  altText: image.altText,
+                }))}
+              />
+            </div>
 
-          <div className="basis-full lg:basis-2/6">
-            <ProductDescription product={product} />
+            <div className="basis-full lg:basis-2/6">
+              <ProductDescription product={product} />
+            </div>
           </div>
+          <Suspense>
+            <RelatedProducts id={product.id} />
+          </Suspense>
         </div>
-        <Suspense>
-          <RelatedProducts id={product.id} />
-        </Suspense>
       </div>
     </>
   );

@@ -27,7 +27,7 @@ export default function Shop({
           <Loading />
         </div>
       ) : (
-        <div className="flex flex-col w-full ">
+        <div className="flex flex-col w-full font-atlas-grotesk-regular">
           {searchValue ? (
             <p className="mb-4 mx-auto text-black">
               {products.length === 0

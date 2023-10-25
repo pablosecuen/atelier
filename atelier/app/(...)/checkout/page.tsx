@@ -46,8 +46,8 @@ function Checkout() {
   };
 
   return (
-    <>
-      <div className="flex flex-col  md:min-h-[80vh] mt-12 md:mt-16 h-full  rounded-lg border font-sans border-terciario bg-white p-4 text-black dark:terciario md:p-0 lg:flex-row lg:gap-8 ">
+    <div className="">
+      <div className="flex flex-col !font-atlas-grotesk-medium   md:min-h-[80vh] pt-16 md:pt-24 h-full  rounded-lg border border-terciario bg-white p-4 text-black dark:terciario md:p-0 lg:flex-row lg:gap-8 ">
         <aside className="border-l md:w-1/2 md:pt-10 md:order-last  rounded-lg md:rounded-none  border-terciario   py-4 px-2 w-full">
           <details
             className={`custom-transition md:hidden ${
@@ -152,7 +152,7 @@ function Checkout() {
                   activeTab === "information" ? "text-blue-500 font-regular" : "font-semibold"
                 }`}
               >
-                <span className="mr-1"> Informacion</span>
+                <span className="mr-1 "> Informacion</span>
                 {/* <AiOutlineRight /> */}
                 <ChevronRight />
               </button>
@@ -357,7 +357,7 @@ function Checkout() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

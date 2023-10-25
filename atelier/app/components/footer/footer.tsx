@@ -14,8 +14,8 @@ export default async function Footer() {
   const skeleton = "w-full h-6 animate-pulse rounded bg-neutral-200 dark:bg-neutral-700";
 
   return (
-    <footer className="text-sm text-white black bg-[#242529] z-50">
-      <div className="h-36  border-b-2 text-xl font-semibold flex justify-between px-8 items-center w-full">
+    <footer className="text-sm text-black  bg-white z-50">
+      <div className="h-28  border-b-2 text-xl font-semibold flex justify-between px-8 items-center w-full">
         <span>NECESITAS AYUDA?</span>
         <button className="py-4 px-16 border-2 border-terciario  font-bold rounded-md text-lg">
           CONTACTANOS
@@ -53,7 +53,7 @@ export default async function Footer() {
           <FooterMenu menu={menu} menuInformation={menuInformation} />
         </Suspense>
         <div className="md:ml-0 ml-auto">
-          <div className="flex h-8 w-auto flex-none items-center justify-center rounded-md border border-neutral-200 bg-white text-xs  dark:border-[#fff7e9] dark:bg-white dark:text-black">
+          <div className="flex h-8 w-auto flex-none items-center justify-center rounded-md border border-neutral-200 bg-black text-xs  dark:border-[#fff7e9] text-white">
             <span className="px-3">
               <Image
                 src={whatsapp}

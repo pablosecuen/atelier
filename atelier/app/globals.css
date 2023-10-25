@@ -1,6 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* Atlas Grotesk Regular */
+@font-face {
+  font-family: "Atlas Grotesk Regular";
+  src: url("/atelier/public/assets/fonts/AtlasGrotesk-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Atlas Grotesk Medium */
+@font-face {
+  font-family: "Atlas Grotesk Medium";
+  src: url("/atelier/public/assets/fonts/AtlasGrotesk-Medium.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Atlas Grotesk Black */
+@font-face {
+  font-family: "Atlas Grotesk Black";
+  src: url("/atelier/public/assets/fonts/AtlasGrotesk-Black.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -17,6 +40,10 @@
 }
 html {
   scroll-behavior: smooth;
+}
+
+* {
+  font-family: "Atlas Grotesk Regular", sans-serif !important;
 }
 
 body {
