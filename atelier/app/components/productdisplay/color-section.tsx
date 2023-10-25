@@ -34,21 +34,21 @@ function BestSellers() {
   };
 
   return (
-    <div className="relative md:px-16">
+    <div className="flex justify-between items-center">
       <button
         onClick={scrollLeft}
-        className="scroll-button left hidden md:block left-4 text-black text-3xl z-10 absolute top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-transparent"
+        className="scroll-button left hidden md:block  text-black text-3xl z-10  w-12 h-8 rounded-full bg-transparent"
       >
         {"<"}
       </button>
       <button
         onClick={scrollRight}
-        className="scroll-button right hidden md:block right-4  text-black text-3xl z-10 top-1/2 absolute -translate-y-1/2 w-8 h-8 rounded-full  bg-transparent"
+        className="scroll-button right order-last hidden md:block right-4  text-black text-3xl z-10   w-12 h-8 rounded-full  bg-transparent"
       >
         {">"}
       </button>
       <div
-        className="custom-scrollbar relative  flex gap-8 md:px-20 overflow-x-auto md:overflow-x-hidden whitespace-no-wrap md:max-w-screen w-full mt-4 scroll-smooth"
+        className="custom-scrollbar relative  flex gap-8 overflow-x-auto md:overflow-x-hidden whitespace-no-wrap md:max-w-screen w-full mt-4 scroll-smooth"
         ref={containerRef}
       >
         {products.map((product) => (
