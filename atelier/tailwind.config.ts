@@ -72,7 +72,7 @@ module.exports = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-          'landingbg': "url('../public/assets/atel.jpg')",
+          'landingbg': "url('../public/assets/img_slide_01.png')",
           'dessshirtbg': "url('../public/assets/nimble-made-N0ke5zChVBU-unsplash.jpg')",
           'casualshirtbg': "url('../public/assets/atel.jpg')",
           'athelierbg': "url('../public/assets/atel.jpg')",
