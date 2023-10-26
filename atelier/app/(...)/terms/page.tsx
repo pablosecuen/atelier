@@ -3,7 +3,7 @@ import React from "react";
 
 function Terms() {
   return (
-    <div className="flex flex-col w-1/3 mx-auto min-h-screen mt-12 md:mt-16 text-black ">
+    <div className="flex flex-col w-1/3 mx-auto min-h-screen pt-12 md:pt-24 text-black ">
       <h2 className="text-start text-3xl py-8">POLITICA DE PRIVACIDAD</h2>
       <h5 className="text-start text-2xl pt-8 pb-4">¿QUIÉN ES RESPONSABLE?</h5>
       <p className="text-start text-lg pb-8">
