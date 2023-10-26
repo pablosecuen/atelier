@@ -34,8 +34,8 @@ function BestSellers() {
 
   return (
     <div className="relative  text-black mt-16">
-      <h2 className="font-bold text-2xl mt-4 md:text-4xl px-16 md:mt-20  ">POPULARES</h2>
-      <span className="text-sm px-16 md:text-lg">Nuestros productos mas vendidos</span>
+      <h2 className="font-bold text-2xl mt-4 md:text-4xl md:px-16 pl-2 md:mt-20  ">POPULARES</h2>
+      <span className="text-sm md:px-16 pl-2  md:text-lg">Nuestros productos mas vendidos</span>
 
       <div className="flex justify-between items-center ">
         <button
@@ -60,7 +60,6 @@ function BestSellers() {
               href={`/product/${product.handle}`}
               key={product.id}
             >
-
               <div className="rounded-md min-w-[280px] md:min-w-[450px] lg:min-w-[600px] px-2 md:px-0  pb-6 ">
                 <Image
                   src={productimage}

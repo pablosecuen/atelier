@@ -1,9 +1,10 @@
 import React from "react";
 
 function Sustentability() {
-  const containerClass = "w-full flex h-[50vh] overflow-hidden mt-12";
+  const containerClass =
+    "w-full flex flex-col md:flex-row md:h-[50vh] h-full overflow-hidden mt-12";
   const columnClass =
-    "h-full w-1/3 bg-center bg-no-repeat hover:scale-105 transition duration-300 flex items-center justify-center text-2xl font-bold tracking-[10px]";
+    "md:h-full h-[40vh] md:w-1/3 bg-center bg-no-repeat hover:scale-105 transition duration-300 flex items-center justify-center md:text-2xl font-bold tracking-[10px]";
   const brandStoreClass = "bg-brandstoreblack";
   const aboutShirtClass = "bg-aboutblack";
   const sustentabilityClass = "bg-sustentabilityblack";

@@ -14,10 +14,10 @@ export default async function Footer() {
   const skeleton = "w-full h-6 animate-pulse rounded bg-neutral-200 dark:bg-neutral-700";
 
   return (
-    <footer className="text-sm text-black  bg-white z-50">
-      <div className="h-28   text-md font-semibold flex justify-between px-8 items-center max-w-7xl mx-auto">
+    <footer className="text-sm text-white  bg-[#242528] z-50">
+      <div className="h-28  text-xs  md:text-md font-semibold flex justify-between px-8 items-center max-w-7xl mx-auto">
         <span>NECESITAS AYUDA?</span>
-        <button className="py-4 px-16 border-2 border-terciario  font-bold rounded-md ">
+        <button className="md:py-4 py-2  px-4 md:px-16 border-2 border-terciario font-bold rounded-md ">
           CONTACTANOS
         </button>
       </div>

@@ -2,8 +2,8 @@ import React from "react";
 
 function BrandStore() {
   return (
-    <div className="w-full h-[60vh] mt-12 flex bg-brandstorebg bg-top bg-cover bg-no-repeat tracking-widest">
-      <div className="w-1/2 relative flex flex-col gap-6 justify-center items-start p-48">
+    <div className="w-full h-[60vh] mt-12 flex flex-col  md:flex-row bg-brandstorebg bg-top bg-cover bg-no-repeat tracking-widest">
+      <div className="md:w-1/2 relative flex flex-col gap-6 justify-center items-start md:p-48 h-full pl-4 ">
         {" "}
         <div className="absolute w-full h-full top-0 left-0 bg-primario opacity-80 "></div>
         <h5 className="text-3xl font-bold tracking-widest z-40">BRAND STORE</h5>
