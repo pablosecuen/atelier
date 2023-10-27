@@ -14,8 +14,8 @@ import Link from "next/link";
 
 function Nosotros() {
   return (
-    <div className="min-h-screen text-white flex flex-col items-center bg-black">
-      <div className=" mt-12 md:mt-16   flex flex-col h-full  justify-center items-center   gap-4 max-w-7xl">
+    <div className="min-h-screen text-white flex flex-col items-center bg-black z-40 pt-16 max-w-screen overflow-hidden">
+      <div className=" mt-12 md:mt-16   flex flex-col h-full  justify-center items-center   md:gap-4 gap-10 max-w-7xl">
         <VisibilitySensor partialVisibility>
           {({ isVisible }: any) => (
             <motion.div
@@ -23,7 +23,7 @@ function Nosotros() {
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               exit={{ opacity: 0, y: 50 }}
               transition={{ ease: "easeOut", duration: 1 }}
-              className="h-[80vh] flex flex-col animate-me relative justify-center mt-16"
+              className="md:h-[80vh]  h-full flex flex-col animate-me relative justify-center mt-16"
             >
               <Image
                 src={model}
@@ -34,7 +34,7 @@ function Nosotros() {
                 quality={100}
               />
 
-              <p className="font-atlas-grotesk-medium text-center w-2/3 self-center  text-2xl z-10 leading-8">
+              <p className="font-atlas-grotesk-medium md:text-center w-2/3 md:self-center  md:text-2xl z-10 md:leading-8 p-8 md:p-0">
                 Fundada en en Perú en 2008, Andrews & Andrews Atelier son pioneras y líderes en
                 camisas, pantalones, corbatas y accesorios de calidad. Conformadas por un equipo
                 joven con mucha iniciativa y motivación infinita, seguimos siendo únicos en nuestro
@@ -54,7 +54,7 @@ function Nosotros() {
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               exit={{ opacity: 0, y: 50 }}
               transition={{ ease: "easeOut", duration: 2 }}
-              className="h-[80vh] flex flex-col animate-me relative  justify-center"
+              className="md:h-[80vh] h-full flex flex-col animate-me relative  justify-center"
             >
               <Image
                 src={model2}
@@ -64,8 +64,8 @@ function Nosotros() {
                 className="absolute z-0 scale-150 left-0  bottom-[50%] translate-y-[50%]"
                 quality={100}
               />
-              <div className="w-2/3 self-center text-center z-10 ">
-                <p className="font-atlas-grotesk-medium text-center   text-2xl z-10 leading-8">
+              <div className="w-2/3 md:self-center self-end md:text-center text-start z-10 ">
+                <p className="font-atlas-grotesk-medium md:text-center   md:text-2xl z-10 md:leading-8">
                   Trabajamos con materiales auténticos, naturales y sostenibles. Buscamos la más
                   alta calidad para perfeccionar el aspecto, la sensación y el rendimiento de cada
                   pieza que fabricamos. Nuestro diseño minimalista deja traslucir la belleza innata
@@ -88,7 +88,7 @@ function Nosotros() {
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               exit={{ opacity: 0, y: 50 }}
               transition={{ ease: "easeOut", duration: 1 }}
-              className="h-screen flex flex-col animate-me relative  justify-center items-center mt-48"
+              className="md:h-screen h-full flex flex-col animate-me relative  justify-center items-center mt-48"
             >
               <Image
                 src={picture}
@@ -98,11 +98,11 @@ function Nosotros() {
                 className=" z-0 w-full "
                 quality={100}
               />
-              <div className=" self-end text-center flex items-center justify-evenly p-8 mt-10">
-                <strong className=" font-atlas-grotesk-bold z-10 text-4xl w-1/3 text-start">
+              <div className=" self-end text-center flex flex-col md:flex-row items-center md:justify-evenly p-8 mt-10">
+                <strong className=" font-atlas-grotesk-bold z-10 text-xl md:text-4xl md:w-1/3 text-start">
                   INOVACION
                 </strong>
-                <p className="!font-canela-regular text-center  w-2/3 text-xl z-10 leading-8">
+                <p className="!font-canela-regular md:text-center text-start  md:w-2/3 md:text-xl z-10 leading-8 pt-2 md:pt-0">
                   Profesional elegante que busca salir de lo clásico. Variedad de prendas estampadas
                   con amplitud de talles pero con un stock relativamente reducido.
                 </p>
@@ -118,7 +118,7 @@ function Nosotros() {
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               exit={{ opacity: 0, y: 50 }}
               transition={{ ease: "easeOut", duration: 1 }}
-              className="h-screen flex flex-col animate-me relative  justify-center items-center mt-48"
+              className="md:h-screen flex flex-col animate-me relative  justify-center items-center md:mt-48"
             >
               <Image
                 src={tag}
@@ -128,11 +128,11 @@ function Nosotros() {
                 className=" z-0 w-full "
                 quality={100}
               />
-              <div className=" self-end text-center flex items-center justify-evenly p-8 mt-10">
-                <strong className=" font-atlas-grotesk-bold z-10 text-4xl w-1/2 text-start">
+              <div className=" self-end text-center flex flex-col md:flex-row items-center md:justify-evenly p-8 mt-10">
+                <strong className=" font-atlas-grotesk-bold z-10 text-xl md:text-4xl md:w-1/3 text-start">
                   EL CAMINO DE ANDREWS
                 </strong>
-                <p className="!font-canela-regular text-center  w-1/2 text-xl z-10 leading-8">
+                <p className="!font-canela-regular md:text-center text-start  md:w-2/3 md:text-xl z-10 leading-8 pt-2 md:pt-0">
                   Eliminamos la sobreproduccion, fabricamos a medida, nada mas ni nada menos. De
                   esta manera podemos...
                 </p>
@@ -148,7 +148,7 @@ function Nosotros() {
               animate={isVisible ? { opacity: 1, x: 0 } : {}}
               exit={{ opacity: 0, x: 50 }}
               transition={{ ease: "easeOut", duration: 1 }}
-              className="h-screen flex flex-col animate-me relative  justify-center"
+              className="md:h-screen flex flex-col animate-me relative  justify-center p-4 md:p-0"
             >
               <Image
                 src={mockup}
@@ -159,10 +159,10 @@ function Nosotros() {
                 quality={100}
               />
               <div className="w-1/2 self-end text-start z-10">
-                <strong className=" font-atlas-grotesk-bold  py-8 z-10 text-2xl ">
+                <strong className=" font-atlas-grotesk-bold  py-8 z-10 md:text-2xl text-xl ">
                   AJUSTE PERFECTO EN 30 SEGUNDOS
                 </strong>
-                <p className="font-atlas-grotesk-medium text-start   text-lg z-10 leading-6 pt-2">
+                <p className="font-atlas-grotesk-medium text-start  text-sm  md:text-lg z-10 leading-6 pt-2">
                   Con nuestro Algoritmo de Ajuste Perfecto, puedes crear tu talla personalizada en
                   30 segundos o menos; todo lo que necesitamos es tu altura, peso, edad y talla de
                   zapato. Una vez que se crea tu patrón individual, nuestro equipo de producción en
@@ -182,7 +182,7 @@ function Nosotros() {
               animate={isVisible ? { opacity: 1, x: 0 } : {}}
               exit={{ opacity: 0, x: -50 }}
               transition={{ ease: "easeOut", duration: 1 }}
-              className="h-screen flex flex-col animate-me relative overflow-hidden justify-center "
+              className="md:h-screen flex flex-col animate-me relative overflow-hidden justify-center p-4 md:p-0 "
             >
               <Image
                 src={perchero}
@@ -192,11 +192,11 @@ function Nosotros() {
                 className="absolute z-0 w-2/5 scale-150 right-0  bottom-[50%] translate-y-[50%]"
                 quality={100}
               />
-              <div className="w-1/2 self-start text-end z-10">
-                <strong className=" font-atlas-grotesk-bold  py-8 z-10 text-2xl ">
+              <div className="w-1/2 self-start text-start z-10">
+                <strong className=" font-atlas-grotesk-bold  py-8 z-10 md:text-2xl text-xl ">
                   CÓMO EMPEZÓ
                 </strong>
-                <p className="font-atlas-grotesk-medium text-end   text-lg z-10 leading-6 pt-2">
+                <p className="font-atlas-grotesk-medium text-start  text-sm  md:text-lg z-10 leading-6 pt-2">
                   Pero, por supuesto, no siempre ha sido así. En 2014, pedirnos algo requería una
                   cinta métrica, paciencia debido a los largos tiempos de entrega y amor por las
                   camisetas de algodón (nuestro único producto en ese momento). Con el paso de los
@@ -217,7 +217,7 @@ function Nosotros() {
               animate={isVisible ? { opacity: 1, x: 0 } : {}}
               exit={{ opacity: 0, x: 50 }}
               transition={{ ease: "easeOut", duration: 1 }}
-              className="h-screen flex flex-col animate-me relative overflow-hidden justify-center "
+              className="md:h-screen flex flex-col animate-me relative overflow-hidden justify-center p-4 md:p-0 "
             >
               <Image
                 src={customfit}
@@ -228,10 +228,10 @@ function Nosotros() {
                 quality={100}
               />
               <div className="w-1/2 self-end text-start z-10">
-                <strong className=" font-atlas-grotesk-bold  py-8 z-10 text-2xl ">
+                <strong className=" font-atlas-grotesk-bold  py-8 z-10 md:text-2xl text-xl ">
                   EL FUTURO ES PERSONALIZADO
                 </strong>
-                <p className="font-atlas-grotesk-medium text-lg z-10 leading-6 pt-2">
+                <p className="font-atlas-grotesk-medium text-start  text-sm  md:text-lg z-10 leading-6 pt-2">
                   ¿Qué sigue para nosotros? Emocionar a más clientes con un ajuste personalizado,
                   así como nuevos productos, y, por último pero no menos importante, inspirar a más
                   marcas a cambiar de rumbo y unirse a nuestra misión de reingeniería de la
@@ -243,12 +243,11 @@ function Nosotros() {
           )}
         </VisibilitySensor>
       </div>
-      <div className="flex justify-center items-center p-48">
+      <div className="flex justify-center items-center p-10 md:p-48 mb-10 md:mb-0">
         <Link href="/">
-          <h5 className="text-4xl animate-pulse">VOLVER AL INICIO</h5>
+          <h5 className="md:text-4xl  animate-pulse">VOLVER AL INICIO</h5>
         </Link>
       </div>
-
     </div>
   );
 }

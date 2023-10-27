@@ -8,7 +8,7 @@ import marcas from "@/public/assets/1x/Recurso 5.png";
 
 function CategoriesBanner() {
   const commonClass =
-    " bg-cover bg-center bg-no-repeat md:h-[350px] md:w-[300px] w-32 h-40 flex justify-start items-end p-2";
+    " bg-cover bg-center bg-no-repeat md:h-[350px] md:w-[300px] w-32 h-40 flex justify-start items-end p-2  relative cursor-pointer  hover:scale-105 duration-300 transition";
   const imageClass = "flex flex-col justify-center items-center gap-3";
   const containerClass =
     " md:px-40 flex flex-col md:flex-row text-black md:h-64 w-full  scale-75 md:scale-100 gap-8";
@@ -18,19 +18,19 @@ function CategoriesBanner() {
   return (
     <div className="h-full flex flex-col">
       <div className="w-full flex  flex-wrap scroll-auto md:h-80  text-xl  md:p-10 gap-12 justify-center mt-20 md:my-32 !font-canela-regular ">
-        <div className={`${commonClass} bg-dessshirtbg relative`}>
+        <div className={`${commonClass} bg-dessshirtbg `}>
           <span className="z-40 text-sm md:text-base">Dress Shirt</span>
           <div className="bg-gradient-to-t from-black to-transparent h-full w-full absolute top-0 left-0 opacity-25 z-30"></div>
         </div>
-        <div className={`${commonClass} bg-casualshirtbg relative`}>
+        <div className={`${commonClass} bg-casualshirtbg `}>
           <span className="z-40 text-sm md:text-base"> Casual Shirt </span>
           <div className="bg-gradient-to-t from-black to-transparent h-full w-full absolute top-0 left-0 opacity-25 z-30 "></div>
         </div>
-        <div className={`${commonClass} bg-athelierbg relative`}>
+        <div className={`${commonClass} bg-athelierbg `}>
           <span className="z-40 text-sm md:text-base">Athelier </span>
           <div className="bg-gradient-to-t from-black to-transparent h-full w-full absolute top-0 left-0 opacity-25  z-30"></div>
         </div>
-        <div className={`${commonClass} bg-accesoriesbg relative`}>
+        <div className={`${commonClass} bg-accesoriesbg `}>
           <span className="z-40 text-sm md:text-base">Accesories </span>
           <div className="bg-gradient-to-t from-black to-transparent h-full w-full absolute top-0 left-0 opacity-25 z-30 "></div>
         </div>

@@ -23,7 +23,7 @@ export default function Navbar() {
   return (
     <div className=" md:fixed z-50 ">
       <Banner />
-      <nav className="relative flex order-last  md:fixed  w-full  h-12 md:h-16 items-center justify-between p-4 lg:px-6 bg-white text-primario ">
+      <nav className="relative flex order-last  md:fixed  w-full z-50  h-12 md:h-16 items-center justify-between p-4 lg:px-6 bg-white text-primario ">
         <div className="  w-1/3 md:w-12 md:mr-4">
           <MobileMenu menu={mobileMenu} />
         </div>
