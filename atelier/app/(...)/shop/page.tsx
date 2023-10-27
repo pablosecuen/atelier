@@ -19,7 +19,7 @@ export default function Shop({
   const { products, status } = useSelector((state: RootState) => state.products);
   const [status1, setStatus1] = useState("");
 
-  const resultsText = products.length > 1 ? "results" : "result";
+  const resultsText = products.length > 1 ? "resultados" : "resultado";
   return (
     <>
       {status1 === "loading" ? (
@@ -31,9 +31,11 @@ export default function Shop({
           {searchValue ? (
             <p className="mb-4 mx-auto text-black">
               {products.length === 0
-                ? "There are no products that match "
-                : `Showing ${products.length} ${resultsText} for `}
-              <span className="font-bold">&quot;{searchValue}&quot;</span>
+                ? "Ningun producto coincide con su busqueda "
+                : `Mostrando ${products.length} ${resultsText}
+                 
+                  `}
+              {/*     <span className="font-bold">&quot;{searchValue}&quot;</span> */}
             </p>
           ) : null}
           {products.length > 0 ? (

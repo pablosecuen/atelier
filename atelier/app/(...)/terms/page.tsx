@@ -2,29 +2,32 @@
 import React from "react";
 
 function Terms() {
+  const classh5 = "text-start md:text-2xl text-lg pt-8 pb-4";
+  const classP = "text-start md:text-lg pb-8";
+
   return (
-    <div className="flex flex-col w-1/3 mx-auto min-h-screen pt-12 md:pt-24 text-black ">
-      <h2 className="text-start text-3xl py-8">POLITICA DE PRIVACIDAD</h2>
-      <h5 className="text-start text-2xl pt-8 pb-4">¿QUIÉN ES RESPONSABLE?</h5>
-      <p className="text-start text-lg pb-8">
+    <div className="flex flex-col p-4  md:w-1/3 md:mx-auto min-h-screen pt-12 md:pt-24 text-black overflow-hidden">
+      <h2 className="text-start md:text-3xl text-xl py-8">POLITICA DE PRIVACIDAD</h2>
+      <h5 className={classh5}>¿QUIÉN ES RESPONSABLE?</h5>
+      <p className={classP}>
         La protección de datos es importante para nosotros. Hacemos todo lo posible para asegurarnos
         de que la información personal que nos proporcionas se utilice de manera correcta. No
         recopilaremos ni guardaremos más información de la necesaria y la trataremos con cuidado.
         Cumplimos con los estándares europeos.
       </p>
-      <p className="text-start text-lg pb-8">
+      <p className={classP}>
         El responsable de la recopilación, procesamiento y almacenamiento de tu información personal
         en este sitio web es Atelier. Para ponerte en contacto con nosotros en relación con datos
         personales, por favor, consulta la siguiente información:
       </p>
-      <span className="text-start text-lg pb-8">ATELIER</span>
-      <span className="text-start text-lg pb-8">Direccion:</span>
-      <span className="text-start text-lg pb-8">Codigo postal</span>
-      <span className="text-start text-lg pb-8">Region</span>
-      <span className="text-start text-lg pb-8">Correo</span>
-      <span className="text-start text-lg pb-8">Jefe de proteccion de datos: nombre</span>
-      <h5 className="text-start text-2xl pt-8 pb-4">¿QUÉ INFORMACIÓN RECOPILAMOS?</h5>
-      <p className="text-start text-lg pb-8">
+      <span className={classP}>ATELIER</span>
+      <span className={classP}>Direccion:</span>
+      <span className={classP}>Codigo postal</span>
+      <span className={classP}>Region</span>
+      <span className={classP}>Correo</span>
+      <span className={classP}>Jefe de proteccion de datos: nombre</span>
+      <h5 className={classh5}>¿QUÉ INFORMACIÓN RECOPILAMOS?</h5>
+      <p className={classP}>
         Recopilamos información de ti cuando te registras en el sitio, realizas un pedido,
         participas en un concurso o sorteo, respondes a una encuesta o comunicación por correo
         electrónico o participas en otra función del sitio. Al realizar un pedido o registrarte, es
@@ -40,7 +43,7 @@ function Terms() {
         "¿Usamos 'cookies'?" a continuación para obtener información sobre las cookies y cómo las
         utilizamos.
       </p>
-      <p className="text-start text-lg pb-8">
+      <p className={classP}>
         Los datos que proporcionas serán modificables para ti en tu cuenta personal, a la que solo
         se puede acceder mediante una contraseña individual de tu elección. Puedes iniciar sesión en
         tu cuenta personal para ver tus datos guardados. Además, tienes derecho a solicitar
@@ -51,8 +54,8 @@ function Terms() {
         información personal se almacenará durante un período ilimitado, a menos que solicites su
         eliminación.
       </p>
-      <h5 className="text-start text-2xl pt-8 pb-4">¿CÓMO UTILIZAMOS TU INFORMACIÓN?</h5>
-      <p className="text-start text-lg pb-8">
+      <h5 className={classh5}>¿CÓMO UTILIZAMOS TU INFORMACIÓN?</h5>
+      <p className={classP}>
         Podemos utilizar la información que recopilamos de ti cuando te registras, compras
         productos, participas en un concurso o promoción, respondes a una encuesta o comunicación de
         marketing, navegas por el sitio web o utilizas ciertas otras funciones del sitio de las
@@ -70,7 +73,7 @@ function Terms() {
         marketing y contenido exclusivo para miembros, tendrán la opción de estar en nuestra lista
         de correo electrónico y recibir comunicaciones por correo electrónico de nuestra parte.
       </p>
-      <p className="text-start text-lg pb-8">
+      <p className={classP}>
         Implementamos una variedad de medidas de seguridad para mantener la seguridad de tu
         información personal. Tu información personal se encuentra detrás de redes seguras y solo es
         accesible por un número limitado de personas que tienen derechos de acceso especiales a
@@ -82,8 +85,8 @@ function Terms() {
         cifrará en nuestras bases de datos para que solo se acceda de la manera mencionada
         anteriormente.
       </p>
-      <h5 className="text-start text-2xl pt-8 pb-4">¿UTILIZAMOS "COOKIES"?</h5>
-      <p className="text-start text-lg pb-8">
+      <h5 className={classh5}>¿UTILIZAMOS "COOKIES"?</h5>
+      <p className={classP}>
         Sí. Las cookies son archivos pequeños que un sitio web o un proveedor de servicios
         transfiere al disco duro de tu ordenador a través de tu navegador web (si lo permites), lo
         que permite a los sistemas del sitio web o del proveedor de servicios reconocer tu navegador
@@ -108,10 +111,8 @@ function Terms() {
         nuestros servicios no funcionen correctamente. Sin embargo, aún puedes realizar pedidos
         poniéndote en contacto con el servicio de atención al cliente en soporte@atelier.com.
       </p>
-      <h5 className="text-start text-2xl pt-8 pb-4">
-        ¿REVELAMOS LA INFORMACIÓN QUE RECOPILAMOS A TERCEROS?
-      </h5>
-      <p className="text-start text-lg pb-8">
+      <h5 className={classh5}>¿REVELAMOS LA INFORMACIÓN QUE RECOPILAMOS A TERCEROS?</h5>
+      <p className={classP}>
         No transferimos tu información personal identificable a terceros a menos que te
         proporcionemos un aviso previo, excepto como se describe en nuestra Política de Privacidad.
         El término "terceros" no incluye nuestro negocio. Tampoco incluye a los socios de
@@ -123,10 +124,10 @@ function Terms() {
         personal identificable de los visitantes puede proporcionarse a otras partes con fines de
         marketing, publicidad u otros usos.
       </p>
-      <h5 className="text-start text-2xl pt-8 pb-4">
+      <h5 className={classh5}>
         ¿CÓMO PUEDES MODIFICAR O ELIMINAR LA INFORMACIÓN QUE NOS HAS PROPORCIONADO?
       </h5>
-      <p className="text-start text-lg pb-8">
+      <p className={classP}>
         Para modificar tu información personal, puedes cambiarla fácilmente en la sección "Mi
         cuenta" en nuestro sitio web. Para eliminar toda tu información de la cuenta en línea de
         nuestra base de datos (derecho al olvido), inicia sesión en la sección
@@ -134,11 +135,11 @@ function Terms() {
         que podemos mantener información sobre una transacción de venta individual para atender esa
         transacción y para fines de registro.
       </p>
-      <h5 className="text-start text-2xl pt-8 pb-4">
+      <h5 className={classh5}>
         ¿CÓMO FUNCIONA LA SUSCRIPCIÓN POR CORREO ELECTRÓNICO? ¿CÓMO PUEDO SUSCRIBIRME O DARSE DE
         BAJA?
       </h5>
-      <p className="text-start text-lg pb-8">
+      <p className={classP}>
         Si deseas recibir el boletín que ofrecemos, necesitamos una dirección de correo electrónico
         de tu parte, así como tu consentimiento para recibir el boletín. Para asegurarnos de que la
         dirección de correo electrónico proporcionada sea correcta y de que estamos autorizados a
@@ -156,16 +157,16 @@ function Terms() {
         cuenta que debido a los horarios de producción de correos electrónicos, es posible que ya
         hayas recibido algunos correos electrónicos en proceso.
       </p>
-      <h5 className="text-start text-2xl pt-8 pb-4">TU CONSENTIMIENTO</h5>
-      <p className="text-start text-lg pb-8">
+      <h5 className={classh5}>TU CONSENTIMIENTO</h5>
+      <p className={classP}>
         Al utilizar nuestro sitio, registrarte para las suscripciones por correo electrónico o
         realizar un pedido, aceptas nuestra política de privacidad. Si tienes menos de 16 años,
         debes informar a tus padres o tutor sobre nuestra Política de Privacidad antes de
         registrarte en este sitio. Nos reservamos el derecho de aceptar pedidos solo de personas
         mayores de 18 años.
       </p>
-      <h5 className="text-start text-2xl pt-8 pb-4">CAMBIOS EN NUESTRA POLÍTICA</h5>
-      <p className="text-start text-lg pb-8">
+      <h5 className={classh5}>CAMBIOS EN NUESTRA POLÍTICA</h5>
+      <p className={classP}>
         Esta política de privacidad en línea se aplica solo a la información recopilada a través de
         nuestro sitio web y no a la información recopilada fuera de línea. Si decidimos cambiar
         nuestra política de privacidad, publicaremos esos cambios en esta página. Los cambios en la
@@ -174,19 +175,19 @@ function Terms() {
         cumplen con el Reglamento General de Protección de Datos (UE) 2016/679 del 27 de abril de
         2016 y el Decreto Ejecutivo sobre Cookies Nº 1148 del 9 de diciembre de 2011.
       </p>
-      <h5 className="text-start text-2xl pt-8 pb-4">SOLICITUDES, PREGUNTAS Y COMENTARIOS</h5>
-      <p className="text-start text-lg pb-8">
+      <h5 className={classh5}>SOLICITUDES, PREGUNTAS Y COMENTARIOS</h5>
+      <p className={classP}>
         Agradecemos tus preguntas, comentarios y preocupaciones sobre la privacidad. Por favor,
         envíanos cualquier comentario relacionado con la privacidad u otro problema. Tienes derecho
         a solicitar información sobre la recopilación, uso, almacenamiento, modificación y
         eliminación de tus datos personales de acuerdo con los Artículos 12 a 14 y los Artículos 15
         a 22 del RGPD. Si deseas ejercer este derecho, puedes ponerte en contacto con nosotros:
       </p>
-      <span className="text-start text-lg pb-8">ATELIER</span>
-      <span className="text-start text-lg pb-8">Direccion:</span>
-      <span className="text-start text-lg pb-8">Codigo postal</span>
-      <span className="text-start text-lg pb-8">Region</span>
-      <span className="text-start text-lg pb-8">Correo</span>
+      <span className={classP}>ATELIER</span>
+      <span className={classP}>Direccion:</span>
+      <span className={classP}>Codigo postal</span>
+      <span className={classP}>Region</span>
+      <span className={classP}>Correo</span>
     </div>
   );
 }

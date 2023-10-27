@@ -49,8 +49,19 @@ export default function Collections() {
       }
     >
       <div className="order-first  w-full flex flex-col items-center md:justify-center  md:mb-48  md:max-w-[185px]">
-        <h3 className="mt-12 mb-4 opacity-70 text-sm">Categorias</h3>
+        <h3 className="md:mt-12 mb-4 opacity-70 text-sm">Categorias</h3>
         <ul>
+          <li>
+            <button
+              onClick={() => setSelectedCategory("")}
+              className={clsx(
+                "flex min-w-[190px] my-2 mb-4 items-center justify-center border px-2 py-1 text-sm md:text-xl md:px-8 dark:border-neutral-800 dark:bg-neutral-100",
+                "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-primario focus:bg-primario/20"
+              )}
+            >
+              Todos
+            </button>
+          </li>
           <li>
             <button
               onClick={() => setSelectedCategory("Camisas")}

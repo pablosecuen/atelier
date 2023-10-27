@@ -42,7 +42,6 @@ export default function Home() {
         <BestSellers />
       </section>
       <section className="">
-        {/*         <Incoming /> */}
         <BrandStore />
       </section>
 

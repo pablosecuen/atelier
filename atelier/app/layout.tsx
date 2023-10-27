@@ -21,7 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {" "}
           <Navbar />
           <Suspense>
-            <main className="font-atlas-grotesk-regular">{children}</main>
+            <main className="font-atlas-grotesk-regular ">{children}</main>
             <Footer />
           </Suspense>
         </ReduxProvider>
