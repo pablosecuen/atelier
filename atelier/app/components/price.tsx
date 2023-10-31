@@ -8,9 +8,12 @@ const Price = ({
   currencyCode?: string;
   currencyCodeClassName?: string;
 } & React.ComponentProps<"p">) => (
-  <p suppressHydrationWarning={true}>
+  <p
+    suppressHydrationWarning={true}
+    className="rounded-full border-2 bg-white py-1 px-2 border-black/10"
+  >
     $ {price}
-    <span className={clsx("ml-1 inline")}></span>
+    <span className={clsx("ml-1 inline ")}></span>
   </p>
 );
 

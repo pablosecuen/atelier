@@ -34,7 +34,7 @@ export default function Collections() {
   return (
     <Suspense
       fallback={
-        <div className="col-span-2 hidden h-[400px] w-full flex-none py-4 lg:block">
+        <div className="col-span-2 hidden h-[400px] w-full flex-none py-4 lg:block max-w-screen">
           <div className={clsx(skeleton, activeAndTitles)} />
           <div className={clsx(skeleton, activeAndTitles)} />
           <div className={clsx(skeleton, items)} />
@@ -48,15 +48,15 @@ export default function Collections() {
         </div>
       }
     >
-      <div className="order-first  w-full flex flex-col items-center md:justify-center  md:mb-48  md:max-w-[185px]">
-        <h3 className="md:mt-12 mb-4 opacity-70 text-sm">Categorias</h3>
-        <ul>
+      <div className="w-full  flex flex-col md:pt-24 pt-10 md:pb-12 pb-8 items-center text-black justify-center max-w-screen">
+        <h3 className="md:mt-12 opacity-70 text-sm uppercase tracking-widest">Categorias</h3>
+        <ul className="flex md:gap-4 mx-4 flex-col md:flex-row">
           <li>
             <button
               onClick={() => setSelectedCategory("")}
               className={clsx(
-                "flex min-w-[190px] my-2 mb-4 items-center justify-center border px-2 py-1 text-sm md:text-xl md:px-8 dark:border-neutral-800 dark:bg-neutral-100",
-                "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-primario focus:bg-primario/20"
+                "flex min-w-[190px] my-2 items-center justify-center  border px-2 pt-2 pb-1 text-sm tracking-wider md:px-8 l-800  text-gray-400/60 uppercase",
+                "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-primario focus:bg-primario focus:text-white "
               )}
             >
               Todos
@@ -66,8 +66,8 @@ export default function Collections() {
             <button
               onClick={() => setSelectedCategory("Camisas")}
               className={clsx(
-                "flex min-w-[190px] my-2 mb-4 items-center justify-center border px-2 py-1 text-sm md:text-xl md:px-8 dark:border-neutral-800 dark:bg-neutral-100",
-                "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-primario focus:bg-primario/20"
+                "flex min-w-[190px] my-2 items-center justify-center  border px-2 pt-2 pb-1 text-sm tracking-wider md:px-8 l-800  text-gray-400/60 uppercase",
+                "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-primario focus:bg-primario focus:text-white"
               )}
             >
               Camisas
@@ -77,8 +77,8 @@ export default function Collections() {
             <button
               onClick={() => setSelectedCategory("Accesorios")}
               className={clsx(
-                "flex min-w-[190px] my-2 items-center justify-center  border px-2 py-1 text-sm md:text-xl md:px-8 l-800 dark:bg-neutral-100",
-                "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-primario focus:bg-primario/20"
+                "flex min-w-[190px] my-2 items-center justify-center  border px-2 pt-2 pb-1 text-sm tracking-wider md:px-8 l-800 text-gray-400/60 uppercase",
+                "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-primario focus:bg-primario focus:text-white"
               )}
             >
               Accesorios

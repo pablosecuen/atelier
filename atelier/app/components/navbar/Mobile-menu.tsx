@@ -62,7 +62,7 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
                   <ul className="flex w-full flex-col">
                     {menu.map((item: Menu) => (
                       <li
-                        className="py-2 text-xl font-bold tracking-wide md:text-white transition-colors hover:text-neutral-500 dark:text-black"
+                        className="py-2 text-xl font-bold tracking-wide md:text-black transition-colors hover:text-neutral-500 dark:text-black"
                         key={item.title}
                       >
                         <Link href={item.path} onClick={closeMobileMenu}>
@@ -73,7 +73,7 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
                   </ul>
                 ) : null}
               </div>
-              <div className="border-t border-neutral-200 pt-8 text-sm dark:border-white text-white">
+              <div className="border-t border-neutral-200 pt-8 text-sm dark:border-white text-black">
                 <div className="mx-auto flex w-full flex-col items-center gap-1 px-4 md:flex-row md:gap-0 md:px-4 ">
                   <p>
                     &copy; {copyrightDate} {copyrightName}
@@ -83,7 +83,7 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
                   <hr className="mx-4 hidden h-4 w-[1px] border-l border-neutral-400 md:inline-block" />
                   <p className="md:ml-auto">
                     Designed and Crafted by
-                    <Link href="https://wamcreativo.com/" className="text-white">
+                    <Link href="https://wamcreativo.com/" className="text-black">
                       WAM ▲
                     </Link>
                   </p>
