@@ -51,8 +51,9 @@ export default function Navbar() {
             <div className="hidden md:justify-center md:flex md:w-1/3">
               <Search />
             </div>
-            <Social strokeColor="#44937A" />
-
+            <div className="hidden md:block">
+              <Social strokeColor="#44937A" />
+            </div>
             <Suspense fallback={<OpenCart />}>
               <Cart />
             </Suspense>
