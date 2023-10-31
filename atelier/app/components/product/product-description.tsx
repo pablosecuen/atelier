@@ -92,10 +92,10 @@ export function ProductDescription({
         </ul>
       ) : null}
       <div className="mb-4 mt-4 flex items-center w-full justify-center text-black  gap-2">
-        <div className="relative flex w-32 items-center justify-center  bg-white border-2 border-black p-3 font-black text-stroke text-stroke-2 text-black  uppercase hover:opacity-90">
+        <div className="relative flex w-32 items-center justify-center  bg-white border-2 border-black/40 p-1 font-black text-stroke text-stroke-2 text-black  uppercase hover:opacity-90">
           {" "}
           <MinusIcon onClick={decreaseQuantity} className="px-2 cursor-pointer" />
-          <span className="  w-20 text-xl flex justify-center items-center">{quantity}</span>
+          <span className="  w-20 text-lg flex justify-center items-center">{quantity}</span>
           <PlusIcon onClick={increaseQuantity} className=" px-2 cursor-pointer" />
         </div>
 

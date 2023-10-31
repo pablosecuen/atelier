@@ -1,20 +1,19 @@
 "use client";
 import Link from "next/link";
-
 import MobileMenu from "./Mobile-menu";
 import LogoSquare from "../logo-square";
-
 import { usePathname } from "next/navigation";
 import { Suspense } from "react";
-
 import Cart from "../cart/Cart";
-
 import { menu, mobileMenu } from "../lib/utils";
 import { Menu } from "@/app/types/general";
 import Search from "./search";
 import OpenCart from "../cart/Open-cart";
 import Banner from "../banner";
-
+import UseAnimations from "react-useanimations";
+import instagram from "react-useanimations/lib/instagram";
+import facebook from "react-useanimations/lib/facebook";
+import Social from "../social/social";
 export default function Navbar() {
   const pathname = usePathname();
   if (pathname === "/dashboard") {
@@ -52,6 +51,7 @@ export default function Navbar() {
             <div className="hidden md:justify-center md:flex md:w-1/3">
               <Search />
             </div>
+            <Social strokeColor="#44937A" />
 
             <Suspense fallback={<OpenCart />}>
               <Cart />
