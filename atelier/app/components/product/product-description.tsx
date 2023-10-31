@@ -5,11 +5,37 @@ import Price from "../price";
 import Prose from "./prose";
 import { VariantSelector } from "./variant-selector";
 import { useState } from "react";
-import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
-
-export function ProductDescription({ product }: { product: Product }) {
+import { ArrowLeftIcon, ArrowRightIcon, MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
+import { createUrl } from "../lib/utils";
+import { GridTileImage } from "../grid/tile";
+import productiamge from "@/public/assets/product.webp";
+export function ProductDescription({
+  product,
+  images,
+}: {
+  product: Product;
+  images: { src: string; altText: string }[];
+}) {
   const [quantity, setQuantity] = useState(1);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const imageSearchParam = searchParams.get("image");
+  const imageIndex = imageSearchParam ? parseInt(imageSearchParam) : 0;
 
+  const nextSearchParams = new URLSearchParams(searchParams.toString());
+  const nextImageIndex = imageIndex + 1 < images.length ? imageIndex + 1 : 0;
+  nextSearchParams.set("image", nextImageIndex.toString());
+  const nextUrl = createUrl(pathname, nextSearchParams);
+
+  const previousSearchParams = new URLSearchParams(searchParams.toString());
+  const previousImageIndex = imageIndex === 0 ? images.length - 1 : imageIndex - 1;
+  previousSearchParams.set("image", previousImageIndex.toString());
+  const previousUrl = createUrl(pathname, previousSearchParams);
+
+  const buttonClassName =
+    "h-full px-6 transition-all ease-in-out hover:scale-110 hover:text-black dark:hover:text-white flex items-center justify-center";
   const increaseQuantity = () => {
     setQuantity(quantity + 1);
   };
@@ -22,9 +48,9 @@ export function ProductDescription({ product }: { product: Product }) {
 
   return (
     <>
-      <div className="mb-6 flex flex-col border-b pb-6 dark:border-neutral-700 text-black">
-        <h1 className="mb-2 text-5xl font-medium text-black">{product.title}</h1>
-        <div className="mr-auto w-auto rounded-full bg-primario p-2 text-sm text-white">
+      <div className=" flex flex-col pb-6  text-black">
+        <h1 className="mb-2 text-3xl font-medium text-black">{product.title}</h1>
+        <div className="mr-auto w-auto rounded-full bg-white p-2 text-xl font-inter-bold text-black">
           <Price price={product.variants[0].price} currencyCode="$" />
         </div>
       </div>
@@ -32,29 +58,54 @@ export function ProductDescription({ product }: { product: Product }) {
 
       {product.descriptionHtml ? (
         <Prose
-          className="mb-6 text-sm leading-tight text-black/[60%]"
+          className="mb-6 text-sm leading-tight text-gray-400/[60%]"
           html={product.descriptionHtml}
         />
       ) : null}
-      <div className="mb-4 flex items-center w-full justify-center text-black">
-        <MinusIcon
-          onClick={decreaseQuantity}
-          className=" border-black border rounded-l-3xl px-4  py-1 h-8 cursor-pointer"
-        />
-        <span className=" border-t pt-1 px-2 text-lg h-8 border-b border-black w-10 flex justify-center items-center">
-          {quantity}
-        </span>
-        <PlusIcon
-          onClick={increaseQuantity}
-          className=" border border-black rounded-r-3xl px-4 py-1 h-8 cursor-pointer"
+      {images.length > 1 ? (
+        <ul className="my-12 flex items-center justify-center gap-2 overflow-auto py-1 lg:mb-0">
+          {images.map((image, index) => {
+            const isActive = index === imageIndex;
+            const imageSearchParams = new URLSearchParams(searchParams.toString());
+
+            imageSearchParams.set("image", index.toString());
+
+            return (
+              <li key={index} className="h-20 w-20">
+                <Link
+                  aria-label="Enlarge product image"
+                  href={createUrl(pathname, imageSearchParams)}
+                  scroll={false}
+                  className="h-full w-full"
+                >
+                  <GridTileImage
+                    alt={image.altText}
+                    src={productiamge}
+                    width={80}
+                    height={80}
+                    active={isActive}
+                  />
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      ) : null}
+      <div className="mb-4 mt-4 flex items-center w-full justify-center text-black  gap-2">
+        <div className="relative flex w-32 items-center justify-center  bg-white border-2 border-black p-3 font-black text-stroke text-stroke-2 text-black  uppercase hover:opacity-90">
+          {" "}
+          <MinusIcon onClick={decreaseQuantity} className="px-2 cursor-pointer" />
+          <span className="  w-20 text-xl flex justify-center items-center">{quantity}</span>
+          <PlusIcon onClick={increaseQuantity} className=" px-2 cursor-pointer" />
+        </div>
+
+        <AddToCart
+          product={product}
+          variants={product.variants}
+          availableForSale={product.availableForSale}
+          quantity={quantity}
         />
       </div>
-      <AddToCart
-        product={product}
-        variants={product.variants}
-        availableForSale={product.availableForSale}
-        quantity={quantity}
-      />
     </>
   );
 }

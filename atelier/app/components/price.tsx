@@ -2,17 +2,15 @@ import clsx from "clsx";
 
 const Price = ({
   price,
-  className,
-  currencyCodeClassName,
 }: {
   price: string | number;
   className?: string;
   currencyCode?: string;
   currencyCodeClassName?: string;
 } & React.ComponentProps<"p">) => (
-  <p suppressHydrationWarning={true} className={className}>
+  <p suppressHydrationWarning={true}>
     $ {price}
-    <span className={clsx("ml-1 inline", currencyCodeClassName)}></span>
+    <span className={clsx("ml-1 inline")}></span>
   </p>
 );
 

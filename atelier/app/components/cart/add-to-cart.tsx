@@ -70,7 +70,7 @@ export function AddToCart({
           });
         }}
         className={clsx(
-          "relative flex w-full items-center justify-center rounded-full bg-primario p-4 tracking-wide text-white hover:opacity-90",
+          "relative flex w-full items-center justify-center  bg-white border-2 border-primario p-4 font-black text-stroke text-stroke-2 text-primario tracking-widest uppercase hover:opacity-90",
           {
             "cursor-not-allowed opacity-60 hover:opacity-60":
               !availableForSale || !selectedVariantId,

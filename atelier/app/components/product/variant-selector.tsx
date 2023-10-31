@@ -42,13 +42,14 @@ export function VariantSelector({
   }));
 
   return options.map((option) => (
-    <dl className="mb-8" key={option.id}>
-      <dt className="mb-4 text-sm uppercase tracking-wide text-black/80 font-semibold">
+    <dl className="mb-8 border-t-2 pt-4" key={option.id}>
+      <dt className="mb-4 text-sm uppercase tracking-wide text-gray-500/40 font-semibold">
         {option.title}
       </dt>
       <dd className="flex flex-wrap gap-3">
         {option.values.map((value: any) => {
           const optionNameLowerCase = option.title.toLowerCase();
+          const isColorOption = optionNameLowerCase === "color";
 
           // Base option params on current params so we can preserve any other param state in the url.
           const optionSearchParams = new URLSearchParams(searchParams.toString());
@@ -80,29 +81,46 @@ export function VariantSelector({
 
           // The option is active if it's in the url params.
           const isActive = searchParams.get(optionNameLowerCase) === value;
-
+          // Obtener el color representado por el valor
+          let colorSquare = null;
+          if (optionNameLowerCase === "color") {
+            colorSquare = (
+              <span
+                className="w-12 h-12 inline-block "
+                style={{ backgroundColor: value }}
+                title={value}
+              ></span>
+            );
+          }
           return (
-            <button
-              key={value}
-              aria-disabled={!isAvailableForSale}
-              disabled={!isAvailableForSale}
-              onClick={() => {
-                router.replace(optionUrl, { scroll: false });
-              }}
-              title={`${option.title} ${value}${!isAvailableForSale ? " (Out of Stock)" : ""}`}
-              className={clsx(
-                "flex min-w-[48px] items-center justify-center rounded-sm border text-white bg-primario px-3 pt-2 pb-1 text-sm border-terciario ",
-                {
-                  "cursor-default ring-2 ring-primario": isActive,
-                  "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-primario ":
-                    !isActive && isAvailableForSale,
-                  "relative z-10 cursor-not-allowed overflow-hidden bg-neutral-100 text-neutral-500 ring-1 ring-neutral-300 before:absolute before:inset-x-0 before:-z-10 before:h-px before:-rotate-45 before:bg-neutral-300 before:transition-transform dark:bg-neutral-300 dark:text-neutral-400 dark:ring-neutral-700 before:dark:bg-neutral-700":
-                    !isAvailableForSale,
-                }
-              )}
-            >
-              {value}
-            </button>
+            <div key={value} className="flex ">
+              <div className="w-full h-full flex flex-col justify-center items-center">
+                {colorSquare}
+                <button
+                  aria-disabled={!isAvailableForSale}
+                  disabled={!isAvailableForSale}
+                  onClick={() => {
+                    router.replace(optionUrl, { scroll: false });
+                  }}
+                  title={`${option.title} ${value}${!isAvailableForSale ? " (Out of Stock)" : ""}`}
+                  className={clsx(
+                    "flex min-w-[48px] items-center justify-center rounded-full  text-primario bg-white px-3 mt-2 pt-1 pb-1 text-sm border-primario",
+                    {
+                      "color-button rounded-none border-none outline-none text-gray-400 opacity-40 hover:ring-transparent":
+                        isColorOption,
+                      "size-button": !isColorOption,
+                      "cursor-default ring-2 ring-primario": isActive,
+                      "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-primario":
+                        !isActive && isAvailableForSale,
+                      "relative z-10 cursor-not-allowed overflow-hidden bg-neutral-100 text-neutral-500 ring-1 ring-neutral-300 before:absolute before:inset-x-0 before:-z-10 before:h-px before:-rotate-45 before:bg-neutral-300 before:transition-transform  dark:text-neutral-400 before:dark:bg-neutral-400":
+                        !isAvailableForSale,
+                    }
+                  )}
+                >
+                  {value}
+                </button>
+              </div>
+            </div>
           );
         })}
       </dd>

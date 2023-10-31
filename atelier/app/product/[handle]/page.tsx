@@ -76,7 +76,7 @@ export default async function ProductPage({ params }: { params: { handle: string
       />
       <div className="mx-auto max-w-screen-2xl px-4 ">
         <div className="pt-12">
-          <div className="flex flex-col rounded-lg border-2 mt-24  border-terciario bg-white p-8 dark:border-terciario dark:bg-transparent md:p-12 lg:flex-row lg:gap-8">
+          <div className="flex flex-col rounded-lg  mt-24   bg-white p-8  dark:bg-transparent md:p-12 lg:flex-row lg:gap-8">
             <div className="h-full w-full basis-full lg:basis-4/6 ">
               <Gallery
                 images={product.images.map((image: any) => ({
@@ -87,7 +87,13 @@ export default async function ProductPage({ params }: { params: { handle: string
             </div>
 
             <div className="basis-full lg:basis-2/6">
-              <ProductDescription product={product} />
+              <ProductDescription
+                product={product}
+                images={product.images.map((image: any) => ({
+                  src: image.url,
+                  altText: image.altText,
+                }))}
+              />
             </div>
           </div>
           <Suspense>
@@ -105,8 +111,10 @@ async function RelatedProducts({ id }: { id: string }) {
   if (!relatedProducts.length) return null;
 
   return (
-    <div className="py-8 w-full">
-      <h2 className="mb-4 text-2xl font-bold text-black">Productos que pueden interesarte !</h2>
+    <div className="py-8 w-full border-t-2 border-gray-400/40 mt-10">
+      <h2 className="mb-4 text-xl tracking-wider text-center text-gray-400/80">
+        Productos relacionados
+      </h2>
       <ul className="flex flex-col md:flex-row w-full gap-4 overflow-x-auto justify-evenly pt-1">
         {relatedProducts.map((product) => (
           <li
