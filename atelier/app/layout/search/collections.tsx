@@ -8,7 +8,7 @@ import { listProducts } from "@/app/redux/actions/productActions";
 import { Product } from "@/app/types/general";
 
 const skeleton = "mb-3 h-4 w-5/6 animate-pulse rounded";
-const activeAndTitles = "bg-neutral-800 dark:bg-neutral-300";
+const activeAndTitles = "bg-neutra dark:bg-neutral-300";
 const items = "bg-neutral-400 dark:bg-neutral-700";
 
 export default function Collections() {
@@ -50,12 +50,12 @@ export default function Collections() {
     >
       <div className="w-full  flex flex-col md:pt-24 pt-10 md:pb-12 pb-8 items-center text-black justify-center max-w-screen">
         <h3 className="md:mt-12 opacity-70 text-sm uppercase tracking-widest">Categorias</h3>
-        <ul className="flex md:gap-4 mx-4 flex-col md:flex-row">
+        <ul className="flex md:gap-4 mx-4 items-center flex-col md:flex-row">
           <li>
             <button
               onClick={() => setSelectedCategory("")}
               className={clsx(
-                "flex min-w-[190px] my-2 items-center justify-center  border px-2 pt-2 pb-1 text-sm tracking-wider md:px-8 l-800  text-gray-400/60 uppercase",
+                "flex min-w-[190px] md:my-2 items-center justify-center  border px-2 pt-2 pb-1 text-sm tracking-wider md:px-8   text-gray-400/60 uppercase",
                 "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-primario focus:bg-primario focus:text-white "
               )}
             >
@@ -66,7 +66,7 @@ export default function Collections() {
             <button
               onClick={() => setSelectedCategory("Camisas")}
               className={clsx(
-                "flex min-w-[190px] my-2 items-center justify-center  border px-2 pt-2 pb-1 text-sm tracking-wider md:px-8 l-800  text-gray-400/60 uppercase",
+                "flex min-w-[190px] md:my-2 items-center justify-center  border px-2 pt-2 pb-1 text-sm tracking-wider md:px-8   text-gray-400/60 uppercase",
                 "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-primario focus:bg-primario focus:text-white"
               )}
             >
@@ -77,7 +77,7 @@ export default function Collections() {
             <button
               onClick={() => setSelectedCategory("Accesorios")}
               className={clsx(
-                "flex min-w-[190px] my-2 items-center justify-center  border px-2 pt-2 pb-1 text-sm tracking-wider md:px-8 l-800 text-gray-400/60 uppercase",
+                "flex min-w-[190px] mdÑmy-2 items-center justify-center  border px-2 pt-2 pb-1 text-sm tracking-wider md:px-8  text-gray-400/60 uppercase",
                 "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-primario focus:bg-primario focus:text-white"
               )}
             >

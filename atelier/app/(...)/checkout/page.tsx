@@ -47,18 +47,18 @@ function Checkout() {
 
   return (
     <div className="">
-      <div className="flex flex-col !font-atlas-grotesk-medium   md:min-h-[80vh] pt-16 md:pt-24 h-full  rounded-lg border border-terciario bg-white p-4 text-black dark:terciario md:p-0 lg:flex-row lg:gap-8 ">
-        <aside className="border-l md:w-1/2 md:pt-10 md:order-last  rounded-lg md:rounded-none  border-terciario   py-4 px-2 w-full">
+      <div className="flex flex-col !font-atlas-grotesk-medium   md:min-h-[80vh] pt-0 md:pt-24 h-full  rounded-lg  bg-white p-4 text-black dark:terciario md:p-0 lg:flex-row lg:gap-8 ">
+        <aside className="border-l md:w-1/2 md:pt-10 md:order-last  rounded-lg md:rounded-none    py-4 px-2 w-full">
           <details
             className={`custom-transition md:hidden ${
               isOpen ? "max-h-[1000px] opacity-100" : "max-h-10 opacity-100"
             }`}
           >
-            <summary className="flex items-center  " onClick={toggleDetails}>
+            <summary className="flex items-center justify-center" onClick={toggleDetails}>
               <span className="h-5 w-5 mr-2">
                 <ShoppingCartIcon />
               </span>
-              <span className="text-blue-600 text-sm ">Mostrar</span>
+              <span className="text-blue-600 text-sm pt-2 ">Mostrar</span>
             </summary>
             <div
               className={`mt-8 custom-transition gap-2 ${
@@ -143,7 +143,7 @@ function Checkout() {
           </div>
         </aside>
         <div className="md:w-1/2 md:flex md:pt-10 md:justify-end max-w-screen">
-          <div className="mb-4  md:border-none md:w-[550px] border   border-gray-400/80">
+          <div className="mb-4  md:border-none md:w-[550px] ">
             {/* Pestañas */}
             <div className="mb-4 flex items-center ">
               <button

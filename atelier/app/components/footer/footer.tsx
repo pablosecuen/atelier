@@ -70,7 +70,7 @@ export default async function Footer() {
           <Social strokeColor="white" />
         </div>
       </div>
-      <div className="h-28 border-t-2 border-white/40 text-xs  md:text-md font-semibold flex justify-between  items-center max-w-7xl mx-auto">
+      <div className="h-28 border-t-2 border-white/40 text-xs  md:text-md font-semibold flex justify-between  items-center max-w-7xl mx-auto px-12 md:px-0">
         <span>NECESITAS AYUDA?</span>
         <button className="md:py-4 py-2  px-4 md:px-16 border-2 border-terciario font-bold rounded-full ">
           CONTACTANOS
