@@ -17,10 +17,10 @@ function Terms() {
       </p>
       <p className={classP}>
         El responsable de la recopilación, procesamiento y almacenamiento de tu información personal
-        en este sitio web es Atelier. Para ponerte en contacto con nosotros en relación con datos
+        en este sitio web es Andrews. Para ponerte en contacto con nosotros en relación con datos
         personales, por favor, consulta la siguiente información:
       </p>
-      <span className={classP}>ATELIER</span>
+      <span className={classP}>ANDREWS</span>
       <span className={classP}>Direccion:</span>
       <span className={classP}>Codigo postal</span>
       <span className={classP}>Region</span>
@@ -109,7 +109,7 @@ function Terms() {
         de modificar tus cookies. Si desactivas las cookies, es posible que no tengas acceso a
         muchas funciones que hacen que tu experiencia en el sitio sea más eficiente y que algunos de
         nuestros servicios no funcionen correctamente. Sin embargo, aún puedes realizar pedidos
-        poniéndote en contacto con el servicio de atención al cliente en soporte@atelier.com.
+        poniéndote en contacto con el servicio de atención al cliente en soporte@andrews.com.
       </p>
       <h5 className={classh5}>¿REVELAMOS LA INFORMACIÓN QUE RECOPILAMOS A TERCEROS?</h5>
       <p className={classP}>
@@ -131,7 +131,7 @@ function Terms() {
         Para modificar tu información personal, puedes cambiarla fácilmente en la sección "Mi
         cuenta" en nuestro sitio web. Para eliminar toda tu información de la cuenta en línea de
         nuestra base de datos (derecho al olvido), inicia sesión en la sección
-        https://www.atelier.com/profile/info de nuestro sitio y presiona "eliminar". Ten en cuenta
+        https://www.andrews.com/profile/info de nuestro sitio y presiona "eliminar". Ten en cuenta
         que podemos mantener información sobre una transacción de venta individual para atender esa
         transacción y para fines de registro.
       </p>
@@ -183,7 +183,7 @@ function Terms() {
         eliminación de tus datos personales de acuerdo con los Artículos 12 a 14 y los Artículos 15
         a 22 del RGPD. Si deseas ejercer este derecho, puedes ponerte en contacto con nosotros:
       </p>
-      <span className={classP}>ATELIER</span>
+      <span className={classP}>ANDREWS</span>
       <span className={classP}>Direccion:</span>
       <span className={classP}>Codigo postal</span>
       <span className={classP}>Region</span>

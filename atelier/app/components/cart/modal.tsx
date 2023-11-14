@@ -62,7 +62,7 @@ export default function CartModal() {
             leaveFrom="translate-x-0"
             leaveTo="translate-x-full"
           >
-            <Dialog.Panel className="fixed bottom-0 right-0 top-0 z-50 flex h-full w-full flex-col border-l border-neutral-200 bg-primario/80 p-6 text-black backdrop-blur-xl dark:border-neutral-200/20 dark:bg-primario/40 dark:text-black md:w-[390px]">
+            <Dialog.Panel className="fixed bottom-0 right-0 top-0 z-50 flex h-full w-full flex-col border-l border-neutral-200 bg-gray-400/50 p-6 text-black backdrop-blur-xl dark:border-neutral-200/20 dark:bg-gray-400/50 dark:text-black md:w-[390px]">
               <div className="flex items-center justify-between">
                 <p className="text-lg font-semibold text-black">Mi Carrito</p>
 
@@ -161,7 +161,7 @@ export default function CartModal() {
                   </div>
                   <a
                     href="/checkout"
-                    className="block w-full rounded-full bg-primario p-3 text-center text-sm font-medium text-black opacity-90 hover:opacity-100"
+                    className="block w-full rounded-full bg-black text-white p-3 text-center text-sm font-medium transition duration:300 hover:translate-y-[2px] opacity-90 hover:opacity-100"
                   >
                     Ir a pagar productos
                   </a>

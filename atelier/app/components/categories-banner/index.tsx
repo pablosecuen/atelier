@@ -9,10 +9,11 @@ import marcas from "@/public/assets/1x/Recurso 5.png";
 function CategoriesBanner() {
   const commonClass =
     " bg-cover bg-center bg-no-repeat md:h-[350px] md:w-[300px] w-32 h-40 flex justify-start items-end p-2  relative cursor-pointer  hover:scale-105 duration-300 transition";
-  const imageClass = "flex flex-col justify-center items-center gap-3";
+  const imageClass =
+    "flex flex-col justify-center items-center gap-3 hover:scale-[105%] cursor-pointer transition duration-300";
   const containerClass =
     " md:px-40 flex flex-col md:flex-row text-black md:h-64 w-full  scale-75 md:scale-100 gap-8";
-  const itemClass = "flex flex-col items-center justify-center";
+  const itemClass = "flex flex-col items-center justify-center ";
   const titleClass = "text-2xl font-bold text-center";
 
   return (

@@ -49,7 +49,9 @@ export function ProductDescription({
   return (
     <>
       <div className=" flex flex-col pb-6  text-black">
-        <h1 className="mb-2 text-3xl font-medium text-black">{product.title}</h1>
+        <h1 className="mb-2 text-3xl font-medium text-black uppercase tracking-tighter">
+          {product.title}
+        </h1>
         <div className="mr-auto w-auto rounded-full bg-white p-2 text-xl font-inter-bold text-black">
           <Price price={product.variants[0].price} currencyCode="$" />
         </div>

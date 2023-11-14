@@ -8,7 +8,7 @@ import LogoSquare from "../logo-square";
 function MisionFooter() {
   const currentYear = new Date().getFullYear();
   const copyrightDate = 2023 + (currentYear > 2023 ? `-${currentYear}` : "");
-  const copyrightName = "ATELIER";
+  const copyrightName = "ANDREWS";
   const skeleton = "w-full h-6 animate-pulse rounded bg-neutral-200 dark:bg-neutral-700";
   return (
     <div className="w-full h-[40vh]">

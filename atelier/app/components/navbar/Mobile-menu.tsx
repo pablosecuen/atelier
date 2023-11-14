@@ -7,7 +7,7 @@ import { Menu } from "@/app/types/general";
 import Search from "./search";
 const currentYear = new Date().getFullYear();
 const copyrightDate = 2023 + (currentYear > 2023 ? `-${currentYear}` : "");
-const copyrightName = "ATELIER";
+const copyrightName = "ANDREWS";
 
 export default function MobileMenu({ menu }: { menu: Menu[] }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -45,7 +45,7 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
             leaveFrom="translate-x-0"
             leaveTo="translate-x-[-100%]"
           >
-            <Dialog.Panel className="fixed backdrop-blur-xl bottom-0 left-0 right-0 top-0 flex h-full w-full md:w-[350px] flex-col justify-between bg-white pb-6 dark:bg-primario/50 bg-primario/50">
+            <Dialog.Panel className="fixed backdrop-blur-xl bottom-0 left-0 right-0 top-0 flex h-full w-full md:w-[350px] flex-col justify-between bg-white pb-6 dark:bg-gray-400/50 bg-primario/50">
               <div className="p-4">
                 <button
                   className="mb-4 flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors dark:border-neutral-700 dark:text-black"

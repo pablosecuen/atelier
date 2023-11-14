@@ -10,9 +10,6 @@ import { Menu } from "@/app/types/general";
 import Search from "./search";
 import OpenCart from "../cart/Open-cart";
 import Banner from "../banner";
-import UseAnimations from "react-useanimations";
-import instagram from "react-useanimations/lib/instagram";
-import facebook from "react-useanimations/lib/facebook";
 import Social from "../social/social";
 export default function Navbar() {
   const pathname = usePathname();

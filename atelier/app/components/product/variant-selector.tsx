@@ -112,7 +112,7 @@ export function VariantSelector({
                       "cursor-default ring-2 ring-primario": isActive,
                       "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-primario":
                         !isActive && isAvailableForSale,
-                      "relative z-10 cursor-not-allowed overflow-hidden bg-neutral-100 text-neutral-500 ring-1 ring-neutral-300 before:absolute before:inset-x-0 before:-z-10 before:h-px before:-rotate-45 before:bg-neutral-300 before:transition-transform  dark:text-neutral-400 before:dark:bg-neutral-400":
+                      "relative z-10 cursor-not-allowed overflow-hidden bg-neutral-100 text-neutral-500  before:absolute  before:-z-10 before:h-px before:-rotate-45 before:bg-neutral-300 before:transition-transform  dark:text-neutral-400 before:dark:bg-neutral-400":
                         !isAvailableForSale,
                     }
                   )}
