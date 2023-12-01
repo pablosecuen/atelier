@@ -1,9 +1,7 @@
 import Link from "next/link";
 import { Suspense } from "react";
 import LogoSquare from "../logo-square";
-
 import FooterMenu from "./footer-menu";
-
 import { menu, menuInformation } from "../lib/utils";
 import Social from "../social/social";
 

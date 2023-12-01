@@ -81,6 +81,9 @@ module.exports = {
           'brandstoreblack': "url('../public/assets/img_BRAND STORE.png')",
           'aboutblack': "url('../public/assets/img_ABOUT-OUR-SHIRT.png')",
           'sustentabilityblack': "url('../public/assets/img_SUSTENTABILITY.png')",
+          'sutentabilitybg': "url('../public/assets/Recurso4.png')",
+          'sutentabilitybg2': "url('../public/assets/Recurso7.png')",
+          'sutentabilitybg3': "url('../public/assets/Recurso10.png')",
       },
       
     },
