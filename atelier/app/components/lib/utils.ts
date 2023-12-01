@@ -18,13 +18,15 @@ export const mobileMenu: { title: string; path: string }[] = [
     {title: 'ACCESORIES', path: '/shop?q=accesories'},
     {title: 'NOSOTROS', path: '/nosotros'},
     {title: 'TERMINOS', path: '/terms'},
+  
 ]
 
 export const menu: { title: string; path: string }[] = [
     {title: 'HOME', path: '/'},
     {title: 'SHIRTS', path: '/shop?q=shirts'},
     {title: 'ACCESORIES', path: '/shop?q=accesories'},
-    {title: 'NOSOTROS', path: '/nosotros'},
+    {title: 'SUSTENTABILITY', path: '/sustentability'},
+   
 
 
 

@@ -35,7 +35,7 @@ const Sustentability = () => {
           <span className="text-primario uppercase font-atlas-grotesk-bold tracking-[15px] ">
             SUSTENTABILITY
           </span>
-          <p className="text-black text-3xl pt-10">
+          <p className="text-black text-3xl pt-10 text-justify">
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euLorem
             ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
             tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
