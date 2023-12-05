@@ -6,8 +6,8 @@ import Shirts from "./components/our-shirts";
 const Sustentability = () => {
   return (
     <div
-      className="min-h-screen text-white flex flex-col items-center bg-white
-     z-40 pt-16 max-w-screen overflow-hidden"
+      className="min-h-screen text-white  flex flex-col items-center bg-white
+     z-40 md:pt-16 max-w-screen overflow-hidden"
     >
       <div className="flex flex-col bg-sutentabilitybg justify-center items-center gap-6 h-[50vh] w-full  relative overflow-hidden">
         <div className="w-full h-screen bg-black/70 bg-cover bg-center absolute top-0 left-0 z-40"></div>
@@ -31,11 +31,11 @@ const Sustentability = () => {
               "linear-gradient(to top right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%)",
           }}
         ></div>
-        <div className="text-xl md:text-5xl md:w-3/4 h-3/4 border-4 bg-white border-black text-white  flex flex-col justify-center items-center text-center z-40 p-20">
-          <span className="text-primario uppercase font-atlas-grotesk-bold tracking-[15px] ">
+        <div className=" md:text-5xl md:w-3/4 md:h-3/4 h-auto  border-2 bg-white border-black text-white  flex flex-col justify-center items-center text-center z-40 md:p-20 p-4 mx-2">
+          <span className="text-primario uppercase font-atlas-grotesk-bold   text-2xl">
             SUSTENTABILITY
           </span>
-          <p className="text-black text-3xl pt-10 text-justify">
+          <p className="text-black md:text-3xl pt-4 md:pt-10 text-justify">
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euLorem
             ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
             tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
