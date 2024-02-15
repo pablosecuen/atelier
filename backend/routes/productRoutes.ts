@@ -7,9 +7,9 @@ import upload from '../multer';
 
 const router = express.Router();
 
-router.post('/create', productController.addProduct);
+router.post('/create', upload.array('images'), productController.addProduct);
 
-router.get('/', upload.array('images'), productController.getProductsWithStock);
+router.get('/',  productController.getProductsWithStock);
 
 router.get('/web', productController.getAllProductsFromDb);
 
