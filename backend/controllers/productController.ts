@@ -88,11 +88,13 @@ const updateProductsWithAdditionalProperties = async (req: Request, res: Respons
 };
 
 const addProduct = async (req: Request, res: Response) => {
+  console.log("body", req.body);
+  console.log("images",req.files);
+
   try {
-    console.log("Inicio de la función addProduct");
     const files = req.files as UploadedFile[]; 
     if (!files || files.length === 0) {
-      console.log("No se han subido archivos");
+
       return res.status(400).json({ success: false, message: "No se han subido archivos" });
     }
 
@@ -107,7 +109,7 @@ const addProduct = async (req: Request, res: Response) => {
       if (fs.existsSync(file.path)) {
         await unlinkAsync(file.path);
       } else {
-        console.error("El archivo no existe:", file.path);
+   
       }
     });
 
@@ -115,19 +117,28 @@ const addProduct = async (req: Request, res: Response) => {
 
     const newProduct = await Product.create({
       title: req.body.title,
-      handle: req.body.title,
+      handle: req.body.title.replace(/\s+/g, '-').toLowerCase(),
+      slug: req.body.title.replace(/\s+/g, '-').toLowerCase(),
       description: req.body.description,
       size: req.body.size,
       color: req.body.color,
       RetailPrice: req.body.retailPrice,
-      getPercentOff: req.body.getPercentOff,
+      GetPercentOff: req.body.getPercentOff,
       promoPrice: req.body.promoPrice,
       category: req.body.category,
-      quantity: req.body.quantity,
+      quantity: req.body.StockQty,
       imagesURL: uploadedImageUrls,
+      featuredImage: uploadedImageUrls[0],
+      descriptionHtml: `<p>${req.body.description}</p>`,
       SKU: req.body.SKU,
       StyleName: req.body.styleName,
       UPC: req.body.UPC,
+      stock: req.body.StockQty,
+      seo: {
+        title: req.body.title,
+        description: req.body.description,
+        keywords: req.body.category,
+      }
     });
 
     console.log("Fin de la función addProduct");
