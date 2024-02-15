@@ -3,6 +3,23 @@ import axios from 'axios';
 import cloudinary from 'cloudinary';
 import { Product } from '../models/product'; 
 require('dotenv').config();
+import fs from 'fs';
+import { promisify } from 'util';
+
+const unlinkAsync = promisify(fs.unlink);
+
+interface UploadedFile {
+  fieldname: string;
+  originalname: string;
+  encoding: string;
+  mimetype: string;
+  size: number;
+  destination: string;
+  filename: string;
+  path: string;
+  buffer: Buffer;
+}
+
 const getProductsWithStock = async (req: Request, res: Response) => {
   try {
     const headers = {
@@ -77,61 +94,63 @@ const updateProductsWithAdditionalProperties = async (req: Request, res: Respons
 };
 
 const addProduct = async (req: Request, res: Response) => {
-  const {
-    title,
-    handle,
-    size,
-    color,
-    retailPrice,
-    getPercentOff,
-    promoPrice,
-    category,
-    quantity,
-  } = req.body;
-  console.log(req.body);
-  let imageUrls: string[] = [];
-
   try {
-
-
-
-    if (req.files && (Array.isArray(req.files) ? req.files.length > 0 : Object.keys(req.files).length > 0)) {
-
-      const imageUploadPromises = Array.isArray(req.files)
-        ? req.files.map((image) => cloudinary.v2.uploader.upload(image.path))
-        : Object.values(req.files).flatMap((images: Express.Multer.File[]) => images.map((image) => cloudinary.v2.uploader.upload(image.path)));
-
-
-      const uploadedImages = await Promise.all(imageUploadPromises);
-
-      imageUrls = uploadedImages.map((image) => image.url);
+    console.log("Inicio de la función addProduct");
+    // Verificar si se han subido archivos
+    const files = req.files as UploadedFile[]; // Declaración de tipo explícita
+    if (!files || files.length === 0) {
+      console.log("No se han subido archivos");
+      return res.status(400).json({ success: false, message: "No se han subido archivos" });
     }
 
-
-    const newProduct = await Product.create({
-      title,
-      handle,
-      images: imageUrls, 
-      size,
-      color,
-      retailPrice,
-      getPercentOff,
-      promoPrice,
-      category,
-      quantity,
+    // Procesar los archivos subidos
+    const uploadPromises = files.map(async (file) => {
+      // Subir archivo a Cloudinary
+      console.log("Subiendo archivo a Cloudinary:", file.originalname);
+      const uploadedImage = await cloudinary.v2.uploader.upload(file.path);
+      console.log("URL de imagen subida:", uploadedImage.url);
+      // Guardar la URL del archivo subido
+      return uploadedImage.url;
     });
 
-    // La instancia de nuevo producto se crea correctamente en la base de datos
+    const uploadedImageUrls = await Promise.all(uploadPromises);
+
+    // Eliminar archivos locales
+    const deletePromises = files.map(async (file) => {
+      if (fs.existsSync(file.path)) {
+        await unlinkAsync(file.path);
+      } else {
+        console.error("El archivo no existe:", file.path);
+      }
+    });
+
+    await Promise.all(deletePromises);
+
+    // Crear nuevo producto en la base de datos
+    const newProduct = await Product.create({
+      title: req.body.title,
+      handle: req.body.title,
+      description: req.body.description,
+      size: req.body.size,
+      color: req.body.color,
+      RetailPrice: req.body.retailPrice,
+      getPercentOff: req.body.getPercentOff,
+      promoPrice: req.body.promoPrice,
+      category: req.body.category,
+      quantity: req.body.quantity,
+      imagesURL: uploadedImageUrls,
+      SKU: req.body.SKU,
+      StyleName: req.body.styleName,
+      UPC: req.body.UPC,
+    });
+
+    console.log("Fin de la función addProduct");
     res.status(201).json({ success: true, message: "Producto agregado exitosamente", data: newProduct });
   } catch (error) {
     console.error("Error al agregar el producto:", error);
     res.status(500).json({ success: false, message: "Error al agregar el producto" });
   }
 };
-
-
-
-
 
 
 

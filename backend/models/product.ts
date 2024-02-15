@@ -21,9 +21,9 @@ const Product = sequelize.define('Product', {
      defaultValue: () => uuidv4(),
     primaryKey: true
     },
-      imageURL: {
-    type: DataTypes.STRING, 
-    allowNull: true 
+  imagesURL: {
+    type: DataTypes.ARRAY(DataTypes.STRING),
+    allowNull: true
   },
   handle: {
     type: DataTypes.STRING,
@@ -68,7 +68,11 @@ const Product = sequelize.define('Product', {
     },
     GetPercentOff: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: true
+  },
+   promoPrice: {
+    type: DataTypes.STRING,
+    allowNull: true
   },
 });
 
