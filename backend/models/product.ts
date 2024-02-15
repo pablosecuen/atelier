@@ -29,6 +29,22 @@ const Product = sequelize.define('Product', {
     type: DataTypes.STRING,
     allowNull: false
   },
+    slug: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+    category: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+    descriptionHtml: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+       seo: {
+    type: DataTypes.JSON,
+    allowNull: false
+  },
   availableForSale: {
     type: DataTypes.BOOLEAN,
     defaultValue: true
@@ -40,12 +56,6 @@ const Product = sequelize.define('Product', {
   description: {
     type: DataTypes.TEXT,
     allowNull: false
-  },
-  descriptionHtml: {
-    type: DataTypes.TEXT,
-  },
-  tags: {
-    type: DataTypes.ARRAY(DataTypes.STRING),
   },
   updatedAt: {
     type: DataTypes.DATE,
@@ -71,6 +81,10 @@ const Product = sequelize.define('Product', {
     allowNull: true
   },
    promoPrice: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+      stock: {
     type: DataTypes.STRING,
     allowNull: true
   },
