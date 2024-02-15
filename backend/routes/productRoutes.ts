@@ -9,6 +9,8 @@ const router = express.Router();
 
 router.post('/create', productController.addProduct);
 
-router.get('/',upload.array('images'), productController.getProductsWithStock);
+router.get('/', upload.array('images'), productController.getProductsWithStock);
+
+router.get('/web', productController.getAllProductsFromDb);
 
 export default router;

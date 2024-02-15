@@ -64,26 +64,20 @@ const getProductsWithStock = async (req: Request, res: Response) => {
 
 const updateProductsWithAdditionalProperties = async (req: Request, res: Response) => {
   try {
-    // Obtener las propiedades adicionales del cuerpo de la solicitud
     const { productId, additionalProperties } = req.body;
-
-    // Verificar si productId y additionalProperties están presentes
     if (!productId || !additionalProperties) {
       return res.status(400).json({ message: 'Se requiere productId y additionalProperties' });
     }
 
-    // Buscar el producto en la base de datos
     const product = await Product.findByPk(productId);
 
-    // Verificar si el producto existe
+
     if (!product) {
       return res.status(404).json({ message: 'Producto no encontrado' });
     }
 
-    // Actualizar el producto con las propiedades adicionales
     Object.assign(product, additionalProperties);
 
-    // Guardar el producto actualizado en la base de datos
     await product.save();
 
     res.status(200).json({ message: 'Producto actualizado exitosamente' });
@@ -96,26 +90,19 @@ const updateProductsWithAdditionalProperties = async (req: Request, res: Respons
 const addProduct = async (req: Request, res: Response) => {
   try {
     console.log("Inicio de la función addProduct");
-    // Verificar si se han subido archivos
-    const files = req.files as UploadedFile[]; // Declaración de tipo explícita
+    const files = req.files as UploadedFile[]; 
     if (!files || files.length === 0) {
       console.log("No se han subido archivos");
       return res.status(400).json({ success: false, message: "No se han subido archivos" });
     }
 
-    // Procesar los archivos subidos
     const uploadPromises = files.map(async (file) => {
-      // Subir archivo a Cloudinary
-      console.log("Subiendo archivo a Cloudinary:", file.originalname);
       const uploadedImage = await cloudinary.v2.uploader.upload(file.path);
-      console.log("URL de imagen subida:", uploadedImage.url);
-      // Guardar la URL del archivo subido
       return uploadedImage.url;
     });
 
     const uploadedImageUrls = await Promise.all(uploadPromises);
 
-    // Eliminar archivos locales
     const deletePromises = files.map(async (file) => {
       if (fs.existsSync(file.path)) {
         await unlinkAsync(file.path);
@@ -126,7 +113,6 @@ const addProduct = async (req: Request, res: Response) => {
 
     await Promise.all(deletePromises);
 
-    // Crear nuevo producto en la base de datos
     const newProduct = await Product.create({
       title: req.body.title,
       handle: req.body.title,
@@ -152,7 +138,15 @@ const addProduct = async (req: Request, res: Response) => {
   }
 };
 
+const getAllProductsFromDb = async (req: Request, res: Response) => {
+  try {
+    const products = await Product.findAll();
+    res.status(200).json(products);
+  } catch (error) {
+    console.error('Error al obtener productos:', error);
+    res.status(500).json({ message: 'Error interno del servidor' });
+  }
+};
 
 
-
-export default { updateProductsWithAdditionalProperties,getProductsWithStock, addProduct };
+export default { updateProductsWithAdditionalProperties,getProductsWithStock, addProduct, getAllProductsFromDb  };
