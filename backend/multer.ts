@@ -1,5 +1,5 @@
-import { Request, Response } from 'express';
-import multer, { Multer } from 'multer'; // Importa Multer desde multer
+import { Request } from 'express';
+import multer from 'multer';
 
 const storage = multer.diskStorage({
   destination: function (req: Request, file: Express.Multer.File, cb: Function) {
