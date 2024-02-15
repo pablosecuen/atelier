@@ -20,7 +20,6 @@ cloudinary.config({
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(uploadMiddleware.array('images')) // Agregar middleware de Multer
 app.use(cors()); // Agregar middleware de CORS
 
 app.use('/api/products', productRoutes);
