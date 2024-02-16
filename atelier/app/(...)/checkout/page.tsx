@@ -70,24 +70,24 @@ function Checkout() {
                   <div>
                     <div className="relative">
                       <Image
-                        src={item.images[0].src}
+                        src={item.imagesURL[0]}
                         alt={item.title}
                         width={80}
                         height={80}
                         className="border border-gray-500/80 rounded-xl"
                       />
                       <span className="absolute top-0  right-0 z-10 text-sm px-[6px] -translate-y-[50%] bg-gray shadow-inner bg-gray-400 shadow-white rounded-full">
-                        {item.variants[0].quantity}
+                        {item.quantity}
                       </span>
                     </div>
                   </div>
                   <div className="flex flex-col w-full px-6">
                     <span>{item.title}</span>
-                    <span className="text-sm opacity-70">{item.variants[0].title}</span>
+                    <span className="text-sm opacity-70">{item.title}</span>
                   </div>
                   <div>
                     <span className="font-semibold tracking-wide w-auto flex text-sm">
-                      ${item.variants[0].price}
+                      ${item.price}
                     </span>
                   </div>
                 </div>
@@ -109,24 +109,24 @@ function Checkout() {
                 <div>
                   <div className="relative w-20 h-20">
                     <Image
-                      src={item.images[0].src}
+                      src={item.imagesURL[0]}
                       alt={item.title}
                       width={80}
                       height={80}
                       className="border border-gray-500/80 rounded-xl bg-[#181818] w-full h-full "
                     />
                     <span className="absolute top-0 right-0 z-10 text-sm px-[6px] -translate-y-[50%] bg-gray shadow-inner bg-gray-400 shadow-white rounded-full">
-                      {item.variants[0].quantity}
+                      {item.quantity}
                     </span>
                   </div>
                 </div>
                 <div className="flex flex-col w-full px-6">
                   <span>{item.title}</span>
-                  <span className="text-sm opacity-70">{item.variants[0].title}</span>
+                  <span className="text-sm opacity-70">{item.title}</span>
                 </div>
                 <div>
                   <span className="font-semibold tracking-wide w-auto flex text-sm">
-                    ${item.variants[0].price}
+                    ${item.price}
                   </span>
                 </div>
               </div>
