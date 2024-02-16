@@ -1,10 +1,19 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import productimage from "@/public/assets/product.webp";
-import { products } from "@/app/api/fakedb";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/app/redux/store";
+import { listProducts } from "@/app/redux/actions/productActions";
 import Link from "next/link";
 
 function Incoming() {
+  const dispatch: AppDispatch = useDispatch();
+  const { products } = useSelector((state: RootState) => state.products);
+
+  useEffect(() => {
+    dispatch(listProducts());
+  }, [dispatch]);
   const lastThreeProducts = products.slice(-3);
   return (
     <>

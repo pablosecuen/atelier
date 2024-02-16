@@ -4,11 +4,19 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createUrl } from "../lib/utils";
 import ModalSearch from "./modal-search";
-import { products } from "@/app/api/fakedb";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/app/redux/store";
+import { listProducts } from "@/app/redux/actions/productActions";
 import { useEffect, useRef, useState } from "react";
 import { Product } from "@/app/types/general";
 export default function Search() {
   const router = useRouter();
+  const dispatch: AppDispatch = useDispatch();
+  const { products } = useSelector((state: RootState) => state.products);
+
+  useEffect(() => {
+    dispatch(listProducts());
+  }, [dispatch]);
   const searchParams = useSearchParams();
   const modalRef = useRef<HTMLDivElement | null>(null);
   const [searchText, setSearchText] = useState("");
