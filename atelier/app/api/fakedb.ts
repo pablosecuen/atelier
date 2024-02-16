@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 
-export const products = [
+/* export const products = [
   {
     title: "Remera Alghodon",
     handle: "remera-alghodon",
@@ -1133,7 +1133,7 @@ export const products = [
 
   },
 
-];
+]; */
 
 
 

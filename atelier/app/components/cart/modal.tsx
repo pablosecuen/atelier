@@ -5,8 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Fragment, useEffect, useRef, useState } from "react";
 import CloseCart from "./close-cart";
-
-import Price from "../price";
 import EditItemQuantityButton from "./edit-item-quantity-button";
 import DeleteItemButton from "./delete-item-button";
 import OpenCart from "./Open-cart";
@@ -21,6 +19,8 @@ type MerchandiseSearchParams = {
 
 export default function CartModal() {
   const { cart, cost } = useSelector((state: RootState) => state.cart);
+
+
   const [isOpen, setIsOpen] = useState(false);
   const quantityRef = useRef(cart?.length);
   const openCart = () => setIsOpen(true);
@@ -82,18 +82,12 @@ export default function CartModal() {
                     {cart?.map((item: any, i: any) => {
                       const merchandiseSearchParams = {} as MerchandiseSearchParams;
 
-                      item.variants[0].selectedOptions.forEach(({ title }: { title: any }) => {
-                        if (title) {
-                          merchandiseSearchParams[title.toLowerCase()] = "1";
-                        }
-                      });
-
                       const merchandiseUrl = createUrl(
                         `/product/${item.handle}`,
                         new URLSearchParams(merchandiseSearchParams)
                       );
 
-                      const image = item.images[0].src;
+                      const image = item.imagesURL[0];
 
                       return (
                         <li
@@ -122,23 +116,19 @@ export default function CartModal() {
                               <div className="flex flex-1 flex-col text-base text-black">
                                 <span className="leading-tight">{item.title}</span>
                                 <span className="leading-tight opacity-60 text-sm ">
-                                  Medida: {item.variants[0].selectedOptions[1].value}
+                                  Medida: {item.size}
                                 </span>
                                 <span className="leading-tight opacity-60 text-sm">
-                                  Color: {item.variants[0].selectedOptions[0].value}
+                                  Color: {item.color}
                                 </span>
                               </div>
                             </Link>
                             <div className="flex h-16 flex-col justify-between">
-                              <div className="text-center text-black">
-                                ${item.variants[0]?.price}
-                              </div>
+                              <div className="text-center text-black">${item.RetailPrice}</div>
                               <div className="ml-auto flex h-9 flex-row items-center rounded-full border border-neutral-200 dark:border-neutral-700">
                                 <EditItemQuantityButton item={item} type="minus" />
                                 <p className="w-6 text-center">
-                                  <span className="w-full text-sm text-black">
-                                    {item.variants[0].quantity}
-                                  </span>
+                                  <span className="w-full text-sm text-black">{item.quantity}</span>
                                 </p>
                                 <EditItemQuantityButton item={item} type="plus" />
                               </div>

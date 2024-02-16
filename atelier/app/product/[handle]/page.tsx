@@ -1,68 +1,43 @@
-import type { Metadata } from "next";
+"use client";
 import { notFound } from "next/navigation";
-import { Suspense } from "react";
-
+import { Suspense, useEffect } from "react";
 import Link from "next/link";
-import { products } from "@/app/api/fakedb";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/app/redux/store";
+import { listProducts } from "@/app/redux/actions/productActions";
 import { Gallery } from "@/app/components/product/gallery";
 import { ProductDescription } from "@/app/components/product/product-description";
 import { GridTileImage } from "@/app/components/grid/tile";
-export const runtime = "edge";
+import GenerateMetadata from "./generate-metadata";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { handle: string };
-}): Promise<Metadata> {
+export default function ProductPage({ params }: { params: { handle: string } }) {
+  const dispatch: AppDispatch = useDispatch();
+  const { products } = useSelector((state: RootState) => state.products);
+
+  console.log(products);
+
+  useEffect(() => {
+    dispatch(listProducts());
+  }, [dispatch]);
+
   const product = products?.find((p) => p.handle === params.handle);
-
+  console.log(product);
   if (!product) return notFound();
-
-  const { url, width, height, alt } = product.featuredImage || {};
-  const indexable = !product.category;
-
-  return {
-    title: product.seo.title || product.title,
-    description: product.seo.description || product.description,
-    robots: {
-      index: indexable,
-      follow: indexable,
-      googleBot: {
-        index: indexable,
-        follow: indexable,
-      },
-    },
-    openGraph: url
-      ? {
-          images: [
-            {
-              url,
-              width,
-              height,
-              alt,
-            },
-          ],
-        }
-      : null,
-  };
-}
-
-export default async function ProductPage({ params }: { params: { handle: string } }) {
-  const product = products.find((p) => p.handle === params.handle);
-
-  if (!product) return notFound();
+  console.log(product);
 
   const productJsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: product.title,
     description: product.description,
-    image: product.images[0],
+    image: product.imagesURL[0],
     offers: {
       "@type": "AggregateOffer",
-      availability: "true" ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+      availability: product.availableForSale
+        ? "https://schema.org/InStock"
+        : "https://schema.org/OutOfStock",
       priceCurrency: "$",
-      price: product.variants[0].price,
+      price: product.price,
     },
   };
 
@@ -74,14 +49,15 @@ export default async function ProductPage({ params }: { params: { handle: string
           __html: JSON.stringify(productJsonLd),
         }}
       />
+      <GenerateMetadata handle={product.handle} />
       <div className="mx-auto max-w-screen-2xl px-4 ">
         <div className="pt-12">
           <div className="flex flex-col rounded-lg  mt-24   bg-white p-8  dark:bg-transparent md:p-12 lg:flex-row lg:gap-8">
             <div className="h-full w-full basis-full lg:basis-4/6 ">
               <Gallery
-                images={product.images.map((image: any) => ({
-                  src: image.url,
-                  altText: image.altText,
+                images={product.imagesURL.map((image: any) => ({
+                  src: image,
+                  altText: image.title,
                 }))}
               />
             </div>
@@ -89,9 +65,9 @@ export default async function ProductPage({ params }: { params: { handle: string
             <div className="basis-full lg:basis-2/6">
               <ProductDescription
                 product={product}
-                images={product.images.map((image: any) => ({
-                  src: image.url,
-                  altText: image.altText,
+                images={product.imagesURL.map((image: any) => ({
+                  src: image,
+                  altText: image.title,
                 }))}
               />
             </div>
@@ -105,7 +81,13 @@ export default async function ProductPage({ params }: { params: { handle: string
   );
 }
 
-async function RelatedProducts({ id }: { id: string }) {
+function RelatedProducts({ id }: { id: string }) {
+  const dispatch: AppDispatch = useDispatch();
+  const { products } = useSelector((state: RootState) => state.products);
+
+  useEffect(() => {
+    dispatch(listProducts());
+  }, [dispatch]);
   const relatedProducts = products.slice(0, 4);
 
   if (!relatedProducts.length) return null;
@@ -126,10 +108,10 @@ async function RelatedProducts({ id }: { id: string }) {
                 alt={product.title}
                 label={{
                   title: product.title,
-                  price: product.variants[0].price,
+                  price: product.price,
                   currencyCode: "$",
                 }}
-                src={product.images[0].src}
+                src={product.imagesURL[0]}
                 fill
                 sizes="(min-width: 1024px) 20vw, (min-width: 768px) 25vw, (min-width: 640px) 33vw, (min-width: 475px) 50vw, 100vw"
               />

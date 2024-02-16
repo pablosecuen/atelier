@@ -1,7 +1,6 @@
 // productActions.ts
 
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
-import { products } from '@/app/api/fakedb';
 import { Product } from '@/app/types/general';
 import axiosInstance from '../axiosInstance';
 type FetchProductsArgs = {
@@ -21,36 +20,11 @@ type CustomSearchArgs = {
 interface ListProductsArgs {
   filters?: any;
 }
-// Acción para listar productos
-/* export const listProducts = createAsyncThunk<Product[], ListProductsArgs | void>(
-  'productActions/listProducts',
-  async (args, { rejectWithValue }) => {
-    console.log(args,'12313123131231313');
-    try {
-      // Verifica si args está definido
-      if (args) {
-        // Aquí puedes usar args para realizar operaciones personalizadas basadas en los argumentos
-        // Por ejemplo, podrías tener un objeto de filtros y usarlo en tu solicitud
-        const response = await axiosInstance.get('/api/product/list', {
-          params: args, // Suponiendo que args.filters contiene tus filtros
-        });
-        return response.data.products;
-      } else {
-        // Si no se proporcionan argumentos, simplemente realiza la solicitud sin filtros
-        const response = await axiosInstance.get('/api/product/list');
-        console.log(response, 'asdasdasdadasdadadsa');
-        return response.data.products;
-      }
-    } catch (error: any) {
-      // Utiliza rejectWithValue para propagar el error con información adicional
-      return rejectWithValue(error.response.data.message);
-    }
-  }
-); */
+
 
 
 //accion de productos para fakedb
-export const listProducts = createAsyncThunk<Product[], ListProductsArgs | void>(
+/* export const listProducts = createAsyncThunk<Product[], ListProductsArgs | void>(
   'productActions/listProducts',
   async (args, { rejectWithValue }) => {
     try {
@@ -70,28 +44,48 @@ export const listProducts = createAsyncThunk<Product[], ListProductsArgs | void>
       return rejectWithValue(error.message);
     }
   }
+); */
+
+export const listProducts = createAsyncThunk<Product[], ListProductsArgs | void>(
+  'productActions/listProducts',
+  async (args, { rejectWithValue }) => {
+    try {
+      // Realizar la llamada a la API para obtener la lista de productos
+      const response = await fetch("http://localhost:3000/api/products/web");
+      if (!response.ok) {
+        throw new Error('Error al cargar los productos');
+      }
+      const products = await response.json();
+
+      if (args?.filters?.category) {
+        return products.filter((product: Product) => {
+          return product.category === args.filters.category;
+        });
+      } else {
+        return products;
+      }
+    } catch (error: any) {
+      return rejectWithValue(error.message);
+    }
+  }
 );
 
 
 export const fetchProductsBySort = createAsyncThunk(
   'products/fetchProductsBySort',
   async ({ sortKey, reverse, query }: FetchProductsArgs, thunkAPI) => {
-
-    try {
+    const url = `/api/products-for-sort?sortKey=${sortKey}&reverse=${reverse}&query=${query || ''}`;
   
-      const url = `/api/products-for-sort?sortKey=${sortKey}&reverse=${reverse}&query=${query || ''}`;
-      const response = await axiosInstance.get(url);
-      if (response.status !== 200) {
-        throw new Error('No se pudo obtener la lista de productos.');
-      }
-      console.log(response.data.products); 
-      const products = response.data;
-      return products;
-    } catch (error) {
-      throw error;
+    const response = await axiosInstance.get(url);
+    if (response.status !== 200) {
+      throw new Error('No se pudo obtener la lista de productos.');
     }
+    console.log(response.data.products); 
+    return response.data;
   }
 );
+
+
 
 // Acción para obtener un producto por ID
 export const getProductById = createAsyncThunk<Product, string>(

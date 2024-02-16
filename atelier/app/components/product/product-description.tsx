@@ -27,15 +27,11 @@ export function ProductDescription({
   const nextSearchParams = new URLSearchParams(searchParams.toString());
   const nextImageIndex = imageIndex + 1 < images.length ? imageIndex + 1 : 0;
   nextSearchParams.set("image", nextImageIndex.toString());
-  const nextUrl = createUrl(pathname, nextSearchParams);
 
   const previousSearchParams = new URLSearchParams(searchParams.toString());
   const previousImageIndex = imageIndex === 0 ? images.length - 1 : imageIndex - 1;
   previousSearchParams.set("image", previousImageIndex.toString());
-  const previousUrl = createUrl(pathname, previousSearchParams);
 
-  const buttonClassName =
-    "h-full px-6 transition-all ease-in-out hover:scale-110 hover:text-black dark:hover:text-white flex items-center justify-center";
   const increaseQuantity = () => {
     setQuantity(quantity + 1);
   };
@@ -53,10 +49,14 @@ export function ProductDescription({
           {product.title}
         </h1>
         <div className="mr-auto w-auto rounded-full bg-white p-2 text-xl font-inter-bold text-black">
-          <Price price={product.variants[0].price} currencyCode="$" />
+          <Price price={product.RetailPrice} currencyCode="$" />
+        </div>
+        <div className="mr-auto w-auto rounded-full bg-white p-2  font-inter-bold text-black mx-auto">
+          <span className="font-bold">Talle </span>
+          <span className=" border text-2xl px-2"> {product.size}</span>
         </div>
       </div>
-      <VariantSelector options={product.options} variants={product.variants} />
+      {/*   <VariantSelector options={product.options} variants={product.variants} /> */}
 
       {product.descriptionHtml ? (
         <Prose
@@ -103,7 +103,6 @@ export function ProductDescription({
 
         <AddToCart
           product={product}
-          variants={product.variants}
           availableForSale={product.availableForSale}
           quantity={quantity}
         />

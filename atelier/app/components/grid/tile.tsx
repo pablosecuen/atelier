@@ -36,7 +36,7 @@ export function GridTileImage({
           })}
           src={props.src as string} // Aquí pasa la URL de la imagen directamente
           alt={props.alt || "alternative text"} // También puedes proporcionar un valor de alternativa
-          width={props.width || 0}
+          width={props.width || 100}
           height={props.height || 0}
         />
       ) : null}

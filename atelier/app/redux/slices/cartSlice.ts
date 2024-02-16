@@ -22,20 +22,25 @@ const initialState: CartState = {
 };
 
 const calculateTotalCost = (cart: Cart) => {
+  console.log(cart);
+  
   const total = cart.reduce((accumulatedTotal:number, item:Product) => {
     // Verificar si el precio es un número válido antes de sumarlo
-    if (item.variants[0]?.price && typeof item.variants[0].price === 'number' && !isNaN(item.variants[0].price)) {
-      return accumulatedTotal + item.variants[0].price * item.variants[0].quantity;
+    const retailPrice = parseFloat(item.RetailPrice);
+    const quantity = item.quantity || 1; // Si no se proporciona la cantidad, asumir 1
+    
+    // Verificar si retailPrice es un número válido
+    if (!isNaN(retailPrice)) {
+      return accumulatedTotal + retailPrice * quantity;
     }
+    
     // Si el precio no es válido, puedes omitir este artículo en el cálculo
     return accumulatedTotal;
   }, 0);
 
-  // Redondear el total a dos decimales
-  const roundedTotal = Number(total.toFixed(2));
-
-  return roundedTotal;
+  return total;
 };
+
 
 
 
@@ -61,8 +66,8 @@ const cartSlice = createSlice({
   
       if (productIndex !== -1) {
         // Restar 1 a la cantidad del producto
-        if (state.cart[productIndex].variants[0].quantity > 1) {
-          state.cart[productIndex].variants[0].quantity -= 1;
+        if (state.cart[productIndex].quantity > 1) {
+          state.cart[productIndex].quantity -= 1;
           state.cost.totalAmount.amount = calculateTotalCost(state.cart);
           localStorage.setItem('cart', JSON.stringify(state.cart));
           localStorage.setItem('cost', JSON.stringify(state.cost));
@@ -74,7 +79,7 @@ const cartSlice = createSlice({
 
       if (productIndex !== -1) {
         // Sumar 1 a la cantidad del producto
-        state.cart[productIndex].variants[0].quantity += 1;
+        state.cart[productIndex].quantity += 1;
         state.cost.totalAmount.amount = calculateTotalCost(state.cart);
         localStorage.setItem('cart', JSON.stringify(state.cart));
         localStorage.setItem('cost', JSON.stringify(state.cost));
