@@ -19,7 +19,7 @@ function BestSellers() {
   }, [dispatch]);
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 5,
@@ -28,13 +28,23 @@ function BestSellers() {
     swipeToSlide: true,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1280,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
           initialSlide: 0,
           infinite: true,
-          dots: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 0,
+          infinite: true,
+          dots: false,
         },
       },
       {
@@ -53,29 +63,31 @@ function BestSellers() {
         },
       },
     ],
-    prevArrow: <PrevArrow />, // Flecha personalizada de retroceso
-    nextArrow: <NextArrow />, // Flecha personalizada de avance
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
   };
 
   return (
-    <div className="categories flex flex-col md:max-w-[90vw] max-w-[80vw] !gap-10 md:pt-10 lg:max-w-[95vw] mx-auto z-50">
+    <div className=" flex flex-col md:max-w-[90vw] max-w-[80vw] !gap-10 md:pt-10 lg:max-w-[95vw] mx-auto z-50">
       <Slider {...settings}>
         {products?.map((product: any) => (
           <Link
-            className="block aspect-square h-full w-full product-item"
+            className=" h-full overflow-x-hidden max-w-[280px] border"
             href={`/product/${product.handle}`}
             key={product.id}
           >
-            <div className="rounded-md min-w-[280px] md:min-w-[450px] lg:min-w-[600px] px-2 md:px-0 pb-6">
+            <div className="rounded-md w-full border h-full  px-2 md:px-0 pb-6 ">
               <Image
                 src={product.imagesURL[0]}
                 alt={product.title}
-                className="w-full h-96 mb-1 object-contain"
+                className="h-96 mb-1 object-cover w-full"
                 priority={true}
-                width={200}
                 height={0}
+                width={150}
               />
-              <span className="text-md text-xl mt-8 font-semibold text-black">{product.title}</span>
+              <span className="text-md lg:text-lg mt-8 font-semibold text-black">
+                {product.title}
+              </span>
             </div>
           </Link>
         ))}
