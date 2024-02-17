@@ -5,8 +5,8 @@ import Script from "next/script";
 import { initMercadoPago } from "@mercadopago/sdk-react";
 import ReduxProvider from "./redux/ReduxProvider";
 
-initMercadoPago("TEST-6c9b2f2a-23eb-4e6a-9626-2e65e5d8b25a", {
-  locale: "es-AR",
+initMercadoPago("TEST-5324826d-e655-4124-82b8-f50b8fd84b63", {
+  locale: "es-PE",
 });
 
 const MainProvider = ({ children }: any) => {
