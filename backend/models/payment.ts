@@ -12,56 +12,22 @@ const Payment = sequelize.define('Payment', {
     type: DataTypes.STRING,
     allowNull: false
   },
-  amount: {
-    type: DataTypes.DECIMAL(10, 2),
+  dateCreated: {
+    type: DataTypes.DATE,
     allowNull: false
   },
-  currency: {
+  userId: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  status: {
-    type: DataTypes.STRING,
+
+  products: {
+    type: DataTypes.JSONB, 
     allowNull: false
   },
-  description: {
-    type: DataTypes.TEXT,
-    allowNull: false
-  },
-  payerId: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  payerEmail: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  payerFirstName: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  payerLastName: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  payerPhone: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  payerAddress: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  payerPostalCode: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  payerCity: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  payerCountry: {
-    type: DataTypes.STRING,
+
+  payer: {
+    type: DataTypes.JSONB, 
     allowNull: false
   },
 });

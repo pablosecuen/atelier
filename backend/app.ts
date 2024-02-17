@@ -1,10 +1,10 @@
 // app.ts
+require('dotenv').config();
 import express from 'express';
 import {v2 as cloudinary} from 'cloudinary';
 import productRoutes from './routes/productRoutes';
-require('dotenv').config();
+import paymentsRoutes from './routes/paymentRoutes';
 import morgan from 'morgan';
-import uploadMiddleware from './multer';
 import cors from 'cors'; 
 
 const app = express();
@@ -20,9 +20,10 @@ cloudinary.config({
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors()); // Agregar middleware de CORS
+app.use(cors()); 
 
 app.use('/api/products', productRoutes);
+app.use('/api/payments', paymentsRoutes);
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT}`);
