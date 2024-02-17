@@ -13,17 +13,15 @@ import GenerateMetadata from "./generate-metadata";
 export default function ProductPage({ params }: { params: { handle: string } }) {
   const dispatch: AppDispatch = useDispatch();
   const { products } = useSelector((state: RootState) => state.products);
-
-  console.log(products);
+  const decodedHandle = params.handle ? decodeURIComponent(params.handle as string) : "";
 
   useEffect(() => {
     dispatch(listProducts());
   }, [dispatch]);
 
-  const product = products?.find((p) => p.handle === params.handle);
-  console.log(product);
+  const product = products?.find((p) => p.handle === decodedHandle);
+
   if (!product) return notFound();
-  console.log(product);
 
   const productJsonLd = {
     "@context": "https://schema.org",
@@ -37,7 +35,7 @@ export default function ProductPage({ params }: { params: { handle: string } }) 
         ? "https://schema.org/InStock"
         : "https://schema.org/OutOfStock",
       priceCurrency: "$",
-      price: product.price,
+      price: product.RetailPrice,
     },
   };
 
