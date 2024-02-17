@@ -14,6 +14,7 @@ interface MercadoPagoItem {
   category_id: string;
   unit_price: number;
   quantity: number;
+  size: string;
 }
 
 const accessToken = process.env.MERCADOPAGO_ACCESS_TOKEN;
@@ -28,7 +29,7 @@ const client = new MercadoPagoConfig({
 
 // Controlador para crear una preferencia de Mercado Pago
 export const createPreference = async (req: Request, res: Response) => {
-  const { items, back_urls, notification_url, payer  } = req.body;
+  const { items, back_urls, notification_url } = req.body;
   console.log("log de req.body en controller", req.body);
   const body = {
     items: items.map((item: MercadoPagoItem) => ({
@@ -38,6 +39,7 @@ export const createPreference = async (req: Request, res: Response) => {
       category_id: item.category_id,
       unit_price: item.unit_price,
       quantity: item.quantity,
+      size: item.size,
     })),
     back_urls: {
       success: back_urls.success,
@@ -45,26 +47,9 @@ export const createPreference = async (req: Request, res: Response) => {
       pending: back_urls.pending,
     },
     auto_return: "approved",
-      notification_url: notification_url,
-      payer: {  
-      name: payer.name,
-      surname: payer.surname,
-      email: payer.email,
-      phone: {
-        area_code: payer.phone.area_code,
-        number: payer.phone.number,
-      },
-       address: { 
-        zip_code: payer.address.zip_code,
-        street_name: payer.address.street_name,
-        street_number: payer.address.street_number,
-        city: payer.address.city,
-        state: payer.address.state,
-        country: payer.address.country,
-      },
-    },
-    };
-    
+    notification_url: notification_url,
+  };
+
   console.log("log del body formado para enviar", body);
   try {
     const preference = new Preference(client);
@@ -77,6 +62,7 @@ export const createPreference = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Error interno del servidor" });
   }
 };
+
 
 
 const webHookController = async (req: Request, res: Response) => {

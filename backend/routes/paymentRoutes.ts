@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.get('/list',  paymentController.getAllPayments);
 
-router.get('/preference',  paymentController.createPreference);
+router.post('/preference',  paymentController.createPreference);
 
 router.get('/webhook', paymentController.webHookController);
 

@@ -14,7 +14,7 @@ const Success = () => {
   const searchParams = useSearchParams();
   const payment_id = searchParams.get("payment_id");
   const [localPaymentInfo, setLocalPaymentInfo] = useState(null);
-  const headerRef = useRef();
+  const headerRef = useRef(null);
 
   // Primer useEffect para obtener la información del pago
 
@@ -38,8 +38,8 @@ const Success = () => {
     <>
       <div className="flex justify-center items-center h-screen text-black">
         <div className="flex flex-col items-center gap-8">
-          <div className="max-w-[400px] border-black border-4 p-10">
-            <header className="flex gap-3 w-full bg-red-300">
+          <div className="max-w-[400px] border-black border-4 p-10" ref={headerRef}>
+            <header className="flex gap-3 w-full ">
               <div className="flex flex-col mx-auto">
                 <span className="mx-auto">
                   <LogoIcon />
@@ -77,16 +77,16 @@ const Success = () => {
               </div>
             </div>
             <hr />
-            <div className="flex items-center justify-center w-full h-full py-4">
+            <div className="flex flex-col gap-3 items-center justify-center w-full h-full py-4">
               <button
                 onClick={handleContinueShopping}
-                className="mx-auto py-1 px-2 bg-primario text-white"
+                className="mx-auto py-2 w-full bg-primario text-white"
               >
                 Continuar Comprando
               </button>
               <button
                 onClick={handleSaveSnapshot}
-                className="mx-auto py-1 px-2 bg-primario text-white"
+                className="mx-auto py-2 w-full bg-primario text-white"
               >
                 Guardar Comprobante
               </button>

@@ -5,12 +5,16 @@ import React, { useEffect, useState } from "react";
 import ShoppingCartIcon from "@/public/assets/icons/shop-cart";
 import ChevronRight from "@/public/assets/icons/chevron-right";
 import ChevronLeft from "@/public/assets/icons/chevron-left";
+import { Wallet } from "@mercadopago/sdk-react";
 import "@/app/globals.css";
-import { useSelector } from "react-redux";
-import { RootState } from "@/app/redux/store";
-function Checkout() {
-  const { cart, cost } = useSelector((state: RootState) => state.cart);
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/app/redux/store";
+import { CreatePreferencePayload, createPreferenceAsync } from "@/app/redux/actions/paymentActions";
 
+function Checkout() {
+  const dispatch: AppDispatch = useDispatch();
+  const { cart, cost } = useSelector((state: RootState) => state.cart);
+  const preferenceId = useSelector((state: RootState) => state.payments.preferenceId);
   const [activeTab, setActiveTab] = useState("information");
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -43,6 +47,35 @@ function Checkout() {
 
   const toggleDetails = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleCreatePreference = () => {
+    // Verifica que cart esté definido y sea un array
+    if (cart && Array.isArray(cart) && cart.length > 0) {
+      const body: CreatePreferencePayload = {
+        items: cart.map((item) => ({
+          id: item.id,
+          title: item.title,
+          description: item.description,
+          category_id: item.category,
+          unit_price: parseInt(item.RetailPrice),
+          quantity: item.quantity,
+          size: item.size,
+        })),
+        back_urls: {
+          success: "http://localhost:3005/checkout/success",
+          failure: "http://localhost:3005/checkout/failure",
+          pending: "http://localhost:3005/checkout/pending",
+        },
+        auto_return: "approved",
+        notification_url: "https://57f4-190-30-7-148.ngrok-free.app/webhook",
+      };
+
+      dispatch(createPreferenceAsync(body));
+    } else {
+      console.error("Error: 'cart' no está definido o no es un array");
+      // Manejo adicional si es necesario, como mostrar un mensaje de error al usuario
+    }
   };
 
   return (
@@ -336,21 +369,29 @@ function Checkout() {
                   </div>
                 </div>
 
-                <button
-                  type="button"
-                  onClick={() => handleTabChange("payment")}
-                  className="bg-blue-600 hover:bg-blue-800 text-white py-2 px-4 rounded w-full h-16 semibold tracking-wider text-sm font-semibold"
-                >
-                  Continuar a pagos
-                </button>
+                {preferenceId && (
+                  <Wallet
+                    initialization={{ preferenceId: preferenceId }}
+                    customization={{ texts: { valueProp: "smart_option" } }}
+                  />
+                )}
+                {!preferenceId && (
+                  <button
+                    color="primary"
+                    type="button"
+                    onClick={() => handleCreatePreference()}
+                    className="w-full bg-blue-600 text-white py-6 rounded-md"
+                  >
+                    Generar Pago
+                  </button>
+                )}
                 <button
                   type="button"
                   onClick={() => handleTabChange("information")}
-                  className="flex justify-center w-full h-16 mt-6 items-center text-white semibold"
+                  className="flex justify-center w-full h-16 mt-6 items-center  semibold"
                 >
-                  {/* <AiOutlineLeft className="fill-blue-600 mx-2 w-auto -ml-6" /> */}
                   <ChevronLeft />
-                  <span className="text-blue-600 ">Volver a informacion</span>
+                  <span className="text-blue-600 pl-2">Volver a informacion</span>
                 </button>
               </form>
             )}
@@ -362,3 +403,6 @@ function Checkout() {
 }
 
 export default Checkout;
+function dispatch(arg0: any) {
+  throw new Error("Function not implemented.");
+}

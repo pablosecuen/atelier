@@ -28,7 +28,7 @@ const Payment = sequelize.define('Payment', {
 
   payer: {
     type: DataTypes.JSONB, 
-    allowNull: false
+    allowNull: true
   },
 });
 

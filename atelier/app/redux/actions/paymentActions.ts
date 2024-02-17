@@ -4,6 +4,25 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axiosInstance from '../axiosInstance';
 import Payment from '@/app/types/payment';
+import axios from 'axios';
+
+export type CreatePreferencePayload = {
+    items: {
+    id: string;
+    title: string;
+    description: string;
+    category_id: string;
+    unit_price: number;
+    quantity: number;
+  }[];
+  back_urls: {
+    success: string;
+    failure: string;
+    pending: string;
+  };
+  auto_return: string;
+  notification_url:any
+};
 
 
 
@@ -18,56 +37,17 @@ export const listPayments = createAsyncThunk<Payment[], void>('paymentActions/li
 });
 
 // Acción para obtener un pago por su ID
-export const getPaymentById = createAsyncThunk<Payment, string>('paymentActions/getPaymentById', async (paymentId: string) => {
-  try {
-    const response = await axiosInstance.get(`/api/payment/${paymentId}`);
-    return response.data.payment;
-  } catch (error: any) {
-    throw new Error(error.response.data.message);
-  }
-});
+export const createPreferenceAsync = createAsyncThunk(
+  'payment/createPreference',
+  async (body: CreatePreferencePayload) => {
 
-// Acción para obtener los pagos por ID de producto
-export const getPaymentsByProduct = createAsyncThunk<Payment[], string>(
-    'paymentActions/getPaymentsByProduct',
-    async (productId: string) => {
-      try {
-        const response = await axiosInstance.get(`/api/payment/product/${productId}`);
-        return response.data.payments;
-      } catch (error: any) {
-        throw new Error(error.response.data.message);
-      }
+    try {
+      const response = await axiosInstance.post(`/api/payments/preference`, body);
+        
+      return response.data;
+    } catch (error: any) {
+      console.error('Error creating preference:', error);
+      throw error; // Lanza el error para ser manejado por el middleware de Redux Toolkit
     }
-  );
-  
-  // Acción para obtener los pagos por ID de usuario
-  export const getPaymentsByUserId = createAsyncThunk<Payment[], string>(
-    'paymentActions/getPaymentsByUserId',
-    async (userId: string) => {
-      try {
-        const response = await axiosInstance.get(`/api/payment/user/${userId}`);
-        return response.data.payments;
-      } catch (error: any) {
-        throw new Error(error.response.data.message);
-      }
-    }
-  );
-
-// Acción para crear un nuevo pago
-export const createPayment = createAsyncThunk<Payment, any>('paymentActions/createPayment', async (paymentData: any) => {
-  try {
-    const response = await axiosInstance.post('/api/payment/create', paymentData);
-    return response.data.payment;
-  } catch (error: any) {
-    throw new Error(error.response.data.message);
   }
-});
-
-// Acción para eliminar un pago por su ID
-export const deletePayment = createAsyncThunk<void, string>('paymentActions/deletePayment', async (paymentId: string) => {
-  try {
-    await axiosInstance.delete(`/api/payment/delete/${paymentId}`);
-  } catch (error: any) {
-    throw new Error(error.response.data.message);
-  }
-});
+);
