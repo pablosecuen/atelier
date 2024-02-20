@@ -1,15 +1,17 @@
 // components/checkout/Success.js
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/app/redux/store";
 import LogoIcon from "@/app/components/lib/icons/logo";
 import Footer from "@/app/components/footer/footer";
 import html2canvas from "html2canvas";
+import { usePathname } from "next/navigation";
 
 const Success = () => {
   const router = useRouter();
+  const pathname = usePathname();
   const dispatch: AppDispatch = useDispatch();
   const searchParams = useSearchParams();
   const payment_id = searchParams.get("payment_id");
@@ -21,6 +23,14 @@ const Success = () => {
   const handleContinueShopping = () => {
     router.push("/");
   };
+
+  useEffect(() => {
+    // Verifica si la página actual es /success
+    if (pathname === "/checkout/success") {
+      // Limpia el carrito en el localStorage
+      localStorage.setItem("cart", JSON.stringify([]));
+    }
+  }, [pathname]);
 
   const handleSaveSnapshot = () => {
     if (headerRef.current) {
