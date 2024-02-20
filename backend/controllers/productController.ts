@@ -6,6 +6,7 @@ require('dotenv').config();
 import fs from 'fs';
 import { promisify } from 'util';
 
+
 const unlinkAsync = promisify(fs.unlink);
 
 interface UploadedFile {
@@ -19,6 +20,37 @@ interface UploadedFile {
   path: string;
   buffer: Buffer;
 }
+
+interface ProductUpdates {
+  id?: string;
+  imagesURL?: string[];
+  handle?: string;
+  slug?: string;
+  size?: string;
+  category?: string;
+  descriptionHtml?: string;
+  seo?: {
+    title?: string;
+    description?: string;
+    keywords?: string;
+  };
+  availableForSale?: boolean;
+  title?: string;
+  description?: string;
+  updatedAt?: Date;
+  SKU?: string;
+  StyleName?: string;
+  UPC?: string;
+  RetailPrice?: string;
+  GetPercentOff?: string | null;
+  promoPrice?: string | null;
+  stock?: string;
+}
+
+
+type ProductUpdateKey = keyof ProductUpdates;
+
+
 
 const getProductsWithStock = async (req: Request, res: Response) => {
   try {
@@ -159,5 +191,43 @@ const getAllProductsFromDb = async (req: Request, res: Response) => {
   }
 };
 
+// Utiliza este tipo en tu controlador para tipar las actualizaciones
+const updateProduct = async (req: Request, res: Response) => {
+  try {
+    const { productId } = req.params;
+    const updates: ProductUpdates = req.body;
 
-export default { updateProductsWithAdditionalProperties,getProductsWithStock, addProduct, getAllProductsFromDb  };
+    if (!productId || !updates) {
+      return res.status(400).json({ message: 'Se requiere productId y actualizaciones' });
+    }
+
+    const product = await Product.findByPk(productId);
+
+    if (!product) {
+      return res.status(404).json({ message: 'Producto no encontrado' });
+    }
+
+    // Aplicar las actualizaciones al producto
+    Object.keys(updates).forEach((key: string) => {
+      const productKey = key as ProductUpdateKey;
+      if (productKey in Product.rawAttributes && updates[productKey] !== undefined) {
+        product.set(productKey, updates[productKey]); // Utiliza set para asignar valores de forma segura
+      }
+    });
+
+    await product.save();
+
+    res.status(200).json({ message: 'Producto actualizado exitosamente', product });
+  } catch (error) {
+    console.error('Error al actualizar producto:', error);
+    res.status(500).json({ message: 'Error interno del servidor' });
+  }
+};
+
+
+
+
+
+
+
+export default { updateProductsWithAdditionalProperties,getProductsWithStock, addProduct, getAllProductsFromDb , updateProduct };
