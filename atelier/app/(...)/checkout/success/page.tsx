@@ -9,6 +9,9 @@ import Footer from "@/app/components/footer/footer";
 import html2canvas from "html2canvas";
 import { usePathname } from "next/navigation";
 import { clearCart } from "@/app/redux/slices/cartSlice";
+import { getMerchantOrder } from "@/app/redux/actions/paymentActions";
+import { Product } from "@/app/types/general";
+import { format } from "date-fns";
 
 const Success = () => {
   const router = useRouter();
@@ -16,21 +19,26 @@ const Success = () => {
   const dispatch: AppDispatch = useDispatch();
   const searchParams = useSearchParams();
   const payment_id = searchParams.get("payment_id");
-  const [localPaymentInfo, setLocalPaymentInfo] = useState(null);
+  const [localPaymentInfo, setLocalPaymentInfo] = useState<any>(null);
   const headerRef = useRef(null);
 
-  // Primer useEffect para obtener la información del pago
+  console.log(localPaymentInfo);
 
   const handleContinueShopping = () => {
     router.push("/");
   };
 
   useEffect(() => {
+    if (payment_id) {
+      dispatch(getMerchantOrder(payment_id)).then((response) => {
+        setLocalPaymentInfo(response.payload);
+      });
+    }
     if (pathname === "/checkout/success") {
       // Despacha la acción para limpiar el carrito
       dispatch(clearCart());
     }
-  }, [dispatch, pathname]);
+  }, [dispatch, pathname, payment_id]);
 
   const handleSaveSnapshot = () => {
     if (headerRef.current) {
@@ -46,9 +54,9 @@ const Success = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center h-screen text-black">
+      <div className="flex justify-center items-center h-auto py-20 pt-32 text-black">
         <div className="flex flex-col items-center gap-8">
-          <div className="max-w-[400px] border-black border-4 p-10" ref={headerRef}>
+          <div className="min-w-[400px] border-black border-4 p-10" ref={headerRef}>
             <header className="flex gap-3 w-full ">
               <div className="flex flex-col mx-auto">
                 <span className="mx-auto">
@@ -59,19 +67,25 @@ const Success = () => {
             </header>
             <hr />
             <div>
-              <div className="flex flex-col gap-4 max-h-[50vh] py-3">
-                <h1>¡Compra Exitosa!</h1>
-                <p>Detalles del Pago:</p>
+              <div className="flex flex-col gap-4 h-auto py-3">
+                <h2 className="text-lg font-bold">¡Felicitaciones, Compra Exitosa!</h2>
+                <p className="font-semibold">Detalles del Pago:</p>
                 <ul>
-                  <li>ID de Pago: </li>
-                  <li>Fecha de Aprobación: </li>
-                  <li>Estado: </li>
+                  <li>ID de Pago: {payment_id}</li>
+                  <li>
+                    Fecha de Aprobación:{" "}
+                    {localPaymentInfo
+                      ? format(new Date(localPaymentInfo.date_approved), "dd/MM/yyyy HH:mm:ss")
+                      : ""}
+                  </li>
+                  <li>Estado: {localPaymentInfo?.status}</li>
                   {/* Agrega más detalles según sea necesario */}
                 </ul>
-                <p>Detalles de los Productos Comprados:</p>
-                <ul className="flex flex-col gap-4 ">
-                  Listado de productos
-                  {/*        {localPaymentInfo?.additional_info?.items.map((product, index) => (
+                <p className="font-semibold">Detalles de los Productos Comprados:</p>
+                <p className="font-semibold">Listado de productos</p>
+                <ul className="flex  gap-4 flex-wrap">
+                  {localPaymentInfo?.additional_info?.items.map(
+                    (product: Product, index: number) => (
                       <li key={index} className="border  rounded-md p-4">
                         <strong>Producto #{index + 1}</strong>
                         <ul>
@@ -81,9 +95,12 @@ const Success = () => {
                           <li>Precio Unitario:$ {product.unit_price}</li>
                         </ul>
                       </li>
-                    ))} */}
+                    )
+                  )}
                 </ul>
-                <p>Total Pagado: $ </p>
+                <p className="font-semibold">
+                  Total Pagado: $ {localPaymentInfo?.transaction_amount}{" "}
+                </p>
               </div>
             </div>
             <hr />

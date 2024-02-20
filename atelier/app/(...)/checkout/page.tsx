@@ -18,14 +18,17 @@ function Checkout() {
   const [activeTab, setActiveTab] = useState("information");
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
-    telefono: "",
+    area_code: "",
+    number: "",
     firstname: "",
     lastname: "",
-    direccion: "",
+    calle: "",
+    altura: "",
     provincia: "",
     ciudad: "",
     codigoPostal: "",
     mail: "",
+    dni: "",
   });
 
   const handleChange = (e: any) => {
@@ -42,7 +45,6 @@ function Checkout() {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    console.log(formData);
   };
 
   const toggleDetails = () => {
@@ -69,6 +71,33 @@ function Checkout() {
         },
         auto_return: "approved",
         notification_url: "https://57f4-190-30-7-148.ngrok-free.app/webhook",
+        payer: {
+          name: formData.firstname,
+          email: formData.mail,
+          identification: {
+            type: "DNI",
+            number: formData.dni,
+          },
+          phone: {
+            number: formData.number,
+            area_code: formData.area_code,
+          },
+          address: {
+            street_name: formData.calle,
+            street_number: formData.altura,
+            zip_code: formData.codigoPostal,
+          },
+        },
+        shipments: {
+          receiver_address: {
+            street_name: formData.calle,
+            street_number: formData.altura,
+            zip_code: formData.codigoPostal,
+            state_name: formData.provincia,
+            city_name: formData.ciudad,
+            country_id: "AR",
+          },
+        },
       };
 
       dispatch(createPreferenceAsync(body));
@@ -205,14 +234,28 @@ function Checkout() {
                 <div className="pb-8">
                   <h3 className="md:mb-4 font-bold tracking-wide">Contacto</h3>
                   <div className="mb-4 border border-gray-500/80 rounded-lg px-2 py-1 ">
-                    <label htmlFor="telefono" className="block opacity-60 text-xs -mb-1">
+                    <label htmlFor="area_code" className="block opacity-60 text-xs -mb-1">
+                      Cod. de area:
+                    </label>
+                    <input
+                      type="text"
+                      id="area_code"
+                      name="area_code"
+                      value={formData.area_code}
+                      onChange={handleChange}
+                      className=" text-sm h-6 w-full "
+                      required
+                    />
+                  </div>
+                  <div className="mb-4 border border-gray-500/80 rounded-lg px-2 py-1 ">
+                    <label htmlFor="number" className="block opacity-60 text-xs -mb-1">
                       Teléfono:
                     </label>
                     <input
                       type="text"
-                      id="telefono"
-                      name="telefono"
-                      value={formData.telefono}
+                      id="number"
+                      name="number"
+                      value={formData.number}
                       onChange={handleChange}
                       className=" text-sm h-6 w-full "
                       required
@@ -226,6 +269,19 @@ function Checkout() {
                       type="email"
                       id="email"
                       name="email"
+                      onChange={handleChange}
+                      className="  h-6 text-sm md:h-8   w-full"
+                      required
+                    />
+                  </div>
+                  <div className="mb-4 border border-gray-500/80 rounded-lg px-2 py-1 ">
+                    <label htmlFor="dni" className="block opacity-60 text-xs -mb-2">
+                      Dni:
+                    </label>
+                    <input
+                      type="dni"
+                      id="dni"
+                      name="dni"
                       onChange={handleChange}
                       className="  h-6 text-sm md:h-8   w-full"
                       required
@@ -266,14 +322,28 @@ function Checkout() {
                   </div>
 
                   <div className="mb-4 border border-gray-500/80 rounded-lg px-2 py-1 ">
-                    <label htmlFor="direccion" className="block opacity-60 text-xs -mb-2">
-                      Dirección:
+                    <label htmlFor="calle" className="block opacity-60 text-xs -mb-2">
+                      Calle:
                     </label>
                     <input
                       type="text"
-                      id="direccion"
-                      name="direccion"
-                      value={formData.direccion}
+                      id="calle"
+                      name="calle"
+                      value={formData.calle}
+                      onChange={handleChange}
+                      className="  h-6 text-sm md:h-8   w-full"
+                      required
+                    />
+                  </div>
+                  <div className="mb-4 border border-gray-500/80 rounded-lg px-2 py-1 ">
+                    <label htmlFor="altura" className="block opacity-60 text-xs -mb-2">
+                      Altura:
+                    </label>
+                    <input
+                      type="text"
+                      id="altura"
+                      name="altura"
+                      value={formData.altura}
                       onChange={handleChange}
                       className="  h-6 text-sm md:h-8   w-full"
                       required
@@ -342,7 +412,10 @@ function Checkout() {
                   <div className="flex justify-between gap-2 border-b py-4">
                     <div className="flex flex-col gap-2">
                       <span className="opacity-70 text-sm ">Contacto</span>
-                      <span className="text-sm">{formData.telefono}</span>
+                      <span className="text-sm">
+                        {formData.area_code} {"-"}
+                        {formData.number}
+                      </span>
                     </div>
                     <button
                       onClick={() => handleTabChange("information")}
@@ -356,8 +429,8 @@ function Checkout() {
                     <div className="flex flex-col gap-2">
                       <span className="opacity-70 text-sm">Envio</span>
                       <span className="text-sm">
-                        {formData.direccion}, {formData.ciudad}, {formData.provincia},{" "}
-                        {formData.codigoPostal}
+                        {formData.calle}, {formData.altura}, {formData.ciudad}, {formData.provincia}
+                        , {formData.codigoPostal}
                       </span>
                     </div>
                     <button
@@ -403,6 +476,3 @@ function Checkout() {
 }
 
 export default Checkout;
-function dispatch(arg0: any) {
-  throw new Error("Function not implemented.");
-}
