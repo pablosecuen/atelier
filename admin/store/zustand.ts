@@ -47,7 +47,7 @@ interface Zustand {
   webProducts: ProductWeb[];
   setApiProducts: (newApiProducts: ProductApi[]) => void;
   setWebProducts: (newWebProducts: ProductWeb[]) => void;
-  toggleAvailableForSale: (productId: string) => void;
+  toggleAvailableForSale: (productId: string, availableForSale:boolean) => void;
 }
 
 const useGlobalStore = create<Zustand>((set) => ({
@@ -55,16 +55,30 @@ const useGlobalStore = create<Zustand>((set) => ({
   webProducts: [],
   setApiProducts: (newApiProducts: ProductApi[]) => set({ apiProducts: newApiProducts }),
   setWebProducts: (newWebProducts: ProductWeb[]) => set({ webProducts: newWebProducts }),
-  toggleAvailableForSale: (productId: string) => {
+toggleAvailableForSale: async (productId: string, availableForSale: boolean) => {
+   try {
+    // Realizar la llamada PUT al endpoint
+    const response = await fetch(`http://localhost:3000/api/products/update/${productId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ availableForSale: !availableForSale })
+    });
+
+    if (!response.ok) throw new Error('Error al actualizar el producto');
+
+    // Actualizar el estado local después de una actualización exitosa
     set((state) => ({
-      webProducts: state.webProducts.map((product) => {
-        if (product.id === productId) {
-          return { ...product, availableForSale: !product.availableForSale };
-        }
-        return product;
-      })
+      webProducts: state.webProducts.map((product) =>
+        product.id === productId ? { ...product, availableForSale: !product.availableForSale } : product
+      )
     }));
+  } catch (error) {
+    console.error('Error al actualizar el producto:', error);
   }
+}
+
 }));
 
 // Función para cargar productos de la API

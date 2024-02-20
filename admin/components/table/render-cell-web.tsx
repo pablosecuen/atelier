@@ -5,6 +5,7 @@ import { EditIcon } from "../icons/table/edit-icon";
 
 import { AddProduct } from "../products/add-product";
 import { ProductWeb } from "@/store/zustand";
+import { Switch } from "../button/switch/switch";
 
 interface Props {
   product: ProductWeb;
@@ -32,13 +33,17 @@ export const RenderCellWeb = ({ product, columnKey }: Props) => {
 
     case "availableForSale":
       return (
-        <Chip
-          size="sm"
-          variant="flat"
-          color={cellValue === true ? "success" : cellValue === false ? "danger" : "warning"}
-        >
-          <span className="capitalize text-xs">{cellValue ? "activo" : "pausado"}</span>
-        </Chip>
+        <div className="flex items-center justify-between w-32  ">
+          {" "}
+          <Chip
+            size="sm"
+            variant="flat"
+            color={cellValue === true ? "success" : cellValue === false ? "danger" : "warning"}
+          >
+            <span className="capitalize text-xs">{cellValue ? `en web` : "pausado"}</span>
+          </Chip>
+          <Switch productId={product.id} isAvailable={product.availableForSale} />
+        </div>
       );
 
     case "actions":
