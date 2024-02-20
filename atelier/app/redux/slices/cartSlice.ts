@@ -1,5 +1,6 @@
 import {  createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Cart, Product } from '@/app/types/general';
+import { AppDispatch } from '../store';
 
 type CartState = {
   cart: Product[];
@@ -85,13 +86,25 @@ const cartSlice = createSlice({
         localStorage.setItem('cost', JSON.stringify(state.cost));
       }
     },
-    
+         clearCart: (state) => {
+      state.cart = [];
+      state.cost.totalAmount.amount = 0;
+      localStorage.removeItem('cart');
+      localStorage.removeItem('cost');
+    },
   },
 });
 
 
 
-export const { addToCart, removeFromCart,subtractQuantity,addQuantity } = cartSlice.actions;
+export const { addToCart, removeFromCart,subtractQuantity,addQuantity,  } = cartSlice.actions;
+
+// Define clearCart como una acción fuera del slice
+export const clearCart = () => (dispatch: AppDispatch) => {
+  dispatch(cartSlice.actions.clearCart());
+  localStorage.removeItem('cart');
+  localStorage.removeItem('cost');
+};
 
 
 export default cartSlice.reducer;

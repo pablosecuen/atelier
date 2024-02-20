@@ -8,6 +8,7 @@ import LogoIcon from "@/app/components/lib/icons/logo";
 import Footer from "@/app/components/footer/footer";
 import html2canvas from "html2canvas";
 import { usePathname } from "next/navigation";
+import { clearCart } from "@/app/redux/slices/cartSlice";
 
 const Success = () => {
   const router = useRouter();
@@ -25,12 +26,11 @@ const Success = () => {
   };
 
   useEffect(() => {
-    // Verifica si la página actual es /success
     if (pathname === "/checkout/success") {
-      // Limpia el carrito en el localStorage
-      localStorage.setItem("cart", JSON.stringify([]));
+      // Despacha la acción para limpiar el carrito
+      dispatch(clearCart());
     }
-  }, [pathname]);
+  }, [dispatch, pathname]);
 
   const handleSaveSnapshot = () => {
     if (headerRef.current) {
