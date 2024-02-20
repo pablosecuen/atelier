@@ -12,6 +12,8 @@ interface Props {
 }
 
 export const RenderCellWeb = ({ product, columnKey }: Props) => {
+  console.log(product);
+
   // @ts-ignore
   const cellValue = product[columnKey];
   switch (columnKey) {
@@ -28,14 +30,14 @@ export const RenderCellWeb = ({ product, columnKey }: Props) => {
         </User>
       );
 
-    case "status":
+    case "availableForSale":
       return (
         <Chip
           size="sm"
           variant="flat"
-          color={cellValue === "status" ? "success" : cellValue === "paused" ? "danger" : "warning"}
+          color={cellValue === true ? "success" : cellValue === false ? "danger" : "warning"}
         >
-          <span className="capitalize text-xs">{cellValue}</span>
+          <span className="capitalize text-xs">{cellValue ? "activo" : "pausado"}</span>
         </Chip>
       );
 

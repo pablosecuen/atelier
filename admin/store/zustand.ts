@@ -47,6 +47,7 @@ interface Zustand {
   webProducts: ProductWeb[];
   setApiProducts: (newApiProducts: ProductApi[]) => void;
   setWebProducts: (newWebProducts: ProductWeb[]) => void;
+  toggleAvailableForSale: (productId: string) => void;
 }
 
 const useGlobalStore = create<Zustand>((set) => ({
@@ -54,6 +55,16 @@ const useGlobalStore = create<Zustand>((set) => ({
   webProducts: [],
   setApiProducts: (newApiProducts: ProductApi[]) => set({ apiProducts: newApiProducts }),
   setWebProducts: (newWebProducts: ProductWeb[]) => set({ webProducts: newWebProducts }),
+  toggleAvailableForSale: (productId: string) => {
+    set((state) => ({
+      webProducts: state.webProducts.map((product) => {
+        if (product.id === productId) {
+          return { ...product, availableForSale: !product.availableForSale };
+        }
+        return product;
+      })
+    }));
+  }
 }));
 
 // Función para cargar productos de la API
