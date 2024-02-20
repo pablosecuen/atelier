@@ -1,7 +1,7 @@
 // routes/productRoutes.ts
 import express from 'express';
 import paymentController from '../controllers/paymentController';
-import upload from '../multer';
+
 
 
 
@@ -12,7 +12,9 @@ router.get('/list',  paymentController.getAllPayments);
 
 router.post('/preference',  paymentController.createPreference);
 
-router.get('/webhook', paymentController.webHookController);
+router.post('/webhook', paymentController.webHookController);
+
+router.get('/merchantOrder',  paymentController.searchPaymentInfo);
 
 
 

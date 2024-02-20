@@ -29,8 +29,8 @@ const client = new MercadoPagoConfig({
 
 // Controlador para crear una preferencia de Mercado Pago
 export const createPreference = async (req: Request, res: Response) => {
-  const { items, back_urls, notification_url } = req.body;
-  console.log("log de req.body en controller", req.body);
+  const {area_code,number, items, back_urls, notification_url, firstname, mail, dni, calle, altura, codigoPostal, provincia, ciudad } = req.body;
+  console.log("log de body preference", req.body);
   const body = {
     items: items.map((item: MercadoPagoItem) => ({
       id: item.id,
@@ -48,9 +48,36 @@ export const createPreference = async (req: Request, res: Response) => {
     },
     auto_return: "approved",
     notification_url: notification_url,
+     payer: {
+       first_name: firstname,
+       last_name: firstname,
+          email: mail,
+          identification: {
+            type: "DNI",
+            number: dni,
+          },
+          address: {
+            street_name: calle,
+            street_number: altura,
+            zip_code: codigoPostal,
+       },
+       phone: {
+         area_code: area_code,
+         number: number,
+       }
+        },
+        shipments: {
+          receiver_address: {
+            street_name: calle,
+            street_number: altura,
+            zip_code: codigoPostal,
+            state_name: provincia,
+            city_name: ciudad,
+            country_id: "AR",
+          },
+        },
   };
 
-  console.log("log del body formado para enviar", body);
   try {
     const preference = new Preference(client);
     console.log("log de preference", preference);
@@ -66,34 +93,9 @@ export const createPreference = async (req: Request, res: Response) => {
 
 
 const webHookController = async (req: Request, res: Response) => {
-  const data = req.body;
   try {
-    const action = data.action;
-    const paymentId = data.data.id;
-    const dateCreated = data.date_created;
-    const userId = data.user_id;
-
-    if (action === "payment.created") {
-      // Obtener los detalles de la orden de comerciante (merchant order) desde Mercado Pago
-      const response = await axios.get(`https://api.mercadopago.com/v1/payments/${paymentId}`, {
-        headers: {
-          Authorization: `Bearer ${process.env.MERCADOPAGO_ACCESS_TOKEN}`,
-        },
-      });
-
-      if (response.status === 200) {
-           const paymentDetails = response.data;
-        // Guardar los detalles de la orden de comerciante como un nuevo registro de pago en la base de datos
-       await Payment.create({
-          paymentId: paymentDetails.id,
-          dateCreated: dateCreated,
-          userId: userId,
-          products: paymentDetails.items, 
-          payer: paymentDetails.payer, 
-        });
-      }
-    }
-        
+    console.log(req.body);
+    
     res.status(200).json("webhook recibido exitosamente");
   } catch (error) {
     console.error("Error al manejar el webhook: ", error);
@@ -119,4 +121,23 @@ export const getAllPayments = async (req: Request, res: Response) => {
   }
 };
 
-export default { createPreference, webHookController, getAllPayments  };
+export const searchPaymentInfo = async (req: Request, res: Response) => {
+  try {
+    const paymentId = req.query.payment_id as string;
+
+    // Realizar la búsqueda de la información del pago utilizando el paymentId
+    const response = await axios.get(`https://api.mercadopago.com/v1/payments/${paymentId}`, {
+      headers: {
+        Authorization: `Bearer ${process.env.MERCADOPAGO_ACCESS_TOKEN}`,
+      },
+    });
+
+    // Enviar la información del pago como respuesta al cliente
+    res.status(200).json(response.data);
+  } catch (error) {
+    console.error('Error al buscar la información del pago:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+};
+
+export default { createPreference, webHookController, getAllPayments, searchPaymentInfo  };
