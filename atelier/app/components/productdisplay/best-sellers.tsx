@@ -72,11 +72,11 @@ function BestSellers() {
       <Slider {...settings}>
         {products?.map((product: any) => (
           <Link
-            className=" h-full overflow-x-hidden max-w-[280px] border"
+            className=" h-full overflow-x-hidden max-w-[280px] "
             href={`/product/${product.handle}`}
             key={product.id}
           >
-            <div className="rounded-md w-full border h-full  px-2 md:px-0 pb-6 ">
+            <div className="rounded-md w-full  h-full  px-2 md:px-0 pb-6 ">
               <Image
                 src={product.imagesURL[0]}
                 alt={product.title}
