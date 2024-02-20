@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { createPreferenceAsync } from '../actions/paymentActions';
+import { createPreferenceAsync, getMerchantOrder } from '../actions/paymentActions';
  // Ajusta la ruta según tu estructura de carpetas
 
 export interface CheckoutState {
@@ -185,6 +185,18 @@ const paymentSlice = createSlice({
         state.loading = false;
         state.error = action.error.message || 'Error desconocido';
       })
+     .addCase(getMerchantOrder.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getMerchantOrder.fulfilled, (state, action: PayloadAction<PaymentInfo>) => {
+        state.loading = false;
+        state.paymentInfo = action.payload;
+      })
+      .addCase(getMerchantOrder.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message || 'Error desconocido';
+      });
   },
 });
 

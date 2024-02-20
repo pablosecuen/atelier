@@ -6,6 +6,7 @@ import axiosInstance from '../axiosInstance';
 import Payment from '@/app/types/payment';
 import axios from 'axios';
 
+
 export type CreatePreferencePayload = {
     items: {
     id: string;
@@ -21,12 +22,37 @@ export type CreatePreferencePayload = {
     pending: string;
   };
   auto_return: string;
-  notification_url:any
+  notification_url: any
+    payer: {
+    name: string;
+    email: string;
+    identification: {
+      type: string;
+      number: string;
+      },
+      phone: {
+        number: string;
+        area_code: string;
+      }
+    address: {
+      street_name: string;
+      street_number: string;
+      zip_code: string;
+    },
+  },
+  shipments: {
+    receiver_address: {
+      street_name: string;
+      street_number: string;
+      zip_code: string;
+      state_name: string;
+      city_name: string;
+      country_id: 'AR',
+    },
+  },
 };
 
 
-
-// Acción para listar todos los pagos
 export const listPayments = createAsyncThunk<Payment[], void>('paymentActions/listPayments', async () => {
   try {
     const response = await axiosInstance.get('/api/payment');
@@ -36,7 +62,7 @@ export const listPayments = createAsyncThunk<Payment[], void>('paymentActions/li
   }
 });
 
-// Acción para obtener un pago por su ID
+// Acción para crear una preferencia de pago 
 export const createPreferenceAsync = createAsyncThunk(
   'payment/createPreference',
   async (body: CreatePreferencePayload) => {
@@ -47,6 +73,24 @@ export const createPreferenceAsync = createAsyncThunk(
       return response.data;
     } catch (error: any) {
       console.error('Error creating preference:', error);
+      throw error; // Lanza el error para ser manejado por el middleware de Redux Toolkit
+    }
+  }
+);
+
+// Acción para obtener un pago por su ID
+export const getMerchantOrder = createAsyncThunk(
+  'payment/getMerchantOrder',
+  async (paymentId: string) => {
+    try {
+      // Realiza la solicitud al endpoint del backend para buscar la orden del comerciante
+      const response = await axios.get(`http://localhost:3000/api/payments/merchantOrder?payment_id=${paymentId}`);
+
+      // Devuelve los datos de la orden del comerciante
+      return response.data;
+    } catch (error) {
+      // Captura y maneja cualquier error que ocurra durante la solicitud
+      console.error('Error al obtener la orden del comerciante:', error);
       throw error; // Lanza el error para ser manejado por el middleware de Redux Toolkit
     }
   }
