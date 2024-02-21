@@ -24,7 +24,8 @@ export type CreatePreferencePayload = {
   auto_return: string;
   notification_url: any
     payer: {
-    name: string;
+      firstname: string;
+      lastname: string;
     email: string;
     identification: {
       type: string;
@@ -47,7 +48,7 @@ export type CreatePreferencePayload = {
       zip_code: string;
       state_name: string;
       city_name: string;
-      country_id: 'AR',
+      country_id: string,
     },
   },
 };
