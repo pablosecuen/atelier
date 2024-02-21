@@ -93,16 +93,28 @@ export const createPreference = async (req: Request, res: Response) => {
 
 
 const webHookController = async (req: Request, res: Response) => {
-      const paymentId = req.body.data.id;
+  const paymentId = req.body.data.id;
+  console.log(paymentId);
+  
   try {
-      const response = await axios.get(`https://api.mercadopago.com/v1/payments/${paymentId}`, {
+        const response = await axios.get(`https://api.mercadopago.com/v1/payments/${paymentId}`, {
       headers: {
         Authorization: `Bearer ${process.env.MERCADOPAGO_ACCESS_TOKEN}`,
       },
     });
 
-    console.log(response);
-    
+      const paymentData = {
+      paymentId: paymentId,
+      dateCreated: response.data.date_created,
+      items: response.data.additional_info.items,
+      status: response.data.status,
+      payer: response.data.payer,
+      shipments: response.data.shipments,
+      transaction_amount: response.data.transaction_amount,
+    };
+
+    const payment = await Payment.create(paymentData); 
+
     
     res.status(200).json("webhook recibido exitosamente");
   } catch (error) {
@@ -140,20 +152,8 @@ export const searchPaymentInfo = async (req: Request, res: Response) => {
       },
     });
 
-    console.log(response.data);
+
     
-
-        const paymentData = {
-      paymentId: paymentId,
-      dateCreated: response.data.date_created,
-      items: response.data.additional_info.items,
-      status: response.data.status,
-      payer: response.data.payer,
-      shipments: response.data.shipments,
-      transaction_amount: response.data.transaction_amount,
-    };
-
-     const payment = await Payment.create(paymentData); 
     // Enviar la información del pago como respuesta al cliente
     res.status(200).json(response.data);
   } catch (error) {
