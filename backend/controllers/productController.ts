@@ -120,8 +120,7 @@ const updateProductsWithAdditionalProperties = async (req: Request, res: Respons
 };
 
 const addProduct = async (req: Request, res: Response) => {
-  console.log("body", req.body);
-  console.log("images",req.files);
+
 
   try {
     const files = req.files as UploadedFile[]; 
@@ -226,8 +225,29 @@ const updateProduct = async (req: Request, res: Response) => {
 
 
 
+const deleteProduct = async (req: Request, res: Response) => {
+  try {
+    const { productId } = req.params;
+
+    if (!productId) {
+      return res.status(400).json({ message: 'Se requiere productId' });
+    }
+
+    const product = await Product.findByPk(productId);
+
+    if (!product) {
+      return res.status(404).json({ message: 'Producto no encontrado' });
+    }
+
+    await product.destroy();
+
+    res.status(200).json({ message: 'Producto eliminado exitosamente' });
+  } catch (error) {
+    console.error('Error al eliminar producto:', error);
+    res.status(500).json({ message: 'Error interno del servidor' });
+  }
+};
 
 
 
-
-export default { updateProductsWithAdditionalProperties,getProductsWithStock, addProduct, getAllProductsFromDb , updateProduct };
+export default { updateProductsWithAdditionalProperties,getProductsWithStock, addProduct, getAllProductsFromDb , updateProduct, deleteProduct };

@@ -5,6 +5,7 @@ import { EditIcon } from "../icons/table/edit-icon";
 
 import { AddProduct } from "../products/add-product";
 import { ProductApi } from "@/store/zustand";
+import { DeleteProduct } from "../products/delete-product";
 
 interface Props {
   product: ProductApi;
@@ -61,9 +62,7 @@ export const RenderCell = ({ product, columnKey }: Props) => {
               color="danger"
               onClick={() => console.log("Delete product", product.SKU)}
             >
-              <button>
-                <DeleteIcon size={20} fill="#FF0080" />
-              </button>
+              <DeleteProduct productId={product.SKU} />
             </Tooltip>
           </div>
         </div>

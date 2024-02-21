@@ -6,6 +6,7 @@ import { EditIcon } from "../icons/table/edit-icon";
 import { AddProduct } from "../products/add-product";
 import { ProductWeb } from "@/store/zustand";
 import { Switch } from "../button/switch/switch";
+import { DeleteProduct } from "../products/delete-product";
 
 interface Props {
   product: ProductWeb;
@@ -65,9 +66,7 @@ export const RenderCellWeb = ({ product, columnKey }: Props) => {
               color="danger"
               onClick={() => console.log("Delete product", product.SKU)}
             >
-              <button>
-                <DeleteIcon size={20} fill="#FF0080" />
-              </button>
+              <DeleteProduct productId={product.id} />
             </Tooltip>
           </div>
         </div>

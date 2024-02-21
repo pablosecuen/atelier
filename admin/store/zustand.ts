@@ -32,8 +32,14 @@ toggleAvailableForSale: async (productId: string, availableForSale: boolean) => 
   } catch (error) {
     console.error('Error al actualizar el producto:', error);
   }
-}
-
+  },
+ deleteProduct: async (productId: string|number) => {
+    try {
+      await deleteProductFromDatabase(productId);
+    } catch (error) {
+      console.error('Error al eliminar el producto:', error);
+    }
+  }
 }));
 
 // Función para cargar productos de la API
@@ -84,7 +90,15 @@ export const fetchWebProducts = async () => {
   }
 };
 
+const deleteProductFromDatabase = async (productId: string | number) => {
 
+    const response = await fetch(`http://localhost:3000/api/products/delete/${productId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+};
 
 export default useGlobalStore;
 
@@ -138,7 +152,8 @@ interface Zustand {
   setApiProducts: (newApiProducts: ProductApi[]) => void;
   setWebProducts: (newWebProducts: ProductWeb[]) => void;
    setTicketProducts: (newTicketProducts: Ticket[]) => void;
-  toggleAvailableForSale: (productId: string, availableForSale:boolean) => void;
+  toggleAvailableForSale: (productId: string, availableForSale: boolean) => void;
+  deleteProduct: (productId: string | number) => void;
 }
 
 export interface Ticket {

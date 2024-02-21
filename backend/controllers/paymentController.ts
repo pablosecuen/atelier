@@ -93,7 +93,7 @@ export const createPreference = async (req: Request, res: Response) => {
 
 
 const webHookController = async (req: Request, res: Response) => {
-  const paymentId = req.body.data.id;
+  const paymentId = req.body?.data?.id;
   console.log(paymentId);
   
   try {
