@@ -29,7 +29,7 @@ const client = new MercadoPagoConfig({
 
 // Controlador para crear una preferencia de Mercado Pago
 export const createPreference = async (req: Request, res: Response) => {
-  const {area_code,number, items, back_urls, notification_url, firstname, mail, dni, calle, altura, codigoPostal, provincia, ciudad } = req.body;
+  const {area_code,number, items, back_urls, notification_url, firstname, lastname,  mail, dni, calle, altura, codigoPostal, provincia, ciudad } = req.body;
   console.log("log de body preference", req.body);
   const body = {
     items: items.map((item: MercadoPagoItem) => ({
@@ -50,7 +50,7 @@ export const createPreference = async (req: Request, res: Response) => {
     notification_url: notification_url,
      payer: {
        first_name: firstname,
-       last_name: firstname,
+       last_name: lastname,
           email: mail,
           identification: {
             type: "DNI",
@@ -93,8 +93,16 @@ export const createPreference = async (req: Request, res: Response) => {
 
 
 const webHookController = async (req: Request, res: Response) => {
+      const paymentId = req.body.data.id;
   try {
-    console.log(req.body);
+      const response = await axios.get(`https://api.mercadopago.com/v1/payments/${paymentId}`, {
+      headers: {
+        Authorization: `Bearer ${process.env.MERCADOPAGO_ACCESS_TOKEN}`,
+      },
+    });
+
+    console.log(response);
+    
     
     res.status(200).json("webhook recibido exitosamente");
   } catch (error) {
@@ -132,6 +140,20 @@ export const searchPaymentInfo = async (req: Request, res: Response) => {
       },
     });
 
+    console.log(response.data);
+    
+
+        const paymentData = {
+      paymentId: paymentId,
+      dateCreated: response.data.date_created,
+      items: response.data.additional_info.items,
+      status: response.data.status,
+      payer: response.data.payer,
+      shipments: response.data.shipments,
+      transaction_amount: response.data.transaction_amount,
+    };
+
+     const payment = await Payment.create(paymentData); 
     // Enviar la información del pago como respuesta al cliente
     res.status(200).json(response.data);
   } catch (error) {
@@ -139,5 +161,7 @@ export const searchPaymentInfo = async (req: Request, res: Response) => {
     res.status(500).json({ error: 'Error interno del servidor' });
   }
 };
+
+
 
 export default { createPreference, webHookController, getAllPayments, searchPaymentInfo  };
