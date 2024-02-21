@@ -70,7 +70,7 @@ function Checkout() {
           pending: "http://localhost:3005/checkout/pending",
         },
         auto_return: "approved",
-        notification_url: "https://57f4-190-30-7-148.ngrok-free.app/webhook",
+        notification_url: "https://efdb-190-30-7-78.ngrok-free.app/api/payments/webhook",
         payer: {
           firstname: formData.firstname,
           lastname: formData.lastname,
@@ -91,11 +91,11 @@ function Checkout() {
         },
         shipments: {
           receiver_address: {
-            street_name: formData.calle,
-            street_number: formData.altura,
             zip_code: formData.codigoPostal,
             state_name: formData.provincia,
             city_name: formData.ciudad,
+            street_name: formData.calle,
+            street_number: formData.altura,
             country_id: "PE",
           },
         },
