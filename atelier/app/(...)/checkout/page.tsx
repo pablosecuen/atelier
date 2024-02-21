@@ -72,7 +72,8 @@ function Checkout() {
         auto_return: "approved",
         notification_url: "https://57f4-190-30-7-148.ngrok-free.app/webhook",
         payer: {
-          name: formData.firstname,
+          firstname: formData.firstname,
+          lastname: formData.lastname,
           email: formData.mail,
           identification: {
             type: "DNI",
@@ -95,7 +96,7 @@ function Checkout() {
             zip_code: formData.codigoPostal,
             state_name: formData.provincia,
             city_name: formData.ciudad,
-            country_id: "AR",
+            country_id: "PE",
           },
         },
       };
