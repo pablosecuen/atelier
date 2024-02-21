@@ -126,11 +126,11 @@ const webHookController = async (req: Request, res: Response) => {
 export const getAllPayments = async (req: Request, res: Response) => {
   try {
     // Consultar todos los pagos de la base de datos
-    const payments = await Payment.findAll();
+    let payments = await Payment.findAll();
 
     // Verificar si se encontraron pagos
-    if (!payments || payments.length === 0) {
-      return res.status(400).json({ message: 'No se encontraron pagos.' });
+    if (!payments) {
+      payments = []; // Si no hay pagos, asignamos un array vacío
     }
 
     // Retornar los pagos encontrados
@@ -140,6 +140,7 @@ export const getAllPayments = async (req: Request, res: Response) => {
     res.status(500).json({ status: 'error', message: 'Error interno del servidor' });
   }
 };
+
 
 export const searchPaymentInfo = async (req: Request, res: Response) => {
   try {

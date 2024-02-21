@@ -41,7 +41,7 @@ export const DeleteProduct = ({ productId }: AddProductProps) => {
           <ModalContent>
             {(onClose) => (
               <>
-                <ModalHeader className="flex flex-col gap-1">Agregar a Web</ModalHeader>
+                <ModalHeader className="flex flex-col gap-1">Borrar de la a Web</ModalHeader>
                 <ModalBody>
                   <label>Seguro desea eliminar el producto de la base de datos?</label>
                 </ModalBody>

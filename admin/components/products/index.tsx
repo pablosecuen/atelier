@@ -31,11 +31,11 @@ export const Products = () => {
     const searchLowerCase = productFilter.toLowerCase();
 
     const match =
-      SKU.toString().toLowerCase().includes(searchLowerCase) ||
-      UPC.toString().toLowerCase().includes(searchLowerCase) ||
-      RetailPrice.toString().toLowerCase().includes(searchLowerCase) ||
-      GetPercentOff.toString().toLowerCase().includes(searchLowerCase) ||
-      PromoPrice.toString().toLowerCase().includes(searchLowerCase);
+      SKU?.toString().toLowerCase().includes(searchLowerCase) ||
+      UPC?.toString().toLowerCase().includes(searchLowerCase) ||
+      RetailPrice?.toString().toLowerCase().includes(searchLowerCase) ||
+      GetPercentOff?.toLowerCase().includes(searchLowerCase) ||
+      PromoPrice?.toString().toLowerCase().includes(searchLowerCase);
 
     return match;
   });

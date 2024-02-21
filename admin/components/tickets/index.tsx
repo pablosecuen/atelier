@@ -2,13 +2,8 @@
 import { Button, Input } from "@nextui-org/react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { DotsIcon } from "@/components/icons/accounts/dots-icon";
 import { ExportIcon } from "@/components/icons/accounts/export-icon";
-import { InfoIcon } from "@/components/icons/accounts/info-icon";
-import { TrashIcon } from "@/components/icons/accounts/trash-icon";
 import { HouseIcon } from "@/components/icons/breadcrumb/house-icon";
-import { UsersIcon } from "@/components/icons/breadcrumb/users-icon";
-import { SettingsIcon } from "@/components/icons/sidebar/settings-icon";
 import useGlobalStore, { Ticket, fetchTicketsDB } from "@/store/zustand";
 import { TableWrapperTickets } from "../table/tabletickets";
 import * as XLSX from "xlsx";
@@ -23,6 +18,7 @@ export const Tickets = () => {
     const fetchTickets = async () => {
       try {
         const data = await fetchTicketsDB();
+
         setTicketProducts(data);
       } catch (error) {
         console.error("Error al cargar los productos:", error);
@@ -32,15 +28,15 @@ export const Tickets = () => {
     fetchTickets();
   }, [setTicketProducts]);
 
-  const filteredTickets = tickets.filter((ticket: Ticket) => {
+  const filteredTickets = tickets?.filter((ticket: Ticket) => {
     const { payer, status, transaction_amount, shipments } = ticket;
     const searchLowerCase = ticketFilter.toLowerCase();
 
     const match =
-      payer.first_name.toString().toLowerCase().includes(searchLowerCase) ||
-      payer.last_name.toString().toLowerCase().includes(searchLowerCase) ||
-      status.toString().toLowerCase().includes(searchLowerCase) ||
-      transaction_amount.toString().toLowerCase().includes(searchLowerCase);
+      payer.first_name?.toString().toLowerCase().includes(searchLowerCase) ||
+      payer.last_name?.toString().toLowerCase().includes(searchLowerCase) ||
+      status?.toString().toLowerCase().includes(searchLowerCase) ||
+      transaction_amount?.toString().toLowerCase().includes(searchLowerCase);
 
     return match;
   });

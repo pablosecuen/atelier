@@ -50,20 +50,20 @@ export const Web = () => {
     const match =
       size?.toString().toLowerCase().includes(searchLowerCase) ||
       color?.toString().toLowerCase().includes(searchLowerCase) ||
-      StockQty.toString().toLowerCase().includes(searchLowerCase) ||
-      id.toString().toLowerCase().includes(searchLowerCase) ||
-      category.toString().toLowerCase().includes(searchLowerCase) ||
-      availableForSale.toString().toLowerCase().includes(searchLowerCase) ||
-      title.toString().toLowerCase().includes(searchLowerCase) ||
-      description.toString().toLowerCase().includes(searchLowerCase) ||
-      category.toString().toLowerCase().includes(searchLowerCase) ||
-      SKU.toString().toLowerCase().includes(searchLowerCase) ||
-      StyleName.toString().toLowerCase().includes(searchLowerCase) ||
-      UPC.toString().toLowerCase().includes(searchLowerCase) ||
-      RetailPrice.toString().toLowerCase().includes(searchLowerCase) ||
-      GetPercentOff.toString().toLowerCase().includes(searchLowerCase) ||
-      promoPrice.toString().toLowerCase().includes(searchLowerCase) ||
-      stock.toString().toLowerCase().includes(searchLowerCase);
+      StockQty?.toString().toLowerCase().includes(searchLowerCase) ||
+      id?.toString().toLowerCase().includes(searchLowerCase) ||
+      category?.toString().toLowerCase().includes(searchLowerCase) ||
+      availableForSale?.toString().toLowerCase().includes(searchLowerCase) ||
+      title?.toString().toLowerCase().includes(searchLowerCase) ||
+      description?.toString().toLowerCase().includes(searchLowerCase) ||
+      category?.toString().toLowerCase().includes(searchLowerCase) ||
+      SKU?.toString().toLowerCase().includes(searchLowerCase) ||
+      StyleName?.toString().toLowerCase().includes(searchLowerCase) ||
+      UPC?.toString().toLowerCase().includes(searchLowerCase) ||
+      RetailPrice?.toString().toLowerCase().includes(searchLowerCase) ||
+      GetPercentOff?.toString().toLowerCase().includes(searchLowerCase) ||
+      promoPrice?.toString().toLowerCase().includes(searchLowerCase) ||
+      stock?.toString().toLowerCase().includes(searchLowerCase);
 
     return match;
   });
