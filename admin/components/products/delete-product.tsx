@@ -34,7 +34,7 @@ export const DeleteProduct = ({ productId }: AddProductProps) => {
   return (
     <div>
       <button onClick={onOpen} color="primary">
-        <DeleteIcon size={20} fill="#979797" />
+        <DeleteIcon size={20} fill="#FF0080" />
       </button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="top-center">
         <form onSubmit={handleSubmit}>

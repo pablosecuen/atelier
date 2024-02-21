@@ -1,7 +1,7 @@
 "use client";
 import { Button, Input } from "@nextui-org/react";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { DotsIcon } from "@/components/icons/accounts/dots-icon";
 import { ExportIcon } from "@/components/icons/accounts/export-icon";
 import { InfoIcon } from "@/components/icons/accounts/info-icon";
@@ -9,13 +9,15 @@ import { TrashIcon } from "@/components/icons/accounts/trash-icon";
 import { HouseIcon } from "@/components/icons/breadcrumb/house-icon";
 import { UsersIcon } from "@/components/icons/breadcrumb/users-icon";
 import { SettingsIcon } from "@/components/icons/sidebar/settings-icon";
-import { TableWrapper } from "@/components/table/table";
-import useGlobalStore, { fetchTicketsDB } from "@/store/zustand";
+import useGlobalStore, { Ticket, fetchTicketsDB } from "@/store/zustand";
 import { TableWrapperTickets } from "../table/tabletickets";
+import * as XLSX from "xlsx";
+import { ProductsIcon } from "../icons/sidebar/products-icon";
 
 export const Tickets = () => {
   const setTicketProducts = useGlobalStore((state) => state.setTicketProducts);
   const tickets = useGlobalStore((state) => state.tickets);
+  const [ticketFilter, setTicketFilter] = useState<string>("");
 
   useEffect(() => {
     const fetchTickets = async () => {
@@ -30,6 +32,26 @@ export const Tickets = () => {
     fetchTickets();
   }, [setTicketProducts]);
 
+  const filteredTickets = tickets.filter((ticket: Ticket) => {
+    const { payer, status, transaction_amount, shipments } = ticket;
+    const searchLowerCase = ticketFilter.toLowerCase();
+
+    const match =
+      payer.first_name.toString().toLowerCase().includes(searchLowerCase) ||
+      payer.last_name.toString().toLowerCase().includes(searchLowerCase) ||
+      status.toString().toLowerCase().includes(searchLowerCase) ||
+      transaction_amount.toString().toLowerCase().includes(searchLowerCase);
+
+    return match;
+  });
+
+  const exportToExcel = () => {
+    const worksheet = XLSX.utils.json_to_sheet(filteredTickets);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Tickets");
+    XLSX.writeFile(workbook, "tickets.xlsx");
+  };
+
   return (
     <div className="my-14 lg:px-6 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
       <ul className="flex">
@@ -42,8 +64,8 @@ export const Tickets = () => {
         </li>
 
         <li className="flex gap-2">
-          <UsersIcon />
-          <span>Users</span>
+          <ProductsIcon />
+          <span>Tickets</span>
           <span> / </span>{" "}
         </li>
         <li className="flex gap-2">
@@ -51,7 +73,7 @@ export const Tickets = () => {
         </li>
       </ul>
 
-      <h3 className="text-xl font-semibold">All Accounts</h3>
+      <h3 className="text-xl font-semibold">Todos los tickets</h3>
       <div className="flex justify-between flex-wrap gap-4 items-center">
         <div className="flex items-center gap-3 flex-wrap md:flex-nowrap">
           <Input
@@ -59,21 +81,19 @@ export const Tickets = () => {
               input: "w-full",
               mainWrapper: "w-full",
             }}
-            placeholder="Search users"
+            placeholder="Buscar Tickets"
+            value={ticketFilter}
+            onChange={(e) => setTicketFilter(e.target.value)}
           />
-          <SettingsIcon />
-          <TrashIcon />
-          <InfoIcon />
-          <DotsIcon />
         </div>
         <div className="flex flex-row gap-3.5 flex-wrap">
-          <Button color="primary" startContent={<ExportIcon />}>
+          <Button color="primary" startContent={<ExportIcon />} onPress={exportToExcel}>
             Export to CSV
           </Button>
         </div>
       </div>
       <div className="max-w-[95rem] mx-auto w-full">
-        <TableWrapperTickets tickets={tickets} />
+        <TableWrapperTickets tickets={filteredTickets} />
       </div>
     </div>
   );

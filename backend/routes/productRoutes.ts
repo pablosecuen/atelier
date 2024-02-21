@@ -14,7 +14,7 @@ router.get('/', productController.getProductsWithStock);
 
 router.get('/web', productController.getAllProductsFromDb);
 
-router.put('/update/:productId', productController.updateProduct);
+router.put('/update/:productId',upload.array('images'), productController.updateProduct);
 
 router.delete('/delete/:productId', productController.deleteProduct);
 

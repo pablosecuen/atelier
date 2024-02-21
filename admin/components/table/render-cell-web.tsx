@@ -7,6 +7,8 @@ import { AddProduct } from "../products/add-product";
 import { ProductWeb } from "@/store/zustand";
 import { Switch } from "../button/switch/switch";
 import { DeleteProduct } from "../products/delete-product";
+import { EditProduct } from "../products/edit-product";
+import { EyeIcon } from "../icons/table/eye-icon";
 
 interface Props {
   product: ProductWeb;
@@ -51,21 +53,17 @@ export const RenderCellWeb = ({ product, columnKey }: Props) => {
       return (
         <div className="flex items-center gap-4 ">
           <div>
-            <Tooltip content="Details"></Tooltip>
-          </div>
-          <div>
-            <Tooltip content="Edit product" color="secondary">
-              <button onClick={() => console.log("Edit product", product)}>
-                <EditIcon size={20} fill="#979797" />
-              </button>
+            <Tooltip content="Detalles de producto" color="default">
+              <EyeIcon />
             </Tooltip>
           </div>
           <div>
-            <Tooltip
-              content="Delete product"
-              color="danger"
-              onClick={() => console.log("Delete product", product.SKU)}
-            >
+            <Tooltip content="Editar producto" color="secondary">
+              <EditProduct product={product} />
+            </Tooltip>
+          </div>
+          <div>
+            <Tooltip content="Borrar producto" color="danger">
               <DeleteProduct productId={product.id} />
             </Tooltip>
           </div>

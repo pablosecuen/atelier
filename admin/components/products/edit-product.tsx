@@ -12,32 +12,35 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import axios from "axios";
-import { EyeIcon } from "../icons/table/eye-icon";
-import { ProductApi } from "@/store/zustand";
+import { ProductWeb } from "@/store/zustand";
 import { EditIcon } from "../icons/table/edit-icon";
+import { useRouter } from "next/navigation";
 
 interface FormData {
+  imagesURL: string[];
   title: string;
-  size: string;
-  color: string;
+  size: string | undefined;
+  color: string | undefined;
   category: string;
   quantity: any;
   description: string;
 }
 interface AddProductProps {
-  product: ProductApi;
+  product: ProductWeb;
 }
-export const AddProduct = ({ product }: AddProductProps) => {
+export const EditProduct = ({ product }: AddProductProps) => {
+  const router = useRouter();
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
   const [selectedImages, setSelectedImages] = useState<File[]>([]);
   const [imgFile, setImgFile] = useState<File[]>([]);
   const [formData, setFormData] = useState<FormData>({
-    title: "",
-    size: "",
-    description: "",
-    color: "",
-    category: "",
-    quantity: "",
+    imagesURL: product.imagesURL,
+    title: product.title,
+    size: product.size,
+    description: product.description,
+    color: product.color,
+    category: product.category,
+    quantity: product.stock,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,20 +62,21 @@ export const AddProduct = ({ product }: AddProductProps) => {
       formDataToSend.append("color", formData.color || "");
       formDataToSend.append("category", formData.category || "");
       formDataToSend.append("quantity", formData.quantity || "");
+      formDataToSend.append("stock", formData.quantity || "");
       formDataToSend.append("StyleName", product.StyleName || "");
       formDataToSend.append("SKU", product.SKU || "");
       formDataToSend.append("UPC", product.UPC || "");
       formDataToSend.append("RetailPrice", product.RetailPrice || "");
       formDataToSend.append("GetPercentOff", product.GetPercentOff || "");
-      formDataToSend.append("PromoPrice", product.PromoPrice || "");
-      formDataToSend.append("StockQty", product.StockQty?.toString() || "");
+      formDataToSend.append("PromoPrice", product.promoPrice || "");
+      formDataToSend.append("StockQty", formData.quantity || "");
 
       selectedImages.forEach((file, index) => {
         formDataToSend.append(`images`, file, file.name);
       });
 
-      const response = await axios.post(
-        "http://localhost:3000/api/products/create",
+      const response = await axios.put(
+        `http://localhost:3000/api/products/update/${product.id}`,
         formDataToSend,
         {
           headers: {
@@ -81,7 +85,7 @@ export const AddProduct = ({ product }: AddProductProps) => {
         }
       );
 
-      if (response.status === 201) {
+      if (response.status === 200) {
         alert("Formulario enviado correctamente");
         setFormData({
           title: "",
@@ -90,8 +94,10 @@ export const AddProduct = ({ product }: AddProductProps) => {
           color: "",
           category: "",
           quantity: "",
+          imagesURL: [],
         });
         onClose();
+        router.refresh();
       }
     } catch (error: any) {
       console.error("Error al enviar el formulario:", error);
@@ -109,7 +115,7 @@ export const AddProduct = ({ product }: AddProductProps) => {
   return (
     <div>
       <button onClick={onOpen} color="primary">
-        <EditIcon size={20} fill="#2ab408" />
+        <EditIcon size={20} fill="#979797" />
       </button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="top-center">
         <form onSubmit={handleSubmit} encType="multipart/form-data">
@@ -173,13 +179,8 @@ export const AddProduct = ({ product }: AddProductProps) => {
                     accept="image/*"
                   />
                   <div className="flex gap-2">
-                    {selectedImages.map((image, index) => (
-                      <img
-                        key={index}
-                        src={URL.createObjectURL(image)}
-                        alt={`Image ${index}`}
-                        className="max-w-10"
-                      />
+                    {formData.imagesURL.map((image: string, index: number) => (
+                      <img key={index} src={image} alt={`Image ${index}`} className="max-w-10" />
                     ))}
                   </div>
                 </ModalBody>

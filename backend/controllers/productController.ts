@@ -120,8 +120,6 @@ const updateProductsWithAdditionalProperties = async (req: Request, res: Respons
 };
 
 const addProduct = async (req: Request, res: Response) => {
-
-
   try {
     const files = req.files as UploadedFile[]; 
     if (!files || files.length === 0) {
@@ -195,7 +193,6 @@ const updateProduct = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params;
     const updates: ProductUpdates = req.body;
-
     if (!productId || !updates) {
       return res.status(400).json({ message: 'Se requiere productId y actualizaciones' });
     }

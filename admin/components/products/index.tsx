@@ -1,21 +1,18 @@
 "use client";
 import { Button, Input } from "@nextui-org/react";
 import Link from "next/link";
-import React, { useEffect } from "react";
-import { DotsIcon } from "@/components/icons/accounts/dots-icon";
+import React, { useEffect, useState } from "react";
 import { ExportIcon } from "@/components/icons/accounts/export-icon";
-import { InfoIcon } from "@/components/icons/accounts/info-icon";
-import { TrashIcon } from "@/components/icons/accounts/trash-icon";
 import { HouseIcon } from "@/components/icons/breadcrumb/house-icon";
-import { UsersIcon } from "@/components/icons/breadcrumb/users-icon";
-import { SettingsIcon } from "@/components/icons/sidebar/settings-icon";
-import { TableWrapper } from "@/components/table/table";
-import useGlobalStore, { fetchApiProducts } from "@/store/zustand";
 
+import { TableWrapper } from "@/components/table/table";
+import useGlobalStore, { ProductApi, fetchApiProducts } from "@/store/zustand";
+import * as XLSX from "xlsx";
+import { ProductsIcon } from "../icons/sidebar/products-icon";
 export const Products = () => {
   const setApiProducts = useGlobalStore((state) => state.setApiProducts);
   const products = useGlobalStore((state) => state.apiProducts);
-
+  const [productFilter, setProductFilter] = useState<string>("");
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -29,6 +26,27 @@ export const Products = () => {
     fetchProducts();
   }, [setApiProducts]);
 
+  const filteredProducts = products.filter((product: ProductApi) => {
+    const { SKU, UPC, RetailPrice, GetPercentOff, PromoPrice } = product;
+    const searchLowerCase = productFilter.toLowerCase();
+
+    const match =
+      SKU.toString().toLowerCase().includes(searchLowerCase) ||
+      UPC.toString().toLowerCase().includes(searchLowerCase) ||
+      RetailPrice.toString().toLowerCase().includes(searchLowerCase) ||
+      GetPercentOff.toString().toLowerCase().includes(searchLowerCase) ||
+      PromoPrice.toString().toLowerCase().includes(searchLowerCase);
+
+    return match;
+  });
+
+  const exportToExcel = () => {
+    const worksheet = XLSX.utils.json_to_sheet(filteredProducts);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Productos");
+    XLSX.writeFile(workbook, "productos.xlsx");
+  };
+
   return (
     <div className="my-14 lg:px-6 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
       <ul className="flex">
@@ -41,16 +59,16 @@ export const Products = () => {
         </li>
 
         <li className="flex gap-2">
-          <UsersIcon />
-          <span>Users</span>
+          <ProductsIcon />
+          <span>Productos</span>
           <span> / </span>{" "}
         </li>
         <li className="flex gap-2">
-          <span>List</span>
+          <span>Lista</span>
         </li>
       </ul>
 
-      <h3 className="text-xl font-semibold">All Accounts</h3>
+      <h3 className="text-xl font-semibold">Todos los productos retail</h3>
       <div className="flex justify-between flex-wrap gap-4 items-center">
         <div className="flex items-center gap-3 flex-wrap md:flex-nowrap">
           <Input
@@ -58,21 +76,19 @@ export const Products = () => {
               input: "w-full",
               mainWrapper: "w-full",
             }}
-            placeholder="Search users"
+            placeholder="Buscar productos"
+            value={productFilter}
+            onChange={(e) => setProductFilter(e.target.value)}
           />
-          <SettingsIcon />
-          <TrashIcon />
-          <InfoIcon />
-          <DotsIcon />
         </div>
         <div className="flex flex-row gap-3.5 flex-wrap">
-          <Button color="primary" startContent={<ExportIcon />}>
+          <Button color="primary" startContent={<ExportIcon />} onPress={exportToExcel}>
             Export to CSV
           </Button>
         </div>
       </div>
       <div className="max-w-[95rem] mx-auto w-full">
-        <TableWrapper products={products} />
+        <TableWrapper products={filteredProducts} />
       </div>
     </div>
   );

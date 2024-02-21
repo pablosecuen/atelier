@@ -105,6 +105,10 @@ export default useGlobalStore;
 
 
 export interface ProductWeb {
+  quantity: string | (readonly string[] & string) | undefined;
+  size: string | (readonly string[] & string) | undefined;
+  color: string | (readonly string[] & string) | undefined;
+  StockQty: any;
   id: string;
   imagesURL: string[];
   handle: string;
@@ -132,8 +136,9 @@ export interface ProductWeb {
 
 
 export interface ProductApi {
+  id?: string;
   StockQty: string;
-  SKU?: string;
+  SKU: string;
   StyleName: string;
   UPC: string;
   name?: string;
@@ -144,6 +149,7 @@ export interface ProductApi {
   category?: string;
   quantity?: number;
 }
+
 
 interface Zustand {
   apiProducts: ProductApi[];

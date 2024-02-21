@@ -1,20 +1,18 @@
 "use client";
 import { Button, Input } from "@nextui-org/react";
 import Link from "next/link";
-import React, { useEffect } from "react";
-import { DotsIcon } from "@/components/icons/accounts/dots-icon";
+import React, { useEffect, useState } from "react";
 import { ExportIcon } from "@/components/icons/accounts/export-icon";
-import { InfoIcon } from "@/components/icons/accounts/info-icon";
-import { TrashIcon } from "@/components/icons/accounts/trash-icon";
 import { HouseIcon } from "@/components/icons/breadcrumb/house-icon";
-import { UsersIcon } from "@/components/icons/breadcrumb/users-icon";
-import { SettingsIcon } from "@/components/icons/sidebar/settings-icon";
-import useGlobalStore, { fetchWebProducts } from "@/store/zustand";
+import useGlobalStore, { ProductWeb, fetchWebProducts } from "@/store/zustand";
 import { TableWrapperWeb } from "../table/tableweb";
+import * as XLSX from "xlsx";
+import { ProductsIcon } from "../icons/sidebar/products-icon";
 
 export const Web = () => {
   const setWebProducts = useGlobalStore((state) => state.setWebProducts);
   const products = useGlobalStore((state) => state.webProducts);
+  const [productFilter, setProductFilter] = useState<string>("");
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -29,6 +27,54 @@ export const Web = () => {
     fetchProducts();
   }, [setWebProducts]);
 
+  const filteredProducts = products.filter((product: ProductWeb) => {
+    const {
+      size,
+      color,
+      StockQty,
+      id,
+      category,
+      availableForSale,
+      description,
+      title,
+      SKU,
+      StyleName,
+      UPC,
+      RetailPrice,
+      GetPercentOff,
+      promoPrice,
+      stock,
+    } = product;
+    const searchLowerCase = productFilter.toLowerCase();
+
+    const match =
+      size?.toString().toLowerCase().includes(searchLowerCase) ||
+      color?.toString().toLowerCase().includes(searchLowerCase) ||
+      StockQty.toString().toLowerCase().includes(searchLowerCase) ||
+      id.toString().toLowerCase().includes(searchLowerCase) ||
+      category.toString().toLowerCase().includes(searchLowerCase) ||
+      availableForSale.toString().toLowerCase().includes(searchLowerCase) ||
+      title.toString().toLowerCase().includes(searchLowerCase) ||
+      description.toString().toLowerCase().includes(searchLowerCase) ||
+      category.toString().toLowerCase().includes(searchLowerCase) ||
+      SKU.toString().toLowerCase().includes(searchLowerCase) ||
+      StyleName.toString().toLowerCase().includes(searchLowerCase) ||
+      UPC.toString().toLowerCase().includes(searchLowerCase) ||
+      RetailPrice.toString().toLowerCase().includes(searchLowerCase) ||
+      GetPercentOff.toString().toLowerCase().includes(searchLowerCase) ||
+      promoPrice.toString().toLowerCase().includes(searchLowerCase) ||
+      stock.toString().toLowerCase().includes(searchLowerCase);
+
+    return match;
+  });
+
+  const exportToExcel = () => {
+    const worksheet = XLSX.utils.json_to_sheet(filteredProducts);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Alumnos");
+    XLSX.writeFile(workbook, "alumnos.xlsx");
+  };
+
   return (
     <div className="my-14 lg:px-6 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
       <ul className="flex">
@@ -41,16 +87,16 @@ export const Web = () => {
         </li>
 
         <li className="flex gap-2">
-          <UsersIcon />
-          <span>Users</span>
+          <ProductsIcon />
+          <span>Productos</span>
           <span> / </span>{" "}
         </li>
         <li className="flex gap-2">
-          <span>List</span>
+          <span>Lista</span>
         </li>
       </ul>
 
-      <h3 className="text-xl font-semibold">All Accounts</h3>
+      <h3 className="text-xl font-semibold">Todos los productos web</h3>
       <div className="flex justify-between flex-wrap gap-4 items-center">
         <div className="flex items-center gap-3 flex-wrap md:flex-nowrap">
           <Input
@@ -58,21 +104,19 @@ export const Web = () => {
               input: "w-full",
               mainWrapper: "w-full",
             }}
-            placeholder="Search users"
+            placeholder="Buscar productos"
+            value={productFilter}
+            onChange={(e) => setProductFilter(e.target.value)}
           />
-          <SettingsIcon />
-          <TrashIcon />
-          <InfoIcon />
-          <DotsIcon />
         </div>
         <div className="flex flex-row gap-3.5 flex-wrap">
-          <Button color="primary" startContent={<ExportIcon />}>
+          <Button color="primary" startContent={<ExportIcon />} onPress={exportToExcel}>
             Export to CSV
           </Button>
         </div>
       </div>
       <div className="max-w-[95rem] mx-auto w-full">
-        <TableWrapperWeb products={products} />
+        <TableWrapperWeb products={filteredProducts} />
       </div>
     </div>
   );

@@ -5,7 +5,6 @@ import { EditIcon } from "../icons/table/edit-icon";
 
 import { AddProduct } from "../products/add-product";
 import { ProductApi } from "@/store/zustand";
-import { DeleteProduct } from "../products/delete-product";
 
 interface Props {
   product: ProductApi;
@@ -43,28 +42,17 @@ export const RenderCell = ({ product, columnKey }: Props) => {
       return (
         <div className="flex items-center gap-4 ">
           <div>
-            <Tooltip content="Details">
-              <button onClick={() => console.log("View product", product.SKU)}>
-                <AddProduct product={product} />
-              </button>
+            <Tooltip content="Agregar a web" color="secondary">
+              <AddProduct product={product} />
             </Tooltip>
           </div>
-          <div>
+          {/*  <div>
             <Tooltip content="Edit product" color="secondary">
               <button onClick={() => console.log("Edit product", product.SKU)}>
                 <EditIcon size={20} fill="#979797" />
               </button>
             </Tooltip>
-          </div>
-          <div>
-            <Tooltip
-              content="Delete product"
-              color="danger"
-              onClick={() => console.log("Delete product", product.SKU)}
-            >
-              <DeleteProduct productId={product.SKU} />
-            </Tooltip>
-          </div>
+          </div> */}
         </div>
       );
     default:
