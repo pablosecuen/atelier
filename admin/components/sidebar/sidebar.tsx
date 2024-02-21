@@ -51,6 +51,12 @@ export const SidebarWrapper = () => {
                 icon={<ProductsIcon />}
                 href="web"
               />
+              <SidebarItem
+                isActive={pathname === "/tickets"}
+                title="Tickets"
+                icon={<ProductsIcon />}
+                href="tickets"
+              />
             </SidebarMenu>
           </div>
         </div>

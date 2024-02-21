@@ -1,60 +1,15 @@
 import { create } from 'zustand';
 
 
-export interface ProductWeb {
-  id: string;
-  imagesURL: string[];
-  handle: string;
-  slug: string;
-  category: string;
-  descriptionHtml: string;
-  seo: {
-    title: string;
-    description: string;
-    keywords: string;
-  };
-  availableForSale: boolean;
-  title: string;
-  description: string;
-  updatedAt: string;
-  SKU: string;
-  StyleName: string;
-  UPC: string;
-  RetailPrice: string;
-  GetPercentOff: string;
-  promoPrice: string;
-  stock: string;
-  createdAt: string;
-}
 
-
-export interface ProductApi {
-  StockQty: string;
-  SKU?: string;
-  StyleName: string;
-  UPC: string;
-  name?: string;
-  RetailPrice: string;
-  GetPercentOff: string; 
-  PromoPrice: string; 
-  price?: number;
-  category?: string;
-  quantity?: number;
-}
-
-interface Zustand {
-  apiProducts: ProductApi[];
-  webProducts: ProductWeb[];
-  setApiProducts: (newApiProducts: ProductApi[]) => void;
-  setWebProducts: (newWebProducts: ProductWeb[]) => void;
-  toggleAvailableForSale: (productId: string, availableForSale:boolean) => void;
-}
 
 const useGlobalStore = create<Zustand>((set) => ({
   apiProducts: [],
   webProducts: [],
+    tickets: [],
   setApiProducts: (newApiProducts: ProductApi[]) => set({ apiProducts: newApiProducts }),
   setWebProducts: (newWebProducts: ProductWeb[]) => set({ webProducts: newWebProducts }),
+  setTicketProducts: (newTicketProducts: Ticket[]) => set({ tickets: newTicketProducts }),
 toggleAvailableForSale: async (productId: string, availableForSale: boolean) => {
    try {
     // Realizar la llamada PUT al endpoint
@@ -100,6 +55,21 @@ export const fetchApiProducts = async () => {
 };
 
 
+
+export const  fetchTicketsDB= async () => {
+    try {
+      const response = await fetch("http://localhost:3000/api/payments/list");
+      if (!response.ok) {
+        throw new Error("Error al obtener los tickets");
+      }
+      const data = await response.json();
+      // Actualiza el estado con los tickets obtenidos
+return data
+    } catch (error) {
+      console.error("Error al obtener los tickets:", error);
+    }
+}
+  
 export const fetchWebProducts = async () => {
   try {
    const response = await fetch("http://localhost:3000/api/products/web");
@@ -117,3 +87,67 @@ export const fetchWebProducts = async () => {
 
 
 export default useGlobalStore;
+
+
+
+export interface ProductWeb {
+  id: string;
+  imagesURL: string[];
+  handle: string;
+  slug: string;
+  category: string;
+  descriptionHtml: string;
+  seo: {
+    title: string;
+    description: string;
+    keywords: string;
+  };
+  availableForSale: boolean;
+  title: string;
+  description: string;
+  updatedAt: string;
+  SKU: string;
+  StyleName: string;
+  UPC: string;
+  RetailPrice: string;
+  GetPercentOff: string;
+  promoPrice: string;
+  stock: string;
+  createdAt: string;
+}
+
+
+export interface ProductApi {
+  StockQty: string;
+  SKU?: string;
+  StyleName: string;
+  UPC: string;
+  name?: string;
+  RetailPrice: string;
+  GetPercentOff: string; 
+  PromoPrice: string; 
+  price?: number;
+  category?: string;
+  quantity?: number;
+}
+
+interface Zustand {
+  apiProducts: ProductApi[];
+  webProducts: ProductWeb[];
+  tickets: Ticket[];
+  setApiProducts: (newApiProducts: ProductApi[]) => void;
+  setWebProducts: (newWebProducts: ProductWeb[]) => void;
+   setTicketProducts: (newTicketProducts: Ticket[]) => void;
+  toggleAvailableForSale: (productId: string, availableForSale:boolean) => void;
+}
+
+export interface Ticket {
+  id: string;
+  paymentId: string;
+  dateCreated: string;
+  items: any[];
+  status: string;
+  transaction_amount: number;
+  payer: any;
+  shipments: any;
+}

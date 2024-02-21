@@ -21,3 +21,13 @@ export const columnsWeb = [
    { name: 'STATUS', uid: 'availableForSale' },
    {name: 'ACTIONS', uid: 'actions'},
 ];
+
+
+export const columnsTicket = [
+    { name: 'PAYER', uid: 'payer' },
+   {name: 'FECHA', uid: 'createdAt'},
+   { name: 'ITEMS', uid: 'items' },
+   { name: 'PRECIO', uid: 'transaction_amount' },
+    { name: 'STATUS', uid: 'status' },
+   {name: 'ACTIONS', uid: 'actions'},
+];
