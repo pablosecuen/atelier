@@ -8,13 +8,23 @@ const databaseName = process.env.DATABASE_NAME || 'default_database_name';
 const databaseUserName = process.env.DATABASE_USERNAME || 'default_database_name';
 const databasePassword = process.env.DATABASE_PASSWORD || 'default_database_name';
 
-const sequelize = new Sequelize(databaseName, databaseUserName, databasePassword, {
-  host: 'localhost',
-  dialect: 'postgres',
-  logging: false
-});
+const DATABASE_URL = process.env.RAILWAY_DATABASE_URL;
 
-sequelize.sync({  })
+let sequelize: Sequelize;
+
+if (DATABASE_URL) {
+  sequelize = new Sequelize(DATABASE_URL.toString(), {
+    logging: false
+  });
+} else {
+  sequelize = new Sequelize(databaseName, databaseUserName, databasePassword, {
+    host: 'localhost',
+    dialect: 'postgres',
+    logging: false
+  });
+}
+
+sequelize.sync({ force: true })
   .then(() => {
     console.log('Modelos sincronizados correctamente con la base de datos.');
   })
