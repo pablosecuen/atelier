@@ -19,8 +19,8 @@ interface Company {
 
 export const CompaniesDropdown = () => {
   const [company, setCompany] = useState<Company>({
-    name: "Acme Co.",
-    location: "Palo Alto, CA",
+    name: "",
+    location: "Peru",
     logo: <AcmeIcon />,
   });
   return (
@@ -36,9 +36,7 @@ export const CompaniesDropdown = () => {
             <h3 className="text-xl font-medium m-0 text-default-900 -mb-4 whitespace-nowrap">
               {company.name}
             </h3>
-            <span className="text-xs font-medium text-default-500">
-              {company.location}
-            </span>
+            <span className="text-xs font-medium text-default-500">{company.location}</span>
           </div>
           <BottomIcon />
         </div>
@@ -48,28 +46,21 @@ export const CompaniesDropdown = () => {
           if (e === "1") {
             setCompany({
               name: "Facebook",
-              location: "San Fransico, CA",
+              location: "Peru",
               logo: <AcmeIcon />,
             });
           }
           if (e === "2") {
             setCompany({
               name: "Instagram",
-              location: "Austin, Tx",
-              logo: <AcmeLogo />,
+              location: "Peru",
+              logo: <AcmeIcon />,
             });
           }
           if (e === "3") {
             setCompany({
               name: "Twitter",
-              location: "Brooklyn, NY",
-              logo: <AcmeIcon />,
-            });
-          }
-          if (e === "4") {
-            setCompany({
-              name: "Acme Co.",
-              location: "Palo Alto, CA",
+              location: "Peru",
               logo: <AcmeIcon />,
             });
           }
@@ -80,7 +71,7 @@ export const CompaniesDropdown = () => {
           <DropdownItem
             key="1"
             startContent={<AcmeIcon />}
-            description="San Fransico, CA"
+            description="Peru"
             classNames={{
               base: "py-4",
               title: "text-base font-semibold",
@@ -90,8 +81,8 @@ export const CompaniesDropdown = () => {
           </DropdownItem>
           <DropdownItem
             key="2"
-            startContent={<AcmeLogo />}
-            description="Austin, Tx"
+            startContent={<AcmeIcon />}
+            description="Peru"
             classNames={{
               base: "py-4",
               title: "text-base font-semibold",
@@ -102,7 +93,7 @@ export const CompaniesDropdown = () => {
           <DropdownItem
             key="3"
             startContent={<AcmeIcon />}
-            description="Brooklyn, NY"
+            description="Peru"
             classNames={{
               base: "py-4",
               title: "text-base font-semibold",
@@ -113,13 +104,13 @@ export const CompaniesDropdown = () => {
           <DropdownItem
             key="4"
             startContent={<AcmeIcon />}
-            description="Palo Alto, CA"
+            description="Peru"
             classNames={{
               base: "py-4",
               title: "text-base font-semibold",
             }}
           >
-            Acme Co.
+            Andrews
           </DropdownItem>
         </DropdownSection>
       </DropdownMenu>

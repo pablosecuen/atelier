@@ -6,6 +6,7 @@ import { ThemeProviderProps } from "next-themes/dist/types";
 import { Layout } from "../components/layout/layout";
 import { QueryClient, QueryClientProvider } from "react-query";
 
+
 const queryClient = new QueryClient();
 
 export interface ProvidersProps {
@@ -15,12 +16,14 @@ export interface ProvidersProps {
 
 export function Providers({ children, themeProps }: ProvidersProps) {
   return (
-    <NextUIProvider>
-      <NextThemesProvider defaultTheme="system" attribute="class" {...themeProps}>
-        <QueryClientProvider client={queryClient}>
-          <Layout>{children}</Layout>
-        </QueryClientProvider>
-      </NextThemesProvider>
-    </NextUIProvider>
+
+      <NextUIProvider>
+        <NextThemesProvider defaultTheme="system" attribute="class" {...themeProps}>
+          <QueryClientProvider client={queryClient}>
+            <Layout>{children}</Layout>
+          </QueryClientProvider>
+        </NextThemesProvider>
+      </NextUIProvider>
+
   );
 }

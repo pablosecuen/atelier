@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/localizations": "^1.26.15",
+    "@clerk/nextjs": "^4.29.7",
     "@nextui-org/react": "2.0.22",
     "apexcharts": "^3.35.5",
     "axios": "^1.6.7",
