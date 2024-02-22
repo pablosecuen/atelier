@@ -10,6 +10,7 @@ import React, { useState } from "react";
 import { AcmeIcon } from "../icons/acme-icon";
 import { AcmeLogo } from "../icons/acmelogo";
 import { BottomIcon } from "../icons/sidebar/bottom-icon";
+import Link from "next/link";
 
 interface Company {
   name: string;
@@ -57,13 +58,6 @@ export const CompaniesDropdown = () => {
               logo: <AcmeIcon />,
             });
           }
-          if (e === "3") {
-            setCompany({
-              name: "Twitter",
-              location: "Peru",
-              logo: <AcmeIcon />,
-            });
-          }
         }}
         aria-label="Avatar Actions"
       >
@@ -77,7 +71,7 @@ export const CompaniesDropdown = () => {
               title: "text-base font-semibold",
             }}
           >
-            Facebook
+            <Link href="https://www.facebook.com/id.andrews?mibextid=ZbWKwL">Facebook</Link>
           </DropdownItem>
           <DropdownItem
             key="2"
@@ -88,29 +82,7 @@ export const CompaniesDropdown = () => {
               title: "text-base font-semibold",
             }}
           >
-            Instagram
-          </DropdownItem>
-          <DropdownItem
-            key="3"
-            startContent={<AcmeIcon />}
-            description="Peru"
-            classNames={{
-              base: "py-4",
-              title: "text-base font-semibold",
-            }}
-          >
-            Twitter
-          </DropdownItem>
-          <DropdownItem
-            key="4"
-            startContent={<AcmeIcon />}
-            description="Peru"
-            classNames={{
-              base: "py-4",
-              title: "text-base font-semibold",
-            }}
-          >
-            Andrews
+            <Link href="https://www.instagram.com/id.andrews?igsh=MW1hcDY3cDNlcDdy">Instagram</Link>
           </DropdownItem>
         </DropdownSection>
       </DropdownMenu>

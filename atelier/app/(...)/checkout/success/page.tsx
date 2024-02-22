@@ -5,7 +5,6 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/app/redux/store";
 import LogoIcon from "@/app/components/lib/icons/logo";
-import Footer from "@/app/components/footer/footer";
 import html2canvas from "html2canvas";
 import { usePathname } from "next/navigation";
 import { clearCart } from "@/app/redux/slices/cartSlice";
@@ -21,6 +20,8 @@ const Success = () => {
   const payment_id = searchParams.get("payment_id");
   const [localPaymentInfo, setLocalPaymentInfo] = useState<any>(null);
   const headerRef = useRef(null);
+
+
 
   const handleContinueShopping = () => {
     router.push("/");

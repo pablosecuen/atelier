@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ShoppingCartIcon from "@/public/assets/icons/shop-cart";
 import ChevronRight from "@/public/assets/icons/chevron-right";
 import ChevronLeft from "@/public/assets/icons/chevron-left";
@@ -50,6 +50,7 @@ function Checkout() {
   const toggleDetails = () => {
     setIsOpen(!isOpen);
   };
+  console.log(formData, "logd e formadata");
 
   const handleCreatePreference = () => {
     // Verifica que cart esté definido y sea un array
@@ -70,7 +71,7 @@ function Checkout() {
           pending: "http://localhost:3005/checkout/pending",
         },
         auto_return: "approved",
-        notification_url: "https://efdb-190-30-7-78.ngrok-free.app/api/payments/webhook",
+        notification_url: "https://0fa2-190-230-105-108.ngrok-free.app/api/payments/webhook",
         payer: {
           firstname: formData.firstname,
           lastname: formData.lastname,
@@ -268,8 +269,8 @@ function Checkout() {
                     </label>
                     <input
                       type="email"
-                      id="email"
-                      name="email"
+                      id="mail"
+                      name="mail"
                       onChange={handleChange}
                       className="  h-6 text-sm md:h-8   w-full"
                       required

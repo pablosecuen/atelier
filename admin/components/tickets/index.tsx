@@ -31,7 +31,6 @@ export const Tickets = () => {
   const filteredTickets = tickets?.filter((ticket: Ticket) => {
     const { payer, status, transaction_amount, shipments } = ticket;
     const searchLowerCase = ticketFilter.toLowerCase();
-
     const match =
       payer.first_name?.toString().toLowerCase().includes(searchLowerCase) ||
       payer.last_name?.toString().toLowerCase().includes(searchLowerCase) ||

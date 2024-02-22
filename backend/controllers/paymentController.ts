@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 import { MercadoPagoConfig, Preference } from "mercadopago";
 import Payment from '../models/payment'; 
 import axios from 'axios';
+import nodemailer from 'nodemailer';
 require("dotenv").config();
 
 
@@ -30,7 +31,7 @@ const client = new MercadoPagoConfig({
 // Controlador para crear una preferencia de Mercado Pago
 export const createPreference = async (req: Request, res: Response) => {
   const {area_code,number, items, back_urls, notification_url, firstname, lastname,  mail, dni, calle, altura, codigoPostal, provincia, ciudad } = req.body;
-  console.log("log de body preference", req.body);
+
   const body = {
     items: items.map((item: MercadoPagoItem) => ({
       id: item.id,
@@ -80,15 +81,16 @@ export const createPreference = async (req: Request, res: Response) => {
 
   try {
     const preference = new Preference(client);
-    console.log("log de preference", preference);
     const result = await preference.create({ body });
-    console.log("log de preference id", result.id);
     res.status(200).json({ preferenceId: result.id });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Error interno del servidor" });
+    res.status(500).json( "Error interno del servidor" );
   }
 };
+
+
+
 
 
 
@@ -97,13 +99,14 @@ const webHookController = async (req: Request, res: Response) => {
   console.log(paymentId);
   
   try {
-        const response = await axios.get(`https://api.mercadopago.com/v1/payments/${paymentId}`, {
+    const response = await axios.get(`https://api.mercadopago.com/v1/payments/${paymentId}`, {
       headers: {
         Authorization: `Bearer ${process.env.MERCADOPAGO_ACCESS_TOKEN}`,
       },
     });
+console.log(response.data);
 
-      const paymentData = {
+    const paymentData = {
       paymentId: paymentId,
       dateCreated: response.data.date_created,
       items: response.data.additional_info.items,
@@ -113,15 +116,21 @@ const webHookController = async (req: Request, res: Response) => {
       transaction_amount: response.data.transaction_amount,
     };
 
-    const payment = await Payment.create(paymentData); 
+    const payment = await Payment.create(paymentData);
 
-    
-    res.status(200).json("webhook recibido exitosamente");
+ 
+    // Envía el correo electrónico con la información del pago
+    console.log("antes de enviar el mail" )
+    sendTicket(paymentData, response.data.payer.email);
+     console.log("despues de enviar el mail")
+
+
+    res.status(200).json('webhook recibido exitosamente');
   } catch (error) {
-    console.error("Error al manejar el webhook: ", error);
-    res.status(500).json({ status: "error", message: "Error interno del servidor" });
+    res.status(500).json({ message: 'Error interno del servidor' });
   }
 };
+
 
 export const getAllPayments = async (req: Request, res: Response) => {
   try {
@@ -166,3 +175,7 @@ export const searchPaymentInfo = async (req: Request, res: Response) => {
 
 
 export default { createPreference, webHookController, getAllPayments, searchPaymentInfo  };
+
+function sendTicket(paymentData: { paymentId: any; dateCreated: any; items: any; status: any; payer: any; shipments: any; transaction_amount: any; }, arg1: string) {
+  throw new Error('Function not implemented.');
+}
