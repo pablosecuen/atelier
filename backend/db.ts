@@ -4,24 +4,19 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const databaseName = process.env.DATABASE_NAME || 'default_database_name';
-const databaseUserName = process.env.DATABASE_USERNAME || 'default_database_name';
-const databasePassword = process.env.DATABASE_PASSWORD || 'default_database_name';
-
 const DATABASE_URL = process.env.RAILWAY_DATABASE_URL;
 
-let sequelize: Sequelize;
+let sequelize: Sequelize | undefined;
 
 if (DATABASE_URL) {
-  sequelize = new Sequelize(DATABASE_URL.toString(), {
+  sequelize = new Sequelize(DATABASE_URL, {
+    dialect: "postgres",
     logging: false
   });
-} else {
-  sequelize = new Sequelize(databaseName, databaseUserName, databasePassword, {
-    host: 'localhost',
-    dialect: 'postgres',
-    logging: false
-  });
+}
+
+if (!sequelize) {
+  throw new Error('No se pudo establecer una conexión a la base de datos. Verifique la URL de la base de datos.');
 }
 
 sequelize.sync({ force: true })
