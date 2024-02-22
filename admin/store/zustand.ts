@@ -13,7 +13,7 @@ const useGlobalStore = create<Zustand>((set) => ({
 toggleAvailableForSale: async (productId: string, availableForSale: boolean) => {
    try {
     // Realizar la llamada PUT al endpoint
-    const response = await fetch(`http://localhost:3000/api/products/update/${productId}`, {
+    const response = await fetch(`https://wrong-eggnog-production.up.railway.app/api/products/update/${productId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -45,7 +45,7 @@ toggleAvailableForSale: async (productId: string, availableForSale: boolean) => 
 // Función para cargar productos de la API
 export const fetchApiProducts = async () => {
   try {
-      const response = await fetch("http://localhost:3000/api/products");
+      const response = await fetch("https://wrong-eggnog-production.up.railway.app/api/products");
       console.log(response);
       
     if (!response.ok) {
@@ -64,7 +64,7 @@ export const fetchApiProducts = async () => {
 
 export const  fetchTicketsDB= async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/payments/list");
+      const response = await fetch("https://wrong-eggnog-production.up.railway.app/api/payments/list");
       if (!response.ok) {
         throw new Error("Error al obtener los tickets");
       }
@@ -78,7 +78,7 @@ return data
   
 export const fetchWebProducts = async () => {
   try {
-   const response = await fetch("http://localhost:3000/api/products/web");
+   const response = await fetch("https://wrong-eggnog-production.up.railway.app/api/products/web");
     if (!response.ok) {
       throw new Error("Error al obtener los productos de la WEB");
     }
@@ -92,7 +92,7 @@ export const fetchWebProducts = async () => {
 
 const deleteProductFromDatabase = async (productId: string | number) => {
 
-    const response = await fetch(`http://localhost:3000/api/products/delete/${productId}`, {
+    const response = await fetch(`https://wrong-eggnog-production.up.railway.app/api/products/delete/${productId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'

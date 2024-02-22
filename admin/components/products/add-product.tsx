@@ -72,7 +72,7 @@ export const AddProduct = ({ product }: AddProductProps) => {
       });
 
       const response = await axios.post(
-        "http://localhost:3000/api/products/create",
+        "https://wrong-eggnog-production.up.railway.app/api/products/create",
         formDataToSend,
         {
           headers: {
