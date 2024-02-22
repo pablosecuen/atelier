@@ -96,7 +96,7 @@ export const createPreference = async (req: Request, res: Response) => {
 
 const webHookController = async (req: Request, res: Response) => {
   const paymentId = req.body?.data?.id;
-  console.log(paymentId);
+
   
   try {
     const response = await axios.get(`https://api.mercadopago.com/v1/payments/${paymentId}`, {
@@ -104,7 +104,7 @@ const webHookController = async (req: Request, res: Response) => {
         Authorization: `Bearer ${process.env.MERCADOPAGO_ACCESS_TOKEN}`,
       },
     });
-console.log(response.data);
+
 
     const paymentData = {
       paymentId: paymentId,
@@ -117,13 +117,6 @@ console.log(response.data);
     };
 
     const payment = await Payment.create(paymentData);
-
- 
-    // Envía el correo electrónico con la información del pago
-    console.log("antes de enviar el mail" )
-    sendTicket(paymentData, response.data.payer.email);
-     console.log("despues de enviar el mail")
-
 
     res.status(200).json('webhook recibido exitosamente');
   } catch (error) {

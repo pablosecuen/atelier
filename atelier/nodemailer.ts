@@ -84,15 +84,16 @@ const sendTicket = async (paymentData: any, email:string) => {
         
           // Contenido del correo
     const mailOptions = {
-      from: process.env.GMAIL_ACCOUNT,
-      to: `pablosecuen@gmail.com, ${process.env.GMAIL_ACCOUNT}` ,
+      from: "andrews.notification@gmail.com",
+      to: `pablosecuen@gmail.com, andrews.notification@gmail.com` ,
       subject: 'Andrews: Información de pago recibido',
       html: htmlContent, 
         };
         const info = await transport.sendMail(mailOptions);
-        console.log(info)
+        console.log(info,"log dentro de funcion nodemailer")
          return info;
-    } catch (error) {
+    } catch (error) {console.log(error);
+    
           throw new Error(`Error sending email: ${error}`);
     }
 }

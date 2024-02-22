@@ -170,7 +170,7 @@ const addProduct = async (req: Request, res: Response) => {
       }
     });
 
-    console.log("Fin de la función addProduct");
+
     res.status(201).json({ success: true, message: "Producto agregado exitosamente", data: newProduct });
   } catch (error) {
     console.error("Error al agregar el producto:", error);
