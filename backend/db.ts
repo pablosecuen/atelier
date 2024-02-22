@@ -4,9 +4,10 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+
 const DATABASE_URL = process.env.RAILWAY_DATABASE_URL;
 
-let sequelize: Sequelize | undefined;
+let sequelize: Sequelize = new Sequelize(); 
 
 if (DATABASE_URL) {
   sequelize = new Sequelize(DATABASE_URL, {
