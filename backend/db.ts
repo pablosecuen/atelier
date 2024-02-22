@@ -14,7 +14,7 @@ const sequelize = new Sequelize(databaseName, databaseUserName, databasePassword
   logging: false
 });
 
-sequelize.sync({ force: true })
+sequelize.sync({  })
   .then(() => {
     console.log('Modelos sincronizados correctamente con la base de datos.');
   })
