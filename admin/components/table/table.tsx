@@ -20,7 +20,7 @@ interface TableWrapperProps {
 export const TableWrapper: React.FC<TableWrapperProps> = ({ products }) => {
   return (
     <div className=" w-full flex flex-col gap-4">
-      <Toaster position="bottom-right" closeButton={true} />
+    
       <Table aria-label="Example table with custom cells">
         <TableHeader columns={columns}>
           {(column) => (

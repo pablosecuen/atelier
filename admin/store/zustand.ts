@@ -86,14 +86,12 @@ export const fetchWebProducts = async () => {
   try {
    const response = await fetch("https://wrong-eggnog-production.up.railway.app/api/products/web");
     if (!response.ok) {
-      toast.error("Error al obtener los productos de la WEB")
       throw new Error("Error al obtener los productos de la WEB");
     }
 toast.success("Productos cargados correctamente")
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("Error al obtener los productos del sitio web:", error);
     throw new Error("Error al obtener los productos de la WEB");
   }
 };

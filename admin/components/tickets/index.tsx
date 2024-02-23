@@ -8,6 +8,7 @@ import useGlobalStore, { Ticket, fetchTicketsDB } from "@/store/zustand";
 import { TableWrapperTickets } from "../table/tabletickets";
 import * as XLSX from "xlsx";
 import { ProductsIcon } from "../icons/sidebar/products-icon";
+import { Toaster, toast } from "sonner";
 
 export const Tickets = () => {
   const setTicketProducts = useGlobalStore((state) => state.setTicketProducts);
@@ -17,11 +18,16 @@ export const Tickets = () => {
   useEffect(() => {
     const fetchTickets = async () => {
       try {
-        const data = await fetchTicketsDB();
-
-        setTicketProducts(data);
+        toast.promise(fetchTicketsDB(), {
+          loading: "Cargando tickets...",
+          success: (data) => {
+            setTicketProducts(data);
+            return "Tickets cargados exitosamente";
+          },
+          error: (error) => `Error al cargar los tickets: ${error.message}`,
+        });
       } catch (error) {
-        console.error("Error al cargar los productos:", error);
+        console.error("Error al cargar los tickets:", error);
       }
     };
 
@@ -49,6 +55,7 @@ export const Tickets = () => {
 
   return (
     <div className="my-14 lg:px-6 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
+      <Toaster position="bottom-right" closeButton={true} />
       <ul className="flex">
         <li className="flex gap-2">
           <HouseIcon />

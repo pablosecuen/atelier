@@ -8,6 +8,7 @@ import useGlobalStore, { ProductWeb, fetchWebProducts } from "@/store/zustand";
 import { TableWrapperWeb } from "../table/tableweb";
 import * as XLSX from "xlsx";
 import { ProductsIcon } from "../icons/sidebar/products-icon";
+import { Toaster, toast } from "sonner";
 
 export const Web = () => {
   const setWebProducts = useGlobalStore((state) => state.setWebProducts);
@@ -15,16 +16,22 @@ export const Web = () => {
   const [productFilter, setProductFilter] = useState<string>("");
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const promise = async () => {
       try {
         const data = await fetchWebProducts();
-        setWebProducts(data);
-      } catch (error) {
-        console.error("Error al cargar los productos:", error);
+        return data;
+      } catch (error: any) {
+        throw error;
       }
     };
-
-    fetchProducts();
+    toast.promise(promise(), {
+      loading: "Cargando productos desde la web...",
+      success: (data) => {
+        setWebProducts(data);
+        return "Productos cargados exitosamente desde la web";
+      },
+      error: (error) => `Error al cargar los productos desde la web: ${error.message}`,
+    });
   }, [setWebProducts]);
 
   const filteredProducts = products.filter((product: ProductWeb) => {
@@ -77,6 +84,7 @@ export const Web = () => {
 
   return (
     <div className="my-14 lg:px-6 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
+      <Toaster position="bottom-right" closeButton={true} />
       <ul className="flex">
         <li className="flex gap-2">
           <HouseIcon />
