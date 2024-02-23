@@ -5,18 +5,17 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 
-const DATABASE_URL = process.env.RAILWAY_DATABASE_URL;
 
-let sequelize: Sequelize = new Sequelize(); 
 
-if (DATABASE_URL) {
-  sequelize = new Sequelize(DATABASE_URL, {
+let sequelize: Sequelize;
+
+
+if (process.env.DATABASE_URL) {
+  sequelize = new Sequelize(process.env.DATABASE_URL, {
     dialect: "postgres",
     logging: false
   });
-}
-
-if (!sequelize) {
+} else {
   throw new Error('No se pudo establecer una conexión a la base de datos. Verifique la URL de la base de datos.');
 }
 
