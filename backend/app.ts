@@ -20,7 +20,9 @@ cloudinary.config({
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors()); 
+app.use(cors({
+  origin: 'https://andrews-theta.vercel.app'
+}));
 
 app.use('/api/products', productRoutes);
 app.use('/api/payments', paymentsRoutes);

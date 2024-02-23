@@ -2,7 +2,7 @@
   "scripts": {
     "start": "ts-node app.ts",
     "build": "tsc",
-        "start:compiled": "node dist/app.js"
+        "start:compiled": "node dist/app.js --omit=dev"
   },
   "dependencies": {
     "axios": "^1.6.7",
