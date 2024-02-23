@@ -8,7 +8,7 @@ import morgan from 'morgan';
 import cors from 'cors'; 
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000; 
           
 cloudinary.config({ 
   cloud_name: process.env.CLOUDINARY_NAME, 
@@ -28,5 +28,5 @@ app.use('/api/products', productRoutes);
 app.use('/api/payments', paymentsRoutes);
 
 app.listen(PORT, () => {
-  console.log(`Servidor corriendo en el puerto ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
