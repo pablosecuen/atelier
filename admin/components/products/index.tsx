@@ -9,7 +9,6 @@ import { TableWrapper } from "@/components/table/table";
 import useGlobalStore, { ProductApi, fetchApiProducts } from "@/store/zustand";
 import * as XLSX from "xlsx";
 import { ProductsIcon } from "../icons/sidebar/products-icon";
-import { toast } from "sonner";
 export const Products = () => {
   const setApiProducts = useGlobalStore((state) => state.setApiProducts);
   const products = useGlobalStore((state) => state.apiProducts);
@@ -17,15 +16,9 @@ export const Products = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        // Utilizamos toast.promise() para mostrar un mensaje de carga mientras se resuelve la promesa de fetchApiProducts
-        toast.promise(fetchApiProducts(), {
-          loading: "Cargando productos...",
-          success: (data) => {
-            setApiProducts(data); // Establecemos los productos en el estado una vez que la promesa se resuelve con éxito
-            return `Productos cargados exitosamente: ${data}`;
-          },
-          error: (error) => `Error al cargar los productos: ${error.message}`,
-        });
+        const data = await fetchApiProducts();
+
+        setApiProducts(data);
       } catch (error) {
         console.error("Error al cargar los productos:", error);
       }

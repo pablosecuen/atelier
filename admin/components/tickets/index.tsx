@@ -8,7 +8,7 @@ import useGlobalStore, { Ticket, fetchTicketsDB } from "@/store/zustand";
 import { TableWrapperTickets } from "../table/tabletickets";
 import * as XLSX from "xlsx";
 import { ProductsIcon } from "../icons/sidebar/products-icon";
-import { Toaster, toast } from "sonner";
+import { Toaster } from "sonner";
 
 export const Tickets = () => {
   const setTicketProducts = useGlobalStore((state) => state.setTicketProducts);
@@ -18,16 +18,11 @@ export const Tickets = () => {
   useEffect(() => {
     const fetchTickets = async () => {
       try {
-        toast.promise(fetchTicketsDB(), {
-          loading: "Cargando tickets...",
-          success: (data) => {
-            setTicketProducts(data);
-            return "Tickets cargados exitosamente";
-          },
-          error: (error) => `Error al cargar los tickets: ${error.message}`,
-        });
+        const data = await fetchTicketsDB();
+
+        setTicketProducts(data);
       } catch (error) {
-        console.error("Error al cargar los tickets:", error);
+        console.error("Error al cargar los productos:", error);
       }
     };
 
