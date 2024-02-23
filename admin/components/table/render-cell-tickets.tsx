@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const RenderCellTickets = ({ ticket, columnKey }: Props) => {
-  console.log(ticket);
+
 
   const payerName = ticket.payer ? ticket.payer.first_name + ticket.payer.last_name : "";
 

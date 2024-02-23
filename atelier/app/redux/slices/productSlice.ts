@@ -42,9 +42,7 @@ const productSlice = createSlice({
         state.status = "loading";
       })
       .addCase(productActions.listProducts.fulfilled, (state, action) => {      
-        state.products = action.payload;
-        console.log(action.payload);
-        
+        state.products = action.payload;        
         state.status = "succeeded";
         state.error = null;
       })

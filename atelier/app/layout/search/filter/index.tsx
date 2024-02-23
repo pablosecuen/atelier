@@ -23,7 +23,7 @@ export default function FilterList() {
     filters.sortBy = sortBy;
     filters.sortOrder = sortOrder;
 
-    console.log("Filters:", filters); // Verifica que los filtros sean correctos
+    
 
     dispatch(listProducts(filters));
   }, [dispatch, priceRange, sortBy, sortOrder]);

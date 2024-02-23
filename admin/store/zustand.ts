@@ -1,3 +1,4 @@
+import { toast } from 'sonner';
 import { create } from 'zustand';
 
 
@@ -21,8 +22,12 @@ toggleAvailableForSale: async (productId: string, availableForSale: boolean) => 
       body: JSON.stringify({ availableForSale: !availableForSale })
     });
 
-    if (!response.ok) throw new Error('Error al actualizar el producto');
+     if (!response.ok) {
+       toast.error('Error al actualizar el producto');
+       throw new Error('Error al actualizar el producto');
+     }
 
+toast.success('Producto actualizado correctamente');
     // Actualizar el estado local después de una actualización exitosa
     set((state) => ({
       webProducts: state.webProducts.map((product) =>
@@ -36,8 +41,9 @@ toggleAvailableForSale: async (productId: string, availableForSale: boolean) => 
  deleteProduct: async (productId: string|number) => {
     try {
       await deleteProductFromDatabase(productId);
-    } catch (error) {
-      console.error('Error al eliminar el producto:', error);
+    } catch (error: any) {
+      toast.error('Error al actualizar el producto')
+      throw new Error('Error al eliminar el producto', error.message);
     }
   }
 }));
@@ -46,17 +52,15 @@ toggleAvailableForSale: async (productId: string, availableForSale: boolean) => 
 export const fetchApiProducts = async () => {
   try {
       const response = await fetch("http://localhost:3000/api/products");
-      console.log(response);
-      
     if (!response.ok) {
+      toast.error("Erro al obtener los productos de la API")
       throw new Error("Error al obtener los productos de la API");
     }
+    toast.success("Productos cargados correctamente")
       const data = await response.json();
-       console.log(data);
     return data;
-  } catch (error) {
-    console.error("Error al obtener los productos de la API:", error);
-    throw error; 
+  } catch (error:any) {
+    throw new Error(error); 
   }
 };
 
@@ -66,13 +70,14 @@ export const  fetchTicketsDB= async () => {
     try {
       const response = await fetch("http://localhost:3000/api/payments/list");
       if (!response.ok) {
+        toast.error("Error al obtener los tickets")
         throw new Error("Error al obtener los tickets");
       }
       const data = await response.json();
-      // Actualiza el estado con los tickets obtenidos
+         toast.success("Tickets cargados correctamente")
 return data
-    } catch (error) {
-      console.error("Error al obtener los tickets:", error);
+    } catch (error: any) {
+          throw new Error(error); 
     }
 }
   
@@ -80,13 +85,14 @@ export const fetchWebProducts = async () => {
   try {
    const response = await fetch("http://localhost:3000/api/products/web");
     if (!response.ok) {
+      toast.error("PError al obtener los productos de la WEB")
       throw new Error("Error al obtener los productos de la WEB");
     }
     const data = await response.json();
+      toast.success("Productos web cargados correctamente")
     return data;
-  } catch (error) {
-    console.error("Error al obtener los productos del sitio web:", error);
-    throw error; 
+  } catch (error: any) {
+       throw new Error(error); 
   }
 };
 
@@ -98,6 +104,7 @@ const deleteProductFromDatabase = async (productId: string | number) => {
         'Content-Type': 'application/json'
       }
     });
+    toast.success("Producto web borrado correctamente")
 };
 
 export default useGlobalStore;

@@ -23,7 +23,7 @@ const initialState: CartState = {
 };
 
 const calculateTotalCost = (cart: Cart) => {
-  console.log(cart);
+
   
   const total = cart.reduce((accumulatedTotal:number, item:Product) => {
     // Verificar si el precio es un número válido antes de sumarlo

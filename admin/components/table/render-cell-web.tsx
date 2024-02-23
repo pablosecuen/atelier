@@ -16,7 +16,7 @@ interface Props {
 }
 
 export const RenderCellWeb = ({ product, columnKey }: Props) => {
-  console.log(product);
+
 
   // @ts-ignore
   const cellValue = product[columnKey];
