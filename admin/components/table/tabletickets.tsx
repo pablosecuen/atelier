@@ -11,16 +11,18 @@ import React from "react";
 import { columnsTicket } from "./data";
 import { RenderCellTickets } from "./render-cell-tickets";
 import { Ticket } from "@/store/zustand";
+import { Toaster } from "sonner";
 
 interface TableWrapperProps {
   tickets?: Ticket[];
 }
 
 export const TableWrapperTickets: React.FC<TableWrapperProps> = ({ tickets }) => {
-  console.log(tickets);
+
 
   return (
     <div className=" w-full flex flex-col gap-4">
+      <Toaster position="bottom-right" closeButton={true} />
       <Table aria-label="Example table with custom cells">
         <TableHeader columns={columnsTicket}>
           {(column) => (

@@ -11,6 +11,7 @@ import React from "react";
 import { columns } from "./data";
 import { RenderCell } from "./render-cell";
 import { ProductApi } from "@/store/zustand";
+import { Toaster } from "sonner";
 
 interface TableWrapperProps {
   products?: ProductApi[];
@@ -19,6 +20,7 @@ interface TableWrapperProps {
 export const TableWrapper: React.FC<TableWrapperProps> = ({ products }) => {
   return (
     <div className=" w-full flex flex-col gap-4">
+      <Toaster position="bottom-right" closeButton={true} />
       <Table aria-label="Example table with custom cells">
         <TableHeader columns={columns}>
           {(column) => (

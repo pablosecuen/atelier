@@ -1,3 +1,4 @@
+import { toast } from 'sonner';
 import { create } from 'zustand';
 
 
@@ -21,8 +22,11 @@ toggleAvailableForSale: async (productId: string, availableForSale: boolean) => 
       body: JSON.stringify({ availableForSale: !availableForSale })
     });
 
-    if (!response.ok) throw new Error('Error al actualizar el producto');
-
+     if (!response.ok) {
+       toast.error("Error al actualizar el producto")
+       throw new Error('Error al actualizar el producto');
+     } 
+toast.success("Producto actualizado correctamente")
     // Actualizar el estado local después de una actualización exitosa
     set((state) => ({
       webProducts: state.webProducts.map((product) =>
@@ -30,14 +34,14 @@ toggleAvailableForSale: async (productId: string, availableForSale: boolean) => 
       )
     }));
   } catch (error) {
-    console.error('Error al actualizar el producto:', error);
+     throw new Error('Error al actualizar el producto');
   }
   },
  deleteProduct: async (productId: string|number) => {
     try {
       await deleteProductFromDatabase(productId);
     } catch (error) {
-      console.error('Error al eliminar el producto:', error);
+       throw new Error('Error al borrar el producto');
     }
   }
 }));
@@ -46,13 +50,13 @@ toggleAvailableForSale: async (productId: string, availableForSale: boolean) => 
 export const fetchApiProducts = async () => {
   try {
       const response = await fetch("https://wrong-eggnog-production.up.railway.app/api/products");
-      console.log(response);
       
     if (!response.ok) {
+      toast.error("Error al obtener los productos de la API")
       throw new Error("Error al obtener los productos de la API");
     }
       const data = await response.json();
-       console.log(data);
+toast.success("Productos cargados correctamente")
     return data;
   } catch (error) {
     console.error("Error al obtener los productos de la API:", error);
@@ -66,13 +70,15 @@ export const  fetchTicketsDB= async () => {
     try {
       const response = await fetch("https://wrong-eggnog-production.up.railway.app/api/payments/list");
       if (!response.ok) {
+        toast.error("Error al obtener los tickets")
         throw new Error("Error al obtener los tickets");
       }
+toast.success("Tickets cargados correctamente")
       const data = await response.json();
       // Actualiza el estado con los tickets obtenidos
 return data
     } catch (error) {
-      console.error("Error al obtener los tickets:", error);
+      throw new Error("Error al obtener los tickets");
     }
 }
   
@@ -80,24 +86,32 @@ export const fetchWebProducts = async () => {
   try {
    const response = await fetch("https://wrong-eggnog-production.up.railway.app/api/products/web");
     if (!response.ok) {
+      toast.error("Error al obtener los productos de la WEB")
       throw new Error("Error al obtener los productos de la WEB");
     }
+toast.success("Productos cargados correctamente")
     const data = await response.json();
     return data;
   } catch (error) {
     console.error("Error al obtener los productos del sitio web:", error);
-    throw error; 
+    throw new Error("Error al obtener los productos de la WEB");
   }
 };
 
 const deleteProductFromDatabase = async (productId: string | number) => {
-
+try {
     const response = await fetch(`https://wrong-eggnog-production.up.railway.app/api/products/delete/${productId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
       }
     });
+  toast.success("Producto borrado correctamente")
+} catch (error) {
+  toast.error("Error al borrar el producto")
+  throw new Error("Error al obtener los productos de la WEB");
+}
+  
 };
 
 export default useGlobalStore;

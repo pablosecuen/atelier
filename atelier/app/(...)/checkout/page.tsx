@@ -50,7 +50,7 @@ function Checkout() {
   const toggleDetails = () => {
     setIsOpen(!isOpen);
   };
-  console.log(formData, "logd e formadata");
+
 
   const handleCreatePreference = () => {
     // Verifica que cart esté definido y sea un array

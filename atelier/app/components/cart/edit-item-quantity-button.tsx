@@ -13,7 +13,7 @@ export default function EditItemQuantityButton({
   type: "plus" | "minus";
 }) {
   const dispatch = useDispatch();
-  console.log(item);
+
 
   const handleQuantityChange = () => {
     if (type === "plus") {

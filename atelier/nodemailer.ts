@@ -90,10 +90,8 @@ const sendTicket = async (paymentData: any, email:string) => {
       html: htmlContent, 
         };
         const info = await transport.sendMail(mailOptions);
-        console.log(info,"log dentro de funcion nodemailer")
          return info;
-    } catch (error) {console.log(error);
-    
+    } catch (error) {
           throw new Error(`Error sending email: ${error}`);
     }
 }
