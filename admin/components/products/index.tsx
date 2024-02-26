@@ -17,13 +17,11 @@ export const Products = () => {
     const fetchProducts = async () => {
       try {
         const data = await fetchApiProducts();
-
         setApiProducts(data);
       } catch (error) {
         console.error("Error al cargar los productos:", error);
       }
     };
-
     fetchProducts();
   }, [setApiProducts]);
 

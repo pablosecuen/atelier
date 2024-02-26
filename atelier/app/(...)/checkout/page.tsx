@@ -51,7 +51,6 @@ function Checkout() {
     setIsOpen(!isOpen);
   };
 
-
   const handleCreatePreference = () => {
     // Verifica que cart esté definido y sea un array
     if (cart && Array.isArray(cart) && cart.length > 0) {
@@ -66,9 +65,9 @@ function Checkout() {
           size: item.size,
         })),
         back_urls: {
-          success: "https://andrews-theta.vercel.app//checkout/success",
-          failure: "https://andrews-theta.vercel.app//checkout/failure",
-          pending: "https://andrews-theta.vercel.app//checkout/pending",
+          success: "https://andrews-theta.vercel.app/checkout/success",
+          failure: "https://andrews-theta.vercel.app/checkout/failure",
+          pending: "https://andrews-theta.vercel.app/checkout/pending",
         },
         auto_return: "approved",
         notification_url: "https://wrong-eggnog-production.up.railway.app/api/payments/webhook",

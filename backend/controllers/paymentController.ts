@@ -30,10 +30,9 @@ const client = new MercadoPagoConfig({
 
 // Controlador para crear una preferencia de Mercado Pago
 export const createPreference = async (req: Request, res: Response) => {
-  const {area_code,number, items, back_urls, notification_url, firstname, lastname,  mail, dni, calle, altura, codigoPostal, provincia, ciudad } = req.body;
-
+ 
   const body = {
-    items: items.map((item: MercadoPagoItem) => ({
+    items: req.body.items.map((item: MercadoPagoItem) => ({
       id: item.id,
       title: item.title,
       description: item.description,
@@ -43,38 +42,38 @@ export const createPreference = async (req: Request, res: Response) => {
       size: item.size,
     })),
     back_urls: {
-      success: back_urls.success,
-      failure: back_urls.failure,
-      pending: back_urls.pending,
+      success: req.body.back_urls.success,
+      failure: req.body.back_urls.failure,
+      pending: req.body.back_urls.pending,
     },
     auto_return: "approved",
-    notification_url: notification_url,
+    notification_url: req.body.notification_url,
      payer: {
-       first_name: firstname,
-       last_name: lastname,
-          email: mail,
+       first_name: req.body.firstname,
+       last_name: req.body.lastname,
+          email: req.body.mail,
           identification: {
             type: "DNI",
-            number: dni,
+            number: req.body.dni,
           },
           address: {
-            street_name: calle,
-            street_number: altura,
-            zip_code: codigoPostal,
+            street_name: req.body.calle,
+            street_number: req.body.altura,
+            zip_code: req.body.codigoPostal,
        },
        phone: {
-         area_code: area_code,
-         number: number,
+         area_code: req.body.area_code,
+         number: req.body.number,
        }
         },
         shipments: {
           receiver_address: {
-            street_name: calle,
-            street_number: altura,
-            zip_code: codigoPostal,
-            state_name: provincia,
-            city_name: ciudad,
-            country_id: "AR",
+            street_name: req.body.calle,
+            street_number: req.body.altura,
+            zip_code: req.body.codigoPostal,
+            state_name: req.body.provincia,
+            city_name: req.body.ciudad,
+            country_id: "PE",
           },
         },
   };
