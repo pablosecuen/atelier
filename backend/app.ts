@@ -18,12 +18,13 @@ cloudinary.config({
 
 const webUrl = process.env.WEB_URL || '';
 const adminUrl = process.env.ADMIN_URL || '';
+const deployUrl = process.env.DEPLOY_URL || '';
 
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-  origin: [webUrl, adminUrl]
+  origin: [webUrl, adminUrl,deployUrl]
 }));
 
 app.use('/api/products', productRoutes);
