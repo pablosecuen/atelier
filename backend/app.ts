@@ -16,14 +16,15 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
+const webUrl = process.env.WEB_URL || '';
+const adminUrl = process.env.ADMIN_URL || '';
+const deployUrl = process.env.DEPLOY_URL || '';
 
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-  origin: ["https://andrews-theta.vercel.app", "https://andrews-admin.vercel.app", "https://www.idandrews.com/"],
-   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true,
+  origin: [webUrl, adminUrl,deployUrl]
 }));
 
 app.use('/api/products', productRoutes);
