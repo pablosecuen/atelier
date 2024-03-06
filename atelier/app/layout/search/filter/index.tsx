@@ -16,14 +16,12 @@ export default function FilterList() {
   const [sortOrder, setSortOrder] = useState<string>("asc");
 
   useEffect(() => {
-    // Actualizar la lista de productos cuando cambien los filtros o el orden
     const filters: any = {};
     filters.minPrice = priceRange[0];
     filters.maxPrice = priceRange[1];
     filters.sortBy = sortBy;
     filters.sortOrder = sortOrder;
 
-    
 
     dispatch(listProducts(filters));
   }, [dispatch, priceRange, sortBy, sortOrder]);
@@ -31,7 +29,6 @@ export default function FilterList() {
     setSortOrder(newOrder);
   };
 
-  // Aplicar el ordenamiento a los productos antes de mostrarlos
   let sortedProducts = [...products];
   if (sortBy === "price") {
     if (sortOrder === "asc") {
@@ -42,7 +39,7 @@ export default function FilterList() {
   }
 
   return (
-    <>
+
       <div>
         <div className="order-none flex flex-col items-center md:item-last md:order-last mx-12 md:w-[185px]">
           <h3 className="mt-12 mb-4 opacity-70 text-sm text-black">Ordenar</h3>
@@ -91,6 +88,6 @@ export default function FilterList() {
           />
         </div>
       </div>
-    </>
+
   );
 }

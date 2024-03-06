@@ -4,15 +4,20 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const databaseName = process.env.DATABASE_NAME || 'default_database_name';
-const databaseUserName = process.env.DATABASE_USERNAME || 'default_database_name';
-const databasePassword = process.env.DATABASE_PASSWORD || 'default_database_name';
 
-const sequelize = new Sequelize(databaseName, databaseUserName, databasePassword, {
-  host: 'localhost',
-  dialect: 'postgres',
-  logging: false
-});
+
+
+let sequelize: Sequelize;
+
+
+if (process.env.DATABASE_URL) {
+  sequelize = new Sequelize(process.env.DATABASE_URL, {
+    dialect: "postgres",
+    logging: false
+  });
+} else {
+  throw new Error('No se pudo establecer una conexión a la base de datos. Verifique la URL de la base de datos.');
+}
 
 sequelize.sync({ force: true })
   .then(() => {

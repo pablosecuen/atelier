@@ -1,4 +1,3 @@
-import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
@@ -13,7 +12,6 @@ export default function EditItemQuantityButton({
   type: "plus" | "minus";
 }) {
   const dispatch = useDispatch();
- 
 
   const handleQuantityChange = () => {
     if (type === "plus") {

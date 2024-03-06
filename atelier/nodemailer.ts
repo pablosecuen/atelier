@@ -5,7 +5,7 @@ require("dotenv").config();
 const CLIENT_ID = process.env.GMAIL_CLIENT_ID;
 const CLIENT_SECRET = process.env.GMAIL_CLIENT_SECRET;
 const REFRESH_TOKEN = process.env.GMAIL_REFRESH_TOKEN;
-const REDIRECT_URI = "http://localhost:3000/";
+const REDIRECT_URI = "https://wrong-eggnog-production.up.railway.app/";
 
 const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
 
@@ -90,10 +90,10 @@ const sendTicket = async (paymentData: any, email:string) => {
       html: htmlContent, 
         };
         const info = await transport.sendMail(mailOptions);
-    
+
          return info;
     } catch (error) {
-    
+
           throw new Error(`Error sending email: ${error}`);
     }
 }

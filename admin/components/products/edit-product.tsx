@@ -76,7 +76,7 @@ export const EditProduct = ({ product }: AddProductProps) => {
       });
 
       const response = await axios.put(
-        `http://localhost:3000/api/products/update/${product.id}`,
+        `https://wrong-eggnog-production.up.railway.app/api/products/update/${product.id}`,
         formDataToSend,
         {
           headers: {

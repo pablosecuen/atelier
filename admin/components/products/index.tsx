@@ -22,7 +22,6 @@ export const Products = () => {
         console.error("Error al cargar los productos:", error);
       }
     };
-
     fetchProducts();
   }, [setApiProducts]);
 

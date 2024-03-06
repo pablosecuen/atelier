@@ -50,7 +50,6 @@ function Checkout() {
   const toggleDetails = () => {
     setIsOpen(!isOpen);
   };
-  
 
   const handleCreatePreference = () => {
     // Verifica que cart esté definido y sea un array
@@ -66,12 +65,12 @@ function Checkout() {
           size: item.size,
         })),
         back_urls: {
-          success: "http://localhost:3005/checkout/success",
-          failure: "http://localhost:3005/checkout/failure",
-          pending: "http://localhost:3005/checkout/pending",
+          success: "https://andrews-theta.vercel.app/checkout/success",
+          failure: "https://andrews-theta.vercel.app/checkout/failure",
+          pending: "https://andrews-theta.vercel.app/checkout/pending",
         },
         auto_return: "approved",
-        notification_url: "https://0fa2-190-230-105-108.ngrok-free.app/api/payments/webhook",
+        notification_url: "https://wrong-eggnog-production.up.railway.app/api/payments/webhook",
         payer: {
           firstname: formData.firstname,
           lastname: formData.lastname,

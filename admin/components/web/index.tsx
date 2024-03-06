@@ -8,6 +8,7 @@ import useGlobalStore, { ProductWeb, fetchWebProducts } from "@/store/zustand";
 import { TableWrapperWeb } from "../table/tableweb";
 import * as XLSX from "xlsx";
 import { ProductsIcon } from "../icons/sidebar/products-icon";
+import { Toaster } from "sonner";
 
 export const Web = () => {
   const setWebProducts = useGlobalStore((state) => state.setWebProducts);
@@ -77,6 +78,7 @@ export const Web = () => {
 
   return (
     <div className="my-14 lg:px-6 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
+      <Toaster position="bottom-right" closeButton={true} />
       <ul className="flex">
         <li className="flex gap-2">
           <HouseIcon />

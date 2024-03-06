@@ -10,7 +10,6 @@ interface GenerateMetadataProps {
 const GenerateMetadata: React.FC<GenerateMetadataProps> = ({ handle }) => {
   const dispatch: AppDispatch = useDispatch();
   const { products } = useSelector((state: RootState) => state.products);
- 
 
   useEffect(() => {
     dispatch(listProducts());

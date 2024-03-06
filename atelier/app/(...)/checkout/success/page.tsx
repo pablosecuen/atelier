@@ -21,8 +21,6 @@ const Success = () => {
   const [localPaymentInfo, setLocalPaymentInfo] = useState<any>(null);
   const headerRef = useRef(null);
 
-
-
   const handleContinueShopping = () => {
     router.push("/");
   };
