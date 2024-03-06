@@ -14,7 +14,7 @@ import Link from "next/link";
 
 function Nosotros() {
   return (
-    <div className="min-h-screen text-white flex flex-col items-center bg-black z-40 pt-16 max-w-screen overflow-hidden">
+    <div className="min-h-screen text-black flex flex-col items-center bg-white z-40 mdpt-16 max-w-screen overflow-hidden">
       <div className=" mt-12 md:mt-16   flex flex-col h-full  justify-center items-center   md:gap-4 gap-10 max-w-7xl">
         <VisibilitySensor partialVisibility>
           {({ isVisible }: any) => (
@@ -23,7 +23,7 @@ function Nosotros() {
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               exit={{ opacity: 0, y: 50 }}
               transition={{ ease: "easeOut", duration: 1 }}
-              className="md:h-[80vh]  h-full flex flex-col animate-me relative justify-center mt-16"
+              className="md:h-[80vh]  h-full flex flex-col animate-me relative justify-center mb-80 md:mb-0"
             >
               <Image
                 src={model}
@@ -33,15 +33,16 @@ function Nosotros() {
                 className="absolute z-0 scale-150 right-0 bottom-[50%] translate-y-[50%] contrast-150"
                 quality={100}
               />
-
+              <strong className=" font-atlas-grotesk-bold z-10 text-xl md:text-4xl ml-4 md:ml-0 w-1/3 md:w-4/5 text-end">
+                ANDREWS
+              </strong>
               <p className="font-atlas-grotesk-medium md:text-center w-2/3 md:self-center  md:text-2xl z-10 md:leading-8 p-8 md:p-0">
-                Fundada en en Perú en 2008, Andrews & Andrews Atelier son pioneras y líderes en
-                camisas, pantalones, corbatas y accesorios de calidad. Conformadas por un equipo
-                joven con mucha iniciativa y motivación infinita, seguimos siendo únicos en nuestro
-                enfoque, combinando la innovación técnica con materiales de primera calidad y un
-                diseño de ropa de buen gusto. Nuestros productos se diseñan y desarrollan en Inca,
-                en el corazón de Lima, dónde un equipo de diseñadores y técnicos trabajan juntos
-                para crear nuestras colecciones cada temporada.
+                En Andrews, nuestra pasión por la moda y nuestro compromiso con la excelencia se
+                reflejan en cada prenda que creamos. Desde nuestra fundación en 2008, hemos sido
+                pioneros y líderes en la industria de la moda, especializándonos en la confección de
+                camisas, pantalones, corbatas y accesorios de calidad excepcional. Como una empresa
+                familiar arraigada en la tradición, cada diseño que ofrecemos es una manifestación
+                de nuestra dedicación a la artesanía y la originalidad.
               </p>
             </motion.div>
           )}
@@ -54,7 +55,7 @@ function Nosotros() {
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               exit={{ opacity: 0, y: 50 }}
               transition={{ ease: "easeOut", duration: 2 }}
-              className="md:h-[80vh] h-full flex flex-col animate-me relative  justify-center"
+              className="md:h-[80vh] h-full flex flex-col animate-me relative  justify-center  mb-40 md:mb-0"
             >
               <Image
                 src={model2}
@@ -65,16 +66,16 @@ function Nosotros() {
                 quality={100}
               />
               <div className="w-2/3 md:self-center self-end md:text-center text-start z-10 ">
-                <p className="font-atlas-grotesk-medium md:text-center   md:text-2xl z-10 md:leading-8">
-                  Trabajamos con materiales auténticos, naturales y sostenibles. Buscamos la más
-                  alta calidad para perfeccionar el aspecto, la sensación y el rendimiento de cada
-                  pieza que fabricamos. Nuestro diseño minimalista deja traslucir la belleza innata
-                  y la longevidad de estos tejidos. La calidad del algodón Pima peruano que
-                  utilizamos es inigualable. Se caracteriza por la longitud de la fibra, lo que le
-                  da una sensación increíblemente suave y tersa y un brillo particular. Es un tejido
-                  duradero, hasta un 45% más resistente que el algodón normal, por lo que no se
-                  apelmaza ni se deshilacha con el tiempo. Además, este material es hipoalergénico,
-                  lo que lo convierte en una opción ideal para las personas con piel sensible.
+                <strong className=" font-atlas-grotesk-bold z-10 text-xl md:text-4xl md:w-1/3 text-start">
+                  EQUIPO
+                </strong>
+                <p className="font-atlas-grotesk-medium md:text-center    md:text-2xl z-10 md:leading-8">
+                  Nuestro equipo de diseñadores y técnicos trabaja incansablemente para desarrollar
+                  productos que no solo sigan las tendencias actuales, sino que también establezcan
+                  nuevos estándares en moda y estilo. Desde la selección cuidadosa de materiales de
+                  primera calidad hasta la meticulosa atención al detalle en cada puntada, nos
+                  esforzamos por ofrecer a nuestros clientes prendas que no solo luzcan bien, sino
+                  que también se sientan excepcionales.
                 </p>
               </div>
             </motion.div>
@@ -100,11 +101,24 @@ function Nosotros() {
               />
               <div className=" self-end text-center flex flex-col md:flex-row items-center md:justify-evenly p-8 mt-10">
                 <strong className=" font-atlas-grotesk-bold z-10 text-xl md:text-4xl md:w-1/3 text-start">
-                  INOVACION
+                  NUESTRAS CAMISAS
                 </strong>
-                <p className="!font-canela-regular md:text-center text-start  md:w-2/3 md:text-xl z-10 leading-8 pt-2 md:pt-0">
-                  Profesional elegante que busca salir de lo clásico. Variedad de prendas estampadas
-                  con amplitud de talles pero con un stock relativamente reducido.
+                <p className="!font-canela-regular md:text-justify text-start  md:w-2/3 md:text-lg z-10 leading-8 pt-2 md:pt-0">
+                  Todo comienza con materiales auténticos, naturales y sostenibles. Empleamos
+                  materiales de la más alta calidad para perfeccionar el aspecto, la sensación y el
+                  rendimiento de cada pieza que fabricamos. Nuestro diseño minimalista deja
+                  traslucir la belleza innata y la longevidad de estos materiales. La calidad del
+                  algodón Pima peruano es inigualable. Su longitud de fibra extra larga le da una
+                  sensación increíblemente suave y tersa y un brillo brillante. Es muy duradero,
+                  hasta un 45 % más resistente que el algodón normal, por lo que no se apelmaza ni
+                  se deshilacha con el tiempo. El algodón Pima también es hipoalergénico, lo que lo
+                  convierte en una opción ideal para las personas con piel sensible. La combinación
+                  de la semilla, la tierra y el microclima ha hecho que el algodón Pima sea el
+                  algodón más fino y de fibra más larga en el mundo. Cuando es procesado
+                  correctamente tiene un brillo especial y una suavidad al tacto insuperable.
+                  Además, a pesar de ser una fibra fina y larga, el algodón Pima es también más
+                  resistente que casi todos los demás algodones, haciendo las prendas más duraderas.
+                  Por la longitud de su fibra está considerado entre los mejores del mundo
                 </p>
               </div>
             </motion.div>
@@ -133,8 +147,14 @@ function Nosotros() {
                   EL CAMINO DE ANDREWS
                 </strong>
                 <p className="!font-canela-regular md:text-center text-start  md:w-2/3 md:text-xl z-10 leading-8 pt-2 md:pt-0">
-                  Eliminamos la sobreproduccion, fabricamos a medida, nada mas ni nada menos. De
-                  esta manera podemos...
+                  En Andrews, creemos firmemente que la moda es más que solo seguir las tendencias;
+                  es una forma de expresión personal y una oportunidad para destacar en cualquier
+                  ocasión. Nuestro objetivo es brindar a nuestros clientes la confianza para
+                  expresar su individualidad a través de su estilo único. Únete a nosotros en
+                  nuestro viaje mientras continuamos redefiniendo la moda masculina en Perú y más
+                  allá. Con Andrews, descubre el poder transformador de la moda que perdura más allá
+                  de las tendencias pasajeras, y haz una declaración de estilo que perdure en el
+                  tiempo.
                 </p>
               </div>
             </motion.div>
@@ -160,22 +180,31 @@ function Nosotros() {
               />
               <div className="w-1/2 self-end text-start z-10">
                 <strong className=" font-atlas-grotesk-bold  py-8 z-10 md:text-2xl text-xl ">
-                  AJUSTE PERFECTO EN 30 SEGUNDOS
+                  Nuestras Camisas
                 </strong>
                 <p className="font-atlas-grotesk-medium text-start  text-sm  md:text-lg z-10 leading-6 pt-2">
-                  Con nuestro Algoritmo de Ajuste Perfecto, puedes crear tu talla personalizada en
-                  30 segundos o menos; todo lo que necesitamos es tu altura, peso, edad y talla de
-                  zapato. Una vez que se crea tu patrón individual, nuestro equipo de producción en
-                  Italia y Portugal comienza a trabajar y la prenda se envía a ti. Si tu prenda no
-                  se ajusta, estás cubierto por nuestra Garantía de Reposición Gratuita. ¿Suena
-                  sencillo? ¡Lo es!
+                  Todo comienza con materiales auténticos, naturales y sostenibles. Empleamos
+                  materiales de la más alta calidad para perfeccionar el aspecto, la sensación y el
+                  rendimiento de cada pieza que fabricamos. Nuestro diseño minimalista deja
+                  traslucir la belleza innata y la longevidad de estos materiales. La calidad del
+                  algodón Pima peruano es inigualable. Su longitud de fibra extra larga le da una
+                  sensación increíblemente suave y tersa y un brillo brillante. Es muy duradero,
+                  hasta un 45 % más resistente que el algodón normal, por lo que no se apelmaza ni
+                  se deshilacha con el tiempo. El algodón Pima también es hipoalergénico, lo que lo
+                  convierte en una opción ideal para las personas con piel sensible. La combinación
+                  de la semilla, la tierra y el microclima ha hecho que el algodón Pima sea el
+                  algodón más fino y de fibra más larga en el mundo. Cuando es procesado
+                  correctamente tiene un brillo especial y una suavidad al tacto insuperable.
+                  Además, a pesar de ser una fibra fina y larga, el algodón Pima es también más
+                  resistente que casi todos los demás algodones, haciendo las prendas más duraderas.
+                  Por la longitud de su fibra está considerado entre los mejores del mundo
                 </p>
               </div>
             </motion.div>
           )}
         </VisibilitySensor>
 
-        <VisibilitySensor partialVisibility>
+        {/* <VisibilitySensor partialVisibility>
           {({ isVisible }: any) => (
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -208,9 +237,9 @@ function Nosotros() {
               </div>
             </motion.div>
           )}
-        </VisibilitySensor>
+        </VisibilitySensor> */}
 
-        <VisibilitySensor partialVisibility>
+        {/* <VisibilitySensor partialVisibility>
           {({ isVisible }: any) => (
             <motion.div
               initial={{ opacity: 0, x: 50 }}
@@ -241,11 +270,13 @@ function Nosotros() {
               </div>
             </motion.div>
           )}
-        </VisibilitySensor>
+        </VisibilitySensor> */}
       </div>
       <div className="flex justify-center items-center p-10 md:p-48 mb-10 md:mb-0">
         <Link href="/">
-          <h5 className="md:text-4xl  animate-pulse">VOLVER AL INICIO</h5>
+          <h5 className="md:text-4xl  animate-pulse border-4 border-black px-10 py-8 pt-9">
+            VOLVER AL INICIO
+          </h5>
         </Link>
       </div>
     </div>

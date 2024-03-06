@@ -36,11 +36,20 @@ const Sustentability = () => {
             SUSTENTABILITY
           </span>
           <p className="text-black md:text-3xl pt-4 md:pt-10 text-justify">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euLorem
-            ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
-            tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
-            quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-            consequat. Duis{" "}
+            Todo comienza con materiales auténticos, naturales y sostenibles. Empleamos materiales
+            de la más alta calidad para perfeccionar el aspecto, la sensación y el rendimiento de
+            cada pieza que fabricamos. Nuestro diseño minimalista deja traslucir la belleza innata y
+            la longevidad de estos materiales. La calidad del algodón Pima peruano es inigualable.
+            Su longitud de fibra extra larga le da una sensación increíblemente suave y tersa y un
+            brillo brillante. Es muy duradero, hasta un 45 % más resistente que el algodón normal,
+            por lo que no se apelmaza ni se deshilacha con el tiempo. El algodón Pima también es
+            hipoalergénico, lo que lo convierte en una opción ideal para las personas con piel
+            sensible. La combinación de la semilla, la tierra y el microclima ha hecho que el
+            algodón Pima sea el algodón más fino y de fibra más larga en el mundo. Cuando es
+            procesado correctamente tiene un brillo especial y una suavidad al tacto insuperable.
+            Además, a pesar de ser una fibra fina y larga, el algodón Pima es también más resistente
+            que casi todos los demás algodones, haciendo las prendas más duraderas. Por la longitud
+            de su fibra está considerado entre los mejores del mundo
           </p>
         </div>
       </div>

@@ -80,6 +80,7 @@ export const fetchProductsBySort = createAsyncThunk(
     if (response.status !== 200) {
       throw new Error('No se pudo obtener la lista de productos.');
     }
+
     return response.data;
   }
 );
@@ -121,7 +122,8 @@ export const searchProductByHandle = createAsyncThunk<Product, string>(
         const response = await axiosInstance.get(`/api/product/handle/${handle}`);
         return response.data.product;
       } catch (error: any) {
-       
+        console.log(error);
+        
         throw new Error(error.response.data.message);
       }
     }
@@ -226,10 +228,10 @@ export const updateProductById = createAsyncThunk<Product, { id: string; updated
     async ({ id, updatedProduct }: { id: string; updatedProduct: Product }) => {
       try {
         const response = await axiosInstance.patch(`/api/product/${id}`, updatedProduct);
-
+        console.log(response.data.updatedProduct)
         return response.data.updatedProduct;
       } catch (error: any) {
-
+        console.log(error)
         throw new Error(error.response.data.message);
       }
     }

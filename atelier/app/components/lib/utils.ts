@@ -35,20 +35,20 @@ export const menu: { title: string; path: string }[] = [
 export const menuInformation: { title: string; path: string }[] = [
 
   {title: 'FAQS', path: '/faqs'},
-  {title: 'OUR PRODUCTION', path: '/nosotros/#production'},
+  {title: 'NUESTRA PRODUCCION', path: '/nosotros/#production'},
   {title: 'OUR IMPACT', path: '/nosotros/#impact'},
-  {title: 'TERMS & CONDITIONS', path: '/terms'},
-  {title: 'PRIVACY POLICY', path: '/terms'},
+  {title: 'AVISO LEGAL', path: '/terms'},
+  {title: 'POLITICAS DE PRIVACIDAD', path: '/terms'},
 ]
 
 
 export const misionmenu: { title: string; path: string }[] = [
 
   {title: 'FAQS', path: '/faqs'},
-  {title: 'OUR PRODUCTION', path: '/nosotros/#production'},
+  {title: 'NUESTRA PRODUCCION', path: '/nosotros/#production'},
   {title: 'OUR IMPACT', path: '/nosotros/#impact'},
-  {title: 'TERMS & CONDITIONS', path: '/nosotros/#terms'},
-  {title: 'PRIVACY POLICY', path: '/nosotros/#privacy'},
+ {title: 'AVISO LEGAL', path: '/terms'},
+  {title: 'POLITICAS DE PRIVACIDAD', path: '/terms'},
 ]
 
 

@@ -12,7 +12,6 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import axios from "axios";
-import { EyeIcon } from "../icons/table/eye-icon";
 import { ProductApi } from "@/store/zustand";
 import { EditIcon } from "../icons/table/edit-icon";
 
