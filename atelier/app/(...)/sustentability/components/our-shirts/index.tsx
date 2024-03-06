@@ -21,11 +21,11 @@ const Shirts = () => {
         <div className="p-10 flex flex-col gap-8 md:min-w-[450px] md:w-[450px] md:h-[350px]  text-justify border m-2">
           <h4 className="uppercase tracking-widest text-center text-2xl">QUALITY</h4>
           <p className="">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euLorem
-            ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
-            tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
-            quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-            consequat. Duis
+            La calidad del algodón Pima peruano es inigualable. Su longitud de fibra extra larga le
+            da una sensación increíblemente suave y tersa y un brillo brillante. Es muy duradero,
+            hasta un 45 % más resistente que el algodón normal, por lo que no se apelmaza ni se
+            deshilacha con el tiempo. El algodón Pima también es hipoalergénico, lo que lo convierte
+            en una opción ideal para las personas con piel sensible.
           </p>
         </div>
         <div className="p-10 flex flex-col gap-8 md:min-w-[450px] md:w-[450px] md:h-[350px]  text-justify border m-2">

@@ -19,7 +19,7 @@ if (process.env.DATABASE_URL) {
   throw new Error('No se pudo establecer una conexión a la base de datos. Verifique la URL de la base de datos.');
 }
 
-sequelize.sync({ force: true })
+sequelize.sync({ force: false })
   .then(() => {
     console.log('Modelos sincronizados correctamente con la base de datos.');
   })
