@@ -5,7 +5,6 @@ import {v2 as cloudinary} from 'cloudinary';
 import productRoutes from './routes/productRoutes';
 import paymentsRoutes from './routes/paymentRoutes';
 import morgan from 'morgan';
-import cors from 'cors'; 
 
 const app = express();
 const PORT = process.env.PORT || 3000; 
@@ -19,11 +18,11 @@ cloudinary.config({
 
 
 
-/* app.use(cors()); */
+
 app.use((req, res, next) => {
       const allowedOrigins = [
     "https://andrews-theta.vercel.app",
-    "https://www.idandrews.com/",
+    "https://www.idandrews.com",
     "https://andrews-admin.vercel.app",
     ];
 
