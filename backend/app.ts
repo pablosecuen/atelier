@@ -21,9 +21,9 @@ cloudinary.config({
 
 app.use((req, res, next) => {
       const allowedOrigins = [
-    "https://andrews-theta.vercel.app",
-    "https://www.idandrews.com",
-    "https://andrews-admin.vercel.app",
+    process.env.WEB_URL,
+    process.env.DEPLOY_URL,
+    process.env.ADMIN_URL,
     ];
 
   const origin = req.headers.origin;
