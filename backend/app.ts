@@ -16,16 +16,15 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-const webUrl = process.env.WEB_URL || "";
-const adminUrl = process.env.ADMIN_URL  || "";
-const deployUrl = process.env.DEPLOY_URL || "";
 
 
+
+/* app.use(cors()); */
 app.use((req, res, next) => {
       const allowedOrigins = [
-    webUrl,
-    adminUrl,
-    deployUrl,
+    "https://andrews-theta.vercel.app",
+    "https://www.idandrews.com/",
+    "https://andrews-admin.vercel.app",
     ];
 
   const origin = req.headers.origin;
