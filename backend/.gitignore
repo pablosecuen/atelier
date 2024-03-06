@@ -4,8 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
-app.ts
-db.ts
+
 # testing
 /coverage
 /node_modules
