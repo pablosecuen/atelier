@@ -66,13 +66,17 @@ const getProductsWithStock = async (req: Request, res: Response) => {
       headers: headers
     };
 
-    // Realizar ambas solicitudes en paralelo
-    const [responsePrice,] = await Promise.all([
-      axios.get('http://181.177.239.13:80/WSAPIWeb/RCSCatServices.svc/Product/GetProductAll', requestOptions)
-    ]);
+    const response = await axios.get('http://181.177.239.13:80/WSAPIWeb/RCSCatServices.svc/Product/GetProductAll', requestOptions);
 
-    const products = responsePrice.data?.Products;
- 
+    const products = response.data.Products.filter((product: any) => {
+      if (parseFloat(product.OnHandQty) > 0) {
+     
+        product.StockQty = parseFloat(product.OnHandQty);
+        return true; 
+      }
+      return false; 
+    });
+
     res.json(products);
   } catch (error) {
     console.error('Error al obtener productos:', error);
