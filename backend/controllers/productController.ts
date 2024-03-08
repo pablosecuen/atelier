@@ -67,25 +67,12 @@ const getProductsWithStock = async (req: Request, res: Response) => {
     };
 
     // Realizar ambas solicitudes en paralelo
-    const [responsePrice, responseStock] = await Promise.all([
-      axios.get('http://181.177.239.13:80/WSAPIWeb/RCSCatServices.svc/Product/GetProductAll', requestOptions),
-      axios.get('http://181.177.239.13:80/WSAPIWeb/RCSCatServices.svc/Product/GetProductStock', requestOptions)
+    const [responsePrice,] = await Promise.all([
+      axios.get('http://181.177.239.13:80/WSAPIWeb/RCSCatServices.svc/Product/GetProductAll', requestOptions)
     ]);
 
-    const productsWithPrice = responsePrice.data?.Webs[0]?.ProductsByWeb;
-    const productsWithStock = responseStock.data?.Products;
-
-    // Filtrar productos con stock mayor a 0
-    const products = productsWithPrice.filter((productPrice: any) => {
-      const matchingProduct = productsWithStock.find((productStock: any) => productStock.SKU === productPrice.SKU);
-      if (matchingProduct && parseFloat(matchingProduct.OnHandQty) > 0) {
-        // Crear una nueva propiedad "StockQty" en el objeto del producto y asignarle la cantidad de stock
-        productPrice.StockQty = parseFloat(matchingProduct.OnHandQty);
-        return true; // Mantener el producto en la lista filtrada
-      }
-      return false; // Descartar el producto de la lista filtrada
-    });
-
+    const products = responsePrice.data?.Products;
+ 
     res.json(products);
   } catch (error) {
     console.error('Error al obtener productos:', error);
