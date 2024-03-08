@@ -68,8 +68,8 @@ const getProductsWithStock = async (req: Request, res: Response) => {
 
     // Realizar ambas solicitudes en paralelo
     const [responsePrice, responseStock] = await Promise.all([
-      axios.get('http://181.177.239.13:80/WSAPIWebQA/RCSCatServices.svc/Product/GetProductPriceByWeb', requestOptions),
-      axios.get('http://181.177.239.13:80/WSAPIWebQA/RCSCatServices.svc/Product/GetProductStock', requestOptions)
+      axios.get('http://181.177.239.13:80/WSAPIWeb/RCSCatServices.svc/Product/GetProductAll', requestOptions),
+      axios.get('http://181.177.239.13:80/WSAPIWeb/RCSCatServices.svc/Product/GetProductStock', requestOptions)
     ]);
 
     const productsWithPrice = responsePrice.data?.Webs[0]?.ProductsByWeb;
