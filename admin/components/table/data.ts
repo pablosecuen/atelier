@@ -9,7 +9,7 @@ export const columns = [
    { name: 'DESCUENTO', uid: 'GetPercentOff' },
    { name: 'PRECIO PROMO', uid: 'PromoPrice' },
    { name: 'TALLE', uid: 'size' },
-    { name: 'STOCK', uid: 'stock' },
+    { name: 'STOCK', uid: 'StockQty' },
    { name: 'STATUS', uid: 'status' },
    {name: 'ACTIONS', uid: 'actions'},
 ];

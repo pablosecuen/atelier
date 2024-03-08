@@ -25,6 +25,8 @@ export const Products = () => {
     fetchProducts();
   }, [setApiProducts]);
 
+  console.log(products);
+
   const filteredProducts = products.filter((product: ProductApi) => {
     const { SKU, UPC, RetailPrice, GetPercentOff, PromoPrice } = product;
     const searchLowerCase = productFilter.toLowerCase();
