@@ -24,6 +24,7 @@ app.use((req, res, next) => {
     process.env.WEB_URL,
     process.env.DEPLOY_URL,
     process.env.ADMIN_URL,
+     "http://localhost:*"
     ];
 
   const origin = req.headers.origin;
