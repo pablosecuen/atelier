@@ -35,7 +35,7 @@ export const AddProduct = ({ product }: AddProductProps) => {
     e.preventDefault();
     try {
       const formDataToSend = new FormData();
-
+      formDataToSend.append("product", JSON.stringify(product));
       selectedImages.forEach((file, index) => {
         formDataToSend.append(`images`, file, file.name);
       });
