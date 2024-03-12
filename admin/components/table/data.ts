@@ -1,13 +1,11 @@
 export const columns = [
-   {name: 'NAME', uid: 'name'},
+   {name: 'NAME', uid: 'Desc1'},
   { name: 'SKU', uid: 'SKU' },
    { name: 'MARCA', uid: 'BrandName' },
    { name: 'CATEGORIA', uid: 'DeptName' },
    { name: 'CLASSNAME', uid: 'ClassName' },
    { name: 'COLOR', uid: 'ColorLongName' },
    { name: 'PRECIO', uid: 'RetailPrice' },
-/*    { name: 'DESCUENTO', uid: 'GetPercentOff' },
-   { name: 'PRECIO PROMO', uid: 'PromoPrice' }, */
    { name: 'TALLE', uid: 'size' },
     { name: 'STOCK', uid: 'StockQty' },
    { name: 'STATUS', uid: 'status' },
@@ -15,15 +13,13 @@ export const columns = [
 ];
 
 export const columnsWeb = [
-   {name: 'NAME', uid: 'title'},
+   {name: 'NAME', uid: 'Desc1'},
    { name: 'SKU', uid: 'SKU' },
    { name: 'MARCA', uid: 'BrandName' },
    { name: 'CATEGORIA', uid: 'DeptName' },
    { name: 'CLASSNAME', uid: 'ClassName' },
       { name: 'COLOR', uid: 'ColorLongName' },
    { name: 'PRECIO', uid: 'RetailPrice' },
-/*    { name: 'DESCUENTO', uid: 'GetPercentOff' },
-   { name: 'PRECIO PROMO', uid: 'PromoPrice' }, */
    { name: 'TALLE', uid: 'size' },
     { name: 'STOCK', uid: 'stock' },
    { name: 'STATUS', uid: 'availableForSale' },
