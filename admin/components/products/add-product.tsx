@@ -14,6 +14,7 @@ import {
 import axios from "axios";
 import { ProductApi } from "@/store/zustand";
 import { EditIcon } from "../icons/table/edit-icon";
+import { toast } from "sonner";
 
 interface FormData {
   title: string;
@@ -29,42 +30,11 @@ interface AddProductProps {
 export const AddProduct = ({ product }: AddProductProps) => {
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
   const [selectedImages, setSelectedImages] = useState<File[]>([]);
-  const [imgFile, setImgFile] = useState<File[]>([]);
-  const [formData, setFormData] = useState<FormData>({
-    title: "",
-    size: "",
-    description: "",
-    color: "",
-    category: "",
-    quantity: "",
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
       const formDataToSend = new FormData();
-
-      formDataToSend.append("title", formData.title || "");
-      formDataToSend.append("size", formData.size || "");
-      formDataToSend.append("description", formData.description || "");
-      formDataToSend.append("color", formData.color || "");
-      formDataToSend.append("category", formData.category || "");
-      formDataToSend.append("quantity", formData.quantity || "");
-      formDataToSend.append("StyleName", product.StyleName || "");
-      formDataToSend.append("SKU", product.SKU || "");
-      formDataToSend.append("UPC", product.UPC || "");
-      formDataToSend.append("RetailPrice", product.RetailPrice || "");
-      formDataToSend.append("GetPercentOff", product.GetPercentOff || "");
-      formDataToSend.append("PromoPrice", product.PromoPrice || "");
-      formDataToSend.append("StockQty", product.StockQty?.toString() || "");
 
       selectedImages.forEach((file, index) => {
         formDataToSend.append(`images`, file, file.name);
@@ -81,15 +51,8 @@ export const AddProduct = ({ product }: AddProductProps) => {
       );
 
       if (response.status === 201) {
-        alert("Formulario enviado correctamente");
-        setFormData({
-          title: "",
-          size: "",
-          description: "",
-          color: "",
-          category: "",
-          quantity: "",
-        });
+        toast.success("Formulario enviado correctamente");
+
         onClose();
       }
     } catch (error: any) {
@@ -117,53 +80,6 @@ export const AddProduct = ({ product }: AddProductProps) => {
               <>
                 <ModalHeader className="flex flex-col gap-1">Agregar a Web</ModalHeader>
                 <ModalBody>
-                  <Input
-                    label="Titulo"
-                    name="title"
-                    variant="bordered"
-                    value={formData.title}
-                    onChange={handleChange}
-                  />
-                  <Input
-                    label="Descripcion"
-                    name="description"
-                    variant="bordered"
-                    value={formData.description}
-                    onChange={handleChange}
-                  />
-
-                  <Input
-                    label="color"
-                    name="color"
-                    variant="bordered"
-                    value={formData.color}
-                    onChange={handleChange}
-                  />
-
-                  <Input
-                    label="talle"
-                    name="size"
-                    variant="bordered"
-                    value={formData.size}
-                    onChange={handleChange}
-                  />
-
-                  <Input
-                    label="categoria"
-                    name="category"
-                    variant="bordered"
-                    value={formData.category}
-                    onChange={handleChange}
-                  />
-
-                  <Input
-                    label="Cantidad"
-                    variant="bordered"
-                    name="quantity"
-                    value={formData.quantity}
-                    onChange={handleChange}
-                  />
-
                   <input
                     type="file"
                     multiple
