@@ -27,10 +27,13 @@ export const Products = () => {
   }, [setApiProducts]);
 
   const filteredProducts = products.filter((product: ProductApi) => {
-    const { SKU, UPC, RetailPrice, GetPercentOff, PromoPrice } = product;
+    const { SKU, UPC, RetailPrice, GetPercentOff, PromoPrice, Desc1, Desc2, ColorName } = product;
     const searchLowerCase = productFilter.toLowerCase();
 
     const match =
+      Desc1?.toString().toLowerCase().includes(searchLowerCase) ||
+      Desc2?.toString().toLowerCase().includes(searchLowerCase) ||
+      ColorName?.toString().toLowerCase().includes(searchLowerCase) ||
       SKU?.toString().toLowerCase().includes(searchLowerCase) ||
       UPC?.toString().toLowerCase().includes(searchLowerCase) ||
       RetailPrice?.toString().toLowerCase().includes(searchLowerCase) ||

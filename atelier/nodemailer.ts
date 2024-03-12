@@ -30,7 +30,7 @@ const sendTicket = async (paymentData: any, email:string) => {
              },
          });
         
-         const htmlContent = `
+      const htmlContent = `
       <html>
         <head>
           <style>
@@ -68,10 +68,10 @@ const sendTicket = async (paymentData: any, email:string) => {
                 <li class="product-item">
                   <strong>Producto #${index + 1}</strong>
                   <ul>
-                    <li>Nombre: ${product.title}</li>
+                    <li>Nombre: ${product.Desc1}</li>
                     <li>SKU: ${product.SKU}</li>
-                    <li>Cantidad: ${product.quantity}</li>
-                    <li>Precio Unitario: $${product.unit_price}</li>
+                    <li>Cantidad: ${product.OnHandQty}</li>
+                    <li>Precio Unitario: $${product.RetailPrice}</li>
                   </ul>
                 </li>
               `).join('')}
