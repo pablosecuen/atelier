@@ -26,8 +26,8 @@ export default function ProductPage({ params }: { params: { handle: string } }) 
   const productJsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
-    name: product.title,
-    description: product.description,
+    name: product.Desc1,
+    description: product.Desc2,
     image: product.imagesURL[0],
     offers: {
       "@type": "AggregateOffer",
@@ -55,7 +55,7 @@ export default function ProductPage({ params }: { params: { handle: string } }) 
               <Gallery
                 images={product.imagesURL.map((image: any) => ({
                   src: image,
-                  altText: image.title,
+                  altText: image.Desc1,
                 }))}
               />
             </div>
@@ -65,7 +65,7 @@ export default function ProductPage({ params }: { params: { handle: string } }) 
                 product={product}
                 images={product.imagesURL.map((image: any) => ({
                   src: image,
-                  altText: image.title,
+                  altText: image.Desc1,
                 }))}
               />
             </div>
@@ -103,10 +103,10 @@ function RelatedProducts({ id }: { id: string }) {
           >
             <Link className="relative h-full w-full" href={`/product/${product.handle}`}>
               <GridTileImage
-                alt={product.title}
+                alt={product.Desc1}
                 label={{
-                  title: product.title,
-                  price: product.price,
+                  title: product.Desc1,
+                  price: product.RetailPrice,
                   currencyCode: "$",
                 }}
                 src={product.imagesURL[0]}

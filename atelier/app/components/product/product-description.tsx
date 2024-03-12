@@ -46,14 +46,14 @@ export function ProductDescription({
     <>
       <div className=" flex flex-col pb-6  text-black">
         <h1 className="mb-2 text-3xl font-medium text-black uppercase tracking-tighter">
-          {product.title}
+          {product.Desc1}
         </h1>
         <div className="mr-auto w-auto rounded-full bg-white p-2 text-xl font-inter-bold text-black">
           <Price price={product.RetailPrice} currencyCode="$" />
         </div>
         <div className="mr-auto w-auto rounded-full bg-white p-2  font-inter-bold text-black mx-auto">
           <span className="font-bold">Talle </span>
-          <span className=" border text-2xl px-2"> {product.size}</span>
+          <span className=" border text-2xl px-2"> {product.SizeCode}</span>
         </div>
       </div>
       {/*   <VariantSelector options={product.options} variants={product.variants} /> */}

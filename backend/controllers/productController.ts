@@ -118,6 +118,8 @@ const addProduct = async (req: Request, res: Response) => {
       return res.status(400).json({ success: false, message: "No se han subido archivos" });
     }
 
+ const product = JSON.parse(req.body.product);
+
     const uploadPromises = files.map(async (file) => {
       const uploadedImage = await cloudinary.v2.uploader.upload(file.path);
       return uploadedImage.url;
@@ -134,30 +136,19 @@ const addProduct = async (req: Request, res: Response) => {
     });
 
     await Promise.all(deletePromises);
+console.log(product);
 
     const newProduct = await Product.create({
-      title: req.body.title,
-      handle: req.body.title.replace(/\s+/g, '-').toLowerCase(),
-      slug: req.body.title.replace(/\s+/g, '-').toLowerCase(),
-      description: req.body.description,
-      size: req.body.size,
-      color: req.body.color,
-      RetailPrice: req.body.RetailPrice,
-      GetPercentOff: req.body.GetPercentOff,
-      promoPrice: req.body.PromoPrice,
-      category: req.body.category,
-      quantity: req.body.StockQty,
+       ...product,
+      handle: product.Desc1?.replace(/\s+/g, '-').toLowerCase(),
+      slug: product.Desc1?.replace(/\s+/g, '-').toLowerCase(),
       imagesURL: uploadedImageUrls,
       featuredImage: uploadedImageUrls[0],
-      descriptionHtml: `<p>${req.body.description}</p>`,
-      SKU: req.body.SKU,
-      StyleName: req.body.StyleName,
-      UPC: req.body.UPC,
-      stock: req.body.StockQty,
+      descriptionHtml: `<p>${product.Desc2}</p>`,
       seo: {
-        title: req.body.title,
-        description: req.body.description,
-        keywords: req.body.category,
+        title: product.Desc1,
+        description: product.Desc2,
+        keywords: product.DeptName,
       }
     });
 

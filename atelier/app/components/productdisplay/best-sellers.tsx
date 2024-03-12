@@ -79,14 +79,14 @@ function BestSellers() {
             <div className="rounded-md w-full  h-full  px-2 md:px-0 pb-6 ">
               <Image
                 src={product.imagesURL[0]}
-                alt={product.title}
+                alt={product.Desc1}
                 className="h-96 mb-1 object-cover w-full"
                 priority={true}
                 height={0}
                 width={150}
               />
               <span className="text-md lg:text-lg mt-8 font-semibold text-black">
-                {product.title}
+                {product.Desc1}
               </span>
             </div>
           </Link>

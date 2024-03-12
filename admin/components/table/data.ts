@@ -6,8 +6,8 @@ export const columns = [
    { name: 'CLASSNAME', uid: 'ClassName' },
    { name: 'COLOR', uid: 'ColorLongName' },
    { name: 'PRECIO', uid: 'RetailPrice' },
-   { name: 'TALLE', uid: 'size' },
-    { name: 'STOCK', uid: 'StockQty' },
+   { name: 'TALLE', uid: 'SizeCode' },
+    { name: 'STOCK', uid: 'OnHandQty' },
    { name: 'STATUS', uid: 'status' },
    {name: 'ACTIONS', uid: 'actions'},
 ];
@@ -20,8 +20,8 @@ export const columnsWeb = [
    { name: 'CLASSNAME', uid: 'ClassName' },
       { name: 'COLOR', uid: 'ColorLongName' },
    { name: 'PRECIO', uid: 'RetailPrice' },
-   { name: 'TALLE', uid: 'size' },
-    { name: 'STOCK', uid: 'stock' },
+   { name: 'TALLE', uid: 'SizeCode' },
+    { name: 'STOCK', uid: 'OnHandQty' },
    { name: 'STATUS', uid: 'availableForSale' },
    {name: 'ACTIONS', uid: 'actions'},
 ];

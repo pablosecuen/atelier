@@ -4,34 +4,41 @@ import { v4 as uuidv4 } from 'uuid';
 import sequelize from '../db';
 
 
-// Define el modelo Product
 const Product = sequelize.define('Product', {
   id: {
     type: DataTypes.UUID,
      defaultValue: () => uuidv4(),
     primaryKey: true
-    },
-  imagesURL: {
-    type: DataTypes.ARRAY(DataTypes.STRING),
-    allowNull: true
   },
-  handle: {
+    Desc1: {
+    type: DataTypes.TEXT,
+    allowNull: false
+  },
+    handle: {
+    type: DataTypes.TEXT,
+    allowNull: false
+  },
+    SizeCode: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+      BrandName: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+        ColorName: {
     type: DataTypes.STRING,
     allowNull: false
   },
     slug: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false
   },
-        size: {
-    type: DataTypes.STRING,
-    allowNull: false
+  imagesURL: {
+    type: DataTypes.ARRAY(DataTypes.STRING),
+    allowNull: true
   },
-                color: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-    category: {
+    DeptName: {
     type: DataTypes.STRING,
     allowNull: false
   },
@@ -39,7 +46,7 @@ const Product = sequelize.define('Product', {
     type: DataTypes.STRING,
     allowNull: false
   },
-       seo: {
+    seo: {
     type: DataTypes.JSON,
     allowNull: false
   },
@@ -47,11 +54,8 @@ const Product = sequelize.define('Product', {
     type: DataTypes.BOOLEAN,
     defaultValue: true
   },
-  title: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  description: {
+
+    Desc2: {
     type: DataTypes.TEXT,
     allowNull: false
   },
@@ -68,7 +72,7 @@ const Product = sequelize.define('Product', {
     },
     UPC: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: true
     },
     RetailPrice: {
     type: DataTypes.STRING,
@@ -82,7 +86,7 @@ const Product = sequelize.define('Product', {
     type: DataTypes.STRING,
     allowNull: true
   },
-      stock: {
+    OnHandQty: {
     type: DataTypes.STRING,
     allowNull: true
   },

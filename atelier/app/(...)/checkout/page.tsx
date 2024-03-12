@@ -57,17 +57,17 @@ function Checkout() {
       const body: CreatePreferencePayload = {
         items: cart.map((item) => ({
           id: item.id,
-          title: item.title,
-          description: item.description,
-          category_id: item.category,
+          title: item.Desc1,
+          description: item.Desc2,
+          category_id: item.DeptName,
           unit_price: parseInt(item.RetailPrice),
           quantity: item.quantity,
-          size: item.size,
+          size: item.SizeCode,
         })),
         back_urls: {
-          success: "https://andrews-theta.vercel.app/checkout/success",
-          failure: "https://andrews-theta.vercel.app/checkout/failure",
-          pending: "https://andrews-theta.vercel.app/checkout/pending",
+          success: "https://idandrews.com/checkout/success",
+          failure: "https://idandrews.com/checkout/failure",
+          pending: "https://idandrews.com/checkout/pending",
         },
         auto_return: "approved",
         notification_url: "https://wrong-eggnog-production.up.railway.app/api/payments/webhook",
@@ -146,11 +146,11 @@ function Checkout() {
                   </div>
                   <div className="flex flex-col w-full px-6">
                     <span>{item.title}</span>
-                    <span className="text-sm opacity-70">{item.title}</span>
+                    <span className="text-sm opacity-70">{item.Desc1}</span>
                   </div>
                   <div>
                     <span className="font-semibold tracking-wide w-auto flex text-sm">
-                      ${item.price}
+                      ${item.RetailPrice}
                     </span>
                   </div>
                 </div>
@@ -173,7 +173,7 @@ function Checkout() {
                   <div className="relative w-20 h-20">
                     <Image
                       src={item.imagesURL[0]}
-                      alt={item.title}
+                      alt={item.Desc1}
                       width={80}
                       height={80}
                       className="border border-gray-500/80 rounded-xl bg-[#181818] w-full h-full "
@@ -185,11 +185,12 @@ function Checkout() {
                 </div>
                 <div className="flex flex-col w-full px-6">
                   <span>{item.title}</span>
-                  <span className="text-sm opacity-70">{item.title}</span>
+                  <span className="text-sm opacity-70">{item.Desc1}</span>
+                  <span className="text-sm opacity-70">Talle: {item.SizeCode}</span>
                 </div>
                 <div>
                   <span className="font-semibold tracking-wide w-auto flex text-sm">
-                    ${item.price}
+                    ${item.RetailPrice}
                   </span>
                 </div>
               </div>

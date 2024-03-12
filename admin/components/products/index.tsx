@@ -9,6 +9,7 @@ import { TableWrapper } from "@/components/table/table";
 import useGlobalStore, { ProductApi, fetchApiProducts } from "@/store/zustand";
 import * as XLSX from "xlsx";
 import { ProductsIcon } from "../icons/sidebar/products-icon";
+import { Toaster } from "sonner";
 export const Products = () => {
   const setApiProducts = useGlobalStore((state) => state.setApiProducts);
   const products = useGlobalStore((state) => state.apiProducts);
@@ -24,8 +25,6 @@ export const Products = () => {
     };
     fetchProducts();
   }, [setApiProducts]);
-
-  console.log(products);
 
   const filteredProducts = products.filter((product: ProductApi) => {
     const { SKU, UPC, RetailPrice, GetPercentOff, PromoPrice } = product;
@@ -50,6 +49,7 @@ export const Products = () => {
 
   return (
     <div className="my-14 lg:px-6 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
+      <Toaster position="top-center" closeButton={true} />
       <ul className="flex">
         <li className="flex gap-2">
           <HouseIcon />
