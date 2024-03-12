@@ -87,10 +87,10 @@ const Success = () => {
                         <li key={index} className="border  rounded-md p-4">
                           <strong>Producto #{index + 1}</strong>
                           <ul>
-                            <li>Nombre: {product.title}</li>
+                            <li>Nombre: {product.Desc1}</li>
                             <li>id: {product.id}</li>
                             <li>Cantidad: {product.quantity}</li>
-                            <li>Precio Unitario:$ {product.unit_price}</li>
+                            <li>Precio Unitario:$ {product.RetailPrice}</li>
                           </ul>
                         </li>
                       )

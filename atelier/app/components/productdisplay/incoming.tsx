@@ -29,11 +29,11 @@ function Incoming() {
               <div className="rounded-md min-w-[280px] md:w-full flex flex-col justify-center items-center ">
                 <Image
                   src={productimage}
-                  alt={product.title}
+                  alt={product.Desc1}
                   className="min-w-[280px] h-auto mb-4"
                   priority={true}
                 />
-                <span className="text-md mt-8 font-semibold text-black">{product.title}</span>
+                <span className="text-md mt-8 font-semibold text-black">{product.Desc1}</span>
               </div>
             </Link>
           </div>

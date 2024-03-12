@@ -31,8 +31,8 @@ const GenerateMetadata: React.FC<GenerateMetadataProps> = ({ handle }) => {
 
   return (
     <>
-      <title>{product.seo.title || product.title}</title>
-      <meta name="description" content={product.seo.description || product.description} />
+      <title>{product.seo.title || product.Desc1}</title>
+      <meta name="description" content={product.seo.description || product.Desc2} />
       <meta name="robots" content={`index=${indexable}, follow=${indexable}`} />
       <meta name="googleBot" content={`index=${indexable}, follow=${indexable}`} />
       {url && <meta property="og:image" content={url} />}
