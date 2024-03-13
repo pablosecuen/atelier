@@ -2,8 +2,13 @@
 
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { Product } from '@/app/types/general';
-import axiosInstance from '../axiosInstance';
-import { AxiosResponse } from 'axios';
+
+import axios, { AxiosResponse } from 'axios';
+
+const axiosInstance = axios.create({
+  baseURL: 'https://wrong-eggnog-production.up.railway.app',
+});
+
 type FetchProductsArgs = {
   sortKey: string;
   reverse: boolean;
