@@ -30,13 +30,13 @@ export const Web = () => {
 
   const filteredProducts = products.filter((product: ProductWeb) => {
     const {
-      size,
-      color,
-      StockQty,
+      SizeCode,
+      ColorName,
+      OnHandQty,
       id,
-      category,
+      DeptName,
       availableForSale,
-      description,
+      Desc1,
       title,
       SKU,
       StyleName,
@@ -44,27 +44,22 @@ export const Web = () => {
       RetailPrice,
       GetPercentOff,
       promoPrice,
-      stock,
+      Desc2,
     } = product;
     const searchLowerCase = productFilter.toLowerCase();
 
     const match =
-      size?.toString().toLowerCase().includes(searchLowerCase) ||
-      color?.toString().toLowerCase().includes(searchLowerCase) ||
-      StockQty?.toString().toLowerCase().includes(searchLowerCase) ||
+      SizeCode?.toString().toLowerCase().includes(searchLowerCase) ||
+      ColorName?.toString().toLowerCase().includes(searchLowerCase) ||
       id?.toString().toLowerCase().includes(searchLowerCase) ||
-      category?.toString().toLowerCase().includes(searchLowerCase) ||
+      DeptName?.toString().toLowerCase().includes(searchLowerCase) ||
       availableForSale?.toString().toLowerCase().includes(searchLowerCase) ||
       title?.toString().toLowerCase().includes(searchLowerCase) ||
-      description?.toString().toLowerCase().includes(searchLowerCase) ||
-      category?.toString().toLowerCase().includes(searchLowerCase) ||
+      Desc2?.toString().toLowerCase().includes(searchLowerCase) ||
       SKU?.toString().toLowerCase().includes(searchLowerCase) ||
       StyleName?.toString().toLowerCase().includes(searchLowerCase) ||
       UPC?.toString().toLowerCase().includes(searchLowerCase) ||
-      RetailPrice?.toString().toLowerCase().includes(searchLowerCase) ||
-      GetPercentOff?.toString().toLowerCase().includes(searchLowerCase) ||
-      promoPrice?.toString().toLowerCase().includes(searchLowerCase) ||
-      stock?.toString().toLowerCase().includes(searchLowerCase);
+      RetailPrice?.toString().toLowerCase().includes(searchLowerCase) 
 
     return match;
   });
