@@ -11,10 +11,10 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@nextui-org/react";
-import { ProductApi } from "@/store/zustand";
+import { ProductApi, axiosInstance } from "@/store/zustand";
 import { EditIcon } from "../icons/table/edit-icon";
 import { toast } from "sonner";
-import axiosInstance from "../../../atelier/app/redux/axiosInstance";
+
 
 interface FormData {
   title: string;
