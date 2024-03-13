@@ -3,53 +3,35 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { Product } from '@/app/types/general';
 
-import axios from 'axios';
-type FetchProductsArgs = {
-  sortKey: string;
-  reverse: boolean;
-  query: string;
-  q:any;
-};
-type CustomSearchArgs = {
-  sortKey: string | number;
-  reverse: boolean;
-  query: string | number;
-};
+import axios, { AxiosResponse } from 'axios';
+import axiosInstance from '../axiosInstance';
 
 
 
-interface ListProductsArgs {
-  filters?: any;
-}
 
+const handleAxiosGet = async <T>(
+  url: string
+): Promise<T[]> => {
+  try {
+    const response: AxiosResponse<T[]> = await axios.get(url);
 
-type FetchProductsByStyleNameArgs = {
-  StyleName : string;
+    // Filtra los productos que están disponibles para la venta
+    const availableProducts = response.data.filter((product: any) => product.availableForSale);
+
+    return availableProducts;
+  } catch (error: any) {
+    throw new Error(error.response.data.message);
+  }
 };
 
-const axiosInstance = axios.create({
-  baseURL: 'https://wrong-eggnog-production.up.railway.app',
-});
 
-
-export const listProducts = createAsyncThunk<Product[], ListProductsArgs | void>(
+export const listProducts = createAsyncThunk<Product[], void>(
   'productActions/listProducts',
-  async (args, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      // Realizar la llamada a la API para obtener la lista de productos
-      const response = await fetch("https://wrong-eggnog-production.up.railway.app/api/products/web");
-      if (!response.ok) {
-        throw new Error('Error al cargar los productos');
-      }
-      const products = await response.json();
+     const response = await handleAxiosGet<Product[]>(`${axiosInstance.defaults.baseURL}/api/products/web`);
 
-      if (args?.filters?.category) {
-        return products.filter((product: Product) => {
-          return product.category === args.filters.category;
-        });
-      } else {
-        return products;
-      }
+      return response;
     } catch (error: any) {
       return rejectWithValue(error.message);
     }
@@ -89,166 +71,186 @@ export const fetchProductsBySort = createAsyncThunk(
 
 // Acción para obtener un producto por ID
 export const getProductById = createAsyncThunk<Product, string>(
-    'productActions/getProductById',
-    async (id: string) => {
-      try {
-        const response = await axiosInstance.get(`/api/product/${id}`);
-        return response.data.product;
-      } catch (error: any) {
-        throw new Error(error.response.data.message);
-      }
+  'productActions/getProductById',
+  async (id: string) => {
+    try {
+      const response = await handleAxiosGet<Product[]>(`${axiosInstance.defaults.baseURL}/api/product/${id}`);
+      return response[0];
+    } catch (error: any) {
+      throw new Error(error.response.data.message);
     }
-  );
+  }
+);
   
 
 // Acción para buscar productos por nombre
 export const searchProductsByName = createAsyncThunk<Product[], string>(
-    'productActions/searchProductsByName',
-    async (name: string) => {
-      try {
-        const response = await axiosInstance.get(`/api/product/search/${name}`);
-        return response.data.products;
-      } catch (error: any) {
-        throw new Error(error.response.data.message);
-      }
+  'productActions/searchProductsByName',
+  async (name: string) => {
+    try {
+      const response = await handleAxiosGet<Product[]>(`${axiosInstance.defaults.baseURL}/api/product/search/${name}`);
+      return response;
+    } catch (error: any) {
+      throw new Error(error.response.data.message);
     }
-  );
+  }
+);
   
-
 export const searchProductByHandle = createAsyncThunk<Product, string>(
-    'productActions/searchProductByHandle',
-    async (handle: string) => {
-      try {
-        const response = await axiosInstance.get(`/api/product/handle/${handle}`);
-        return response.data.product;
-      } catch (error: any) {
-        console.log(error);
-        
-        throw new Error(error.response.data.message);
-      }
+  'productActions/searchProductByHandle',
+  async (handle: string) => {
+    try {
+      const response = await handleAxiosGet<Product[]>(`${axiosInstance.defaults.baseURL}/api/product/handle/${handle}`);
+      return response[0];
+    } catch (error: any) {
+      throw new Error(error.response.data.message);
     }
-  );
+  }
+);
 
 
 // Acción para buscar productos por color
 export const searchProductsByColor = createAsyncThunk<Product[], string>(
-    'productActions/searchProductsByColor',
-    async (color: string) => {
-      try {
-        const response = await axiosInstance.get(`/api/product/search/${color}`);
-        return response.data.products;
-      } catch (error: any) {
-        throw new Error(error.response.data.message);
-      }
+  'productActions/searchProductsByColor',
+  async (color: string) => {
+    try {
+      const response = await handleAxiosGet<Product[]>(`${axiosInstance.defaults.baseURL}/api/product/search/${color}`);
+      return response;
+    } catch (error: any) {
+      throw new Error(error.response.data.message);
     }
-  );
+  }
+);
   
  // Acción para buscar productos por rango de precio
 export const searchProductsByPrice = createAsyncThunk<Product[], { minPrice: number; maxPrice: number }>(
-    'productActions/searchProductsByPrice',
-    async ({ minPrice, maxPrice }: { minPrice: number; maxPrice: number }) => {
-      try {
-        const response = await axiosInstance.get(`/api/product/search/${minPrice}/${maxPrice}`);
-        return response.data.products;
-      } catch (error: any) {
-        throw new Error(error.response.data.message);
-      }
+  'productActions/searchProductsByPrice',
+  async ({ minPrice, maxPrice }: { minPrice: number; maxPrice: number }) => {
+    try {
+      const response = await handleAxiosGet<Product[]>(`${axiosInstance.defaults.baseURL}/api/product/search/${minPrice}/${maxPrice}`);
+      return response;
+    } catch (error: any) {
+      throw new Error(error.response.data.message);
     }
-  );
+  }
+);
   
 
 // Acción para buscar productos por descripción
 export const searchProductsByDescription = createAsyncThunk<Product[], string>(
-    'productActions/searchProductsByDescription',
-    async (description: string) => {
-      try {
-        const response = await axiosInstance.get(`/api/product/search/${description}`);
-        return response.data.products;
-      } catch (error: any) {
-        throw new Error(error.response.data.message);
-      }
+  'productActions/searchProductsByDescription',
+  async (description: string) => {
+    try {
+      const response = await handleAxiosGet<Product[]>(`${axiosInstance.defaults.baseURL}/api/product/search/${description}`);
+      return response;
+    } catch (error: any) {
+      throw new Error(error.response.data.message);
     }
-  );
+  }
+);
   
 
 // Acción para buscar productos por estado de eliminación (isDeleted)
 export const searchProductsByIsDeleted = createAsyncThunk<Product[], boolean>(
-    'productActions/searchProductsByIsDeleted',
-    async (isDeleted: boolean) => {
-      try {
-        const response = await axiosInstance.get(`/api/product/search/${isDeleted}`);
-        return response.data.products;
-      } catch (error: any) {
-        throw new Error(error.response.data.message);
-      }
+  'productActions/searchProductsByIsDeleted',
+  async (isDeleted: boolean) => {
+    try {
+      const response = await handleAxiosGet<Product[]>(`${axiosInstance.defaults.baseURL}/api/product/search/${isDeleted}`);
+      return response;
+    } catch (error: any) {
+      throw new Error(error.response.data.message);
     }
-  );
+  }
+);
   
 
 // Acción para buscar productos en venta (inSale)
 export const searchProductsInSale = createAsyncThunk<Product[], boolean>(
-    'productActions/searchProductsInSale',
-    async (inSale: boolean) => {
-      try {
-        const response = await axiosInstance.get(`/api/product/search/${inSale}`);
-        return response.data.products;
-      } catch (error: any) {
-        throw new Error(error.response.data.message);
-      }    }
-  );
+  'productActions/searchProductsInSale',
+  async (inSale: boolean) => {
+    try {
+      const response = await handleAxiosGet<Product[]>(`${axiosInstance.defaults.baseURL}/api/product/search/${inSale}`);
+      return response;
+    } catch (error: any) {
+      throw new Error(error.response.data.message);
+    }
+  }
+);
   
-export const searchProductByHandleAndId = createAsyncThunk(
-    'productActions/searchProductByHandleAndId',
-    async ({ handle, id }: { handle: string; id: string }) => {
-      try {
-        const response = await axiosInstance.get(`/api/product/search/${handle}/${id}`);
-        return response.data.product; 
-      } catch (error: any) {
-        throw new Error(error.response.data.message);
-      }
+export const searchProductByHandleAndId = createAsyncThunk<Product, { handle: string; id: string }>(
+  'productActions/searchProductByHandleAndId',
+  async ({ handle, id }: { handle: string; id: string }) => {
+    try {
+      const response = await handleAxiosGet<Product[]>(`${axiosInstance.defaults.baseURL}/api/product/search/${handle}/${id}`);
+      return response[0];
+    } catch (error: any) {
+      throw new Error(error.response.data.message);
     }
-  );
+  }
+);
 
-export const findProductsByCategory = createAsyncThunk(
-    "productActions/findProductsByCategory",
-    async (category: string) => {
-      try {
-        const response = await axiosInstance.get(`/api/product/category/${category}`); // Reemplaza esto con tu ruta de API real
-        const data = await response.data.products;
-        return data;
-      } catch (error: any) {
-        throw new Error(error.response.data.message);
-      }
+export const findProductsByCategory = createAsyncThunk<Product[], string>(
+  'productActions/findProductsByCategory',
+  async (DeptName: string) => {
+    try {
+      const response = await handleAxiosGet<Product[]>(`${axiosInstance.defaults.baseURL}/api/product/category/${DeptName}`);
+      return response;
+    } catch (error: any) {
+      throw new Error(error.response.data.message);
     }
-  );
+  }
+);
 
 // Acción para actualizar un producto por su ID
 export const updateProductById = createAsyncThunk<Product, { id: string; updatedProduct: Product }>(
-    'productActions/updateProductById',
-    async ({ id, updatedProduct }: { id: string; updatedProduct: Product }) => {
-      try {
-        const response = await axiosInstance.patch(`/api/product/${id}`, updatedProduct);
-        console.log(response.data.updatedProduct)
-        return response.data.updatedProduct;
-      } catch (error: any) {
-        console.log(error)
-        throw new Error(error.response.data.message);
-      }
+  'productActions/updateProductById',
+  async ({ id, updatedProduct }: { id: string; updatedProduct: Product }) => {
+    try {
+      const response = await axiosInstance.patch(`${axiosInstance}/api/product/${id}`, updatedProduct);
+      return response.data.updatedProduct;
+    } catch (error: any) {
+      throw new Error(error.response.data.message);
     }
-  );
+  }
+);
   
 // Acción para eliminar un usuario por su ID
 export const deleteProduct = createAsyncThunk<void, string>(
-    'productActions/deleteProduct',
-    async (id: string) => {
-      try {
-        await axiosInstance.delete(`/api/product/delete/${id}`);
-      } catch (error: any) {
-        throw new Error(error.response.data.message);
-      }
+  'productActions/deleteProduct',
+  async (id: string) => {
+    try {
+      await axiosInstance.delete(`/api/product/delete/${id}`);
+    } catch (error: any) {
+      throw new Error(error.response.data.message);
     }
-  );
+  }
+);
 
 
 
-  export const findProductByVariantId = createAction<string>('products/findProductByVariantId');
+export const findProductByVariantId = createAction<string>('products/findProductByVariantId');
+  
+
+
+type FetchProductsArgs = {
+  sortKey: string;
+  reverse: boolean;
+  query: string;
+  q:any;
+};
+type CustomSearchArgs = {
+  sortKey: string | number;
+  reverse: boolean;
+  query: string | number;
+};
+
+
+
+interface ListProductsArgs {
+  filters?: any;
+}
+
+
+type FetchProductsByStyleNameArgs = {
+  StyleName : string;
+};
