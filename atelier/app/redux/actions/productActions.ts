@@ -24,12 +24,17 @@ const handleAxiosGet = async <T>(
   }
 };
 
+interface ListProductsArgs {
+  filters?: any;
+}
 
-export const listProducts = createAsyncThunk<Product[], void>(
+export const listProducts = createAsyncThunk<Product[], ListProductsArgs>(
   'productActions/listProducts',
-  async (_, { rejectWithValue }) => {
+  async (args, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
     try {
-     const response = await handleAxiosGet<Product[]>(`${axiosInstance.defaults.baseURL}/api/products/web`);
+      // Usa los argumentos recibidos para filtrar la llamada a la API, si es necesario
+      const response = await handleAxiosGet<Product[]>(`${axiosInstance.defaults.baseURL}/api/products/web`, args);
 
       return response;
     } catch (error: any) {
@@ -246,9 +251,6 @@ type CustomSearchArgs = {
 
 
 
-interface ListProductsArgs {
-  filters?: any;
-}
 
 
 type FetchProductsByStyleNameArgs = {
