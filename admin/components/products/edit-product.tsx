@@ -18,12 +18,12 @@ import { useRouter } from "next/navigation";
 
 interface FormData {
   imagesURL: string[];
-  title: string;
-  size: string | undefined;
-  color: string | undefined;
-  category: string;
-  quantity: any;
-  description: string;
+  Desc1: string;
+  SizeCode: string | undefined;
+  ColorName: string | undefined;
+  DeptName: string;
+  OnHandQty: any;
+  Desc2: string;
 }
 interface AddProductProps {
   product: ProductWeb;
@@ -35,12 +35,12 @@ export const EditProduct = ({ product }: AddProductProps) => {
   const [imgFile, setImgFile] = useState<File[]>([]);
   const [formData, setFormData] = useState<FormData>({
     imagesURL: product.imagesURL,
-    title: product.title,
-    size: product.size,
-    description: product.description,
-    color: product.color,
-    category: product.category,
-    quantity: product.stock,
+    Desc1: product.Desc1,
+    SizeCode: product.SizeCode,
+    Desc2: product.Desc2,
+    ColorName: product.ColorName,
+    DeptName: product.DeptName,
+    OnHandQty: product.OnHandQty,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,20 +56,20 @@ export const EditProduct = ({ product }: AddProductProps) => {
     try {
       const formDataToSend = new FormData();
 
-      formDataToSend.append("title", formData.title || "");
-      formDataToSend.append("size", formData.size || "");
-      formDataToSend.append("description", formData.description || "");
-      formDataToSend.append("color", formData.color || "");
-      formDataToSend.append("category", formData.category || "");
-      formDataToSend.append("quantity", formData.quantity || "");
-      formDataToSend.append("stock", formData.quantity || "");
+      formDataToSend.append("title", formData.Desc1 || "");
+      formDataToSend.append("size", formData.SizeCode || "");
+      formDataToSend.append("description", formData.Desc2 || "");
+      formDataToSend.append("color", formData.ColorName || "");
+      formDataToSend.append("category", formData.DeptName || "");
+      formDataToSend.append("quantity", formData.OnHandQty || "");
+      formDataToSend.append("stock", formData.OnHandQty || "");
       formDataToSend.append("StyleName", product.StyleName || "");
       formDataToSend.append("SKU", product.SKU || "");
       formDataToSend.append("UPC", product.UPC || "");
       formDataToSend.append("RetailPrice", product.RetailPrice || "");
       formDataToSend.append("GetPercentOff", product.GetPercentOff || "");
       formDataToSend.append("PromoPrice", product.promoPrice || "");
-      formDataToSend.append("StockQty", formData.quantity || "");
+      formDataToSend.append("StockQty", formData.OnHandQty || "");
 
       selectedImages.forEach((file, index) => {
         formDataToSend.append(`images`, file, file.name);
@@ -88,12 +88,12 @@ export const EditProduct = ({ product }: AddProductProps) => {
       if (response.status === 200) {
         alert("Formulario enviado correctamente");
         setFormData({
-          title: "",
-          size: "",
-          description: "",
-          color: "",
-          category: "",
-          quantity: "",
+          Desc1: "",
+          SizeCode: "",
+          Desc2: "",
+          ColorName: "",
+          DeptName: "",
+          OnHandQty: "",
           imagesURL: [],
         });
         onClose();
@@ -125,49 +125,49 @@ export const EditProduct = ({ product }: AddProductProps) => {
                 <ModalHeader className="flex flex-col gap-1">Agregar a Web</ModalHeader>
                 <ModalBody>
                   <Input
-                    label="Titulo"
-                    name="title"
+                    label="Nombre"
+                    name="Desc1"
                     variant="bordered"
-                    value={formData.title}
+                    value={formData.Desc1}
                     onChange={handleChange}
                   />
                   <Input
                     label="Descripcion"
-                    name="description"
+                    name="Desc2"
                     variant="bordered"
-                    value={formData.description}
+                    value={formData.Desc2}
                     onChange={handleChange}
                   />
 
                   <Input
-                    label="color"
-                    name="color"
+                    label="Color"
+                    name="ColorName"
                     variant="bordered"
-                    value={formData.color}
+                    value={formData.ColorName}
                     onChange={handleChange}
                   />
 
                   <Input
-                    label="talle"
-                    name="size"
+                    label="Talle"
+                    name="SizeCode"
                     variant="bordered"
-                    value={formData.size}
+                    value={formData.SizeCode}
                     onChange={handleChange}
                   />
 
                   <Input
-                    label="categoria"
-                    name="category"
+                    label="Categoria"
+                    name="DeptName"
                     variant="bordered"
-                    value={formData.category}
+                    value={formData.DeptName}
                     onChange={handleChange}
                   />
 
                   <Input
-                    label="Cantidad"
+                    label="Stock"
                     variant="bordered"
-                    name="quantity"
-                    value={formData.quantity}
+                    name="OnHandQty"
+                    value={formData.OnHandQty}
                     onChange={handleChange}
                   />
 
