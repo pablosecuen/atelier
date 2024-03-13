@@ -120,14 +120,15 @@ export default useGlobalStore;
 
 export interface ProductWeb {
   quantity: string | (readonly string[] & string) | undefined;
-  size: string | (readonly string[] & string) | undefined;
-  color: string | (readonly string[] & string) | undefined;
-  StockQty: any;
+  SizeCode: string | (readonly string[] & string) | undefined;
+  ColorName: string | (readonly string[] & string) | undefined;
+  StockQty?: any;
   id: string;
   imagesURL: string[];
   handle: string;
+  Desc2: string;
   slug: string;
-  category: string;
+  DeptName: string;
   descriptionHtml: string;
   seo: {
     title: string;
@@ -136,7 +137,7 @@ export interface ProductWeb {
   };
   availableForSale: boolean;
   title: string;
-  description: string;
+  Desc1: string;
   updatedAt: string;
   SKU: string;
   StyleName: string;
@@ -144,7 +145,7 @@ export interface ProductWeb {
   RetailPrice: string;
   GetPercentOff: string;
   promoPrice: string;
-  stock: string;
+  OnHandQty: string;
   createdAt: string;
 }
 
@@ -154,14 +155,17 @@ export interface ProductApi {
   StockQty: string;
   SKU: string;
   StyleName: string;
+  Desc1: string;
+Desc2: string;
   UPC: string;
   name?: string;
   RetailPrice: string;
   GetPercentOff: string; 
   PromoPrice: string; 
   price?: number;
-  category?: string;
-  quantity?: number;
+  DeptName?: string;
+  OnHandQty?: number;
+  ColorName: string;
 }
 
 
