@@ -136,7 +136,6 @@ const addProduct = async (req: Request, res: Response) => {
     });
 
     await Promise.all(deletePromises);
-console.log(product);
 
     const newProduct = await Product.create({
        ...product,
@@ -166,6 +165,38 @@ const getAllProductsFromDb = async (req: Request, res: Response) => {
     res.status(200).json(products);
   } catch (error) {
     console.error('Error al obtener productos:', error);
+    res.status(500).json({ message: 'Error interno del servidor' });
+  }
+};
+
+
+const getProductsByStyleName = async (req: Request, res: Response) => {
+  try {
+    let styleName: string | undefined;
+
+    // Verifica si el valor de StyleName está en los parámetros de la URL
+    if (req.params.styleName) {
+      styleName = req.params.styleName as string;
+    }
+
+    // Si no está en los parámetros, verifica si está en la consulta de la solicitud
+    if (!styleName && req.query.styleName) {
+      styleName = req.query.styleName as string;
+    }
+
+    if (!styleName) {
+      return res.status(400).json({ message: 'Se requiere el nombre de estilo (StyleName) en los parámetros de la URL o en la consulta de la solicitud' });
+    }
+
+    const products = await Product.findAll({
+      where: {
+        StyleName: styleName
+      }
+    });
+    
+    res.status(200).json(products);
+  } catch (error) {
+    console.error('Error al obtener productos por StyleName:', error);
     res.status(500).json({ message: 'Error interno del servidor' });
   }
 };
@@ -229,4 +260,4 @@ const deleteProduct = async (req: Request, res: Response) => {
 
 
 
-export default { updateProductsWithAdditionalProperties,getProductsWithStock, addProduct, getAllProductsFromDb , updateProduct, deleteProduct };
+export default { updateProductsWithAdditionalProperties,getProductsWithStock, addProduct, getAllProductsFromDb , updateProduct, deleteProduct ,getProductsByStyleName};

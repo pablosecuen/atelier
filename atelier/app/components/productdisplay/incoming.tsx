@@ -24,7 +24,7 @@ function Incoming() {
           <div key={product.id} className="!min-w-[50%]  ">
             <Link
               className="relative block aspect-square h-full w-full "
-              href={`/product/${product.handle}`}
+              href={`/product/${product.StyleName}`}
             >
               <div className="rounded-md min-w-[280px] md:w-full flex flex-col justify-center items-center ">
                 <Image

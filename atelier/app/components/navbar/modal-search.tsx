@@ -11,7 +11,7 @@ function ModalSearch({ products, closeModal }: { products: Product[]; closeModal
       {products?.slice(0, 5)?.map((product: Product) => (
         <Link
           key={product?.id}
-          href={`/product/${product.handle}`}
+          href={`/product/${product.StyleName}`}
           className="relative h-full w-full  "
         >
           <div
@@ -20,7 +20,7 @@ function ModalSearch({ products, closeModal }: { products: Product[]; closeModal
           >
             <Image
               src={productimge}
-              alt={product?.handle}
+              alt={product?.StyleName}
               className=" h-full w-auto border border-primario rounded-r-xl"
             />
             <h3 className="  tracking-wide !font-cabinet-grotesk-regular text-md  font-atlas-grotesk-medium underline underline-offset-4 mr-2 capitalize">

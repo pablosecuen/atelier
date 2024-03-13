@@ -4,9 +4,8 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { ExportIcon } from "@/components/icons/accounts/export-icon";
 import { HouseIcon } from "@/components/icons/breadcrumb/house-icon";
-
 import { TableWrapper } from "@/components/table/table";
-import useGlobalStore, { ProductApi, fetchApiProducts } from "@/store/zustand";
+import useGlobalStore, { ProductApi, ProductApiExtended, fetchApiProducts } from "@/store/zustand";
 import * as XLSX from "xlsx";
 import { ProductsIcon } from "../icons/sidebar/products-icon";
 import { Toaster } from "sonner";
@@ -26,21 +25,22 @@ export const Products = () => {
     fetchProducts();
   }, [setApiProducts]);
 
-  const filteredProducts = products.filter((product: ProductApi) => {
-    const { SKU, UPC, RetailPrice, GetPercentOff, PromoPrice, Desc1, Desc2, ColorName } = product;
+  const productMatchesFilter = (product: ProductApiExtended, productFilter: string) => {
     const searchLowerCase = productFilter.toLowerCase();
-
-    const match =
-      Desc1?.toString().toLowerCase().includes(searchLowerCase) ||
-      Desc2?.toString().toLowerCase().includes(searchLowerCase) ||
-      ColorName?.toString().toLowerCase().includes(searchLowerCase) ||
-      SKU?.toString().toLowerCase().includes(searchLowerCase) ||
-      UPC?.toString().toLowerCase().includes(searchLowerCase) ||
-      RetailPrice?.toString().toLowerCase().includes(searchLowerCase) ||
-      GetPercentOff?.toLowerCase().includes(searchLowerCase) ||
-      PromoPrice?.toString().toLowerCase().includes(searchLowerCase);
+    const productKeys = Object.keys(product);
+    const match = productKeys.some((key: string) => {
+      const value = product[key];
+      if (typeof value === "string" || typeof value === "number") {
+        return value.toString().toLowerCase().includes(searchLowerCase);
+      }
+      return false;
+    });
 
     return match;
+  };
+
+  const filteredProducts = products.filter((product: ProductApi) => {
+    return productMatchesFilter(product, productFilter);
   });
 
   const exportToExcel = () => {

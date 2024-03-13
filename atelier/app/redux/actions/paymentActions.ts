@@ -85,7 +85,7 @@ export const getMerchantOrder = createAsyncThunk(
   async (paymentId: string) => {
     try {
       // Realiza la solicitud al endpoint del backend para buscar la orden del comerciante
-      const response = await axios.get(`https://wrong-eggnog-production.up.railway.app/api/payments/merchantOrder?payment_id=${paymentId}`);
+      const response = await axiosInstance.get(`/api/payments/merchantOrder?payment_id=${paymentId}`);
 
       // Devuelve los datos de la orden del comerciante
       return response.data;

@@ -20,7 +20,6 @@ type MerchandiseSearchParams = {
 export default function CartModal() {
   const { cart, cost } = useSelector((state: RootState) => state.cart);
 
-
   const [isOpen, setIsOpen] = useState(false);
   const quantityRef = useRef(cart?.length);
   const openCart = () => setIsOpen(true);
@@ -108,18 +107,18 @@ export default function CartModal() {
                                   className="h-full w-full object-cover"
                                   width={64}
                                   height={64}
-                                  alt={item.title}
+                                  alt={item.Desc1}
                                   src={image}
                                 />
                               </div>
 
                               <div className="flex flex-1 flex-col text-base text-black">
-                                <span className="leading-tight">{item.title}</span>
+                                <span className="leading-tight">{item.Desc1}</span>
                                 <span className="leading-tight opacity-60 text-sm ">
-                                  Medida: {item.size}
+                                  Medida: {item.SizeCode}
                                 </span>
                                 <span className="leading-tight opacity-60 text-sm">
-                                  Color: {item.color}
+                                  Color: {item.ColorName}
                                 </span>
                               </div>
                             </Link>

@@ -16,7 +16,6 @@ interface Props {
 }
 
 export const RenderCellWeb = ({ product, columnKey }: Props) => {
-
   // @ts-ignore
   const cellValue = product[columnKey];
   switch (columnKey) {
@@ -29,7 +28,7 @@ export const RenderCellWeb = ({ product, columnKey }: Props) => {
           name={cellValue}
           className="capitalize"
         >
-          {product.title}
+          {product.Desc1}
         </User>
       );
 

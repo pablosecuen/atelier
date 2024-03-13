@@ -13,7 +13,7 @@ export default function ProductGridItems({ products }: { products: Product[] }) 
           key={product.id}
           className="animate-fadeIn h-full font-atlas-grotesk-medium w-full flex items-center justify-center "
         >
-          <Link className="relative inline-block h-full w-full" href={`/product/${product.handle}`}>
+          <Link className="relative inline-block h-full w-full" href={`/product/${product.StyleName}`}>
             <GridTileImage
               alt={product.Desc1}
               label={{

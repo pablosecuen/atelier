@@ -9,6 +9,15 @@ export function Gallery({ images }: { images: { src: string; altText: string }[]
   const imageSearchParam = searchParams.get("image");
   const imageIndex = imageSearchParam ? parseInt(imageSearchParam) : 0;
 
+  if (!images) {
+    return null; 
+  }
+
+
+  if (imageIndex < 0 || imageIndex >= images?.length || !images[imageIndex]) {
+    return null; 
+  }
+
   return (
     <div className="relative aspect-square h-full max-h-[550px] w-full overflow-hidden">
       {images[imageIndex] && (

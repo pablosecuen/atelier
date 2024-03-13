@@ -73,7 +73,7 @@ function BestSellers() {
         {products?.map((product: any) => (
           <Link
             className=" h-full overflow-x-hidden max-w-[280px] "
-            href={`/product/${product.handle}`}
+            href={`/product/${product.StyleName}`}
             key={product.id}
           >
             <div className="rounded-md w-full  h-full  px-2 md:px-0 pb-6 ">

@@ -21,37 +21,32 @@ interface ListProductsArgs {
   filters?: any;
 }
 
+type FetchProductsByStyleNameArgs = {
+  StyleName : string;
+};
 
-
-//accion de productos para fakedb
-/* export const listProducts = createAsyncThunk<Product[], ListProductsArgs | void>(
-  'productActions/listProducts',
-  async (args, { rejectWithValue }) => {
+export const fetchProductsByStyleName = createAsyncThunk<Product[], FetchProductsByStyleNameArgs>(
+  'productActions/fetchProductsByStyleName',
+  async ({ StyleName  }, { rejectWithValue }) => {
     try {
-      if (args) {
-        const filteredProducts = products.filter((product : Product) => {
-          if (args.filters?.category) {
-            return product.category === args.filters.category;
-          }
-          return true;
-        });
-
-        return filteredProducts;
-      } else {
-        return products;
+      const response = await axiosInstance.get(`/api/products/style/${StyleName }`);
+      if (response.status !== 200) {
+        throw new Error('No se pudo obtener la lista de productos por StyleName.');
       }
-    } catch (error: any) {
+      return response.data;
+    } catch (error:any) {
       return rejectWithValue(error.message);
     }
   }
-); */
+);
+
 
 export const listProducts = createAsyncThunk<Product[], ListProductsArgs | void>(
   'productActions/listProducts',
   async (args, { rejectWithValue }) => {
     try {
       // Realizar la llamada a la API para obtener la lista de productos
-      const response = await fetch("https://wrong-eggnog-production.up.railway.app/api/products/web");
+      const response = await fetch("http://localhost:3000/api/products/web");
       if (!response.ok) {
         throw new Error('Error al cargar los productos');
       }
@@ -213,7 +208,7 @@ export const findProductsByCategory = createAsyncThunk(
     "productActions/findProductsByCategory",
     async (category: string) => {
       try {
-        const response = await axiosInstance.get(`/api/product/category/${category}`); // Reemplaza esto con tu ruta de API real
+        const response = await axiosInstance.get(`/api/product/category/${category}`); 
         const data = await response.data.products;
         return data;
       } catch (error: any) {

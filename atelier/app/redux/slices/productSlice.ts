@@ -10,6 +10,7 @@ interface ProductState {
   products: Product[];
   selectedProduct: Product;
   productsByCategory: Product[], 
+   productsByStyleName: Product[],
   productByHandle: Product,
   error: any | null;
   searchResults: Product[],
@@ -23,7 +24,8 @@ const initialState: ProductState = {
   searchResults:[],
   selectedProduct: {},
   productsByCategory: [],
-  productByHandle:{},
+  productByHandle: {},
+    productsByStyleName: [], 
   error: null,
   status: "idle",
 };
@@ -100,19 +102,17 @@ const productSlice = createSlice({
         state.error = action.error.message || null;
         state.status = "failed";
       })
- /*      .addCase(productActions.createProduct.pending, (state) => {
-        state.status = "loading";
+ .addCase(productActions.fetchProductsByStyleName.pending, (state) => {
+        state.status = 'loading';
       })
-      .addCase(productActions.createProduct.fulfilled, (state, action) => {
-        state.product = action.payload.product;
-        state.error = null;
-        state.status = "succeeded";
+      .addCase(productActions.fetchProductsByStyleName.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.productsByStyleName = action.payload; 
       })
-      
-      .addCase(productActions.createProduct.rejected, (state, action) => {
+      .addCase(productActions.fetchProductsByStyleName.rejected, (state, action) => {
+        state.status = 'failed';
         state.error = action.error.message || null;
-        state.status = "failed";
-      }) */
+      })
       .addCase(productActions.getProductById.pending, (state) => {
         state.status = "loading";
       })
