@@ -3,7 +3,7 @@ import { toast } from 'sonner';
 import { create } from 'zustand';
 
 
-const axiosInstance = axios.create({
+export const axiosInstance = axios.create({
   baseURL: 'https://wrong-eggnog-production.up.railway.app',
 });
 
