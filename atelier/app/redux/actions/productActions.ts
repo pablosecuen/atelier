@@ -58,7 +58,7 @@ export const fetchProductsByStyleName = createAsyncThunk<Product[], FetchProduct
     }
   }
 );
-console.log(axiosInstance);
+
 
 
 export const listProducts = createAsyncThunk<Product[], ListProductsArgs | void>(

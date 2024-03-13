@@ -60,7 +60,7 @@ export default function ProductPage({ params }: { params: { StyleName: string } 
               <Gallery
                 images={productsByStyleName[0]?.imagesURL.map((image: any) => ({
                   src: image,
-                  altText: image.Desc1,
+                  altText: productsByStyleName[0].Desc2,
                 }))}
               />
             </div>
@@ -70,7 +70,7 @@ export default function ProductPage({ params }: { params: { StyleName: string } 
                 products={productsByStyleName}
                 images={productsByStyleName[0]?.imagesURL.map((image: any) => ({
                   src: image,
-                  altText: image.Desc1,
+                  altText: productsByStyleName[0].Desc2,
                 }))}
               />
             </div>
