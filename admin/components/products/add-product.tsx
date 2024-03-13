@@ -11,10 +11,10 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@nextui-org/react";
-import axios from "axios";
 import { ProductApi } from "@/store/zustand";
 import { EditIcon } from "../icons/table/edit-icon";
 import { toast } from "sonner";
+import axiosInstance from "../../../atelier/app/redux/axiosInstance";
 
 interface FormData {
   title: string;
@@ -40,15 +40,11 @@ export const AddProduct = ({ product }: AddProductProps) => {
         formDataToSend.append(`images`, file, file.name);
       });
 
-      const response = await axios.post(
-        "https://wrong-eggnog-production.up.railway.app/api/products/create",
-        formDataToSend,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await axiosInstance.post("/api/products/create", formDataToSend, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       if (response.status === 201) {
         toast.success("Formulario enviado correctamente");

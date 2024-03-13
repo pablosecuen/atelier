@@ -39,6 +39,7 @@ export const fetchProductsByStyleName = createAsyncThunk<Product[], FetchProduct
     }
   }
 );
+console.log(axiosInstance);
 
 
 export const listProducts = createAsyncThunk<Product[], ListProductsArgs | void>(
@@ -46,7 +47,7 @@ export const listProducts = createAsyncThunk<Product[], ListProductsArgs | void>
   async (args, { rejectWithValue }) => {
     try {
       // Realizar la llamada a la API para obtener la lista de productos
-      const response = await fetch("http://localhost:3000/api/products/web");
+      const response = await fetch(`https://wrong-eggnog-production.up.railway.app/api/products/web`);
       if (!response.ok) {
         throw new Error('Error al cargar los productos');
       }
