@@ -10,10 +10,13 @@ import axiosInstance from '../axiosInstance';
 
 
 const handleAxiosGet = async <T>(
-  url: string
+  url: string,
+  filters?: any // Acepta argumentos de filtrado opcionalmente
 ): Promise<T[]> => {
   try {
-    const response: AxiosResponse<T[]> = await axios.get(url);
+    // Si hay argumentos de filtrado, adjúntalos a la URL de la API
+    const apiUrl = filters ? `${url}?filters=${JSON.stringify(filters)}` : url;
+    const response: AxiosResponse<T[]> = await axios.get(apiUrl);
 
     // Filtra los productos que están disponibles para la venta
     const availableProducts = response.data.filter((product: any) => product.availableForSale);
@@ -28,14 +31,12 @@ interface ListProductsArgs {
   filters?: any;
 }
 
-export const listProducts = createAsyncThunk<Product[], ListProductsArgs>(
+export const listProducts = createAsyncThunk<Product[], ListProductsArgs | void>(
   'productActions/listProducts',
-  async (args, thunkAPI) => {
+  async (args = {}, thunkAPI) => { // Asigna un objeto vacío como valor predeterminado para args
     const { rejectWithValue } = thunkAPI;
     try {
-      // Usa los argumentos recibidos para filtrar la llamada a la API, si es necesario
       const response = await handleAxiosGet<Product[]>(`${axiosInstance.defaults.baseURL}/api/products/web`, args);
-
       return response;
     } catch (error: any) {
       return rejectWithValue(error.message);
