@@ -37,7 +37,10 @@ export const RenderCell = ({ product, columnKey }: Props) => {
           <span className="capitalize text-xs">{cellValue || "No definido"}</span>
         </Chip>
       );
-
+    case "OnHandQty":
+      return (
+        <div>{parseInt(Math.floor(parseFloat(cellValue)).toString())}</div>
+      );
     case "actions":
       return (
         <div className="flex items-center gap-4 ">

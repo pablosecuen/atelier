@@ -31,7 +31,10 @@ export const RenderCellWeb = ({ product, columnKey }: Props) => {
           {product.Desc1}
         </User>
       );
-
+    case "OnHandQty":
+      return (
+        <div>{parseInt(Math.floor(parseFloat(cellValue)).toString())}</div>
+      );
     case "availableForSale":
       return (
         <div className="flex items-center justify-between w-32  ">
