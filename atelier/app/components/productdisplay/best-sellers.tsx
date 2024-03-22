@@ -85,9 +85,12 @@ function BestSellers() {
                 height={0}
                 width={150}
               />
-              <span className="text-md lg:text-lg mt-8 font-semibold text-black">
-                {product.Desc1}
-              </span>
+              <div className="flex flex-col">
+                <span className="text-md lg:text-lg font-semibold text-black">{product.Desc1}</span>
+                <span className="text-md lg:text-lg  font-semibold text-black">
+                  $ {product.price}
+                </span>
+              </div>
             </div>
           </Link>
         ))}
