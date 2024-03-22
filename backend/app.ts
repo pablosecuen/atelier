@@ -17,14 +17,14 @@ cloudinary.config({
 
 
 
-
-
 app.use((req, res, next) => {
       const allowedOrigins = [
     process.env.WEB_URL,
     process.env.DEPLOY_URL,
     process.env.ADMIN_URL,
-     "http://localhost:*"
+        "http://localhost:3001",
+        "http://localhost:3000",
+     "http://localhost:3005"
     ];
 
   const origin = req.headers.origin;
