@@ -25,7 +25,7 @@ export const menu: { title: string; path: string }[] = [
     {title: 'HOME', path: '/'},
     {title: 'SHIRTS', path: '/shop?q=shirts'},
     {title: 'ACCESORIES', path: '/shop?q=accesories'},
-    {title: 'SUSTENTABILITY', path: '/sustentability'},
+    {title: 'NOSOTROS', path: '/nosotros'},
    
 
 
