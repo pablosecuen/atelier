@@ -43,7 +43,6 @@ export function ProductDescription({
     }
   };
 
-
   return (
     <>
       <div className=" flex flex-col md:ap-8 pb-6  text-black">
@@ -54,7 +53,7 @@ export function ProductDescription({
           <Price price={products[0]?.RetailPrice} currencyCode="$" />
         </div>
         <hr className="md:my-4 hidden md:block"></hr>
-        <p className="text-black">{products[0]?.Desc2}</p>
+        <p className="text-black">{products[0]?.StyleNote}</p>
         <div className=" w-full bg-white p-2  font-inter-bold text-black mx-auto ">
           <span className="font-bold">Talle </span>
           <div className="font-bold flex">
