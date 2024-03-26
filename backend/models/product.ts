@@ -54,9 +54,12 @@ const Product = sequelize.define('Product', {
     type: DataTypes.BOOLEAN,
     defaultValue: true
   },
-
+   StyleNote: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
     Desc2: {
-    type: DataTypes.TEXT,
+    type: DataTypes.STRING,
     allowNull: false
   },
   updatedAt: {
