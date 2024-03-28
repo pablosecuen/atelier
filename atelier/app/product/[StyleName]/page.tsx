@@ -31,7 +31,7 @@ export default function ProductPage({ params }: { params: { StyleName: string } 
     "@context": "https://schema.org",
     "@type": "Product",
     name: productsByStyleName[0]?.Desc1,
-    description: productsByStyleName[0]?.Desc2,
+    description: productsByStyleName[0]?.StyleNote,
     image: productsByStyleName[0]?.imagesURL[0],
     offers: {
       "@type": "AggregateOffer",

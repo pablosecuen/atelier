@@ -168,6 +168,4 @@ export const searchPaymentInfo = async (req: Request, res: Response) => {
 
 export default { createPreference, webHookController, getAllPayments, searchPaymentInfo  };
 
-function sendTicket(paymentData: { paymentId: any; dateCreated: any; items: any; status: any; payer: any; shipments: any; transaction_amount: any; }, arg1: string) {
-  throw new Error('Function not implemented.');
-}
+
